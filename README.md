@@ -1,12 +1,9 @@
-# project2-sec1-kittiphop
+# PROJECT1-SEC-1-Kittiphop.vue 🇰 🇮 🇹 🇹 🇮 🇵 🇭 🇴 🇵 . <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js Logo" width="22" height="22">
+## รายละเอียดโปรเจค 🔻
+**หัวข้อโปรเจค:**  
+- เป็นเว็บไซต์จำลอ
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
+## รายชื่อสมาชิกและหน้าที่รับผิดชอบ
 
 
 
@@ -20,20 +17,36 @@ This template should help get you started developing with Vue 3 in Vite.
 
 
 
-## Project Setup
+---
+### 🃏ฟีเจอร์หลัก (Features)
+- **XXX**
 
-```sh
-npm install
-```
+--- 
+### คู่มือการใช้งานแอปพลิเคชัน 
+--- 
+### วิดิโอสาธิตการทำงานของเว็บไซต์
+[Watch the video](link)
 
-### Compile and Hot-Reload for Development
+--- 
+### แหล่งข้อมูลอ้างอิงหรือเป็นแรงบันดาลใจในการพัฒนา
+- ref 1 ไอเดีย 
+---
 
-```sh
-npm run dev
-```
+## วิธีการใช้งาน 💻
+1. git clone : ` https://github.com/P4warit06/PROJECT2-SEC-1-Kittiphop.vue.git `
+2. change directory ไปที่โฟลเดอร์ที่มีการ clone project นี้ลงไป ใช้คำสั่ง `cd your : path/path/path`
+3. จากนั้นตรวจสอบว่าใน folder มีการติดตั้ง Node Module หรือยัง ถ้ายังให้ใช้คำสั่ง `npm install`  หรือ `npm i`
+4. จากนั้นทดลองรันโปรเจคด้วยคำสั่ง `npm run dev `
+5. จากนั้นให้ตรวจสอบว่าปรากฎตัว "localhost:xxxx" ให้ทดสอบหรือไม่
+---
 
-### Compile and Minify for Production
+## Tool ที่ใช้ในโปรเจคนี้ 🔍
+- Vue.js <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js Logo" width="22" height="22">
+- JavaScript <img src="https://cdn.worldvectorlogo.com/logos/logo-javascript.svg" alt="Js.js Logo" width="22" height="22">
+- HTML / Tailwind Framework &nbsp;  <img src="https://cdn.worldvectorlogo.com/logos/html-1.svg" alt="Html.js Logo" width="22" height="22"> |  <img src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" alt="Tailwind.js Logo" width="22" height="22">
+- Daisy UI for icon  <img src="https://avatars.githubusercontent.com/u/76870092?s=280&v=4" alt="daisy.Logo" width="22" height="22">
 
-```sh
-npm run build
-```
+---
+
+### หมายเหตุ:
+หากพบปัญหาหรือข้อผิดพลาดในการรันโปรเจค  กรุณาติดต่อสมาชิกในทีมเพื่อแก้ไขปัญหาดังกล่าว
