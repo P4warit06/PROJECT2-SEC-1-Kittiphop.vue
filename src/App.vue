@@ -1,8 +1,10 @@
 <script setup>
 import Header from "./components/Header.vue";
+import Slider from "./components/Slider.vue";
 </script>
 
 <template>
+  <Slider></Slider>
   <!-- Demo Header -->
   <div class="flex item-center justify-center ">
    
