@@ -4,8 +4,8 @@ import Header from "./components/Header.vue";
 
 <template>
   <!-- Demo Header -->
-  <div class="flex item-center justify-center">
-    <div> Demo Header Context</div>
+  <div class="flex item-center justify-center ">
+   
         <Header>
           <template #logo></template>
           <template #Maintitle> Main template</template>
