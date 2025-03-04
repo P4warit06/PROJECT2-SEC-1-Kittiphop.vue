@@ -1,7 +1,7 @@
 # PROJECT1-SEC-1-Kittiphop.vue 🇰 🇮 🇹 🇹 🇮 🇵 🇭 🇴 🇵 . <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js Logo" width="22" height="22">
 ## รายละเอียดโปรเจค 🔻
-**หัวข้อโปรเจค:**  
-- เป็นเว็บไซต์จำลอง
+**หัวข้อโปรเจค: ระบบจัดการสินค้า**  
+- เป็นเว็บไซต์จำลองระบบจัดการสินค้า....
 
 ## รายชื่อสมาชิกและหน้าที่รับผิดชอบ
 
