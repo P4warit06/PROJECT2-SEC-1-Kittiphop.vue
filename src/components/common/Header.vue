@@ -29,9 +29,9 @@
       <ul class="flex space-x-4">
         <li><router-link to="/" class="hover:text-blue-300">Home</router-link></li>
         <li>
-          <router-link to="/product" class="hover:text-blue-300">Products</router-link>
+          <router-link to="/" class="hover:text-blue-300">Products</router-link>
         </li>
-        <li><router-link to="/about" class="hover:text-blue-300">About</router-link></li>
+        <li><router-link to="/" class="hover:text-blue-300">About</router-link></li>
       </ul>
     </nav>
 
@@ -41,8 +41,8 @@
     >
       <ul class="space-y-2">
         <li><router-link to="/" class="block hover:text-blue-300 py-2">Home</router-link></li>
-        <li><router-link to="/product" class="block hover:text-blue-300 py-2">Products</router-link></li>
-        <li><router-link to="/about" class="block hover:text-blue-300 py-2">About</router-link></li>
+        <li><router-link to="/" class="block hover:text-blue-300 py-2">Products</router-link></li>
+        <li><router-link to="/" class="block hover:text-blue-300 py-2">About</router-link></li>
       </ul>
     </div>
   </header>
