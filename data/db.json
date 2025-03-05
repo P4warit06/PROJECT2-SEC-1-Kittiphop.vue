@@ -1,148 +1,64 @@
 {
-    "products": [
-      {
-        "id": 1,
-        "name": "เสื้อยืดสีขาว",
-        "category": "เสื้อผ้า",
-        "description": "เสื้อยืดคอกลมสีขาวพื้นฐาน",
-        "price": 250,
-        "stock": 100,
-        "supplier": "บริษัท ก ไทยการ์เมนท์ จำกัด",
-        "image": "https://via.placeholder.com/150",
-        "createdAt": "2023-01-15"
-      },
-      {
-        "id": 2,
-        "name": "กางเกงยีนส์",
-        "category": "เสื้อผ้า",
-        "description": "กางเกงยีนส์ทรงสลิม",
-        "price": 890,
-        "stock": 75,
-        "supplier": "บริษัท ข แฟชั่นไทย จำกัด",
-        "image": "https://via.placeholder.com/150",
-        "createdAt": "2023-01-20"
-      },
-      {
-        "id": 3,
-        "name": "รองเท้าผ้าใบ",
-        "category": "รองเท้า",
-        "description": "รองเท้าผ้าใบสีขาวคลาสสิค",
-        "price": 1290,
-        "stock": 50,
-        "supplier": "บริษัท ค สปอร์ตไทย จำกัด",
-        "image": "https://via.placeholder.com/150",
-        "createdAt": "2023-02-05"
-      },
-      {
-        "id": 4,
-        "name": "กระเป๋าสะพาย",
-        "category": "กระเป๋า",
-        "description": "กระเป๋าสะพายข้างสีดำ",
-        "price": 790,
-        "stock": 30,
-        "supplier": "บริษัท ง แฟชั่นไทย จำกัด",
-        "image": "https://via.placeholder.com/150",
-        "createdAt": "2023-02-15"
-      },
-      {
-        "id": 5,
-        "name": "หมวกแก๊ป",
-        "category": "เครื่องประดับ",
-        "description": "หมวกแก๊ปสีดำพื้นฐาน",
-        "price": 390,
-        "stock": 60,
-        "supplier": "บริษัท จ เครื่องประดับไทย จำกัด",
-        "image": "https://via.placeholder.com/150",
-        "createdAt": "2023-03-01"
-      }
-    ],
-    "inventory_transactions": [
-      {
-        "id": 1,
-        "productId": 1,
-        "type": "import",
-        "quantity": 50,
-        "date": "2023-06-01",
-        "note": "นำเข้าสินค้าใหม่"
-      },
-      {
-        "id": 2,
-        "productId": 2,
-        "type": "export",
-        "quantity": 10,
-        "date": "2023-06-02",
-        "note": "ส่งออกไปยังร้านค้า"
-      },
-      {
-        "id": 3,
-        "productId": 3,
-        "type": "import",
-        "quantity": 20,
-        "date": "2023-06-03",
-        "note": "นำเข้าสินค้าเพิ่มเติม"
-      },
-      {
-        "id": 4,
-        "productId": 4,
-        "type": "export",
-        "quantity": 5,
-        "date": "2023-06-04",
-        "note": "ส่งออกไปยังลูกค้า"
-      }
-    ],
-    "categories": [
-      {
-        "id": 1,
-        "name": "เสื้อผ้า"
-      },
-      {
-        "id": 2,
-        "name": "รองเท้า"
-      },
-      {
-        "id": 3,
-        "name": "กระเป๋า"
-      },
-      {
-        "id": 4,
-        "name": "เครื่องประดับ"
-      }
-    ],
-    "suppliers": [
-      {
-        "id": 1,
-        "name": "บริษัท ก ไทยการ์เมนท์ จำกัด",
-        "contact": "02-123-4567",
-        "email": "company.a@example.com",
-        "address": "กรุงเทพมหานคร"
-      },
-      {
-        "id": 2,
-        "name": "บริษัท ข แฟชั่นไทย จำกัด",
-        "contact": "02-234-5678",
-        "email": "company.b@example.com",
-        "address": "เชียงใหม่"
-      },
-      {
-        "id": 3,
-        "name": "บริษัท ค สปอร์ตไทย จำกัด",
-        "contact": "02-345-6789",
-        "email": "company.c@example.com",
-        "address": "ขอนแก่น"
-      },
-      {
-        "id": 4,
-        "name": "บริษัท ง แฟชั่นไทย จำกัด",
-        "contact": "02-456-7890",
-        "email": "company.d@example.com",
-        "address": "ภูเก็ต"
-      },
-      {
-        "id": 5,
-        "name": "บริษัท จ เครื่องประดับไทย จำกัด",
-        "contact": "02-567-8901",
-        "email": "company.e@example.com",
-        "address": "ชลบุรี"
-      }
-    ]
-  }
+  "products": [
+    {
+      "id": 1,
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 45,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": 2,
+      "name": "Smart Watch",
+      "category": "Wearables",
+      "price": 199.99,
+      "status": "Active",
+      "stock": 30,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "Feature-rich smartwatch with health tracking"
+    },
+    {
+      "id": 3,
+      "name": "Bluetooth Speaker",
+      "category": "Audio",
+      "price": 49.99,
+      "status": "Low Stock",
+      "stock": 5,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "Portable bluetooth speaker with 20hr battery life"
+    },
+    {
+      "id": 4,
+      "name": "Laptop Stand",
+      "category": "Accessories",
+      "price": 29.99,
+      "status": "Out of Stock",
+      "stock": 0,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "Ergonomic aluminum laptop stand"
+    },
+    {
+      "id": 5,
+      "name": "Mechanical Keyboard",
+      "category": "Electronics",
+      "price": 129.99,
+      "status": "Active",
+      "stock": 25,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "RGB mechanical gaming keyboard"
+    },
+    {
+      "id": 6,
+      "name": "4K Monitor",
+      "category": "Electronics",
+      "price": 349.99,
+      "status": "Active",
+      "stock": 15,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "32-inch 4K HDR monitor"
+    }
+  ]
+}
