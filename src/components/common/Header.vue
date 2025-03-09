@@ -1,7 +1,5 @@
-<script setup>
+<script setup></script>
 
-</script>
- 
 <template>
   <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold">Product Management</h1>
@@ -27,11 +25,16 @@
     <!-- Desktop navigation (hidden on small screens) -->
     <nav class="hidden md:block">
       <ul class="flex space-x-4">
-        <li><router-link to="/" class="hover:text-blue-300">Home</router-link></li>
         <li>
-          <router-link to="/" class="hover:text-blue-300">Products</router-link>
+          <router-link to="/about" class="hover:text-blue-300"
+            >About</router-link
+          >
         </li>
-        <li><router-link to="/" class="hover:text-blue-300">About</router-link></li>
+        <li>
+          <router-link to="/product" class="hover:text-blue-300"
+            >Product</router-link
+          >
+        </li>
       </ul>
     </nav>
 
@@ -40,14 +43,19 @@
       class="absolute top-16 right-0 left-0 bg-blue-600 p-4 hidden md:hidden"
     >
       <ul class="space-y-2">
-        <li><router-link to="/" class="block hover:text-blue-300 py-2">Home</router-link></li>
-        <li><router-link to="/" class="block hover:text-blue-300 py-2">Products</router-link></li>
-        <li><router-link to="/" class="block hover:text-blue-300 py-2">About</router-link></li>
+        <li>
+          <router-link to="/about" class="block hover:text-blue-300 py-2"
+            >About</router-link
+          >
+        </li>
+        <li>
+          <router-link to="/product" class="block hover:text-blue-300 py-2"
+            >Products</router-link
+          >
+        </li>
       </ul>
     </div>
   </header>
 </template>
- 
-<style scoped>
 
-</style>
+<style scoped></style>
