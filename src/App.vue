@@ -10,6 +10,7 @@ import { ref } from "vue";
   <Header/>
   <ProductManager />
   <Footer/>
+ 
 
 </template>
 <style scoped></style>
