@@ -12,9 +12,9 @@
       <div class="flex items-center space-x-6">
         
         <div class="flex space-x-6 ml-auto">
+          <router-link to="/product"  class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">PRODUCT</router-link>
           <router-link to="/about"  class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">ABOUT</router-link>
           <!-- สมมติว่า user login แล้ว  -->
-          <router-link to="/product"  class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">PRODUCT</router-link>
           <router-link to="/" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">LOGIN</router-link>
 
         </div>
