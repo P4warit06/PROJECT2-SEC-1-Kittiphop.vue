@@ -45,7 +45,7 @@ const cancelAdding = () => {
   <div>
     <div class="w-full flex justify-center items-center my-4">
       <button v-show="!isAdding" @click="isAdding = !isAdding"
-        class="bg-green-400 py-2 px-4 rounded-lg cursor-pointer hover:opacity-80">
+        class="bg-green-400 py-2 px-4 rounded-lg cursor-pointer hover:opacity-80 text-white">
         Add Product
       </button>
     </div>
