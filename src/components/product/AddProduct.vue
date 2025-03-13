@@ -6,16 +6,16 @@ import { previewBinaryFile } from '../lib/utilities.js'
 const emit = defineEmits(['addNewProduct', 'cancelAdding'])
 
 const catagories = ref([
-  {name:"Accessories", value:"accessories"},
-  {name:"Audio", value:"audio"},
-  {name:"Electronics", value:"electronics"},
-  {name:"Wearables", value:"wearables"}
+  {name:"Accessories", value:"Accessories"},
+  {name:"Audio", value:"Audio"},
+  {name:"Electronics", value:"Electronics"},
+  {name:"Wearables", value:"Wearables"}
 ])
 
 const status = ref([
-  {name: "Active", value:"active"},
-  {name: "Low Stock", value:"low stock"},
-  {name: "Out of Stock", value:"out of stock"}
+  {name: "Active", value:"Active"},
+  {name: "Low Stock", value:"Low Stock"},
+  {name: "Out of Stock", value:"Out of Stock"}
   ])
 
 const newProduct = ref({
