@@ -21,7 +21,7 @@
 **Progress งานในแต่ละ Week**
 | รหัสนักศึกษา | Progress Week1 | Progress Week2 | Progress Week3 | Progress Week4 | Progress Week5 |
 |---------------|----------------|----------------|----------------|----------------|----------------|
-| 66130500009   | create product | finish addProduct, ui addProduct | -              | -              | -              |
+| 66130500009   | create product | finish addProduct, ui addProduct, add image to ProductList | -              | -              | -              |
 | 66130500046   | -              | -              | -              | -              | -              |
 | 66130500056   | -              | -              | -              | -              | -              |
 | 66130500059   | -              | -              | -              | -              | -              |
