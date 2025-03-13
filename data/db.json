@@ -7,7 +7,7 @@
       "price": 89.99,
       "status": "Active",
       "stock": 45,
-      "image": "/placeholder.svg?height=200&width=200",
+      "image": "https://plus.unsplash.com/premium_photo-1679513691474-73102089c117?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D",
       "description": "High-quality wireless headphones with noise cancellation"
     },
     {
@@ -17,7 +17,7 @@
       "price": 199.99,
       "status": "Active",
       "stock": 30,
-      "image": "/placeholder.svg?height=200&width=200",
+      "image": "https://img.freepik.com/free-photo/rendering-smart-home-device_23-2151039316.jpg",
       "description": "Feature-rich smartwatch with health tracking"
     },
     {
@@ -27,7 +27,7 @@
       "price": 49.99,
       "status": "Low Stock",
       "stock": 5,
-      "image": "/placeholder.svg?height=200&width=200",
+      "image": "https://images.unsplash.com/photo-1589003077984-894e133dabab?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ymx1ZXRvb3RoJTIwc3BlYWtlcnxlbnwwfHwwfHx8MA%3D%3D",
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
     {
@@ -37,7 +37,7 @@
       "price": 29.99,
       "status": "Out of Stock",
       "stock": 0,
-      "image": "/placeholder.svg?height=200&width=200",
+      "image": "https://media.koan.co.th/media/catalog/product/cache/7f626821155ea056ed3e19ac30db92cb/s/a/satechi_aluminum_laptop_stand_-_space_gray.001.jpeg",
       "description": "Ergonomic aluminum laptop stand"
     },
     {
@@ -47,7 +47,7 @@
       "price": 129.99,
       "status": "Active",
       "stock": 25,
-      "image": "/placeholder.svg?height=200&width=200",
+      "image": "https://www.keychron.co.th/cdn/shop/products/V1-TH-Red.png?v=1674195010&width=1200",
       "description": "RGB mechanical gaming keyboard"
     },
     {
@@ -57,7 +57,7 @@
       "price": 349.99,
       "status": "Active",
       "stock": 15,
-      "image": "/placeholder.svg?height=200&width=200",
+      "image": "https://cdn.thewirecutter.com/wp-content/media/2023/06/4kmonitors-2048px-9794.jpg",
       "description": "32-inch 4K HDR monitor"
     }
   ]
