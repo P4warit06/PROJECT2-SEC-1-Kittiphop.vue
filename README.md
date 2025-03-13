@@ -13,7 +13,7 @@
 | 66130500009  | กิตติภพ ศิรานนท์ชัย     | create product   |   create ui addProduct   |   -   |   -   |   -   |           20%            |
 | 66130500046  | ธีรภัทร แสงมาน      | filter product   |   -   |   -   |   -   |   -   |           20%            |
 | 66130500056  | ปรเมษฐ์ ขันทอง      | delete product   |   -   |   -   |   -   |   -   |           20%            |
-| 66130500059  | ปวริศญ์ สำเรียง       | update product   |   -   |   -   |   -   |   -   |           20%            |
+| 66130500059  | ปวริศญ์ สำเรียง       | update product   |   create ui Update Button To Productlist   |   -   |   -   |   -   |           20%            |
 | 66130500062  | พงศกร สินสมบูรณ์สุข    | creating ui |   retrieve product   |   -   |   -   |   -   |           20%            |
 
 ---
@@ -21,11 +21,11 @@
 **Progress งานในแต่ละ Week**
 | รหัสนักศึกษา | Progress Week1 | Progress Week2 | Progress Week3 | Progress Week4 | Progress Week5 |
 |---------------|----------------|----------------|----------------|----------------|----------------|
-| 66130500009   | create product | finish addProduct, ui addProduct, add image to ProductList | -              | -              | -              |
+| 66130500009   | Create product | Finish addProduct, ui addProduct, add image to ProductList | -              | -              | -              |
 | 66130500046   | -              | -              | -              | -              | -              |
 | 66130500056   | -              | -              | -              | -              | -              |
-| 66130500059   | -              | -              | -              | -              | -              |
-| 66130500062   | creating ui | - add retrieve product feature, add components | -              | -              | -              |
+| 66130500059   | Create update function|  Finish UpdateProduct,Ui,Add.env          | -              | -              | -              |
+| 66130500062   | Creating ui | Add retrieve product feature, add components | -              | -              | -              |
 
 
 ---
