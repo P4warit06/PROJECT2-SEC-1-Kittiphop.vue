@@ -1,16 +1,16 @@
 <script setup>
-import data from "../../../data/db.json";
 import ProductList from "./ProductList.vue";
 import AddProduct from "./AddProduct.vue";
 
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
-const myProducts = ref(data.products);
+const myProducts = ref([]);
+import { getItems, getItemById} from "../../libs/fetchUtils.js"
+onMounted(async () => {
+  myProducts.value = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
+  console.log(myProducts.value)
+})
 
-const addProduct = (product) => {
-  //validate
-  myProducts.value.push(product);
-};
 </script>
 
 <template>

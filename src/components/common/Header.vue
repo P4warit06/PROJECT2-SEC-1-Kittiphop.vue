@@ -31,7 +31,7 @@
           >
         </li>
         <li>
-          <router-link to="/product" class="hover:text-blue-300"
+          <router-link to="/products" class="hover:text-blue-300"
             >Product</router-link
           >
         </li>
@@ -49,7 +49,7 @@
           >
         </li>
         <li>
-          <router-link to="/product" class="block hover:text-blue-300 py-2"
+          <router-link to="/products" class="block hover:text-blue-300 py-2"
             >Products</router-link
           >
         </li>
