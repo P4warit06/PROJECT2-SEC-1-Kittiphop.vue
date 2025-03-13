@@ -1,6 +1,9 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { previewBinaryFile } from '../lib/utilities.js'
+
+
+const emit = defineEmits(['addNewProduct', 'cancelAdding'])
 
 const catagories = ref([
   {name:"Accessories", value:"accessories"},
@@ -26,7 +29,6 @@ const newProduct = ref({
 });
 
 const imgFileName = ref("")
-
 const chooseBinaryImg = (event) => {
   imgFileName.value = event.target.files[0].name
   if (imgFileName.value.endsWith(".jpg") || imgFileName.value.endsWith(".jpeg") || imgFileName.value.endsWith(".png")) {
@@ -103,7 +105,6 @@ const chooseBinaryImg = (event) => {
         />
         <div class="mt-3">
           <a :href="newProduct.image" target="_blank" class="text-blue-500 underline">
-            <span>URL: </span>
             {{ newProduct.image }}
           </a>
           <img v-show="newProduct.image" :src="newProduct.image" alt="img" class="mt-2 rounded-lg border w-24 h-24 object-cover">
@@ -121,10 +122,14 @@ const chooseBinaryImg = (event) => {
 
       <div class="w-full flex flex-col justify-center items-center">
         <div class="w-full flex justify-center items-center mb-4">
-          <button class="w-full bg-green-400 py-2 px-4 rounded-lg cursor-pointer hover:opacity-80">Add Product</button>
+          <button
+          @click="$emit('addNewProduct', newProduct)"
+          class="w-full bg-green-400 py-2 px-4 rounded-lg cursor-pointer hover:opacity-80">Add Product</button>
         </div>
         <div class="w-full flex justify-center items-center">
-          <button class="w-full bg-gray-400 py-2 px-4 rounded-lg cursor-pointer hover:opacity-80">Cancel</button>
+          <button 
+          @click="$emit('cancelAdding')"
+          class="w-full bg-gray-400 py-2 px-4 rounded-lg cursor-pointer hover:opacity-80">Cancel</button>
         </div>
       </div>
     </div>
