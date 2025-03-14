@@ -8,7 +8,6 @@
 <template>
 <div>
   <Header/>
-  
   <Product/>
   <Footer/>
   
