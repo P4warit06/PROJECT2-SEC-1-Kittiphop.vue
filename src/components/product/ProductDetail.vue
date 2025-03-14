@@ -1,10 +1,15 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 import { getItemById } from '../../libs/fetchUtils.js';
+import ListModel from "../model/ListModel.vue";
 
-const route = useRoute();
-const router = useRouter();
+ // 062 Pongsakorn's
+const props = defineProps({
+  id: {
+    type: String,
+    required: true
+  }
+});
 const product = ref(null);
 const loading = ref(true);
 const error = ref(null);
@@ -12,7 +17,7 @@ const error = ref(null);
 onMounted(async () => {
   try {
     loading.value = true;
-    product.value = await getItemById(`${import.meta.env.VITE_APP_URL}/products`, route.params.id);
+    product.value = await getItemById(`${import.meta.env.VITE_APP_URL}/products`, props.id);
     if (!product.value) {
       error.value = 'Product not found';
     }
@@ -24,18 +29,15 @@ onMounted(async () => {
   }
 });
 
-const goBack = () => {
-  router.push({ name: 'products' });
-};
 </script>
 
+// 062 Pongsakorn's
 <template>
   <div class="container mx-auto p-4">
-    <button 
-      @click="goBack" 
+    <button
       class="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
     >
-      Back to Products
+       <router-link to="/products">Back to Products</router-link> 
     </button>
 
     <div v-if="loading" class="text-center py-10">
@@ -47,43 +49,53 @@ const goBack = () => {
       <p>Please try again or return to the products page.</p>
     </div>
 
-    <div v-else-if="product" class="bg-white rounded-lg shadow-lg overflow-hidden">
-      <div class="md:flex">
-        <div class="md:w-1/3">
-          <img :src="product.image" :alt="product.name" class="w-full h-64 object-cover" />
-        </div>
-        <div class="p-8 md:w-2/3">
-          <div class="flex justify-between items-start">
-            <h1 class="text-3xl font-bold text-gray-800">{{ product.name }}</h1>
-            <span :class="{
-              'bg-green-200 text-green-800': product.status === 'Active',
-              'bg-yellow-200 text-yellow-800': product.status === 'Low Stock',
-              'bg-red-200 text-red-800': product.status === 'Out of Stock'
-            }" class="px-4 py-1 rounded-full text-sm font-medium">
-              {{ product.status }}
-            </span>
+    <div v-else-if="product">
+      <ListModel :items="[product]" :singleItem="true">
+        <template #heading>
+          <h2 class="text-2xl font-bold text-center">Product Details</h2>
+        </template>
+        <template #listItems="{ item }">
+          <div class="md:flex">
+            <div class="md:w-1/3">
+              <img :src="item.image" :alt="item.name" class="w-full h-64 object-cover" />
+            </div>
+            <div class="p-8 md:w-2/3">
+              <div class="flex justify-between items-start">
+                <h1 class="text-3xl font-bold text-gray-800">{{ item.name }}</h1>
+                <span
+                  :class="{
+                    'bg-green-200 text-green-800': item.status === 'Active',
+                    'bg-yellow-200 text-yellow-800': item.status === 'Low Stock',
+                    'bg-red-200 text-red-800': item.status === 'Out of Stock',
+                  }"
+                  class="px-4 py-1 rounded-full text-sm font-medium"
+                >
+                  {{ item.status }}
+                </span>
+              </div>
+
+              <p class="text-gray-600 mt-4">Category: {{ item.category }}</p>
+              <p class="text-2xl font-bold text-blue-600 mt-6">${{ item.price }}</p>
+              <p class="text-gray-500 mt-2">Stock: {{ item.stock }}</p>
+
+              <div class="mt-6">
+                <h2 class="text-xl font-semibold">Description</h2>
+                <p class="mt-2 text-gray-700">{{ item.description }}</p>
+              </div>
+
+              <div class="mt-8">
+                <button
+                  class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                  :disabled="item.stock === 0"
+                  :class="{ 'opacity-50 cursor-not-allowed': item.stock === 0 }"
+                >
+                  {{ item.stock > 0 ? 'Add to Cart' : 'Out of Stock' }}
+                </button>
+              </div>
+            </div>
           </div>
-          
-          <p class="text-gray-600 mt-4">Category: {{ product.category }}</p>
-          <p class="text-2xl font-bold text-blue-600 mt-6">${{ product.price }}</p>
-          <p class="text-gray-500 mt-2">Stock: {{ product.stock }}</p>
-          
-          <div class="mt-6">
-            <h2 class="text-xl font-semibold">Description</h2>
-            <p class="mt-2 text-gray-700">{{ product.description }}</p>
-          </div>
-          
-          <div class="mt-8">
-            <button 
-              class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-              :disabled="product.stock === 0"
-              :class="{ 'opacity-50 cursor-not-allowed': product.stock === 0 }"
-            >
-              {{ product.stock > 0 ? 'Add to Cart' : 'Out of Stock' }}
-            </button>
-          </div>
-        </div>
-      </div>
+        </template>
+      </ListModel>
     </div>
   </div>
 </template>

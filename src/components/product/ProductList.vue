@@ -17,7 +17,7 @@ const goToProductDetail = (productId) => {
 
 <template>
   <div class="container mx-auto p-4">
-    <ListModel :items="products" listType="card">
+    <ListModel :items="products" listType="card" :singleItem="false">
       <template #heading>
         <h2 class="text-2xl font-bold text-center">Products</h2>
       </template>

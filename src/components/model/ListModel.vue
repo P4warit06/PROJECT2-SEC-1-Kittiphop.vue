@@ -11,6 +11,12 @@ const props = defineProps({
       return ["card", "list"].includes(value);
     },
   },
+  // 062 Pongsakorn's
+  singleItem: {
+    type: Boolean,
+    default: false,
+  },
+
 });
 </script>
 
@@ -19,12 +25,34 @@ const props = defineProps({
     <div class="text-2xl font-bold mb-6 text-center">
       <slot name="heading">###Enter your list heading###</slot>
     </div>
-    <ul v-if="listType === 'list'" class="space-y-4">
-      <li v-for="(item, index) in items" :key="index" class="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+
+    <!-- 062 Pongsakorn's -->
+    <!-- Single Item -->
+    <div v-if="singleItem" class="flex justify-center">
+      <div
+        v-for="(item, index) in items"
+        :key="index"
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full max-w-2xl"
+      >
+        <slot name="listItems" :item="item">Enter your list items</slot>
+      </div>
+    </div>
+
+    <!-- Multiple Items -->
+    <ul v-else-if="listType === 'list'" class="space-y-4">
+      <li
+        v-for="(item, index) in items"
+        :key="index"
+        class="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+      >
         <slot name="listItems" :item="item">Enter your list items</slot>
       </li>
     </ul>
-    <div v-else-if="listType === 'card'" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+    <div
+      v-else-if="listType === 'card'"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    >
       <div
         v-for="(item, index) in items"
         :key="index"
@@ -38,4 +66,3 @@ const props = defineProps({
 
 <style scoped></style>
 
-<style scoped></style>
