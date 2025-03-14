@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Wireless Headphones",
       "category": "Electronics",
       "price": 89.99,
@@ -11,7 +11,7 @@
       "description": "High-quality wireless headphones with noise cancellation"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Smart Watch",
       "category": "Wearables",
       "price": 199.99,
@@ -21,7 +21,7 @@
       "description": "Feature-rich smartwatch with health tracking"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Bluetooth Speaker",
       "category": "Audio",
       "price": 49.99,
@@ -31,7 +31,7 @@
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Laptop Stand",
       "category": "Accessories",
       "price": 29.99,
@@ -41,7 +41,7 @@
       "description": "Ergonomic aluminum laptop stand"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Mechanical Keyboard",
       "category": "Electronics",
       "price": 129.99,
@@ -51,7 +51,7 @@
       "description": "RGB mechanical gaming keyboard"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "4K Monitor",
       "category": "Electronics",
       "price": 349.99,
@@ -59,6 +59,16 @@
       "stock": 15,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "32-inch 4K HDR monitor"
+    },
+    {
+      "id": "77bf",
+      "name": "fsdfsd",
+      "catagory": "Accessories",
+      "price": 100,
+      "status": "Active",
+      "stock": 1,
+      "image": "blob:http://localhost:5173/c15844c5-c034-4963-b76f-c2e685df6354",
+      "description": "fdsfds"
     }
   ]
 }
