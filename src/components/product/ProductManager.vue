@@ -3,12 +3,18 @@ import data from "../../../data/db.json";
 import ProductList from "./ProductList.vue";
 import AddProduct from "./AddProduct.vue";
 import UpdateProduct from "./updateProduct.vue"; 
-
+import Header from "../common/Header.vue";
 import { ref } from "vue";
 
 const myProducts = ref(data.products);
 const isAdding = ref(false);
 const isUpdate = ref(false);
+
+const listCategory = () => {
+  const categories = new Set(myProducts.value.map((product) => product.category));
+  return categories
+}
+
 
 
 const addProduct = (product) => {
@@ -43,14 +49,14 @@ const cancelAdding = () => {
 
 <template>
   <div>
+    <Header :categories="listCategory()"></Header>
+    <AddProduct v-show="isAdding" @add-new-product="addProduct" @cancel-adding="cancelAdding" :is-adding="isAdding"></AddProduct>
     <div class="w-full flex justify-center items-center my-4">
       <button v-show="!isAdding" @click="isAdding = !isAdding"
         class="bg-green-400 py-2 px-4 rounded-lg cursor-pointer hover:opacity-80 text-white">
         Add Product
       </button>
     </div>
-    <AddProduct v-show="isAdding" @add-new-product="addProduct" @cancel-adding="cancelAdding" :is-adding="isAdding">
-    </AddProduct>
     <!-- // Ice  -->
     <!-- <button v-show="!isUpdate" @click="isUpdate = !isUpdate" class="bg-blue-400 py-3 px-4 rounded-lg">
       <span class="text-white">Update Product</span>

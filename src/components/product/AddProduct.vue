@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { previewBinaryFile } from '../lib/utilities.js'
+import Header from "../common/Header.vue";
 
 
 const emit = defineEmits(['addNewProduct', 'cancelAdding'])

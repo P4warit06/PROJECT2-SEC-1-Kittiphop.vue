@@ -6,7 +6,6 @@
  
 <template>
 <div>
-  <Header/>
   <Product/>
   <Footer/>
 </div>
