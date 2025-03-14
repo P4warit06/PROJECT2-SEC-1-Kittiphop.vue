@@ -14,7 +14,7 @@
 | 66130500046  | ธีรภัทร แสงมาน      | filter product   |   -   |   -   |   -   |   -   |           20%            |
 | 66130500056  | ปรเมษฐ์ ขันทอง      | delete product   |   -   |   -   |   -   |   -   |           20%            |
 | 66130500059  | ปวริศญ์ สำเรียง       | update product   |   -   |   -   |   -   |   -   |           20%            |
-| 66130500062  | พงศกร สินสมบูรณ์สุข    | creating ui |   retrieve product   |   -   |   -   |   -   |           20%            |
+| 66130500062  | พงศกร สินสมบูรณ์สุข    | creating ui |   retrieve product   |   retrieve product by id   |   -   |   -   |           20%            |
 
 ---
 
@@ -25,7 +25,7 @@
 | 66130500046   | -              | -              | -              | -              | -              |
 | 66130500056   | -              | -              | -              | -              | -              |
 | 66130500059   | -              | -              | -              | -              | -              |
-| 66130500062   | creating ui | - add retrieve product feature, add components | -              | -              | -              |
+| 66130500062   | creating ui | add retrieve product feature, add components | add get product by id , add ProductDetail component and ui | -              | -              |
 
 
 ---
