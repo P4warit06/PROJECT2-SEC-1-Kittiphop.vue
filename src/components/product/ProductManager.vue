@@ -5,18 +5,28 @@ import AddProduct from "./AddProduct.vue";
 import { ref, onMounted } from "vue";
 
 const myProducts = ref([]);
-import { getItems, getItemById} from "../../libs/fetchUtils.js"
+const isAdding = ref(false)
+import { getItems, getItemById, addItem} from "../../libs/fetchUtils.js"
 onMounted(async () => {
   myProducts.value = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
   console.log(myProducts.value)
 })
 
+const addProduct = async(product) => {
+  try {
+    const newProduct = await addItem(`${import.meta.env.VITE_APP_URL}/products`, product)
+    myProducts.value.push(newProduct)
+    isAdding.value = false
+  } catch(error) {
+    console.log(error);
+  }
+}
 </script>
 
 <template>
   <div>
-    <!-- 3. call handler function -->
-    <!-- <AddProduct @add-new-product="addProduct" /> -->
+    <AddProduct v-show="isAdding" @add-new-product="addProduct" @cancel-adding="isAdding = false"></AddProduct>
+    <button v-show="!isAdding" @click="isAdding = true">Add product</button>
     <ProductList :products="myProducts"></ProductList>
   </div>
 </template>
