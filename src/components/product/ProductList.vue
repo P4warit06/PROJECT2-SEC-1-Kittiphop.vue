@@ -1,6 +1,7 @@
 <script setup>
 import ListModel from "../model/ListModel.vue";
 import { useRouter } from 'vue-router';
+import { ref } from 'vue'
 
 const props = defineProps({
   products: {
@@ -13,6 +14,14 @@ const router = useRouter();
 const goToProductDetail = (productId) => {
   router.push({ name: 'productDetail', params: { id: productId } });
 };
+
+
+const filter = ref("")
+function filteredProducts (){
+  let a = props.products.filter( p => p.name.toLowerCase().includes(filter.value.toLowerCase()))
+  console.log(a)
+}
+
 </script>
 
 <template>
@@ -20,6 +29,13 @@ const goToProductDetail = (productId) => {
     <ListModel :items="products" listType="card" :singleItem="false">
       <template #heading>
         <h2 class="text-2xl font-bold text-center">Products</h2>
+        <input 
+    v-model="filter"
+    @input="filteredProducts"
+  type="text" 
+  placeholder="Search..." 
+  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+/>
       </template>
       <template #listItems="{ item }">
         <div class="h-full flex flex-col cursor-pointer" @click="goToProductDetail(item.id)">
