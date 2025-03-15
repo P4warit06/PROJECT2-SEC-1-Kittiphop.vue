@@ -89,6 +89,14 @@
       "password": "myadmin007x",
       "email": "admin@gmail.com",
       "role": "admin"
+    },
+
+    {
+      "id": 2,
+      "name": "Ohm",
+      "password": "ohm12345",
+      "email": "ohm@gmail.com",
+      "role": "user"
     }
   ]
 }
