@@ -87,6 +87,7 @@
       "id": 1,
       "name": "admin",
       "password": "myadmin007x",
+      "email": "admin@gmail.com",
       "role": "admin"
     }
   ]
