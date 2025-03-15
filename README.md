@@ -23,7 +23,7 @@
 |---------------|----------------|----------------|----------------|----------------|----------------|
 | 66130500009   | create addProduct | create product from backend  | -              | -              | -              |
 | 66130500046   | -              | -              | -              | -              | -              |
-| 66130500056   | -              | -              | -              | -              | -              |
+| 66130500056   | delete product in process.           | -              | -              | -              | -              |
 | 66130500059   | -              | -              | -              | -              | -              |
 | 66130500062   | creating ui | add retrieve product feature, add components | add get product by id , add ProductDetail component and ui | -              | -              |
 
