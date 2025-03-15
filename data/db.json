@@ -69,6 +69,16 @@
       "stock": 1,
       "image": "blob:http://localhost:5173/c15844c5-c034-4963-b76f-c2e685df6354",
       "description": "fdsfds"
+    },
+    {
+      "id": "e90d",
+      "name": "Car",
+      "catagory": "Accessories",
+      "price": 1000000000000000000,
+      "status": "Active",
+      "stock": 1,
+      "image": "blob:http://localhost:5173/5f57db1c-2513-4c9d-afa6-f848c294f8f0",
+      "description": "Hello"
     }
   ]
 }

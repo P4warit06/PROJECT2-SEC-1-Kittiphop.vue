@@ -14,9 +14,11 @@ onMounted(async () => {
 
 const addProduct = async(product) => {
   try {
-    const newProduct = await addItem(`${import.meta.env.VITE_APP_URL}/products`, product)
-    myProducts.value.push(newProduct)
-    isAdding.value = false
+    if (product) {
+      const newProduct = await addItem(`${import.meta.env.VITE_APP_URL}/products`, product)
+      myProducts.value.push(newProduct)
+      isAdding.value = false
+    }
   } catch(error) {
     console.log(error);
   }
