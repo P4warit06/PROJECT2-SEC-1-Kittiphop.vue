@@ -95,11 +95,11 @@ const chooseBinaryImg = (event) => {
             class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none"></textarea>
         </div>
 
-        <div class="col-span-1 sm:col-span-2 flex gap-8 justify-center mt-8 max-sm:flex flex-col items-center w-full">
+        <div class="col-span-1 sm:col-span-2 flex gap-8 justify-center mt-4">
           <button @click="$emit('addNewProduct', newProduct)" 
-            class="w-1/3 bg-indigo-500 text-white py-3 rounded-xl hover:bg-indigo-600 cursor-pointer max-sm:w-full">Add Product</button>
+            class="w-full sm:w-2/3 bg-indigo-500 text-white py-3 rounded-xl hover:bg-indigo-600 cursor-pointer">Add</button>
           <button @click="$emit('cancelAdding')" 
-            class="w-1/3 bg-gray-400 text-white py-3 rounded-xl hover:bg-red-500 cursor-pointer max-sm:w-full">Cancel</button>
+            class="w-full sm:w-2/3 bg-gray-400 text-white py-3 rounded-xl hover:bg-red-500 cursor-pointer">Cancel</button>
         </div>
       </div>
     </div>
