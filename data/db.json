@@ -79,20 +79,39 @@
       "stock": 1,
       "image": "blob:http://localhost:5173/5f57db1c-2513-4c9d-afa6-f848c294f8f0",
       "description": "Hello"
+    },
+    {
+      "id": "e1f5",
+      "name": "fdsfs",
+      "category": "Accessories",
+      "price": 10000,
+      "status": "Active",
+      "stock": 1,
+      "image": "blob:http://localhost:5173/0a495912-f564-4af3-b4e8-c445c3823f87",
+      "description": "fsdfsdfds",
+      "catagory": "Accessories"
+    },
+    {
+      "id": "0abf",
+      "name": "Cars",
+      "category": "Electronics",
+      "price": 100000,
+      "status": "Active",
+      "stock": 1,
+      "image": "blob:http://localhost:5173/65da7ed1-96b5-48f3-beb5-2e82f2bca448",
+      "description": "fsdafas"
     }
   ],
-
-  "users" : [
+  "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "admin",
       "password": "myadmin007x",
       "email": "admin@gmail.com",
       "role": "admin"
     },
-
     {
-      "id": 2,
+      "id": "2",
       "name": "Ohm",
       "password": "ohm12345",
       "email": "ohm@gmail.com",

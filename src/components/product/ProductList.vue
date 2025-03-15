@@ -25,17 +25,16 @@ function filteredProducts (){
 </script>
 
 <template>
-  <div class="container mx-auto p-4">
-    <ListModel :items="products" listType="card" :singleItem="false">
-      <template #heading>
-        <h2 class="text-2xl font-bold text-center">Products</h2>
-        <input 
-    v-model="filter"
-    @input="filteredProducts"
-  type="text" 
-  placeholder="Search..." 
-  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-/>
+    <div class="container mx-auto p-4">
+      <ListModel :items="products" listType="card" :singleItem="false">
+        <template #heading>
+          <input 
+          v-model="filter"
+          @input="filteredProducts"
+          type="text" 
+          placeholder="Search..." 
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
       </template>
       <template #listItems="{ item }">
         <div class="h-full flex flex-col cursor-pointer" @click="goToProductDetail(item.id)">

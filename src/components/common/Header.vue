@@ -1,13 +1,27 @@
 <script setup>
+import { ref } from "vue";
 
+const props = defineProps({
+  categories: {
+    type: Array,
+    required: true,
+  },
+});
+
+const bergerActive = ref(false);
+
+function toggleMenu() {
+  bergerActive.value = !bergerActive.value;
+}
 </script>
 
 <template>
-  <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold">Product Management</h1>
-
-    <!-- Mobile menu button (visible on small screens) -->
-    <button class="md:hidden focus:outline-none" aria-label="Toggle menu">
+  <header class="w-full bg-gray-400 text-black p-4 flex justify-between items-center">
+    <h1 class="text-lg font-bold">Product Management</h1>
+    <button
+      @click="toggleMenu"
+      class="cursor-pointer hover:opacity-60 md:hidden"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-6 w-6"
@@ -24,40 +38,72 @@
       </svg>
     </button>
 
-    <!-- Desktop navigation (hidden on small screens) -->
     <nav class="hidden md:block">
       <ul class="flex space-x-4">
         <li>
-          <router-link to="/about" class="hover:text-blue-300"
-            >About</router-link
-          >
+          <router-link to="/products" class="hover:opacity-70">
+            Products
+          </router-link>
         </li>
         <li>
-          <router-link to="/products" class="hover:text-blue-300"
-            >Product</router-link
-          >
+          <router-link to="/about" class="hover:opacity-70">
+            About
+          </router-link>
         </li>
       </ul>
     </nav>
 
-    <!-- Mobile navigation (initially hidden, would be shown with JavaScript) -->
-    <div
-      class="absolute top-16 right-0 left-0 bg-blue-600 p-4 hidden md:hidden"
-    >
-      <ul class="space-y-2">
-        <li>
-          <router-link to="/about" class="block hover:text-blue-300 py-2"
-            >About</router-link
+    <div v-show="bergerActive" class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
+        <ul class="space-y-4 text-lg">
+          <li>
+            <router-link to="/products" class="text-black font-bold text-center block hover:opacity-60">
+              Products
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/about" class="text-black font-bold text-center block hover:opacity-60">
+              About
+            </router-link>
+          </li>
+        </ul>
+        <button
+          @click="bergerActive = !bergerActive"
+          class="absolute top-4 right-4 text-black font-bold hover:opacity-70 focus:outline-none cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-        </li>
-        <li>
-          <router-link to="/products" class="block hover:text-blue-300 py-2"
-            >Products</router-link
-          >
-        </li>
-      </ul>
-    </div>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
   </header>
+
+  <div class="w-full bg-gray-300 py-2">
+    <div class="flex justify-center items-center text-sm sm:text-sm">
+      <a
+        href="#"
+        v-for="(category, index) in categories"
+        :key="index"
+        class="px-2 hover:opacity-70"
+      >
+        {{ category }}
+      </a>
+    </div>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+header {
+  position: relative;
+}
+</style>
