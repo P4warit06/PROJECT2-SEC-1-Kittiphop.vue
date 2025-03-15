@@ -3,6 +3,8 @@ import ListModel from "../model/ListModel.vue";
 import { useRouter } from 'vue-router';
 import { ref } from 'vue'
 
+const emit = defineEmits(['deleteProduct'])
+
 const props = defineProps({
   products: {
     type: Array,
@@ -38,6 +40,7 @@ function filteredProducts (){
 />
       </template>
       <template #listItems="{ item }">
+        <div>
         <div class="h-full flex flex-col cursor-pointer" @click="goToProductDetail(item.id)">
           <img :src="item.image" :alt="item.name" class="w-full h-48 object-cover" />
           <div class="p-6 flex flex-col flex-grow">
@@ -56,6 +59,13 @@ function filteredProducts (){
             <p class="text-gray-500">Stock: {{ item.stock }}</p>
           </div>
         </div>
+        <button 
+        class="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+        @click="$emit('deleteProduct',item.id)"
+      >
+        Delete
+      </button>
+    </div>
       </template>
     </ListModel>
   </div>

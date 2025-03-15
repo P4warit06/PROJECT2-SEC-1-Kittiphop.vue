@@ -4,9 +4,10 @@ import AddProduct from "./AddProduct.vue";
 
 import { ref, onMounted } from "vue";
 
+
 const myProducts = ref([]);
 const isAdding = ref(false)
-import { getItems, getItemById, addItem} from "../../libs/fetchUtils.js"
+import { getItems, getItemById, addItem,deleteItemById} from "../../libs/fetchUtils.js"
 onMounted(async () => {
   myProducts.value = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
   console.log(myProducts.value)
@@ -21,6 +22,20 @@ const addProduct = async(product) => {
     console.log(error);
   }
 }
+const deleteProduct = async (id) => {
+  try {
+    const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/products`, id)
+    if (status === 200) {
+      const removeIndex = myProducts.value.findIndex((item) => item.id === id)
+      if (removeIndex !== -1) { 
+        myProducts.value.splice(removeIndex, 1)
+      }
+    }
+  } catch (error) {
+    console.error('Error deleting item:', error)
+  }
+}
+
 </script>
 
 <template>
@@ -29,7 +44,7 @@ const addProduct = async(product) => {
     <div class="w-full flex justify-center items-center">
       <button v-show="!isAdding" @click="isAdding = true" class="bg-green-300 rounded-lg p-3 my-3">Add product</button>
     </div>
-    <ProductList :products="myProducts"></ProductList>
+    <ProductList :products="myProducts" @delete-product="deleteProduct" />
   </div>
 </template>
 
