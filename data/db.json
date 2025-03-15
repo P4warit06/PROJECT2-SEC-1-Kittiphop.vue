@@ -59,6 +59,32 @@
       "stock": 15,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "32-inch 4K HDR monitor"
+    },
+    {
+      "id": "e90d",
+      "name": "Car",
+      "catagory": "Accessories",
+      "price": 1000000000000000000,
+      "status": "Active",
+      "stock": 1,
+      "image": "blob:http://localhost:5173/5f57db1c-2513-4c9d-afa6-f848c294f8f0",
+      "description": "Hello"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "admin",
+      "password": "myadmin007x",
+      "email": "admin@gmail.com",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "Ohm",
+      "password": "ohm12345",
+      "email": "ohm@gmail.com",
+      "role": "user"
     }
   ]
 }

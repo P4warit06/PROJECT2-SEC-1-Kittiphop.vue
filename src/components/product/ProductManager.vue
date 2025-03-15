@@ -15,9 +15,11 @@ onMounted(async () => {
 
 const addProduct = async(product) => {
   try {
-    const newProduct = await addItem(`${import.meta.env.VITE_APP_URL}/products`, product)
-    myProducts.value.push(newProduct)
-    isAdding.value = false
+    if (product) {
+      const newProduct = await addItem(`${import.meta.env.VITE_APP_URL}/products`, product)
+      myProducts.value.push(newProduct)
+      isAdding.value = false
+    }
   } catch(error) {
     console.log(error);
   }
@@ -41,8 +43,8 @@ const deleteProduct = async (id) => {
 <template>
   <div>
     <AddProduct v-show="isAdding" @add-new-product="addProduct" @cancel-adding="isAdding = false"></AddProduct>
-    <div class="w-full flex justify-center items-center">
-      <button v-show="!isAdding" @click="isAdding = true" class="bg-green-300 rounded-lg p-3 my-3">Add product</button>
+    <div class="w-full flex justify-center items-center cursor-pointer">
+      <button v-show="!isAdding" @click="isAdding = true" class="bg-green-300 rounded-lg p-3 my-3 cursor-pointer">Add product</button>
     </div>
     <ProductList :products="myProducts" @delete-product="deleteProduct" />
   </div>

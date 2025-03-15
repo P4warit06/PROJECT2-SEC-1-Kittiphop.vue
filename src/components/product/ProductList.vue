@@ -58,9 +58,6 @@ function filteredProducts (){
             </div>
             <p class="text-gray-500">Stock: {{ item.stock }}</p>
           </div>
-          <button 
-          @click="$emit('deleteProduct',products.id)"
-          class="text-red-500 hover-red-900 cursor-pointer">delete</button>
         </div>
         <button 
         class="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
