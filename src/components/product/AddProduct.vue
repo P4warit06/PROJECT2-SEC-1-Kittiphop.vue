@@ -101,6 +101,9 @@ const chooseBinaryImg = (event) => {
         class="w-1/3 bg-gray-400 text-white py-3 rounded-xl hover:bg-red-500">Cancel</button>
     </div>
   </div>
+  <button 
+          @click="$emit('deleteProduct',item.id)"
+          class="text-red-500 hover-red-900 cursor-pointer">delete</button>
 </div>
 
 
