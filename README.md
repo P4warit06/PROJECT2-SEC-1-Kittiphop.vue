@@ -12,7 +12,7 @@
 |---------------|-----------------|:----------------:|:------:|:------:|:------:|:------:|:------------------------:|
 | 66130500009  | กิตติภพ ศิรานนท์ชัย     | create product   |   create product from backend   |   -   |   -   |   -   |           20%            |
 | 66130500046  | ธีรภัทร แสงมาน      | filter product   |   -   |   -   |   -   |   -   |           20%            |
-| 66130500056  | ปรเมษฐ์ ขันทอง      | delete product and design UI   |   -   |   -   |   -   |   -   |           20%            |
+| 66130500056  | ปรเมษฐ์ ขันทอง      | delete product and design UI   |   delete product and design UI    -   |   -   |   -   |   -   |           20%            |
 | 66130500059  | ปวริศญ์ สำเรียง       | update product   |   -   |   -   |   -   |   -   |           20%            |
 | 66130500062  | พงศกร สินสมบูรณ์สุข    | creating ui |   retrieve product   |   retrieve product by id   |   -   |   -   |           20%            |
 
@@ -23,7 +23,7 @@
 |---------------|----------------|----------------|----------------|----------------|----------------|
 | 66130500009   | create addProduct | create product from backend  | -              | -              | -              |
 | 66130500046   | -              | -              | -              | -              | -              |
-| 66130500056   | delete product in process.           | -              | -              | -              | -              |
+| 66130500056   | delete product and design UI.           | add delete product by id             | -              | -              | -              |
 | 66130500059   | -              | -              | -              | -              | -              |
 | 66130500062   | creating ui | add retrieve product feature, add components | add get product by id , add ProductDetail component and ui | -              | -              |
 
