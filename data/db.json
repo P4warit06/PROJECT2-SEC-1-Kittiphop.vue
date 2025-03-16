@@ -21,16 +21,6 @@
       "description": "Feature-rich smartwatch with health tracking"
     },
     {
-      "id": "3",
-      "name": "Bluetooth Speaker",
-      "category": "Audio",
-      "price": 49.99,
-      "status": "Low Stock",
-      "stock": 5,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "Portable bluetooth speaker with 20hr battery life"
-    },
-    {
       "id": "4",
       "name": "Laptop Stand",
       "category": "Accessories",

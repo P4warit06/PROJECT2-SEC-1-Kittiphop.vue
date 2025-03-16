@@ -19,8 +19,8 @@ const goToProductDetail = (productId) => {
 
 
 const filter = ref("")
-function filteredProducts (){
-  let a = props.products.filter( p => p.name.toLowerCase().includes(filter.value.toLowerCase()))
+function filteredProducts() {
+  let a = props.products.filter(p => p.name.toLowerCase().includes(filter.value.toLowerCase()))
   console.log(a)
 }
 
@@ -30,17 +30,10 @@ function filteredProducts (){
   <div class="container mx-auto p-4">
     <ListModel :items="products" listType="card" :singleItem="false">
       <template #heading>
-        <h2 class="text-2xl font-bold text-center">Products</h2>
-        <input 
-    v-model="filter"
-    @input="filteredProducts"
-  type="text" 
-  placeholder="Search..." 
-  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-/>
+        <input v-model="filter" @input="filteredProducts" type="text" placeholder="Search..."
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
       </template>
       <template #listItems="{ item }">
-        <div>
         <div class="h-full flex flex-col cursor-pointer" @click="goToProductDetail(item.id)">
           <img :src="item.image" :alt="item.name" class="w-full h-48 object-cover" />
           <div class="p-6 flex flex-col flex-grow">
@@ -58,17 +51,32 @@ function filteredProducts (){
             </div>
             <p class="text-gray-500">Stock: {{ item.stock }}</p>
           </div>
+
+          <div class="inline-flex justify-between mt-4">
+            <button class="text-xl text-white bg-red-600  rounded-l-xl hover:bg-red-800 transition-colors px-14 py-2"
+              @click="$emit('deleteProduct', item.id)">
+              Delete
+            </button>
+            <button class="text-xl text-white bg-blue-600  hover:bg-blue-800 transition-colors rounded-r-xl py-2 px-14"
+              @click="$emit('updateProduct', item.id)">
+              Update
+            </button>
+          </div>
+
+          <!-- <div class="mt-auto">
+            <button class="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+              @click="$emit('deleteProduct', item.id)">
+              Delete
+            </button>
+            <button >
+            </button>
+          </div> -->
+
         </div>
-        <button 
-        class="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
-        @click="$emit('deleteProduct',item.id)"
-      >
-        Delete
-      </button>
-    </div>
       </template>
     </ListModel>
   </div>
+
 </template>
 
 <style scoped></style>
