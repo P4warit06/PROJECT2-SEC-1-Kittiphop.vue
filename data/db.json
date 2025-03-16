@@ -59,47 +59,6 @@
       "stock": 15,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "32-inch 4K HDR monitor"
-    },
-    {
-      "id": "77bf",
-      "name": "fsdfsd",
-      "catagory": "Accessories",
-      "price": 100,
-      "status": "Active",
-      "stock": 1,
-      "image": "blob:http://localhost:5173/c15844c5-c034-4963-b76f-c2e685df6354",
-      "description": "fdsfds"
-    },
-    {
-      "id": "e90d",
-      "name": "Car",
-      "catagory": "Accessories",
-      "price": 1000000000000000000,
-      "status": "Active",
-      "stock": 1,
-      "image": "blob:http://localhost:5173/5f57db1c-2513-4c9d-afa6-f848c294f8f0",
-      "description": "Hello"
-    },
-    {
-      "id": "e1f5",
-      "name": "fdsfs",
-      "category": "Accessories",
-      "price": 10000,
-      "status": "Active",
-      "stock": 1,
-      "image": "blob:http://localhost:5173/0a495912-f564-4af3-b4e8-c445c3823f87",
-      "description": "fsdfsdfds",
-      "catagory": "Accessories"
-    },
-    {
-      "id": "0abf",
-      "name": "Cars",
-      "category": "Electronics",
-      "price": 100000,
-      "status": "Active",
-      "stock": 1,
-      "image": "blob:http://localhost:5173/65da7ed1-96b5-48f3-beb5-2e82f2bca448",
-      "description": "fsdafas"
     }
   ],
   "users": [
