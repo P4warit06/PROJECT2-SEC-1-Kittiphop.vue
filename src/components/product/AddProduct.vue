@@ -20,7 +20,7 @@ const status = ref([
 
 const newProduct = ref({
   name: "",
-  catagory: "",
+  category: "",
   price: 0,
   status: "",
   stock: 0,
@@ -72,7 +72,7 @@ const chooseBinaryImg = (event) => {
 
         <div>
           <label class="block text-lg font-medium text-gray-700 mb-2">Category:</label>
-          <select v-model="newProduct.catagory" 
+          <select v-model="newProduct.category" 
             class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none">
             <option disabled value="">Choose one</option>
             <option v-for="(catagory, index) in catagories" :key="index" :value="catagory.value">{{ catagory.name }}</option>
