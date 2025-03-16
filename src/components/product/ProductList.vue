@@ -62,16 +62,6 @@ function filteredProducts() {
               Update
             </button>
           </div>
-
-          <!-- <div class="mt-auto">
-            <button class="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
-              @click="$emit('deleteProduct', item.id)">
-              Delete
-            </button>
-            <button >
-            </button>
-          </div> -->
-
         </div>
       </template>
     </ListModel>

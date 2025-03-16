@@ -8,6 +8,7 @@ import { ref, onMounted } from "vue";
 const myProducts = ref([]);
 const isAdding = ref(false)
 import { getItems, getItemById, addItem,deleteItemById} from "../../libs/fetchUtils.js"
+import UpdateProduct from "./updateProduct.vue";
 onMounted(async () => {
   myProducts.value = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
   console.log(myProducts.value)
@@ -47,6 +48,7 @@ const deleteProduct = async (id) => {
       <button v-show="!isAdding" @click="isAdding = true" class="bg-green-300 rounded-lg p-3 my-3 cursor-pointer">Add product</button>
     </div>
     <ProductList :products="myProducts" @delete-product="deleteProduct" />
+    <ProductList :products="myProducts" @update-product="updateProduct"/>
   </div>
 </template>
 
