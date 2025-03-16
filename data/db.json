@@ -59,6 +59,16 @@
       "stock": 15,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "32-inch 4K HDR monitor"
+    },
+    {
+      "id": "2805",
+      "name": "Cars",
+      "category": "Electronics",
+      "price": 10000,
+      "status": "Active",
+      "stock": 1,
+      "image": "blob:http://localhost:5173/77b35ca5-7279-4fbc-8f6d-b88ddc82456e",
+      "description": "fgdsfds"
     }
   ],
   "users": [
