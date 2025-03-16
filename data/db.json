@@ -61,16 +61,6 @@
       "description": "32-inch 4K HDR monitor"
     },
     {
-      "id": "77bf",
-      "name": "fsdfsd",
-      "catagory": "Accessories",
-      "price": 100,
-      "status": "Active",
-      "stock": 1,
-      "image": "blob:http://localhost:5173/c15844c5-c034-4963-b76f-c2e685df6354",
-      "description": "fdsfds"
-    },
-    {
       "id": "e90d",
       "name": "Car",
       "catagory": "Accessories",
@@ -81,18 +71,16 @@
       "description": "Hello"
     }
   ],
-
-  "users" : [
+  "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "admin",
       "password": "myadmin007x",
       "email": "admin@gmail.com",
       "role": "admin"
     },
-
     {
-      "id": 2,
+      "id": "2",
       "name": "Ohm",
       "password": "ohm12345",
       "email": "ohm@gmail.com",
