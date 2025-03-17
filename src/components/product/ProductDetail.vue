@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import { getItemById } from '../../libs/fetchUtils.js';
 import ListModel from "../model/ListModel.vue";
 
- // 062 Pongsakorn's
+// 062 Pongsakorn's
 const props = defineProps({
   id: {
     type: String,
@@ -34,10 +34,8 @@ onMounted(async () => {
 // 062 Pongsakorn's
 <template>
   <div class="container mx-auto p-4">
-    <button
-      class="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-    >
-       <router-link to="/products">Back to Products</router-link> 
+    <button class="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+      <router-link to="/products">Back to Products</router-link>
     </button>
 
     <div v-if="loading" class="text-center py-10">
@@ -62,14 +60,11 @@ onMounted(async () => {
             <div class="p-8 md:w-2/3">
               <div class="flex justify-between items-start">
                 <h1 class="text-3xl font-bold text-gray-800">{{ item.name }}</h1>
-                <span
-                  :class="{
-                    'bg-green-200 text-green-800': item.status === 'Active',
-                    'bg-yellow-200 text-yellow-800': item.status === 'Low Stock',
-                    'bg-red-200 text-red-800': item.status === 'Out of Stock',
-                  }"
-                  class="px-4 py-1 rounded-full text-sm font-medium"
-                >
+                <span :class="{
+                  'bg-green-200 text-green-800': item.status === 'Active',
+                  'bg-yellow-200 text-yellow-800': item.status === 'Low Stock',
+                  'bg-red-200 text-red-800': item.status === 'Out of Stock',
+                }" class="px-4 py-1 rounded-full text-sm font-medium">
                   {{ item.status }}
                 </span>
               </div>
@@ -86,9 +81,7 @@ onMounted(async () => {
               <div class="mt-8">
                 <button
                   class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                  :disabled="item.stock === 0"
-                  :class="{ 'opacity-50 cursor-not-allowed': item.stock === 0 }"
-                >
+                  :disabled="item.stock === 0" :class="{ 'opacity-50 cursor-not-allowed': item.stock === 0 }">
                   {{ item.stock > 0 ? 'Add to Cart' : 'Out of Stock' }}
                 </button>
               </div>
