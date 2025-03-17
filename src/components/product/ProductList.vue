@@ -3,7 +3,7 @@ import ListModel from "../model/ListModel.vue";
 import { useRouter } from 'vue-router';
 import { ref } from 'vue'
 
-const emit = defineEmits(['deleteProduct'])
+const emit = defineEmits(['deleteProduct', 'updateProduct'])
 
 const props = defineProps({
   products: {
@@ -13,28 +13,44 @@ const props = defineProps({
 });
 
 const router = useRouter();
+
 const goToProductDetail = (productId) => {
   router.push({ name: 'productDetail', params: { id: productId } });
 };
 
+const goToUpdateProduct = (product) => {
+  router.push({
+    name: 'updateProduct',
+    params: {
+      productId: product.id,
+      name: product.name,
+      stock: product.stock,
+      price: product.price,
+      status: product.status,
+      category: product.category,
+      image: product.image,
+      description: product.description
+    }
+  });
+};
 
-const filter = ref("")
+const filter = ref("");
+
 function filteredProducts() {
-  let a = props.products.filter(p => p.name.toLowerCase().includes(filter.value.toLowerCase()))
-  console.log(a)
+  let a = props.products.filter(p => p.name.toLowerCase().includes(filter.value.toLowerCase()));
+  console.log(a);
 }
-
 </script>
 
 <template>
   <div class="container mx-auto p-4">
-    <ListModel :items="products" listType="card" :singleItem="false">
+    <ListModel :items="props.products" listType="card" :singleItem="false">
       <template #heading>
         <input v-model="filter" @input="filteredProducts" type="text" placeholder="Search..."
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
       </template>
       <template #listItems="{ item }">
-        <div class="h-full flex flex-col cursor-pointer" @click="goToProductDetail(item.id)">
+        <div class="h-full flex flex-col cursor-pointer" @click="goToUpdateProduct(item.id)">
           <img :src="item.image" :alt="item.name" class="w-full h-48 object-cover" />
           <div class="p-6 flex flex-col flex-grow">
             <h2 class="text-xl font-semibold mb-2">{{ item.name }}</h2>
@@ -53,12 +69,13 @@ function filteredProducts() {
           </div>
 
           <div class="inline-flex justify-between mt-4">
-            <button class="text-xl text-white bg-red-600  rounded-l-xl hover:bg-red-800 transition-colors px-14 py-2"
+            <button class="text-xl text-white bg-red-600 rounded-l-xl hover:bg-red-800 transition-colors px-14 py-2"
               @click="$emit('deleteProduct', item.id)">
               Delete
             </button>
-            <button class="text-xl text-white bg-blue-600  hover:bg-blue-800 transition-colors rounded-r-xl py-2 px-14"
-              @click="$emit('updateProduct', item.id)">
+
+            <button class="text-xl text-white bg-blue-600 hover:bg-blue-800 transition-colors rounded-r-xl py-2 px-14"
+              @click="goToUpdateProduct(item)">
               Update
             </button>
           </div>
@@ -66,7 +83,6 @@ function filteredProducts() {
       </template>
     </ListModel>
   </div>
-
 </template>
 
 <style scoped></style>
