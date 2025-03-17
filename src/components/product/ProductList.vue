@@ -2,8 +2,8 @@
 import ListModel from "../model/ListModel.vue";
 import { useRouter } from 'vue-router';
 import { ref } from 'vue'
+import UpdateProduct from "./updateProduct.vue";
 
-const emit = defineEmits(['deleteProduct','updateProduct'])
 const props = defineProps({
   products: {
     type: Array,
@@ -38,9 +38,19 @@ function filteredProducts (){
   console.log(a)
 }
 
+const isUpdate = ref(false)
+
+const updateProduct = (id, product) => { 
+  console.log(`update id:${id}, product:${product}`);
+
+}
+
 </script>
 
 <template>
+  <div>
+    <UpdateProduct v-show="isUpdate" @update-product="updateProduct"></UpdateProduct>
+  </div>
   <div class="container mx-auto p-4">
     <ListModel :items="products" listType="card" :singleItem="false">
       <template #heading>
@@ -48,7 +58,7 @@ function filteredProducts (){
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
       </template>
       <template #listItems="{ item }">
-        <div class="h-full flex flex-col cursor-pointer" @click="goToUpdateProduct(item)">
+        <div class="h-full flex flex-col cursor-pointer">
           <img :src="item.image" :alt="item.name" class="w-full h-48 object-cover" />
           <div class="p-6 flex flex-col flex-grow">
             <h2 class="text-xl font-semibold mb-2">{{ item.name }}</h2>
@@ -72,11 +82,9 @@ function filteredProducts (){
               Delete
             </button>
             <button class="text-base text-white bg-blue-600 hover:bg-blue-800 transition-colors rounded-r-xl py-2 px-12"
-              @click="goToUpdateProduct(item)">
+              @click="isUpdate = !isUpdate">
               Update
             </button>
-
-
           </div>
         </div>
       </template>

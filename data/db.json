@@ -11,16 +11,6 @@
       "description": "High-quality wireless headphones with noise cancellation"
     },
     {
-      "id": "2",
-      "name": "Smart Watch",
-      "category": "Wearables",
-      "price": 199.99,
-      "status": "Active",
-      "stock": 30,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "Feature-rich smartwatch with health tracking"
-    },
-    {
       "id": "3",
       "name": "Bluetooth Speaker",
       "category": "Audio",
@@ -59,16 +49,6 @@
       "stock": 15,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "32-inch 4K HDR monitor"
-    },
-    {
-      "id": "2805",
-      "name": "Cars",
-      "category": "Electronics",
-      "price": 10000,
-      "status": "Active",
-      "stock": 1,
-      "image": "blob:http://localhost:5173/77b35ca5-7279-4fbc-8f6d-b88ddc82456e",
-      "description": "fgdsfds"
     }
   ],
   "users": [
