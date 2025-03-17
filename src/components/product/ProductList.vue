@@ -45,11 +45,15 @@ const updateProduct = (id, product) => {
 
 }
 
+function cancelUpdate() {
+  isUpdate.value = false
+}
+
 </script>
 
 <template>
   <div>
-    <UpdateProduct v-show="isUpdate" @update-product="updateProduct"></UpdateProduct>
+    <UpdateProduct v-show="isUpdate" @update-product="updateProduct" @cancel-updating="cancelUpdate"></UpdateProduct>
   </div>
   <div class="container mx-auto p-4">
     <ListModel :items="products" listType="card" :singleItem="false">
