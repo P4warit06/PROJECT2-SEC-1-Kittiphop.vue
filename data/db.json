@@ -11,16 +11,6 @@
       "description": "High-quality wireless headphones with noise cancellation"
     },
     {
-      "id": "2",
-      "name": "Smart Watch",
-      "category": "Wearables",
-      "price": 199.99,
-      "status": "Active",
-      "stock": 30,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "Feature-rich smartwatch with health tracking"
-    },
-    {
       "id": "4",
       "name": "Laptop Stand",
       "category": "Accessories",
@@ -51,14 +41,14 @@
       "description": "32-inch 4K HDR monitor"
     },
     {
-      "id": "1cc0",
-      "name": "asdasd",
-      "catagory": "Accessories",
-      "price": 12123123,
-      "status": "Active",
-      "stock": 123,
+      "id": "fc8c",
+      "name": "ๅ/_ๅ/_",
+      "catagory": "Wearables",
+      "price": 0,
+      "status": "",
+      "stock": 0,
       "image": "",
-      "description": "123123"
+      "description": "ๅ/_ๅ/_"
     }
   ],
   "users": [
