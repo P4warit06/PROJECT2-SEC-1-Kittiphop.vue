@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from "vue";
+import 'boxicons';
 
 const bergerActive = ref(false);
+const countItem = ref(7)
 
 function toggleMenu() {
   bergerActive.value = !bergerActive.value;
@@ -9,7 +11,7 @@ function toggleMenu() {
 </script>
 
 <template>
-  <header class="w-full bg-gray-400 text-black p-4 flex justify-between items-center">
+  <header class="w-full bg-blue-300 text-black py-5 px-8 flex justify-between items-center">
     <h1 class="text-lg font-bold">Product Management</h1>
     <button
       @click="toggleMenu"
@@ -42,6 +44,17 @@ function toggleMenu() {
           <router-link to="/about" class="hover:opacity-70">
             About
           </router-link>
+        </li>
+        <li>
+          <div class="relative w-full hover:opacity-80">
+            <box-icon type="solid" name="cart" class="cursor-pointer text-2xl"></box-icon>
+            <div
+              v-show="countItem > 0"
+              class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/2 -translate-y-1/2"
+            >
+              {{ countItem }}
+            </div>
+          </div>
         </li>
       </ul>
     </nav>
@@ -81,7 +94,7 @@ function toggleMenu() {
       </div>
   </header>
 
-  <div class="w-full bg-gray-300 py-2">
+  <div class="w-full bg-blue-200 py-2">
     <div class="flex justify-center items-center text-sm sm:text-sm">
       <a href="#" class="px-2 hover:opacity-70">Accessories</a>
       <a href="#" class="px-2 hover:opacity-70">Audio</a>
