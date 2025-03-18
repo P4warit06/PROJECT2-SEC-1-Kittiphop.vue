@@ -3,6 +3,7 @@ import ProductList from "./ProductList.vue";
 import AddProduct from "./AddProduct.vue";
 import Header from "../common/Header.vue";
 import UpdateProduct from "./UpdateProduct.vue";
+import CartList from "./CartList.vue";
 import { ref, onMounted } from "vue";
 
 const myProducts = ref([]);
@@ -57,6 +58,7 @@ const deleteProduct = async (id) => {
 
 <template>
   <div>
+    <!-- <CartList/> -->
     <div>
       <AddProduct v-show="isAdding" @add-new-product="addProduct" @cancel-adding="isAdding = false"></AddProduct>
       <div class="w-full flex justify-center items-center cursor-pointer">

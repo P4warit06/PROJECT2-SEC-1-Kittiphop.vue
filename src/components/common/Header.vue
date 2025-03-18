@@ -1,9 +1,16 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import 'boxicons';
 
 const bergerActive = ref(false);
-const countItem = ref(7)
+const props = defineProps({
+  count: {
+    type:Number,
+    default:0
+  }
+})
+
+const countItem = computed(() => props.count)
 
 function toggleMenu() {
   bergerActive.value = !bergerActive.value;
@@ -47,13 +54,14 @@ function toggleMenu() {
         </li>
         <li>
           <div class="relative w-full hover:opacity-80">
-            <box-icon type="solid" name="cart" class="cursor-pointer text-2xl"></box-icon>
-            <div
-              v-show="countItem > 0"
-              class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/2 -translate-y-1/2"
-            >
-              {{ countItem }}
-            </div>
+            <router-link to="/products/cart">
+              <box-icon type="solid" name="cart" class="cursor-pointer text-2xl"></box-icon>
+              <div
+                v-show="countItem > 0"
+                class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/2 -translate-y-1/2">
+                {{ countItem }}
+              </div>
+            </router-link>
           </div>
         </li>
       </ul>

@@ -1,8 +1,11 @@
 <script setup>
-
+import CartModel from './components/model/CartModel.vue';
+import CartList from './components/product/CartList.vue';
 </script>
+
 <template>
 
+<!-- <CartList/> -->
 <RouterView/>
 
 </template>
