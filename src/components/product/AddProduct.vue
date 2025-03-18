@@ -96,7 +96,7 @@ const chooseBinaryImg = (event) => {
         </div>
 
         <div class="col-span-1 sm:col-span-2 flex gap-8 justify-center mt-4">
-          <button @click="$emit('addNewProduct', newProduct)" 
+          <button @click="$emit('addNewProduct', newProduct, catagories)" 
             class="w-full sm:w-2/3 bg-indigo-500 text-white py-3 rounded-xl hover:bg-indigo-600 cursor-pointer">Add</button>
           <button @click="$emit('cancelAdding')" 
             class="w-full sm:w-2/3 bg-gray-400 text-white py-3 rounded-xl hover:bg-red-500 cursor-pointer">Cancel</button>

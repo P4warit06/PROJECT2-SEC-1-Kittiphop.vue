@@ -49,6 +49,16 @@
       "stock": 15,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "32-inch 4K HDR monitor"
+    },
+    {
+      "id": "641e",
+      "name": "Car",
+      "category": "Accessories",
+      "price": 10000,
+      "status": "Active",
+      "stock": 1,
+      "image": "",
+      "description": ""
     }
   ],
   "users": [

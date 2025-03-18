@@ -2,7 +2,7 @@
 import ListModel from "../model/ListModel.vue";
 import { useRouter } from 'vue-router';
 import { ref } from 'vue'
-import UpdateProduct from "./updateProduct.vue";
+import UpdateProduct from "./UpdateProduct.vue";
 
 const props = defineProps({
   products: {

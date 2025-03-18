@@ -1,13 +1,6 @@
 <script setup>
 import { ref } from "vue";
 
-const props = defineProps({
-  categories: {
-    type: Array,
-    required: true,
-  },
-});
-
 const bergerActive = ref(false);
 
 function toggleMenu() {
@@ -90,14 +83,10 @@ function toggleMenu() {
 
   <div class="w-full bg-gray-300 py-2">
     <div class="flex justify-center items-center text-sm sm:text-sm">
-      <a
-        href="#"
-        v-for="(category, index) in categories"
-        :key="index"
-        class="px-2 hover:opacity-70"
-      >
-        {{ category }}
-      </a>
+      <a href="#" class="px-2 hover:opacity-70">Accessories</a>
+      <a href="#" class="px-2 hover:opacity-70">Audio</a>
+      <a href="#" class="px-2 hover:opacity-70">Electronics</a>
+      <a href="#" class="px-2 hover:opacity-70">Wearables</a>
     </div>
   </div>
 </template>

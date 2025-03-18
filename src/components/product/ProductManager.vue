@@ -2,21 +2,19 @@
 import ProductList from "./ProductList.vue";
 import AddProduct from "./AddProduct.vue";
 import Header from "../common/Header.vue";
-import UpdateProduct from "./updateProduct.vue";
+import UpdateProduct from "./UpdateProduct.vue";
 import { ref, onMounted } from "vue";
 
-
-
 const myProducts = ref([]);
-const productCategories = ref([])
-const filterCategories = ref([])
 const isAdding = ref(false)
 const isUpdating = ref(false)
 import { getItems, getItemById, addItem,deleteItemById, editItem} from "../../libs/fetchUtils.js"
 onMounted(async () => {
-  myProducts.value = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
-  productCategories.value = myProducts.value.map((product) => product.category).filter((category) => category !== null && category !== undefined)
-  filterCategories.value = productCategories.value.filter((category, index) => productCategories.value.indexOf(category) === index)
+  try {
+    myProducts.value = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
+  } catch(error) {
+    console.log(error);
+  }
 })
 
 const addProduct = async(product) => {
@@ -59,7 +57,6 @@ const deleteProduct = async (id) => {
 
 <template>
   <div>
-    <Header :categories="filterCategories" />
     <div>
       <AddProduct v-show="isAdding" @add-new-product="addProduct" @cancel-adding="isAdding = false"></AddProduct>
       <div class="w-full flex justify-center items-center cursor-pointer">
