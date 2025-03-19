@@ -6,7 +6,6 @@ const props = defineProps({
   },
   listType: {
     default: 'list',
-    //validator:function(value,props){}
     validator(value, props) {
       return ['card', 'list'].includes(value)
     }
