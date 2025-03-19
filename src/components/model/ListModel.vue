@@ -2,67 +2,36 @@
 const props = defineProps({
   items: {
     type: Array,
-    required: true,
+    required: true
   },
   listType: {
-    type: String,
-    default: "list",
-    validator(value) {
-      return ["card", "list"].includes(value);
-    },
-  },
-  // 062 Pongsakorn's
-  singleItem: {
-    type: Boolean,
-    default: false,
-  },
-
-});
+    default: 'list',
+    //validator:function(value,props){}
+    validator(value, props) {
+      return ['card', 'list'].includes(value)
+    }
+  }
+})
+console.log(props.items)
+console.log(props.listType)
 </script>
 
 <template>
-  <div class="p-4">
-    <div class="text-2xl font-bold mb-6 text-center">
+  <div class="p-2">
+    <div class="text-xl tracking-wider font-semibold">
       <slot name="heading">###Enter your list heading###</slot>
     </div>
-
-    <!-- 062 Pongsakorn's -->
-    <!-- Single Item -->
-    <div v-if="singleItem" class="flex justify-center">
-      <div
-        v-for="(item, index) in items"
-        :key="index"
-        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full max-w-2xl"
-      >
-        <slot name="listItems" :item="item">Enter your list items</slot>
-      </div>
-    </div>
-
-    <!-- Multiple Items -->
-    <ul v-else-if="listType === 'list'" class="space-y-4">
+    <ul>
       <li
         v-for="(item, index) in items"
         :key="index"
-        class="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+        :class="listType === 'card' ? 'shadow-md p-10' : ''"
       >
-        <slot name="listItems" :item="item">Enter your list items</slot>
+        <slot name="listItems" :yourItem="item">Enter your list item</slot>
+        <!-- {{ item }} -->
       </li>
     </ul>
-
-    <div
-      v-else-if="listType === 'card'"
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-    >
-      <div
-        v-for="(item, index) in items"
-        :key="index"
-        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-      >
-        <slot name="listItems" :item="item">Enter your list items</slot>
-      </div>
-    </div>
   </div>
 </template>
 
 <style scoped></style>
-

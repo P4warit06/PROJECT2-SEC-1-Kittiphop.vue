@@ -1,34 +1,47 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
-import ProductView from '../views/ProductView.vue'
-import ProductDetailView from '../views/ProductDetailView.vue'
+import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
+import PageNotFound from '../views/PageNotFound.vue'
+import ProductManager from '../components/ProductManager.vue'
+import ProductDetail from '../components/ProductDetail.vue'
+import { resolveDirective } from 'vue'
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+const history = createWebHistory()
+const routes = [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView,
+        path: '/',
+        redirect: {name : "Home"}
     },
     {
-      path: '/about',
-      name: 'about',
-      component: AboutView,
+        path: '/home',
+        name: 'Home',
+        component: Home
     },
     {
-      path: '/products',
-      name: 'products',
-      component: ProductView,
+        path: '/login',
+        name: 'Login',
+        component: Login
     },
     {
-      path: '/products/:id',
-      name: 'productDetail',
-      component: ProductDetailView,
-      props: true
+        path: '/product-manager',
+        name: 'ProductManager',
+        component: ProductManager
     },
-  ],
-})
-
+    {
+        path: '/product-detail/:productId',
+        name: 'ProductDetail',
+        component: ProductDetail
+    },
+    {
+        path: '/:notMatch(.*)',
+        name: 'PageNotFound',
+        component: PageNotFound
+    }
+    
+]
+const router = createRouter({ history,
+     routes, 
+    //  linkActiveClass: 'text-yellow-600', 
+    //  linkExactActiveClass: 'text-purple-600' 
+    })
 export default router

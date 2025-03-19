@@ -17,7 +17,7 @@ function toggleMenu() {
 
 <template>
   <header class="w-full bg-gray-400 text-black p-4 flex justify-between items-center">
-    <h1 class="text-lg font-bold">Product Management</h1>
+    <router-link to="/home" class="text-lg font-bold hover:opacity-60">Product Management</router-link>
     <button
       @click="toggleMenu"
       class="cursor-pointer hover:opacity-60 md:hidden"
@@ -41,13 +41,13 @@ function toggleMenu() {
     <nav class="hidden md:block">
       <ul class="flex space-x-4">
         <li>
-          <router-link to="/products" class="hover:opacity-70">
-            Products
+          <router-link to="/product-manager" class="hover:opacity-70">
+            PRODUCT
           </router-link>
         </li>
         <li>
-          <router-link to="/about" class="hover:opacity-70">
-            About
+          <router-link to="/home" class="hover:opacity-70">
+            ABOUT
           </router-link>
         </li>
       </ul>
@@ -56,8 +56,8 @@ function toggleMenu() {
     <div v-show="bergerActive" class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
         <ul class="space-y-4 text-lg">
           <li>
-            <router-link to="/products" class="text-black text-center block hover:opacity-60">
-              Products
+            <router-link to="/product-manager" active class="text-black text-center block hover:opacity-60">
+              PRODUCT
             </router-link>
           </li>
           <li>
