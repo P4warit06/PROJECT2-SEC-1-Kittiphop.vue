@@ -4,8 +4,8 @@ import AddEditProduct from './AddEditProduct.vue'
 import Header from "./Header.vue";
 import { ref, onMounted } from 'vue'
 import { getItems, deleteItemById, addItem, editItem } from '../libs/fetchUtils.js'
-const myProducts = ref([])
 
+const myProducts = ref([])
 const productCategories = ref([])
 const filterCategories = ref([])
 onMounted(async () => {

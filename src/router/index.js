@@ -4,13 +4,19 @@ import Login from '../views/Login.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import ProductManager from '../components/ProductManager.vue'
 import ProductDetail from '../components/ProductDetail.vue'
+import UserProductManager from '@/components/UserProductManager.vue'
 import { resolveDirective } from 'vue'
 
 const history = createWebHistory()
 const routes = [
     {
         path: '/',
-        redirect: {name : "Home"}
+        redirect: {name : "UserProduct"}
+    },
+    {
+        path: '/user-produuct',
+        name: 'UserProduct',
+        component: UserProductManager
     },
     {
         path: '/home',
@@ -37,7 +43,6 @@ const routes = [
         name: 'PageNotFound',
         component: PageNotFound
     }
-    
 ]
 const router = createRouter({ history,
      routes, 

@@ -1,12 +1,12 @@
 <script setup>
-import ProductManager from './components/ProductManager.vue'
-
+import UserProductManager from './components/UserProductManager.vue';
 
 </script>
 
 <template>
   <div >
-    <router-view />
+    <UserProductManager/>
+    <!-- <router-view /> -->
   </div>
 </template>
 
