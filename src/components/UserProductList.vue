@@ -9,6 +9,7 @@ const props = defineProps({
     required: true,
   },
 });
+const emit = defineEmits(['addToCart'])
 
 const router = useRouter();
 const goToProductDetail = (productId) => {
@@ -53,6 +54,11 @@ function filteredProducts (){
             </span>
           </div>
           <p class="text-gray-500">Stock: {{ yourItem.stock }}</p>
+        </div>
+        <div class="w-full">
+            <div class="flex justify-center items-center">
+                <button @click="$emit('addToCart', yourItem)" class="w-full h-13 bg-blue-400 rounded-lg cursor-pointer hover:opacity-90">Add to cart</button>
+            </div>
         </div>
       </div>
     </template>
