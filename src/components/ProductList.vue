@@ -11,7 +11,7 @@ const props = defineProps({
 console.log(props.products)
 
 const filter = ref("")
-function filteredProducts (){
+function filteredProducts() {
   let a = props.products.filter( p => p.name.toLowerCase().includes(filter.value.toLowerCase()))
   console.log(a)
 }
