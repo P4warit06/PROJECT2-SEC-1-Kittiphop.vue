@@ -3,19 +3,18 @@ import ListModel from './model/ListModel.vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue'
 
+const emit = defineEmits(['addToCart'])
 const props = defineProps({
   products: {
     type: Array,
     required: true,
   },
 });
-const emit = defineEmits(['addToCart'])
 
 const router = useRouter();
 const goToProductDetail = (productId) => {
   router.push({ name: 'productDetail', params: { id: productId } });
 };
-
 
 const filter = ref("")
 function filteredProducts (){

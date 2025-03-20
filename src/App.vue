@@ -5,8 +5,8 @@ import UserProductManager from './components/UserProductManager.vue';
 
 <template>
   <div >
-    <UserProductManager/>
-    <!-- <router-view /> -->
+    <!-- <UserProductManager/> -->
+    <router-view />
   </div>
 </template>
 
