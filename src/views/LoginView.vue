@@ -10,9 +10,9 @@ const handleLogin = () => {}
 </script>
 
 <template>
-  <div class="flex items-center justify-center min-h-screen">
+  <div class="flex items-center justify-center min-h-screen" :style="{backgroundImage: `url(/images/authen-bg.png)` , backgroundSize:'cover' }">
     <div class="w-full max-w-sm p-6 bg-white rounded-lg shadow-lg">
-      <h2 class="text-2xl font-bold text-center text-gray-700">Login</h2>
+      <h2 class="text-2xl font-bold text-center text-gray-700">LOGIN</h2>
 
       <form @submit.prevent="handleLogin" class="mt-4">
         <!-- Email -->
@@ -21,7 +21,7 @@ const handleLogin = () => {}
           <input
             v-model="email"
             type="email"
-            class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            class="w-full px-4 py-2 mt-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your email"
             required
           />
@@ -35,7 +35,7 @@ const handleLogin = () => {}
           <input
             v-model="password"
             type="password"
-            class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            class="w-full px-4 py-2 mt-2 border-2 border-gray-200  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your password"
             required
           />
@@ -54,10 +54,10 @@ const handleLogin = () => {}
           Login
         </button>
         <!-- Sign up link -->
-        <div class="text-center text-black mt-2">
+        <div class="text-center text-gray-600 mt-2">
           <p>
             Need an account?
-            <router-link to="/register" class="hover:underline  text-sm ">SIGN UP</router-link>
+            <router-link to="/sign-up" class="hover:underline font-bold  text-sm ">SIGN UP</router-link>
           </p>
         </div>
       </form>
