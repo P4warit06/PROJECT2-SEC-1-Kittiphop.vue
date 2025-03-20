@@ -30,6 +30,7 @@ const explore = ref(null);
               <router-link to="/product-manager" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">PRODUCT</router-link>
               <button @click="about.scrollIntoView({ behavior: 'smooth' });" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">ABOUT</button>
               <router-link to="/login" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">LOGIN</router-link>
+              <router-link to="/sign-up" class="text-white text-xl font-bold transition duration-300 px-1 rounded-sm bg-blue-400 hover:brightness-120">SIGN UP</router-link>
             </div>
           </div>
         </div>

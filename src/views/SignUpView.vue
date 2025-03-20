@@ -1,7 +1,6 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-// Reactive state for the form
 const currentStep = ref(1);
 const formData = reactive({
   email: "",
@@ -12,44 +11,6 @@ const formData = reactive({
   experience: "",
 });
 
-// Sample data for dropdowns
-const educationOptions = [
-  "High School",
-  "Bachelor's Degree",
-  "Master's Degree",
-  "PhD",
-  "Other",
-];
-const jobTitles = [
-  "Software Engineer",
-  "Product Manager",
-  "Designer",
-  "Marketing Specialist",
-  "Data Scientist",
-];
-const organizations = [
-  "Google",
-  "Microsoft",
-  "Apple",
-  "Amazon",
-  "Facebook",
-  "Other",
-];
-const experienceYears = [
-  "Less than 1 year",
-  "1-3 years",
-  "3-5 years",
-  "5-10 years",
-  "10+ years",
-];
-
-// Form navigation functions
-function nextStep() {
-  if (currentStep.value < 2) {
-    currentStep.value++;
-  }
-}
-
 function prevStep() {
   if (currentStep.value > 1) {
     currentStep.value--;
@@ -58,13 +19,13 @@ function prevStep() {
 
 // Form submission
 function submitForm() {
-  // Here you would typically send the data to your backend
+  // send the data to  backend
   console.log("Form submitted with data:", formData);
   alert("Sign up successful!");
   // Reset form or redirect user
 }
 
-// Password validation (could be expanded)
+// Password validation
 function isPasswordValid(password) {
   const hasMinLength = password.length >= 8;
   const hasNumber = /\d/.test(password);
@@ -73,9 +34,14 @@ function isPasswordValid(password) {
 }
 </script>
 
-
 <template>
-  <div class="min-h-screen flex items-center justify-center shadow-lg bg-gray-" :style="{backgroundImage: `url(/images/authen-bg.png)` , backgroundSize:'cover' }">
+  <div
+    class="min-h-screen flex items-center justify-center shadow-lg bg-gray-"
+    :style="{
+      backgroundImage: `url(/images/authen-bg.png)`,
+      backgroundSize: 'cover',
+    }"
+  >
     <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
       <div class="flex justify-center mb-6">
         <h2 class="text-2xl font-bold text-center text-gray-700">SIGN UP</h2>
@@ -125,7 +91,6 @@ function isPasswordValid(password) {
         </div>
       </div>
 
-      <!-- Step 1: Email & Password -->
       <div v-if="currentStep === 1" class="space-y-4">
         <div>
           <label for="email" class="block text-gray-600 mb-1">Email</label>
@@ -137,7 +102,9 @@ function isPasswordValid(password) {
         </div>
 
         <div>
-          <label for="password" class="block text-gray-600 mb-1">Password</label>
+          <label for="password" class="block text-gray-600 mb-1"
+            >Password</label
+          >
           <input
             v-model="formData.password"
             type="password"
@@ -182,14 +149,19 @@ function isPasswordValid(password) {
 
         <div class="text-center mt-4">
           <span class="text-gray-600">Already a user? </span>
-          <router-link to="/login" class="hover:underline font-bold text-gray-700 text-sm">LOGIN</router-link>
+          <router-link
+            to="/login"
+            class="hover:underline font-bold text-gray-700 text-sm"
+            >LOGIN</router-link
+          >
         </div>
       </div>
 
-      <!-- Step 2: Education & Job Details (previously Step 3) -->
       <div v-if="currentStep === 2" class="space-y-4">
         <div>
-          <label for="location" class="block text-gray-600 mb-1">Location</label>
+          <label for="location" class="block text-gray-600 mb-1"
+            >Location</label
+          >
           <input
             v-model="formData.location"
             type="text"
@@ -219,4 +191,3 @@ function isPasswordValid(password) {
     </div>
   </div>
 </template>
-
