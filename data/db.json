@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 89.99,
       "status": "Active",
-      "stock": 30,
+      "stock": 27,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation"
     },
@@ -74,7 +74,7 @@
       "category": "Electronics",
       "price": 89.99,
       "status": "Active",
-      "stock": 30,
+      "stock": 29,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation"
     },
@@ -135,6 +135,156 @@
       "price": 89.99,
       "status": "Active",
       "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 29,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 29,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 29,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 29,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 29,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 29,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 29,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 28,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 27,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation"
     }
