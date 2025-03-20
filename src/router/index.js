@@ -6,6 +6,7 @@ import ProductManager from '../components/ProductManager.vue'
 import ProductDetail from '../components/ProductDetail.vue'
 import UserProductManager from '@/components/UserProductManager.vue'
 import { resolveDirective } from 'vue'
+import UserCartList from '@/components/UserCartList.vue'
 
 const history = createWebHistory()
 const routes = [
@@ -17,6 +18,11 @@ const routes = [
         path: '/user-produuct',
         name: 'UserProduct',
         component: UserProductManager
+    },
+    {
+        path: '/user-carts',
+        name: 'UserCarts',
+        component: UserCartList
     },
     {
         path: '/home',

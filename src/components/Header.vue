@@ -53,12 +53,14 @@ function toggleMenu() {
         </li>
         <ul class="w-full cursor-pointer hover:opacity-80">
           <li class="relative">
+            <router-link to="/user-carts">
             <div class="relative inline-block">
               <box-icon type='solid' name='cart' class="font-2xl"></box-icon>
               <p class="absolute top-0 right-0 text-white bg-red-500 rounded-full text-xs w-4 h-4 flex items-center justify-center">
                 {{ count }}
               </p>
             </div>
+            </router-link>
           </li>
         </ul>
       </ul>

@@ -1,21 +1,23 @@
 <script setup>
 import CartModel from './model/CartModel.vue';
 import Header from './Header.vue';
+import { ref, onMounted } from 'vue';
+import { getItems } from '@/libs/fetchUtils';
 
-const products = defineProps({
-    products: {
-        type: Array,
-        required: true
-    }
+const carts = ref([])
+onMounted(async () => {
+    carts.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
+    carts.value.forEach((cart) => cart.stock = 1)
 })
+
 </script>
 
 <template>
     <div>
         <div>
-            <Header/>
+            <Header :products="carts" />
         </div>
-        <CartModel :products="products">
+        <CartModel :products="carts">
             <template #heading>
                 <h1>Product</h1>
             </template>
@@ -24,6 +26,7 @@ const products = defineProps({
                 <p>
                     <span>{{ yourProduct.name }}</span>
                     <span>{{ yourProduct.price }}</span>
+                    Stock: <span>{{ yourProduct.stock }}</span>
                 </p>
             </template>
 
