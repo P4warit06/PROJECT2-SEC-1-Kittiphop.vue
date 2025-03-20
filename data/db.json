@@ -67,5 +67,76 @@
       "role": "user"
     }
   ],
-  "carts": []
+  "carts": [
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 30,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 30,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": -1,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    }
+  ]
 }
