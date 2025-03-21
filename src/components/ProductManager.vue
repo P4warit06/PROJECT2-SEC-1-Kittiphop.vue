@@ -5,7 +5,7 @@ import Header from "./Header.vue";
 import { ref, onMounted } from 'vue'
 import { getItems, deleteItemById, addItem, editItem } from '../libs/fetchUtils.js'
 const myProducts = ref([])
-
+const selectedProducts = ref([])
 const productCategories = ref([])
 const filterCategories = ref([])
 onMounted(async () => {
@@ -76,30 +76,50 @@ const updateProduct = async (product) => {
   
 }
 
-//remove product
-const removeProduct = async (removeId) => {
-  console.log(removeId)
+//delete product
+const deleteProduct = async (id) => {
   try {
-    const status = await deleteItemById(
-      `${import.meta.env.VITE_APP_URL}/products`,
-      removeId
-    )
+    const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/products`, id)
     if (status === 200) {
-      //update myProducts state
-      const removeIndex = myProducts.value.findIndex(
-        (item) => item.id === removeId
-      )
-      myProducts.value.splice(removeIndex, 1)
+      const removeIndex = myProducts.value.findIndex((item) => item.id === id)
+      if (removeIndex !== -1) { 
+        myProducts.value.splice(removeIndex, 1)
+      }
     }
   } catch (error) {
-    console.log(error)
+    console.error('Error deleting item:', error)
   }
 }
+
+const deleteMultipleProduct = async () => {
+  if (selectedProducts.value.length === 0) {
+    alert("Please select products")
+    return
+  }
+
+  try {
+    const deletePromises = selectedProducts.value.map(async (id) => {
+      const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/products`, id)
+      if (status !== 200) {
+        throw new Error(`Error ID: ${id}`)
+      }
+    })
+
+    await Promise.all(deletePromises)
+
+    myProducts.value = myProducts.value.filter(product => !selectedProducts.value.includes(product.id))
+    selectedProducts.value = [] 
+    alert("deleted")
+  } catch (error) {
+    console.error(error)
+    alert("erro")
+  }
+}
+
 </script>
 
 <template>
   <div class="p">
-    <!-- 3. call handler fuction -->
     <Header :categories="filterCategories" />
     <button
       @click="isAdding = !isAdding"
@@ -107,11 +127,26 @@ const removeProduct = async (removeId) => {
     >
       Add New Product
     </button>
+    <!-- ปุ่มลบสินค้าหลายรายการ -->
+    <button 
+      @click="deleteMultipleProduct"
+      class="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+    >
+      Delete All
+    </button>
     <AddEditProduct v-if="isAdding | isEditing" 
     @add-new-product="addProduct" 
     :active-product="currentProduct" 
     @edit-product="updateProduct"/>
-    <ProductList v-show="!isAdding && !isEditing" @deleteProduct="removeProduct" @setEditing="setEditProduct" :products="myProducts" />
+    <ProductList 
+      v-show="!isAdding && !isEditing" 
+      @deleteProduct="deleteProduct" 
+      @setEditing="setEditProduct" 
+      @update:selectedProducts="selectedProducts = $event"
+      :products="myProducts" 
+      :selectedProducts="selectedProducts"
+    />
+    
   </div>
 </template>
 
