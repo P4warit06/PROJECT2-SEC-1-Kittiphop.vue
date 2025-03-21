@@ -88,13 +88,13 @@ function toggleMenu() {
       </div>
   </header>
 
-  <div class="w-full bg-gray-300 py-2">
+  <div class="w-full bg-blue-400  py-2">
     <div class="flex justify-center items-center text-sm sm:text-sm">
       <a
         href="#"
         v-for="(category, index) in categories"
         :key="index"
-        class="px-2 hover:opacity-70"
+        class="px-2 hover:opacity-70 text-bold text-sm text-white"
       >
         {{ category }}
       </a>
