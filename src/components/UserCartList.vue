@@ -5,18 +5,18 @@ import { ref, onMounted } from 'vue';
 import { getItems } from '@/libs/fetchUtils';
 
 const carts = ref([])
+const quantity = ref(0)
 onMounted(async () => {
     carts.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
-    carts.value.forEach((cart) => cart.stock = 1)
+    carts.value.map((product) => {return{...product, quantity:0}})
+    console.log(carts.value);
+    
 })
-
-
 
 </script>
 
 <template>
    <div class="p-6 bg-gray-100 min-h-screen">
-    <!-- Search Section -->
     <div class="flex flex-col justify-between items-center mb-6">
         <div class="w-full">
             <input type="text" placeholder="Search" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -48,6 +48,17 @@ onMounted(async () => {
                     <span class="text-xl font-semibold text-gray-900">{{ yourProduct.name }}</span>
                     <span class="text-lg text-green-600">Price: <span class="font-bold">{{ yourProduct.price | currency }}</span></span>
                     <span class="text-sm text-gray-600">Stock: <span class="font-semibold">{{ yourProduct.stock }}</span></span>
+                </div>
+                <div class="flex justify-center items-center space-x-2">
+                    <div>
+                        <button class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer">+</button>
+                    </div>
+                    <div>
+                        <input type="number" v-model="quantity" class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-xl font-semibold bg-white">
+                    </div>
+                    <div>
+                        <button class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 cursor-pointer">-</button>
+                    </div>
                 </div>
                 <div class="flex items-center space-x-2">
                     <button class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200">Buy</button>
