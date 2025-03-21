@@ -65,7 +65,8 @@ async function editItem(url, id, editItem) {
   }
 }
 
-// New function to register users
+
+// 062 Pongsakorn's 
 async function registerUser(url, userData) {
   try {
     // Get all users to generate a new ID
@@ -107,8 +108,6 @@ async function registerUser(url, userData) {
     throw new Error('Cannot register user: ' + error.message);
   }
 }
-
-// Check if email already exists
 async function checkEmailExists(url, email) {
   try {
     const users = await getItems(`${url}/users`);
