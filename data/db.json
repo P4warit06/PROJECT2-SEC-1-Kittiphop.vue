@@ -55,20 +55,21 @@
     {
       "id": "1",
       "username": "admin",
-      "password": "myadmin007x",
+      "password": "Myadmin007x@",
       "email": "admin@gmail.com",
       "role": "admin",
-      "location": "",
-      "contact": ""
+      "location": "29",
+      "contact": "0999999999"
     },
     {
       "id": "2",
       "username": "Ohm",
-      "password": "ohm12345",
+      "password": "Ohm12345@",
       "email": "ohm@gmail.com",
       "role": "user",
-      "location": "",
-      "contact": ""
+      "location": "66",
+      "contact": "0876543210"
     }
+
   ]
 }
