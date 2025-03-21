@@ -107,7 +107,7 @@ const removeProduct = async (removeId) => {
         <button @click="isAdding = !isAdding"
           :class="isAdding ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'"
           class="text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-300">
-          {{ isAdding ? 'Back to Product Page' : 'Add New Product' }}
+          {{ isAdding ? 'Back to Previous Page' : 'Add New Product' }}
         </button>
       </div>
     </div>
