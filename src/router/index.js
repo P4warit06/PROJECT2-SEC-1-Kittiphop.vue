@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import PageNotFound from '../views/PageNotFound.vue'
+import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
+import SignUpView from '../views/SignUpView.vue'
+import PageNotFoundView from '../views/PageNotFoundView.vue'
 import ProductManager from '../components/ProductManager.vue'
 import ProductDetail from '../components/ProductDetail.vue'
 import UserProductManager from '@/components/UserProductManager.vue'
@@ -27,12 +28,17 @@ const routes = [
     {
         path: '/home',
         name: 'Home',
-        component: Home
+        component: HomeView
     },
     {
         path: '/login',
         name: 'Login',
-        component: Login
+        component: LoginView
+    },
+    {
+        path: '/sign-up',
+        name: 'SignUp',
+        component: SignUpView
     },
     {
         path: '/product-manager',
@@ -47,7 +53,7 @@ const routes = [
     {
         path: '/:notMatch(.*)',
         name: 'PageNotFound',
-        component: PageNotFound
+        component: PageNotFoundView
     }
 ]
 const router = createRouter({ history,

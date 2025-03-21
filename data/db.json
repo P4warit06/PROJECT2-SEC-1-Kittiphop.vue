@@ -54,17 +54,22 @@
   "users": [
     {
       "id": "1",
-      "name": "admin",
+      "username": "admin",
       "password": "myadmin007x",
       "email": "admin@gmail.com",
-      "role": "admin"
+      "role": "admin",
+      "location" : "",
+      "contact" : ""
     },
     {
       "id": "2",
-      "name": "Ohm",
+      "username": "Ohm",
       "password": "ohm12345",
       "email": "ohm@gmail.com",
-      "role": "user"
+      "role": "user",
+      "location" : "",
+      "contact" : ""
+    
     }
   ],
   "carts": [
