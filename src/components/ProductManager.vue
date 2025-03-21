@@ -101,17 +101,21 @@ const removeProduct = async (removeId) => {
   <div class="p">
     <!-- 3. call handler fuction -->
     <Header :categories="filterCategories" />
-    <button
-      @click="isAdding = !isAdding"
-      class="text-green-600 hover:text-green-400 underline cursor-pointer"
-    >
-      Add New Product
-    </button>
-    <AddEditProduct v-if="isAdding | isEditing" 
-    @add-new-product="addProduct" 
-    :active-product="currentProduct" 
-    @edit-product="updateProduct"/>
-    <ProductList v-show="!isAdding && !isEditing" @deleteProduct="removeProduct" @setEditing="setEditProduct" :products="myProducts" />
+    <div class="flex justify-end">
+      <div
+        class="mt-2 shadow-lg transition-all duration-300 transform hover:scale-105 ">
+        <button @click="isAdding = !isAdding"
+          :class="isAdding ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'"
+          class="text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-300">
+          {{ isAdding ? 'Back to Product Page' : 'Add New Product' }}
+        </button>
+      </div>
+    </div>
+
+    <AddEditProduct v-if="isAdding | isEditing" @add-new-product="addProduct" :active-product="currentProduct"
+      @edit-product="updateProduct" />
+    <ProductList v-show="!isAdding && !isEditing" @deleteProduct="removeProduct" @setEditing="setEditProduct"
+      :products="myProducts" />
   </div>
 </template>
 
