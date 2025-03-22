@@ -1,9 +1,26 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+
 const about = ref(null);
 const explore = ref(null);
+const currentUser = ref(null);
 
+// Check if user is logged in on component mount
+onMounted(() => {
+  const userJson = localStorage.getItem('currentUser');
+  if (userJson) {
+    currentUser.value = JSON.parse(userJson);
+  }
+});
+
+// Logout function
+const router = useRouter();
+const handleLogout = () => {
+  localStorage.removeItem('currentUser');
+  currentUser.value = null;
+  router.push('/login');
+};
 </script>
 
 <template>
@@ -22,15 +39,39 @@ const explore = ref(null);
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
             <button @click="explore.scrollIntoView({ behavior: 'smooth' });" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">EXPLORE</button>
-        </button>
+          </button>
           
           <!-- Navigation Links -->
           <div class="flex items-center space-x-6">
             <div class="flex space-x-6 ml-auto">
-              <router-link to="/product-manager" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">PRODUCT</router-link>
+              <!-- Only show PRODUCT link if user is logged in -->
+              <router-link 
+                v-if="currentUser" 
+                to="/product-manager" 
+                class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 "
+              >
+                PRODUCT
+              </router-link>
+              
               <button @click="about.scrollIntoView({ behavior: 'smooth' });" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">ABOUT</button>
-              <router-link to="/login" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">LOGIN</router-link>
-              <router-link to="/sign-up" class="text-white text-xl font-bold transition duration-300 px-1 rounded-sm bg-blue-400 hover:brightness-120">SIGN UP</router-link>
+              
+              <!-- Show login/signup if not logged in, otherwise show username and logout -->
+              <template v-if="!currentUser">
+                <router-link to="/login" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">LOGIN</router-link>
+                <router-link to="/sign-up" class="text-white text-xl font-bold transition duration-300 px-1 rounded-sm bg-blue-400 hover:brightness-120">SIGN UP</router-link>
+              </template>
+              
+              <template v-else>
+                <div class="flex items-center space-x-4">
+                  <span class="text-white text-xl font-bold">{{ currentUser.username }}</span>
+                  <button 
+                    @click="handleLogout" 
+                    class="text-white text-xl font-bold hover:text-red-300 transition duration-300"
+                  >
+                    LOGOUT
+                  </button>
+                </div>
+              </template>
             </div>
           </div>
         </div>
@@ -94,3 +135,4 @@ h1, h2, h3, button, a {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 </style>
+
