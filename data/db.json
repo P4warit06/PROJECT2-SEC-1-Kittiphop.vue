@@ -49,6 +49,18 @@
       "stock": 15,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "32-inch 4K HDR monitor"
+    },
+    {
+      "id": "7a3d",
+      "name": "",
+      "price": 5555,
+      "productName": "5555"
+    },
+    {
+      "id": "d9e0",
+      "name": "",
+      "price": 5555,
+      "productName": "555"
     }
   ],
   "users": [
@@ -58,8 +70,8 @@
       "password": "myadmin007x",
       "email": "admin@gmail.com",
       "role": "admin",
-      "location" : "",
-      "contact" : ""
+      "location": "",
+      "contact": ""
     },
     {
       "id": "2",
@@ -69,6 +81,7 @@
       "role": "user",
       "location" : "",
       "contact" : ""
+    
     }
   ]
 }
