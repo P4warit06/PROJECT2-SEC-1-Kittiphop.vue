@@ -39,16 +39,6 @@
       "stock": 25,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "RGB mechanical gaming keyboard"
-    },
-    {
-      "id": "6",
-      "name": "4K Monitor",
-      "category": "Electronics",
-      "price": 349.99,
-      "status": "Active",
-      "stock": 15,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "32-inch 4K HDR monitor"
     }
   ],
   "users": [

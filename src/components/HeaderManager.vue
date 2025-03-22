@@ -2,14 +2,17 @@
 import { ref,computed } from "vue";
 import 'boxicons'
 
+const bergerActive = ref(false);
+
 function toggleMenu() {
   bergerActive.value = !bergerActive.value;
 }
 </script>
 
 <template>
-  <header class="w-full bg-gray-400 text-black p-4 flex justify-between items-center">
-    <router-link to="/home" class="text-lg font-bold hover:opacity-60">Product Management</router-link>
+  <!-- เพิ่มแถบสีให้มีความสวยงามมากขึ้น -->
+  <header class="w-full bg-blue-500  hover:bg-blue-800 transition-colors duration-1000 ease-in-out text-black p-4 flex justify-between items-center">
+    <router-link to="/home" class="text-lg text-white font-bold hover:opacity-60">Product Management</router-link>
     <button
       @click="toggleMenu"
       class="cursor-pointer hover:opacity-60 md:hidden"
@@ -32,12 +35,12 @@ function toggleMenu() {
 
     <nav class="hidden md:block">
       <ul class="flex space-x-4">
-        <li>
+        <li class="text-white font-bold">
           <router-link to="/product-manager" class="hover:opacity-70">
             Product
           </router-link>
         </li>
-        <li>
+        <li class="text-white font-bold">
           <router-link to="/home" class="hover:opacity-70">
             About
           </router-link>
@@ -55,6 +58,11 @@ function toggleMenu() {
           <li>
             <router-link to="/about" class="text-black text-center block hover:opacity-60">
               About
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/about" class="text-black text-center block hover:opacity-60">
+              Cart
             </router-link>
           </li>
         </ul>
@@ -80,7 +88,7 @@ function toggleMenu() {
       </div>
   </header>
 
-  <div class="w-full bg-gray-300 py-2">
+  <div class="w-full bg-blue-400  py-2">
     <div class="flex justify-center items-center text-sm sm:text-sm">
       <a href="#" class="mx-2">Accessories</a>
       <a href="#" class="mx-2">Audio</a>
@@ -90,7 +98,13 @@ function toggleMenu() {
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 header {
   position: relative;
 }
+h1, h2, h3, button, a {
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 </style>

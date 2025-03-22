@@ -1,7 +1,7 @@
 <script setup>
 import ListModel from './model/ListModel.vue'
-import { ref } from 'vue'
-defineEmits(['deleteProduct', 'setEditing','update:selectedProducts'])
+import { computed, ref } from 'vue'
+defineEmits(['deleteProduct', 'setEditing','seleteDeleteProduct'])
 const props = defineProps({
   products: {
     type: Array,
@@ -13,12 +13,18 @@ const props = defineProps({
   }
 })
 console.log(props.products)
+console.log(props.selectedProducts)
+
 
 const filter = ref("")
 function filteredProducts() {
   let a = props.products.filter( p => p.name.toLowerCase().includes(filter.value.toLowerCase()))
   console.log(a)
 }
+
+const seleteProductList =ref([])
+
+
 
 
 </script>
@@ -27,13 +33,14 @@ function filteredProducts() {
   <div>
     <ListModel :items="products" listType="card">
       <template #heading> 
-        Product List
-        <input
-          v-model="filter"
-          type="text"
-          placeholder="Search..."
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
+        <div class="flex justify-end w-full mt-2">
+          <button 
+            class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+            @click="$emit('seleteDeleteProduct',seleteProductList)"
+          >
+            Delete All
+          </button>
+        </div>
       </template>
       
       <template #listItems="{ yourItem }">
@@ -41,7 +48,8 @@ function filteredProducts() {
         <input
           type="checkbox"
           :value="yourItem.id"
-          v-model="props.selectedProducts" 
+          @change="test"
+          v-model="seleteProductList" 
           class="mr-2"
         />
         <button @click="$emit('setEditing', yourItem)" class="text-purple-600 hover:text-purple-400 cursor-pointer">

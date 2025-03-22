@@ -2,6 +2,8 @@
 import ProductList from './ProductList.vue'
 import AddEditProduct from './AddEditProduct.vue'
 import HeaderManager from './HeaderManager.vue'
+import Header from "./Header.vue";
+import FilterProduct from './FilterProduct.vue';
 import { ref, onMounted } from 'vue'
 import { getItems, deleteItemById, addItem, editItem } from '../libs/fetchUtils.js'
 
@@ -92,29 +94,20 @@ const deleteProduct = async (id) => {
   }
 }
 
-const deleteMultipleProduct = async () => {
-  if (selectedProducts.value.length === 0) {
-    alert("Please select products")
-    return
-  }
-
-  try {
-    const deletePromises = selectedProducts.value.map(async (id) => {
-      const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/products`, id)
-      if (status !== 200) {
-        throw new Error(`Error ID: ${id}`)
+const deleteMultipleProduct = async (idList) => {
+   try{
+    for (let i = 0; i < idList.length; i++) {
+      const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/products`, idList[i])
+      if (status === 200) {
+      const removeIndex = myProducts.value.findIndex((item) => item.id === idList[i])
+      if (removeIndex !== -1) { 
+        myProducts.value.splice(removeIndex, 1)
       }
-    })
-
-    await Promise.all(deletePromises)
-
-    myProducts.value = myProducts.value.filter(product => !selectedProducts.value.includes(product.id))
-    selectedProducts.value = [] 
-    alert("deleted")
-  } catch (error) {
-    console.error(error)
-    alert("erro")
-  }
+    }
+    }
+   }catch(error){
+    console.error('Error deleting item:', error)
+   }
 }
 
 </script>
@@ -122,19 +115,14 @@ const deleteMultipleProduct = async () => {
 <template>
   <div class="p">
     <HeaderManager />
+    <FilterProduct :categories="filterCategories"/>
     <button
       @click="isAdding = !isAdding"
       class="text-green-600 hover:text-green-400 underline cursor-pointer"
     >
       Add New Product
     </button>
-    <!-- ปุ่มลบสินค้าหลายรายการ -->
-    <button 
-      @click="deleteMultipleProduct"
-      class="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-    >
-      Delete All
-    </button>
+    
     <AddEditProduct v-if="isAdding | isEditing" 
     @add-new-product="addProduct" 
     :active-product="currentProduct" 
@@ -143,9 +131,9 @@ const deleteMultipleProduct = async () => {
       v-show="!isAdding && !isEditing" 
       @deleteProduct="deleteProduct" 
       @setEditing="setEditProduct" 
-      @update:selectedProducts="selectedProducts = $event"
       :products="myProducts" 
       :selectedProducts="selectedProducts"
+      @seleteDeleteProduct="deleteMultipleProduct"
     />
     
   </div>
