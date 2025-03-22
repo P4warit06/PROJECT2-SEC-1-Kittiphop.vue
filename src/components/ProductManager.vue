@@ -121,7 +121,8 @@ const deleteMultipleProduct = async () => {
 
 <template>
   <div class="p">
-    <Header :categories="filterCategories" />
+    <Header></Header>
+    <FilterProduct :categories="filterCategories"/>
     <!-- ปุ่มเพิ่มสินค้า  -->
   <div class="flex justify-end">
       <div
