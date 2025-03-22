@@ -16,7 +16,7 @@ const routes = [
         redirect: {name : "UserProduct"}
     },
     {
-        path: '/user-produuct',
+        path: '/user-products',
         name: 'UserProduct',
         component: UserProductManager
     },
