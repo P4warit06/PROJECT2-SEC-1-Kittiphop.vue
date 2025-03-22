@@ -39,6 +39,66 @@
       "stock": 25,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "RGB mechanical gaming keyboard"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 23,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 1e+24,
+      "status": "Active",
+      "stock": 23,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 9999,
+      "status": "Active",
+      "stock": 23,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "591f",
+      "name": "Hello World",
+      "category": "Audio",
+      "price": 454545,
+      "status": "Active",
+      "stock": 1,
+      "image": "",
+      "description": ""
+    },
+    {
+      "id": "591f",
+      "name": "Hello World",
+      "category": "Audio",
+      "price": 55555,
+      "status": "Active",
+      "stock": 1,
+      "image": "",
+      "description": ""
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 123456789,
+      "status": "Active",
+      "stock": 23,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
     }
   ],
   "users": [

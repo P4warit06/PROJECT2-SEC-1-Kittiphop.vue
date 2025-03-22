@@ -1,5 +1,4 @@
 <script setup>
-import UserProductManager from './components/UserProductManager.vue';
 
 </script>
 

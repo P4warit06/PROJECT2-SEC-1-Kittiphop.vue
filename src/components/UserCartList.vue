@@ -14,7 +14,7 @@ onMounted(async () => {
         if (findProduct) {
             findProduct.quantity += curProduct.quantity
         } else {
-            combindCart.value.push(curProduct)
+            combindCart.value.push(...curProduct)
         }
         return combindCart.value
     }, [])
