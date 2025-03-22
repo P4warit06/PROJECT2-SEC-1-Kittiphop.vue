@@ -29,6 +29,7 @@ async function deleteItemById(url, id) {
   }
 }
 
+
 async function addItem(url, newItem) {
   try {
     const res = await fetch(url, {
