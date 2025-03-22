@@ -5,12 +5,20 @@ import { ref, onMounted } from 'vue';
 import { getItems } from '@/libs/fetchUtils';
 
 const carts = ref([])
+const combindCart = ref([])
 const quantity = ref(0)
 onMounted(async () => {
     carts.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
-    carts.value.map((product) => {return{...product, quantity:0}})
-    console.log(carts.value);
-    
+    carts.value.reduce((acProduct, curProduct) => {
+        const findProduct = acProduct.find((product) => product.id === curProduct.id)
+        if (findProduct) {
+            findProduct.quantity += curProduct.quantity
+        } else {
+            combindCart.value.push(curProduct)
+        }
+        return combindCart.value
+    }, [])
+    console.log(combindCart.value);
 })
 
 </script>
@@ -37,7 +45,7 @@ onMounted(async () => {
         </div>
     </div>
 
-    <CartModel :products="carts">
+    <CartModel :products="combindCart">
         <template #heading>
             <h1 class="text-3xl font-bold text-gray-800 mb-4">Order</h1>
             <div v-show="carts.length <= 0" class="w-full flex justify-center items-center">
@@ -57,7 +65,7 @@ onMounted(async () => {
                         <button class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer">+</button>
                     </div>
                     <div>
-                        <input type="number" v-model="quantity" class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-xl font-semibold bg-white">
+                        <input type="number" v-model="yourProduct.quantity" class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-xl font-semibold bg-white">
                     </div>
                     <div>
                         <button class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 cursor-pointer">-</button>
