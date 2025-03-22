@@ -23,10 +23,6 @@ function filteredProducts() {
 }
 
 const seleteProductList =ref([])
-
-
-
-
 </script>
 
 <template>
