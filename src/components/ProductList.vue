@@ -1,9 +1,13 @@
 <script setup>
 import ListModel from './model/ListModel.vue'
 import { ref } from 'vue'
-defineEmits(['deleteProduct', 'setEditing'])
+defineEmits(['deleteProduct', 'setEditing','update:selectedProducts'])
 const props = defineProps({
   products: {
+    type: Array,
+    required: true
+  },
+  selectedProducts: { 
     type: Array,
     required: true
   }
@@ -26,7 +30,6 @@ function filteredProducts() {
         Product List
         <input
           v-model="filter"
-          @input="filteredProducts"
           type="text"
           placeholder="Search..."
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -34,6 +37,13 @@ function filteredProducts() {
       </template>
       
       <template #listItems="{ yourItem }">
+        <!-- Checkbox selectProduct-->
+        <input
+          type="checkbox"
+          :value="yourItem.id"
+          v-model="props.selectedProducts" 
+          class="mr-2"
+        />
         <button @click="$emit('setEditing', yourItem)" class="text-purple-600 hover:text-purple-400 cursor-pointer">
           Edit |
         </button>
@@ -44,7 +54,10 @@ function filteredProducts() {
           Delete
         </button>
         <p>
-          <span class="italic">id: </span> <router-link :to="{name : 'ProductDetail', params: {productId: yourItem.id}}" active-class="text-600-blue" class="underline">{{ yourItem.id }}</router-link>,
+          <span class="italic">id: </span> 
+          <router-link :to="{name : 'ProductDetail', params: {productId: yourItem.id}}" active-class="text-600-blue" class="underline">
+            {{ yourItem.id }}
+          </router-link>,
           <span class="italic">product name:</span>{{ yourItem.name }}
           <span class="italic">price:</span>{{ yourItem.price }}
         </p>
@@ -52,5 +65,4 @@ function filteredProducts() {
     </ListModel>
   </div>
 </template>
-
 <style scoped></style>
