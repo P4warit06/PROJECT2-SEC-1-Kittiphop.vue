@@ -2,6 +2,7 @@
 import ProductList from './ProductList.vue'
 import AddEditProduct from './AddEditProduct.vue'
 import Header from "./Header.vue";
+import FilterProduct from './FilterProduct.vue';
 import { ref, onMounted } from 'vue'
 import { getItems, deleteItemById, addItem, editItem } from '../libs/fetchUtils.js'
 const myProducts = ref([])
@@ -120,7 +121,8 @@ const deleteMultipleProduct = async () => {
 
 <template>
   <div class="p">
-    <Header :categories="filterCategories" />
+    <Header></Header>
+    <FilterProduct :categories="filterCategories"/>
     <button
       @click="isAdding = !isAdding"
       class="text-green-600 hover:text-green-400 underline cursor-pointer"
