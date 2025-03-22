@@ -37,7 +37,7 @@ console.log(props.activeProduct)
 </script>
 
 <template>
-  <!-- ปรับปรุงรุปแบบฟอร์ม -->
+  <!-- ปรับปรุงรุปแบบฟอร์มให้มีความสวยงามเพิ่มขึ้น -->
   <div class="flex items-center justify-center min-h-screen bg-white">
 
     <div

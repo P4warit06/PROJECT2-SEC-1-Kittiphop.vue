@@ -16,6 +16,7 @@ function toggleMenu() {
 </script>
 
 <template>
+  <!-- เพิ่มแถบสีให้มีความสวยงามมากขึ้น -->
   <header class="w-full bg-blue-500  hover:bg-blue-800 transition-colors duration-1000 ease-in-out text-black p-4 flex justify-between items-center">
     <router-link to="/home" class="text-lg text-white font-bold hover:opacity-60">Product Management</router-link>
     <button
