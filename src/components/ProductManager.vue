@@ -121,6 +121,7 @@ const deleteMultipleProduct = async () => {
 <template>
   <div class="p">
     <Header :categories="filterCategories" />
+    <!-- ปรับปรุงปุ่มกดเพิ่ม Product -->
     <div class="flex justify-end">
       <div
         class="mt-2 shadow-lg transition-all duration-300 transform hover:scale-105 ">
