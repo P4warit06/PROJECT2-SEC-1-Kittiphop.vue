@@ -2,6 +2,7 @@
 import ProductList from './ProductList.vue'
 import AddEditProduct from './AddEditProduct.vue'
 import Header from "./Header.vue";
+import FilterProduct from './FilterProduct.vue';
 import { ref, onMounted } from 'vue'
 import { getItems, deleteItemById, addItem, editItem } from '../libs/fetchUtils.js'
 const myProducts = ref([])
@@ -121,19 +122,12 @@ const deleteMultipleProduct = async () => {
 <template>
   <div class="p">
     <Header :categories="filterCategories" />
-    <!-- ปรับปรุงปุ่มกดเพิ่ม Product และเพิ่มปุ่มสีแดง-->
-    <div class="flex justify-end">
-      <div
-        class="mt-2 shadow-lg transition-all duration-300 transform hover:scale-105 ">
-        <button @click="isAdding = !isAdding"
-          :class="isAdding ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'"
-          class="text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-300">
-          {{ isAdding ? 'Back to Previous Page' : 'Add New Product' }}
-        </button>
-      </div>
-    </div>
-
-
+    <button
+      @click="isAdding = !isAdding"
+      class="text-green-600 hover:text-green-400 underline cursor-pointer"
+    >
+      Add New Product
+    </button>
     <!-- ปุ่มลบสินค้าหลายรายการ -->
     <button 
       @click="deleteMultipleProduct"

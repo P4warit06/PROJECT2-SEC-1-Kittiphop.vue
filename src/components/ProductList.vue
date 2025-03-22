@@ -28,12 +28,6 @@ function filteredProducts (){
     <ListModel :items="products" listType="card">
       <template #heading> 
         Product List
-        <input
-          v-model="filter"
-          type="text"
-          placeholder="Search..."
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
       </template>
       
       <template #listItems="{ yourItem }">
