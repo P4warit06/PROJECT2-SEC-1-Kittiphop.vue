@@ -40,6 +40,9 @@ onMounted(async () => {
     <CartModel :products="carts">
         <template #heading>
             <h1 class="text-3xl font-bold text-gray-800 mb-4">Order</h1>
+            <div v-show="carts.length <= 0" class="w-full flex justify-center items-center">
+                <h1 class="text-4xl text-gray-500">No products available</h1>
+            </div>
         </template>
 
         <template #listProduct="{ yourProduct }">
