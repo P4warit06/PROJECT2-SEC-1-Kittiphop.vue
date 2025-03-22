@@ -33,13 +33,6 @@ const seleteProductList =ref([])
   <div>
     <ListModel :items="products" listType="card">
       <template #heading> 
-        ProductList
-        <input
-          v-model="filter"
-          type="text"
-          placeholder="Search..."
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent mt-5"
-        />
         <div class="flex justify-end w-full mt-2">
           <button 
             class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
@@ -48,7 +41,6 @@ const seleteProductList =ref([])
             Delete All
           </button>
         </div>
-
       </template>
       
       <template #listItems="{ yourItem }">
