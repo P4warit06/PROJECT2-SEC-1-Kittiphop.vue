@@ -27,15 +27,13 @@ onMounted(async () => {
     console.log(error)
   }
 })
-//add product
+
 const addProduct = async (product) => {
-  //fetch() - POST
   try {
     const addedItem = await addItem(
       `${import.meta.env.VITE_APP_URL}/products`,
       product
     )
-    //validate new product
     if (addItem) {
       myProducts.value.push(addedItem)
     }
@@ -45,26 +43,32 @@ const addProduct = async (product) => {
 
   isAdding.value = false
 }
+
+const cancelAdding = () => {
+  isAdding.value = false
+}
 const isAdding = ref(false)
-//edit product
 const isEditing = ref(false)
-const currentProduct = ref({name : '' , price: 0})
+const currentProduct = ref({
+      name: "",
+      category: "",
+      price: 0,
+      status: "",
+      stock: 0,
+      image: "",
+      description: ""
+})
 
 const setEditProduct = (editProduct) => {
   isEditing.value = true
-  console.log(editProduct)
-  currentProduct.value = {...editProduct} // copy the object to avoid reference
-  console.log(currentProduct.value)
-
+  currentProduct.value = editProduct
+  console.log(currentProduct.value);
+  currentProduct.value = {...editProduct}
 }
-const updateProduct = async (product) => {
-  //validate 
- 
 
-  //call backend
+const updateProduct = async (product) => {
   try {
     const editedItem = await editItem(`${import.meta.env.VITE_APP_URL}/products`, product.id, product)
-      //update frontend state
     const editIndex = myProducts.value.findIndex(
       (item) => item.id === editedItem.id
     )
@@ -74,12 +78,17 @@ const updateProduct = async (product) => {
     console.log(error)
   }
   isEditing.value = false
-  currentProduct.value = {name: '', price: 0}
-
-  
+  currentProduct.value = {
+      name: "",
+      category: "",
+      price: 0,
+      status: "",
+      stock: 0,
+      image: "",
+      description: ""
+  }
 }
 
-//delete product
 const deleteProduct = async (id) => {
   try {
     const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/products`, id)
@@ -110,23 +119,29 @@ const deleteMultipleProduct = async (idList) => {
    }
 }
 
+const cancelAdd = () => {
+  isAdding.value = false
+  isEditing.value = false
+}
 </script>
 
 <template>
-  <div class="p">
+  <div>
     <HeaderManager />
     <FilterProduct :categories="filterCategories"/>
     <button
       @click="isAdding = !isAdding"
       class="text-green-600 hover:text-green-400 underline cursor-pointer"
-    >
+      >
       Add New Product
     </button>
     
-    <AddEditProduct v-if="isAdding | isEditing" 
+    <AddEditProduct v-if="isAdding | isEditing"
+    :active-product="currentProduct"
     @add-new-product="addProduct" 
-    :active-product="currentProduct" 
-    @edit-product="updateProduct"/>
+    @edit-product="updateProduct"
+    @cancel-adding="cancelAdd"/>
+
     <ProductList 
       v-show="!isAdding && !isEditing" 
       @deleteProduct="deleteProduct" 
@@ -135,7 +150,6 @@ const deleteMultipleProduct = async (idList) => {
       :selectedProducts="selectedProducts"
       @seleteDeleteProduct="deleteMultipleProduct"
     />
-    
   </div>
 </template>
 

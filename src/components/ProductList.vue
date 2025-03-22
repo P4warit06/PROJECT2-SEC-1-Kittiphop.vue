@@ -40,7 +40,6 @@ const seleteProductList =ref([])
       </template>
       
       <template #listItems="{ yourItem }">
-        <!-- Checkbox selectProduct-->
         <input
           type="checkbox"
           :value="yourItem.id"
