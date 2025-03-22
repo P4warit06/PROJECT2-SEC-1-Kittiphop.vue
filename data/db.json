@@ -99,6 +99,26 @@
       "stock": 23,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 47,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "9a60",
+      "name": "Gun",
+      "category": "Accessories",
+      "price": 898989,
+      "status": "Active",
+      "stock": 1,
+      "image": "",
+      "description": "Hello World"
     }
   ],
   "users": [
