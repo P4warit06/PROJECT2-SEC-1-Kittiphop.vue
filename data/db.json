@@ -94,6 +94,17 @@
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation",
       "quantity": 1
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 47,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation",
+      "quantity": 1
     }
   ]
 }

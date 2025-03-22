@@ -98,13 +98,5 @@ function toggleMenu() {
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-header {
-  position: relative;
-}
-h1, h2, h3, button, a {
-  font-family: 'Montserrat', sans-serif;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
 
 </style>
