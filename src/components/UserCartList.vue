@@ -6,7 +6,6 @@ import { getItems } from '@/libs/fetchUtils';
 
 const carts = ref([])
 const combindCart = ref([])
-const quantity = ref(0)
 onMounted(async () => {
     carts.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
     carts.value.reduce((acProduct, curProduct) => {
@@ -14,21 +13,26 @@ onMounted(async () => {
         if (findProduct) {
             findProduct.quantity += curProduct.quantity
         } else {
-            combindCart.value.push(...curProduct)
+            combindCart.value.push(curProduct)
         }
         return combindCart.value
     }, [])
-    console.log(combindCart.value);
 })
 
 </script>
 
 <template>
    <div class="p-6 bg-gray-100 min-h-screen">
-    <div class="flex flex-col justify-between items-center mb-6">
-        <div class="w-full">
-            <input type="text" placeholder="Search" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    <div class="w-full flex flex-col justify-between items-center mb-6">
+        <div class="w-full flex">
+            <div class="w-5/6">
+                <input type="text" placeholder="Search" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <div class="w-1/6 ml-2">
+                <button class="w-full bg-blue-500 text-white h-full rounded-lg cursor-pointer hover:opacity-85">Search</button>
+            </div>
         </div>
+
         <div class="w-full flex justify-between items-center">
             <div class="flex items-center space-x-2 border p-3 rounded-lg mt-4">
                 <input type="checkbox" id="selectAll" class="h-5 w-5 text-blue-500" />
