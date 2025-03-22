@@ -22,8 +22,13 @@ const addProductToCart = async (product) => {
         currentProduct.value = await getItemById(`${import.meta.env.VITE_APP_URL}/products`, product.id)
         if (currentProduct.value && currentProduct.value.stock > 0) {
             productQuantity.value = {...currentProduct.value, quantity: 1}
-            const addCart = await addItem(`${import.meta.env.VITE_APP_URL}/carts`, productQuantity.value)
-            if (addCart) {
+            const findIndexProduct = myCarts.value.findIndex((product) => product.id === productQuantity.value.id)
+            if (findIndexProduct !== -1) {
+              productQuantity.value.quantity += 1
+              const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, productQuantity.value.id, productQuantity.value)
+              myCarts.value.splice(findIndexProduct, 1, editProduct)
+            } else {
+              const addCart = await addItem(`${import.meta.env.VITE_APP_URL}/carts`, productQuantity.value)
               myCarts.value.push(addCart)
             }
         }       

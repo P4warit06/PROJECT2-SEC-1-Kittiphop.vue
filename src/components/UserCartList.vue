@@ -1,8 +1,7 @@
 <script setup>
 import CartModel from './model/CartModel.vue';
-import Header from './Header.vue';
 import { ref, onMounted } from 'vue';
-import { getItems } from '@/libs/fetchUtils';
+import { getItems, editItem, deleteItemById } from '@/libs/fetchUtils';
 
 const carts = ref([])
 const combindCart = ref([])
@@ -18,6 +17,43 @@ onMounted(async () => {
         return combindCart.value
     }, [])
 })
+
+const addQuantity = async (item) => {
+    try {
+        const product = combindCart.value.find((product) => product.id === item.id)
+        if (item && item.quantity < product.stock) {
+            item.quantity += 1   
+            const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, item.id, item)
+            const productIndex = combindCart.value.findIndex((product) => product.id === item.id)
+            combindCart.value.splice(productIndex, 1, editProduct)
+        }
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+const subtractQuantity = async (item) => {
+    try {
+        if (item) {
+            item.quantity -= 1
+            if (item.quantity <= 0) {
+                const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/carts`, item.id)
+                if (status === 200) {
+                    const removeIndex = combindCart.value.findIndex((product) => product.id === item.id)
+                    if (removeIndex !== -1) {
+                        combindCart.value.splice(removeIndex, 1)
+                    }
+                }
+            } else {
+                const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, item.id, item)
+                const productIndex = combindCart.value.findIndex((product) => product.id === item.id)
+                combindCart.value.splice(productIndex, 1, editProduct)
+            }
+        }
+    } catch(error) {
+        console.log(error);
+    }
+}
 
 </script>
 
@@ -66,13 +102,13 @@ onMounted(async () => {
                 </div>
                 <div class="flex justify-center items-center space-x-2">
                     <div>
-                        <button class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer">+</button>
+                        <button @click="addQuantity(yourProduct)" class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer">+</button>
                     </div>
                     <div>
                         <input type="number" v-model="yourProduct.quantity" class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-xl font-semibold bg-white">
                     </div>
                     <div>
-                        <button class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 cursor-pointer">-</button>
+                        <button @click="subtractQuantity(yourProduct)" class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 cursor-pointer">-</button>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2">
