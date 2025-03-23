@@ -21,7 +21,7 @@
 **Progress งานในแต่ละ Week**
 | รหัสนักศึกษา | Progress Week1 | Progress Week2 | Progress Week3 | Progress Week4 | Progress Week5 |
 |---------------|----------------|----------------|----------------|----------------|----------------|
-| 66130500009   | create addProduct | create product from backend  | addToCart, readProduct in cart              | -              | -              |
+| 66130500009   | create addProduct | create product from backend  | addToCart, readProduct in cart              | addQuantity, decreaseQuantity, inputQuantity              | -              |
 | 66130500046   | filter product | filter components  | -              | -              | -              |
 | 66130500056   | delete product and design ui. |  delete product by id and ui           |  delete multiple products (admin-side)  | -              | -              |
 | 66130500059   | update Product ui | update product from backend     | -              | -              | -              |
