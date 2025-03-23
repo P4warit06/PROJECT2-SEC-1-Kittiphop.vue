@@ -143,17 +143,6 @@
   ],
   "carts": [
     {
-      "id": "9a60",
-      "name": "Gun",
-      "category": "Accessories",
-      "price": 898989,
-      "status": "Active",
-      "stock": 1,
-      "image": "",
-      "description": "Hello World",
-      "quantity": 1
-    },
-    {
       "id": "1",
       "name": "Wireless Headphones",
       "category": "Electronics",
@@ -162,18 +151,18 @@
       "stock": 47,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation",
-      "quantity": 2
+      "quantity": 47
     },
     {
-      "id": "1",
-      "name": "Wireless Headphones",
-      "category": "Electronics",
-      "price": 89.99,
-      "status": "Active",
-      "stock": 47,
+      "id": "3",
+      "name": "Bluetooth Speaker",
+      "category": "Audio",
+      "price": 49.99,
+      "status": "Low Stock",
+      "stock": 5,
       "image": "/placeholder.svg?height=200&width=200",
-      "description": "High-quality wireless headphones with noise cancellation",
-      "quantity": 1
+      "description": "Portable bluetooth speaker with 20hr battery life",
+      "quantity": 5
     }
   ]
 }
