@@ -22,7 +22,7 @@ const addQuantity = async (item) => {
     }
 }
 
-const subtractQuantity = async (item) => {
+const decreaseQuantity = async (item) => {
     try {
         if (item) {
             item.quantity -= 1
@@ -116,7 +116,7 @@ const inputQuantity = async (item) => {
                         <input @input="inputQuantity(yourProduct)" type="number" v-model="yourProduct.quantity" min="0" :max="yourProduct.stock" class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-xl font-semibold bg-white">
                     </div>
                     <div>
-                        <button @click="subtractQuantity(yourProduct)" class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 cursor-pointer">-</button>
+                        <button @click="decreaseQuantity(yourProduct)" class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 cursor-pointer">-</button>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2">
