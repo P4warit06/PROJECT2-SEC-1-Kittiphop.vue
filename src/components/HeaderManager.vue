@@ -2,15 +2,7 @@
 import { ref,computed } from "vue";
 import 'boxicons'
 
-const props = defineProps({
-  products: {
-    type:Array
-  }
-})
-console.log(props.products);
 const bergerActive = ref(false);
-const count = computed(() => props.products.length)
-console.log(count.value);
 
 function toggleMenu() {
   bergerActive.value = !bergerActive.value;
@@ -18,6 +10,7 @@ function toggleMenu() {
 </script>
 
 <template>
+  <!-- เพิ่มแถบสีให้มีความสวยงามมากขึ้น -->
   <header class="w-full bg-blue-500  hover:bg-blue-800 transition-colors duration-1000 ease-in-out text-black p-4 flex justify-between items-center">
     <router-link to="/home" class="text-lg text-white font-bold hover:opacity-60">Product Management</router-link>
     <button
@@ -52,18 +45,6 @@ function toggleMenu() {
             About
           </router-link>
         </li>
-        <ul class="w-full cursor-pointer hover:opacity-80">
-          <li class="relative">
-            <router-link to="/user-carts">
-            <div class="relative inline-block">
-              <box-icon type='solid' name='cart' class="font-2xl"></box-icon>
-              <p class="absolute top-0 right-0 text-white bg-red-500 rounded-full text-xs w-4 h-4 flex items-center justify-center">
-                {{ count }}
-              </p>
-            </div>
-            </router-link>
-          </li>
-        </ul>
       </ul>
     </nav>
 
@@ -108,10 +89,11 @@ function toggleMenu() {
   </header>
 
   <div class="w-full bg-blue-400  py-2">
-    <div class="flex justify-center items-center text-sm sm:text-sm">
+    <div class="flex justify-center items-center text-sm sm:text-sm text-white">
       <a href="#" class="mx-2">Accessories</a>
       <a href="#" class="mx-2">Audio</a>
       <a href="#" class="mx-2">Electronics</a>
+      <a href="" class="mx-2">Wearables</a>
     </div>
   </div>
 </template>

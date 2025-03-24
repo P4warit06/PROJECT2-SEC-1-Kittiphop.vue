@@ -5,12 +5,25 @@ import SignUpView from '../views/SignUpView.vue'
 import PageNotFoundView from '../views/PageNotFoundView.vue'
 import ProductManager from '../components/ProductManager.vue'
 import ProductDetail from '../components/ProductDetail.vue'
+import UserProductManager from '@/components/UserProductManager.vue'
+import { resolveDirective } from 'vue'
+import UserCartList from '@/components/UserCartList.vue'
 
 const history = createWebHistory()
 const routes = [
     {
         path: '/',
-        redirect: {name : "Home"}
+        redirect: {name : "UserProduct"}
+    },
+    {
+        path: '/user-products',
+        name: 'UserProduct',
+        component: UserProductManager
+    },
+    {
+        path: '/user-carts',
+        name: 'UserCarts',
+        component: UserCartList
     },
     {
         path: '/home',
@@ -42,7 +55,6 @@ const routes = [
         name: 'PageNotFound',
         component: PageNotFoundView
     }
-    
 ]
 const router = createRouter({ history,
      routes, 

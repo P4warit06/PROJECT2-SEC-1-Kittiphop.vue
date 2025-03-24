@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 89.99,
       "status": "Active",
-      "stock": 45,
+      "stock": 47,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation"
     },
@@ -41,14 +41,84 @@
       "description": "RGB mechanical gaming keyboard"
     },
     {
-      "id": "6",
-      "name": "4K Monitor",
+      "id": "1",
+      "name": "Wireless Headphones",
       "category": "Electronics",
-      "price": 349.99,
+      "price": 89.99,
       "status": "Active",
-      "stock": 15,
+      "stock": 23,
       "image": "/placeholder.svg?height=200&width=200",
-      "description": "32-inch 4K HDR monitor"
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 1e+24,
+      "status": "Active",
+      "stock": 23,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 9999,
+      "status": "Active",
+      "stock": 23,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "591f",
+      "name": "Hello World",
+      "category": "Audio",
+      "price": 454545,
+      "status": "Active",
+      "stock": 1,
+      "image": "",
+      "description": ""
+    },
+    {
+      "id": "591f",
+      "name": "Hello World",
+      "category": "Audio",
+      "price": 55555,
+      "status": "Active",
+      "stock": 1,
+      "image": "",
+      "description": ""
+    },
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 123456789,
+      "status": "Active",
+      "stock": 23,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "1",
+      "name": "Wireless",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 47,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": "9a60",
+      "name": "Gun",
+      "category": "Accessories",
+      "price": 898989,
+      "status": "Active",
+      "stock": 1,
+      "image": "",
+      "description": "Hello World"
     }
   ],
   "users": [
@@ -67,8 +137,32 @@
       "password": "Ohm12345@",
       "email": "ohm@gmail.com",
       "role": "user",
-      "location": "66",
-      "contact": "0876543210"
+      "location": "",
+      "contact": ""
+    }
+  ],
+  "carts": [
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 47,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation",
+      "quantity": 47
+    },
+    {
+      "id": "3",
+      "name": "Bluetooth Speaker",
+      "category": "Audio",
+      "price": 49.99,
+      "status": "Low Stock",
+      "stock": 5,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "Portable bluetooth speaker with 20hr battery life",
+      "quantity": 5
     }
 
   ]

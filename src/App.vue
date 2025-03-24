@@ -1,6 +1,4 @@
 <script setup>
-import ProductManager from './components/ProductManager.vue'
-
 
 </script>
 
@@ -10,4 +8,10 @@ import ProductManager from './components/ProductManager.vue'
   </div>
 </template>
 
-<style scoped></style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+html {
+  font-family: "Inter", sans-serif;
+}
+</style>
