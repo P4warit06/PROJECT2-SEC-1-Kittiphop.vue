@@ -6,14 +6,13 @@ import PageNotFoundView from '../views/PageNotFoundView.vue'
 import ProductManager from '../components/ProductManager.vue'
 import ProductDetail from '../components/ProductDetail.vue'
 import UserProductManager from '@/components/UserProductManager.vue'
-import { resolveDirective } from 'vue'
 import UserCartList from '@/components/UserCartList.vue'
 
 const history = createWebHistory()
 const routes = [
     {
         path: '/',
-        redirect: {name : "UserProduct"}
+        redirect: {name : "Home"}
     },
     {
         path: '/user-products',
@@ -58,7 +57,5 @@ const routes = [
 ]
 const router = createRouter({ history,
      routes, 
-    //  linkActiveClass: 'text-yellow-600', 
-    //  linkExactActiveClass: 'text-purple-600' 
     })
 export default router

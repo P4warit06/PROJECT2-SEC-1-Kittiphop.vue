@@ -2,7 +2,6 @@
 import ProductList from './ProductList.vue'
 import AddEditProduct from './AddEditProduct.vue'
 import HeaderManager from './HeaderManager.vue'
-import Header from "./Header.vue";
 import FilterProduct from './FilterProduct.vue';
 import { ref, onMounted } from 'vue'
 import { getItems, deleteItemById, addItem, editItem } from '../libs/fetchUtils.js'
@@ -123,6 +122,8 @@ const cancelAdd = () => {
   isAdding.value = false
   isEditing.value = false
 }
+
+
 </script>
 
 <template>

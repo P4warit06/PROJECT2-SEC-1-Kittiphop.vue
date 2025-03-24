@@ -139,6 +139,24 @@
       "role": "user",
       "location": "",
       "contact": ""
+    },
+    {
+      "id": "3",
+      "username": "test",
+      "password": "test1234@",
+      "email": "test@hotmail.com",
+      "role": "user",
+      "location": "1111",
+      "contact": "0988911172"
+    },
+    {
+      "id": "4",
+      "username": "test3",
+      "password": "test31234@",
+      "email": "test3@hotmail.com",
+      "role": "user",
+      "location": "ddddd",
+      "contact": "11111"
     }
   ],
   "carts": [
@@ -164,6 +182,5 @@
       "description": "Portable bluetooth speaker with 20hr battery life",
       "quantity": 5
     }
-
   ]
 }

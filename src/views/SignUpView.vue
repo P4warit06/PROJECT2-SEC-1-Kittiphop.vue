@@ -1,124 +1,121 @@
 <script setup>
-import { ref, reactive } from "vue";
-import { registerUser, checkEmailExists } from "../libs/fetchUtils.js";
-import { useRouter } from "vue-router";
+import { ref, reactive } from "vue"
+import { registerUser, checkEmailExists } from "../libs/fetchUtils.js"
+import { useRouter } from "vue-router"
 
-const router = useRouter();
-const currentStep = ref(1);
+const router = useRouter()
+const currentStep = ref(1)
 const formData = reactive({
   email: "",
   password: "",
   username: "",
   location: "",
   contact: "",
-});
-const errorMessage = ref("");
-const isLoading = ref(false);
-const registrationSuccess = ref(false);
+})
+const errorMessage = ref("")
+const isLoading = ref(false)
+const registrationSuccess = ref(false)
 
 async function nextStep(event) {
-  if (event) event.preventDefault();
-  errorMessage.value = "";
+  if (event) event.preventDefault()
+  errorMessage.value = ""
 
-  // Validate email and password
   if (!formData.email) {
-    errorMessage.value = "Email is required";
-    return;
+    errorMessage.value = "Email is required"
+    return
   }
 
   if (!isValidEmail(formData.email)) {
-    errorMessage.value = "Please enter a valid email";
-    return;
+    errorMessage.value = "Please enter a valid email"
+    return
   }
 
   if (!formData.password) {
-    errorMessage.value = "Password is required";
-    return;
+    errorMessage.value = "Password is required"
+    return
   }
 
   if (!isPasswordValid(formData.password)) {
     errorMessage.value =
-      "Password must be at least 8 characters with 1 number and 1 special character";
-    return;
+      "Password must be at least 8 characters with 1 number and 1 special character"
+    return
   }
-
-  // Check if email already exists
   try {
-    isLoading.value = true;
+    isLoading.value = true
     const emailExists = await checkEmailExists(
       import.meta.env.VITE_APP_URL,
       formData.email
-    );
+    )
     if (emailExists) {
-      errorMessage.value = "Email already exists";
-      return;
+      errorMessage.value = "Email already exists"
+      return
     }
 
     if (!formData.username) {
-      formData.username = formData.email.split("@")[0];
+      formData.username = formData.email.split("@")[0]
     }
 
-    currentStep.value = 2;
+    currentStep.value = 2
   } catch (error) {
-    console.error("Email check error:", error);
-    errorMessage.value = "Error checking email: " + error.message;
+    console.error("Email check error:", error)
+    errorMessage.value = "Error checking email: " + error.message
   } finally {
-    isLoading.value = false;
+    isLoading.value = false
   }
 }
 
 function prevStep() {
   if (currentStep.value > 1) {
-    currentStep.value--;
-    errorMessage.value = "";
+    currentStep.value--
+    errorMessage.value = ""
   }
 }
 
-// Form submission
 async function submitForm(event) {
-  if (event) event.preventDefault();
+  if (event) event.preventDefault()
 
-  errorMessage.value = "";
+  errorMessage.value = ""
 
   if (!formData.location || !formData.contact) {
-    errorMessage.value = "Please fill in all fields";
-    return;
+    errorMessage.value = "Please fill in all fields"
+    return
   }
 
   try {
-    isLoading.value = true;
+    isLoading.value = true
 
     // Send the data to backend using the registerUser function
-    const result = await registerUser(import.meta.env.VITE_APP_URL, formData);
-    console.log("Registration successful:", result);
-    registrationSuccess.value = true;
+    const result = await registerUser(import.meta.env.VITE_APP_URL, formData)
+    console.log("Registration successful:", result)
+    registrationSuccess.value = true
 
-    alert("Registration successful! Redirecting to login page...");
+    alert("Registration successful! Redirecting to login page...") // ใช้ชั่วคราว
 
     if (router) {
-      router.push("/login");
+      router.push("/login")
     } else {
+      
       setTimeout(() => {
-        window.location.href = "/login";
-      }, 500);
+        window.location.href = "/login" // ใช้ชั่วคราวเนื่องจาก auto reload page แล้วมันไม่ได้ redirect ไปหน้า login
+      }, 500)
     }
   } catch (error) {
-    console.error("Registration error:", error);
-    errorMessage.value = "Registration failed: " + error.message;
+    console.error("Registration error:", error)
+    errorMessage.value = "Registration failed: " + error.message
   } finally {
-    isLoading.value = false;
+    isLoading.value = false
   }
 }
 
 function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
 }
 function isPasswordValid(password) {
-  const hasMinLength = password.length >= 8;
-  const hasNumber = /\d/.test(password);
-  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  return hasMinLength && hasNumber && hasSpecial;
+  const hasMinLength = password.length >= 8
+  const hasNumber = /\d/.test(password)
+  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+  return hasMinLength && hasNumber && hasSpecial
 }
 </script>
 
@@ -178,8 +175,6 @@ function isPasswordValid(password) {
           </div>
         </div>
       </div>
-
-      <!-- Success message -->
       <div
         v-if="registrationSuccess"
         class="mb-4 p-2 bg-green-100 text-green-700 rounded"
