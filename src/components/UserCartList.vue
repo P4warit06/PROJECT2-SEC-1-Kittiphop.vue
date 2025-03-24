@@ -57,6 +57,13 @@ const inputQuantity = async (item) => {
             const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, item.id, item)
             const productIndex = combindCart.value.findIndex((product) => product.id === item.id)
             combindCart.value.splice(productIndex, 1, editProduct)
+        } else if (item && item.quantity <= 0) {
+            item.quantity = 0
+            const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/carts`, item.id)
+            if (status === 200) {
+                const removeIndex = combindCart.value.findIndex((product) => product.id === item.id)
+                combindCart.value.splice(removeIndex, 1)
+            }
         }
     } catch(error) {
         console.log(error);
