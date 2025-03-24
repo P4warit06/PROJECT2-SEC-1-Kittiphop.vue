@@ -20,8 +20,10 @@ onMounted(() => {
 const bergerActive = ref(false);
 
 function toggleMenu() {
-  bergerActive.value = !bergerActive.value;
+  burgerActive.value = !burgerActive.value;
 }
+
+
 </script>
 
 <template>
@@ -50,9 +52,11 @@ function toggleMenu() {
     <nav class="hidden md:block">
       <ul class="flex space-x-4">
         <li class="text-white font-bold">
+          <!-- add v-if,v-show user role === admin -->
           <router-link to="/product-manager" class="hover:opacity-70">
             Product
           </router-link>
+          <!-- add v-if,v-show user role === user -->
         </li>
         <li class="text-white font-bold">
           <router-link to="/home" class="hover:opacity-70">
@@ -74,7 +78,7 @@ function toggleMenu() {
       </ul>
     </nav>
 
-    <div v-show="bergerActive" class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
+    <div v-show="burgerActive" class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
         <ul class="space-y-4 text-lg">
           <li>
             <router-link to="/product-manager" active class="text-black text-center block hover:opacity-60">
@@ -93,7 +97,7 @@ function toggleMenu() {
           </li>
         </ul>
         <button
-          @click="bergerActive = !bergerActive"
+          @click="burgerActive = !burgerActive"
           class="absolute top-4 right-4 text-black font-bold hover:opacity-70 focus:outline-none cursor-pointer"
         >
           <svg

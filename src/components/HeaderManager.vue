@@ -2,15 +2,14 @@
 import { ref,computed } from "vue";
 import 'boxicons'
 
-const bergerActive = ref(false);
+const burgerActive = ref(false);
 
 function toggleMenu() {
-  bergerActive.value = !bergerActive.value;
+  burgerActive.value = !burgerActive.value;
 }
 </script>
 
 <template>
-  <!-- เพิ่มแถบสีให้มีความสวยงามมากขึ้น -->
   <header class="w-full bg-blue-500  hover:bg-blue-800 transition-colors duration-1000 ease-in-out text-black p-4 flex justify-between items-center">
     <router-link to="/home" class="text-lg text-white font-bold hover:opacity-60">Product Management</router-link>
     <button
@@ -48,7 +47,7 @@ function toggleMenu() {
       </ul>
     </nav>
 
-    <div v-show="bergerActive" class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
+    <div v-show="burgerActive" class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
         <ul class="space-y-4 text-lg">
           <li>
             <router-link to="/product-manager" active class="text-black text-center block hover:opacity-60">
@@ -67,7 +66,7 @@ function toggleMenu() {
           </li>
         </ul>
         <button
-          @click="bergerActive = !bergerActive"
+          @click="burgerActive = !burgerActive"
           class="absolute top-4 right-4 text-black font-bold hover:opacity-70 focus:outline-none cursor-pointer"
         >
           <svg

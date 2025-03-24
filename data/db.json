@@ -125,20 +125,38 @@
     {
       "id": "1",
       "username": "admin",
-      "password": "myadmin007x",
+      "password": "Myadmin007x@",
       "email": "admin@gmail.com",
       "role": "admin",
-      "location": "",
-      "contact": ""
+      "location": "29",
+      "contact": "0999999999"
     },
     {
       "id": "2",
       "username": "Ohm",
-      "password": "ohm12345",
+      "password": "Ohm12345@",
       "email": "ohm@gmail.com",
       "role": "user",
       "location": "",
       "contact": ""
+    },
+    {
+      "id": "3",
+      "username": "test",
+      "password": "test1234@",
+      "email": "test@hotmail.com",
+      "role": "user",
+      "location": "1111",
+      "contact": "0988911172"
+    },
+    {
+      "id": "4",
+      "username": "test3",
+      "password": "test31234@",
+      "email": "test3@hotmail.com",
+      "role": "user",
+      "location": "ddddd",
+      "contact": "11111"
     }
   ],
   "carts": [
@@ -151,7 +169,7 @@
       "stock": 47,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation",
-      "quantity": 1
+      "quantity": 47
     }
   ]
 }
