@@ -16,26 +16,31 @@ onMounted(async () => {
 })
 
 const currentProduct = ref({})
-const productQuantity = ref({})
 const addProductToCart = async (product) => {
     try {
-        currentProduct.value = await getItemById(`${import.meta.env.VITE_APP_URL}/products`, product.id)
+        currentProduct.value = await getItemById(`${import.meta.env.VITE_APP_URL}/products`, product.id);
         if (currentProduct.value && currentProduct.value.stock > 0) {
-            productQuantity.value = {...currentProduct.value, quantity: 1}
-            const findIndexProduct = myCarts.value.findIndex((product) => product.id === productQuantity.value.id)
+            const findIndexProduct = myCarts.value.findIndex((cartItem) => cartItem.id === currentProduct.value.id);
             if (findIndexProduct !== -1) {
-              productQuantity.value.quantity += 1
-              const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, productQuantity.value.id, productQuantity.value)
-              myCarts.value.splice(findIndexProduct, 1, editProduct)
+                const cartItem = myCarts.value[findIndexProduct];
+                if (cartItem.quantity < currentProduct.value.stock) {
+                    cartItem.quantity += 1;
+                    const updatedCartItem = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, cartItem.id, cartItem);
+                    myCarts.value.splice(findIndexProduct, 1, updatedCartItem);
+                } else {
+                    console.log("Stock is not enough!");
+                }
             } else {
-              const addCart = await addItem(`${import.meta.env.VITE_APP_URL}/carts`, productQuantity.value)
-              myCarts.value.push(addCart)
+                const newCartItem = { ...currentProduct.value, quantity: 1 };
+                const addedCartItem = await addItem(`${import.meta.env.VITE_APP_URL}/carts`, newCartItem);
+                myCarts.value.push(addedCartItem);
             }
-        }       
-    } catch(error) {
+        }
+    } catch (error) {
         console.log(error);
     }
-}
+};
+
 </script>
 
 <template>

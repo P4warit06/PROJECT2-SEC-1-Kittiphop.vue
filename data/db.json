@@ -161,15 +161,26 @@
   ],
   "carts": [
     {
-      "id": "1",
-      "name": "Wireless Headphones",
-      "category": "Electronics",
-      "price": 89.99,
-      "status": "Active",
-      "stock": 47,
+      "id": "3",
+      "name": "Bluetooth Speaker",
+      "category": "Audio",
+      "price": 49.99,
+      "status": "Low Stock",
+      "stock": 5,
       "image": "/placeholder.svg?height=200&width=200",
-      "description": "High-quality wireless headphones with noise cancellation",
-      "quantity": 47
+      "description": "Portable bluetooth speaker with 20hr battery life",
+      "quantity": 5
+    },
+    {
+      "id": "5",
+      "name": "Mechanical Keyboard",
+      "category": "Electronics",
+      "price": 129.99,
+      "status": "Active",
+      "stock": 25,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "RGB mechanical gaming keyboard",
+      "quantity": 2
     }
   ]
 }
