@@ -12,7 +12,7 @@
 |---------------|-----------------|:----------------:|:------:|:------:|:------:|:------:|:------------------------:|
 | 66130500009  | กิตติภพ ศิรานนท์ชัย     | create product (admin-side)   |   create product to backend (admin-side)  |  read product in cart (user-side)  |  add product to cart (user-side)  |  check bug and fix  |           20%            |
 | 66130500046  | ธีรภัทร แสงมาน      | filter product (admin-side)   |   filter components (admin&user-side)   |   tracking product (admin-side)   |   tracking product (user-side)   |   check bug and fix  |           20%            |
-| 66130500056  | ปรเมษฐ์ ขันทอง      | design ui    |   delete product (admin-side)   |   delete multiple products (admin-side)  |   delete product from cart (user-side)   |   check bug and fix   |           20%            |
+| 66130500056  | ปรเมษฐ์ ขันทอง      | design ui    |   delete product (admin-side)   |   delete multiple products (admin-side)  |   buy product (user-side)   |   check bug and fix   |           20%            |
 | 66130500059  | ปวริศญ์ สำเรียง       | update product (admin-side)   |   create function update ui (admin-side) |  re-design add,update (admin-side)   |   checking box product(admin-side)   |    check bug and fix   |           20%            |
 | 66130500062  | พงศกร สินสมบูรณ์สุข    | creating ui |   retrieve product (admin-side)    |   retrieve product by id (admin-side)  |   Authentication system and ui (admin&user-side)   | check bug and fix |           20%            |
 
@@ -21,9 +21,9 @@
 **Progress งานในแต่ละ Week**
 | รหัสนักศึกษา | Progress Week1 | Progress Week2 | Progress Week3 | Progress Week4 | Progress Week5 |
 |---------------|----------------|----------------|----------------|----------------|----------------|
-| 66130500009   | create addProduct | create product from backend  | -              | -              | -              |
+| 66130500009   | create addProduct | create product from backend  | addToCart, readProduct in cart              | addQuantity, decreaseQuantity, inputQuantity              | -              |
 | 66130500046   | filter product | filter components  | -              | -              | -              |
-| 66130500056   | delete product and design ui. |  delete product by id and ui           | -              | -              | -              |
+| 66130500056   | delete product and design ui. |  delete product by id and ui           |  delete multiple products (admin-side)  | -              | -              |
 | 66130500059   | update Product ui | update product from backend     | -              | -              | -              |
 | 66130500062   | creating ui | add retrieve product feature, add components | add get product by id , add ProductDetail component and ui | -              | -              |
 

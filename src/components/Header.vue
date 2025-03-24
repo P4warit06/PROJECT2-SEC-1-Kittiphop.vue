@@ -78,7 +78,7 @@ function toggleMenu() {
             </router-link>
           </li>
           <li>
-            <router-link to="/about" class="text-black text-center block hover:opacity-60">
+            <router-link to="/user-carts" class="text-black text-center block hover:opacity-60">
               Cart
             </router-link>
           </li>
@@ -107,9 +107,10 @@ function toggleMenu() {
 
   <div class="w-full bg-blue-400  py-2">
     <div class="flex justify-center items-center text-sm sm:text-sm">
-      <a href="#" class="mx-2">Accessories</a>
-      <a href="#" class="mx-2">Audio</a>
-      <a href="#" class="mx-2">Electronics</a>
+      <a href="#" class="mx-2 hover:opacity-80">Accessories</a>
+      <a href="#" class="mx-2 hover:opacity-80">Audio</a>
+      <a href="#" class="mx-2 hover:opacity-80">Electronics</a>
+      <a href="#" class="mx-2 hover:opacity-80">Wearables</a>
     </div>
   </div>
 </template>

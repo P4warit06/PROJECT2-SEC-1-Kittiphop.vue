@@ -22,7 +22,7 @@ const addQuantity = async (item) => {
     }
 }
 
-const subtractQuantity = async (item) => {
+const decreaseQuantity = async (item) => {
     try {
         if (item) {
             item.quantity -= 1
