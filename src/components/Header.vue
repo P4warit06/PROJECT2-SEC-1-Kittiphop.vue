@@ -80,7 +80,7 @@ function toggleMenu() {
             </router-link>
           </li>
           <li>
-            <router-link to="/about" class="text-black text-center block hover:opacity-60">
+            <router-link to="/user-carts" class="text-black text-center block hover:opacity-60">
               Cart
             </router-link>
           </li>
