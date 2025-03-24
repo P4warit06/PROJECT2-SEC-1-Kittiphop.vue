@@ -7,10 +7,8 @@ const props = defineProps({
     type:Array
   }
 })
-console.log(props.products);
 const bergerActive = ref(false);
 const count = computed(() => props.products.length)
-console.log(count.value);
 
 function toggleMenu() {
   bergerActive.value = !bergerActive.value;
