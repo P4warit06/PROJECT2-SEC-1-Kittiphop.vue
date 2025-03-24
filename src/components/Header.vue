@@ -1,5 +1,5 @@
 <script setup>
-import { ref,computed } from "vue";
+import { ref,computed, onMounted } from "vue";
 import 'boxicons'
 
 const props = defineProps({
@@ -7,8 +7,17 @@ const props = defineProps({
     type:Array
   }
 })
+const count = ref(0)
+onMounted(() => {
+  props.products.forEach((product) => {
+    if (product.quantity > 0) {
+      count.value++
+      console.log(count.value);
+      
+    }
+  })
+})
 const bergerActive = ref(false);
-const count = computed(() => props.products.length)
 
 function toggleMenu() {
   bergerActive.value = !bergerActive.value;
