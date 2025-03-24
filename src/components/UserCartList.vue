@@ -1,6 +1,6 @@
 <script setup>
 import CartModel from './model/CartModel.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { getItems, editItem, deleteItemById } from '@/libs/fetchUtils';
 
 const combindCart = ref([])
@@ -11,20 +11,28 @@ onMounted(async () => {
 const addQuantity = async (item) => {
     try {
         const product = combindCart.value.find((product) => product.id === item.id)
-        if (item && item.quantity < product.stock) {
-            item.quantity += 1   
+
+        if (product && item.quantity < product.stock) {
+            const unitPrice = item.price / item.quantity || item.price
+            console.log(unitPrice);
+            item.quantity += 1
+            item.price = unitPrice * item.quantity
             const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, item.id, item)
             const productIndex = combindCart.value.findIndex((product) => product.id === item.id)
             combindCart.value.splice(productIndex, 1, editProduct)
+        } else {
+            console.log("Stock is not enough or product not found.")
         }
-    } catch(error) {
-        console.log(error);
+    } catch (error) {
+        console.log(error)
     }
 }
+
 
 const decreaseQuantity = async (item) => {
     try {
         if (item) {
+            const unitPrice = item.price / item.quantity
             item.quantity -= 1
             if (item.quantity <= 0) {
                 const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/carts`, item.id)
@@ -35,6 +43,7 @@ const decreaseQuantity = async (item) => {
                     }
                 }
             } else {
+                item.price -= unitPrice
                 const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, item.id, item)
                 const productIndex = combindCart.value.findIndex((product) => product.id === item.id)
                 combindCart.value.splice(productIndex, 1, editProduct)
@@ -69,6 +78,10 @@ const inputQuantity = async (item) => {
         console.log(error);
     }
 }
+
+const priceQuantity = computed(() => {
+    return 
+})
 
 </script>
 
@@ -112,7 +125,7 @@ const inputQuantity = async (item) => {
             <div class="flex items-center justify-between p-4 bg-white shadow-lg rounded-lg mb-4">
                 <div class="flex flex-col space-y-1">
                     <span class="text-xl font-semibold text-gray-900">{{ yourProduct.name }}</span>
-                    <span class="text-lg text-green-600">Price: <span class="font-bold">{{ yourProduct.price}}</span></span>
+                    <span class="text-lg text-green-600">Price: <span class="font-bold">{{ yourProduct.price }}</span></span>
                     <span class="text-sm text-gray-600">Stock: <span class="font-semibold">{{ yourProduct.stock }}</span></span>
                 </div>
                 <div class="flex justify-center items-center space-x-2">

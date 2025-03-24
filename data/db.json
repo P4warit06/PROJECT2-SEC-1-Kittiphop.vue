@@ -119,6 +119,16 @@
       "stock": 1,
       "image": "",
       "description": "Hello World"
+    },
+    {
+      "id": "afe9",
+      "name": "Chinken",
+      "category": "Accessories",
+      "price": 10,
+      "status": "Active",
+      "stock": 100,
+      "image": "",
+      "description": ""
     }
   ],
   "users": [
