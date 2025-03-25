@@ -1,22 +1,22 @@
 <script setup>
-import { ref,computed } from "vue";
+import { ref,computed, onMounted } from "vue";
+import { getItems } from "@/libs/fetchUtils";
 import 'boxicons'
 
-const props = defineProps({
-  products: {
-    type:Array
-  }
+const cartQuantity = ref([])
+const count = ref(0)
+onMounted(async () => {
+  cartQuantity.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
+  cartQuantity.value.forEach((product) => {
+    count.value += product.quantity
+  })
 })
-console.log(props.products);
+
 const burgerActive = ref(false);
-const count = computed(() => props.products.length)
-console.log(count.value);
 
 function toggleMenu() {
   burgerActive.value = !burgerActive.value;
 }
-
-
 </script>
 
 <template>
@@ -59,7 +59,7 @@ function toggleMenu() {
             <router-link to="/user-carts">
             <div class="relative inline-block">
               <box-icon type='solid' name='cart' class="font-2xl"></box-icon>
-              <p class="absolute top-0 right-0 text-white bg-red-500 rounded-full text-xs w-4 h-4 flex items-center justify-center">
+              <p :class="count > 0 ? 'absolute top-0 right-0 text-white bg-red-500 rounded-full text-xs w-4 h-4 flex items-center justify-center' : 'hidden'">
                 {{ count }}
               </p>
             </div>

@@ -119,6 +119,16 @@
       "stock": 1,
       "image": "",
       "description": "Hello World"
+    },
+    {
+      "id": "afe9",
+      "name": "Chinken",
+      "category": "Accessories",
+      "price": 10,
+      "status": "Active",
+      "stock": 100,
+      "image": "",
+      "description": ""
     }
   ],
   "users": [
@@ -150,28 +160,5 @@
       "contact": "0987654321"
     }
   ],
-  "carts": [
-    {
-      "id": "1",
-      "name": "Wireless Headphones",
-      "category": "Electronics",
-      "price": 89.99,
-      "status": "Active",
-      "stock": 47,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "High-quality wireless headphones with noise cancellation",
-      "quantity": 47
-    },
-    {
-      "id": "3",
-      "name": "Bluetooth Speaker",
-      "category": "Audio",
-      "price": 49.99,
-      "status": "Low Stock",
-      "stock": 5,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "Portable bluetooth speaker with 20hr battery life",
-      "quantity": 5
-    }
-  ]
+  "carts": []
 }
