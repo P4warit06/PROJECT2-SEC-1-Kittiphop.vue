@@ -142,21 +142,12 @@
     },
     {
       "id": "3",
-      "username": "test",
-      "password": "test1234@",
-      "email": "test@hotmail.com",
+      "username": "smillkub",
+      "password": "smill1234@",
+      "email": "smillkub@hotmail.com",
       "role": "user",
-      "location": "1111",
-      "contact": "0988911172"
-    },
-    {
-      "id": "4",
-      "username": "test3",
-      "password": "test31234@",
-      "email": "test3@hotmail.com",
-      "role": "user",
-      "location": "ddddd",
-      "contact": "11111"
+      "location": "9999",
+      "contact": "0987654321"
     }
   ],
   "carts": [

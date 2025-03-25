@@ -45,11 +45,9 @@ function toggleMenu() {
     <nav class="hidden md:block">
       <ul class="flex space-x-4">
         <li class="text-white font-bold">
-          <!-- add v-if,v-show user role === admin -->
-          <router-link to="/product-manager" class="hover:opacity-70">
+          <router-link to="/user-products" class="hover:opacity-70">
             Product
           </router-link>
-          <!-- add v-if,v-show user role === user -->
         </li>
         <li class="text-white font-bold">
           <router-link to="/home" class="hover:opacity-70">
@@ -74,7 +72,7 @@ function toggleMenu() {
     <div v-show="burgerActive" class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
         <ul class="space-y-4 text-lg">
           <li>
-            <router-link to="/product-manager" active class="text-black text-center block hover:opacity-60">
+            <router-link to="/user-products" active class="text-black text-center block hover:opacity-60">
               Product
             </router-link>
           </li>
@@ -124,3 +122,4 @@ function toggleMenu() {
 <style scoped>
 
 </style>
+ 
