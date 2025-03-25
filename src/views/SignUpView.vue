@@ -1,121 +1,123 @@
 <script setup>
-import { ref, reactive } from "vue"
-import { registerUser, checkEmailExists } from "../libs/fetchUtils.js"
-import { useRouter } from "vue-router"
+import { ref, reactive } from "vue";
+import { registerUser, checkEmailExists } from "../libs/fetchUtils.js";
+import { useRouter } from "vue-router";
 
-const router = useRouter()
-const currentStep = ref(1)
+const router = useRouter();
+const currentStep = ref(1);
+const showSuccessModal = ref(false);
 const formData = reactive({
   email: "",
   password: "",
   username: "",
   location: "",
   contact: "",
-})
-const errorMessage = ref("")
-const isLoading = ref(false)
-const registrationSuccess = ref(false)
+});
+const errorMessage = ref("");
+const isLoading = ref(false);
+const registrationSuccess = ref(false);
 
 async function nextStep(event) {
-  if (event) event.preventDefault()
-  errorMessage.value = ""
+  if (event) event.preventDefault();
+  errorMessage.value = "";
 
   if (!formData.email) {
-    errorMessage.value = "Email is required"
-    return
+    errorMessage.value = "Email is required";
+    return;
   }
 
   if (!isValidEmail(formData.email)) {
-    errorMessage.value = "Please enter a valid email"
-    return
+    errorMessage.value = "Please enter a valid email";
+    return;
   }
 
   if (!formData.password) {
-    errorMessage.value = "Password is required"
-    return
+    errorMessage.value = "Password is required";
+    return;
   }
 
   if (!isPasswordValid(formData.password)) {
     errorMessage.value =
-      "Password must be at least 8 characters with 1 number and 1 special character"
-    return
+      "Password must be at least 8 characters with 1 number and 1 special character";
+    return;
   }
   try {
-    isLoading.value = true
+    isLoading.value = true;
     const emailExists = await checkEmailExists(
       import.meta.env.VITE_APP_URL,
       formData.email
-    )
+    );
     if (emailExists) {
-      errorMessage.value = "Email already exists"
-      return
+      errorMessage.value = "Email already exists";
+      return;
     }
 
     if (!formData.username) {
-      formData.username = formData.email.split("@")[0]
+      formData.username = formData.email.split("@")[0];
     }
 
-    currentStep.value = 2
+    currentStep.value = 2;
   } catch (error) {
-    console.error("Email check error:", error)
-    errorMessage.value = "Error checking email: " + error.message
+    console.error("Email check error:", error);
+    errorMessage.value = "Error checking email: " + error.message;
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
 }
 
 function prevStep() {
   if (currentStep.value > 1) {
-    currentStep.value--
-    errorMessage.value = ""
+    currentStep.value--;
+    errorMessage.value = "";
   }
 }
 
 async function submitForm(event) {
-  if (event) event.preventDefault()
+  if (event) event.preventDefault();
 
-  errorMessage.value = ""
+  errorMessage.value = "";
 
   if (!formData.location || !formData.contact) {
-    errorMessage.value = "Please fill in all fields"
-    return
+    errorMessage.value = "Please fill in all fields";
+    return;
   }
 
   try {
-    isLoading.value = true
+    isLoading.value = true;
 
     // Send the data to backend using the registerUser function
-    const result = await registerUser(import.meta.env.VITE_APP_URL, formData)
-    console.log("Registration successful:", result)
-    registrationSuccess.value = true
+    const result = await registerUser(import.meta.env.VITE_APP_URL, formData);
+    console.log("Registration successful:", result);
+    registrationSuccess.value = true;
 
-    alert("Registration successful! Redirecting to login page...") // ใช้ชั่วคราว
+    showSuccessModal.value = true;
 
-    if (router) {
-      router.push("/login")
-    } else {
-      
-      setTimeout(() => {
-        window.location.href = "/login" // ใช้ชั่วคราวเนื่องจาก auto reload page แล้วมันไม่ได้ redirect ไปหน้า login
-      }, 500)
-    }
+    setTimeout(() => {
+      router.push("/login");
+    }, 5000);
+
   } catch (error) {
-    console.error("Registration error:", error)
-    errorMessage.value = "Registration failed: " + error.message
+    console.error("Registration error:", error);
+    errorMessage.value = "Registration failed: " + error.message;
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
 }
 
+function closeModal() {
+  showSuccessModal.value = false;
+  router.push("/login");
+}
+
 function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 function isPasswordValid(password) {
-  const hasMinLength = password.length >= 8
-  const hasNumber = /\d/.test(password)
-  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password)
-  return hasMinLength && hasNumber && hasSpecial
+  const hasMinLength = password.length >= 8;
+  const hasNumber = /\d/.test(password);
+  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  return hasMinLength && hasNumber && hasSpecial;
 }
 </script>
 
@@ -313,6 +315,31 @@ function isPasswordValid(password) {
           </button>
         </div>
       </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div v-if="showSuccessModal" class="fixed inset-0 flex items-center justify-center z-50">
+      <div class="absolute inset-0 bg-black opacity-50" @click="closeModal"></div>
+      <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 z-10 shadow-xl">
+        <div class="text-center">
+          <!-- Success Icon -->
+          <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+            <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="text-lg leading-6 font-medium text-gray-900 mb-2">Registration Successful!</h3>
+          <p class="text-sm text-gray-500 mb-4">
+            Your account has been created successfully. You will be redirected to the login page.
+          </p>
+          <button
+            @click="closeModal"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+          >
+            Go to Login
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

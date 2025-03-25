@@ -1,41 +1,35 @@
 <script setup>
-import { ref } from "vue";
-import { login } from "../libs/fetchUtils.js";
-import { useRouter } from "vue-router";
+import { ref } from "vue"
+import { login } from "../libs/fetchUtils.js"
+import { useRouter } from "vue-router"
 
-const email = ref("");
-const password = ref("");
-const errorMessage = ref("");
-const isLoading = ref(false);
-const router = useRouter();
+const email = ref("")
+const password = ref("")
+const errorMessage = ref("")
+const isLoading = ref(false)
+const router = useRouter()
 
 const handleLogin = async () => {
-  errorMessage.value = "";
-  isLoading.value = true;
+  errorMessage.value = ""
+  isLoading.value = true
 
   try {
     const user = await login(
       import.meta.env.VITE_APP_URL,
       email.value,
       password.value
-    );
+    )
 
-    // Store user info in localStorage
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    console.log("Logged in user:", user);
-    // Redirect based on user role
-    if (user.role === "admin") {
-      router.push("/admin");
-    } else {
-      router.push("/home");
-    }
+    localStorage.setItem("currentUser", JSON.stringify(user))
+    console.log("Logged in user:", user)
+    router.push("/home")
   } catch (error) {
-    console.error("Login error:", error);
-    errorMessage.value = error.message;
+    console.error("Login error:", error)
+    errorMessage.value = error.message
   } finally {
-    isLoading.value = false;
+    isLoading.value = false
   }
-};
+}
 </script>
 
 <template>
@@ -98,3 +92,4 @@ const handleLogin = async () => {
     </div>
   </div>
 </template>
+ 
