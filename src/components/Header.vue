@@ -3,6 +3,13 @@ import { ref,computed, onMounted } from "vue";
 import { getItems } from "@/libs/fetchUtils";
 import 'boxicons'
 
+const cartCount = defineProps({
+  count :{
+    type: Number,
+    default: 0
+  }
+})
+
 const cartQuantity = ref([])
 const count = ref(0)
 onMounted(async () => {

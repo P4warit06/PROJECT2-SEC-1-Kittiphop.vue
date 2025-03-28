@@ -57,7 +57,15 @@ const decreaseQuantity = async (item) => {
 const inputQuantity = async (item) => {
     try {
         const product = combindCart.value.find((product) => product.id === item.id)
-        if (item && item.quantity < product.stock) {
+        if (item.quantity <= 0) {
+            item.quantity = 0
+            const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/carts`, item.id)
+            if (status === 200) {
+                const removeIndex = combindCart.value.findIndex((product) => product.id === item.id)
+                combindCart.value.splice(removeIndex, 1)
+            }
+        }
+        else if (item && item.quantity < product.stock) {
             const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, item.id, item)
             const productIndex = combindCart.value.findIndex((product) => product.id === item.id)
             combindCart.value.splice(productIndex, 1, editProduct)
@@ -66,22 +74,11 @@ const inputQuantity = async (item) => {
             const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, item.id, item)
             const productIndex = combindCart.value.findIndex((product) => product.id === item.id)
             combindCart.value.splice(productIndex, 1, editProduct)
-        } else if (item && item.quantity <= 0) {
-            item.quantity = 0
-            const status = await deleteItemById(`${import.meta.env.VITE_APP_URL}/carts`, item.id)
-            if (status === 200) {
-                const removeIndex = combindCart.value.findIndex((product) => product.id === item.id)
-                combindCart.value.splice(removeIndex, 1)
-            }
         }
     } catch(error) {
         console.log(error);
     }
 }
-
-const priceQuantity = computed(() => {
-    return 
-})
 
 </script>
 
@@ -130,13 +127,13 @@ const priceQuantity = computed(() => {
                 </div>
                 <div class="flex justify-center items-center space-x-2">
                     <div>
-                        <button @click="addQuantity(yourProduct)" class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer">+</button>
-                    </div>
-                    <div>
-                        <input @input="inputQuantity(yourProduct)" type="number" v-model="yourProduct.quantity" min="0" :max="yourProduct.stock" class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-xl font-semibold bg-white">
-                    </div>
-                    <div>
                         <button @click="decreaseQuantity(yourProduct)" class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 cursor-pointer">-</button>
+                    </div>
+                    <div>
+                        <input @input="inputQuantity(yourProduct)" type="number" v-model="yourProduct.quantity" :max="yourProduct.stock" class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-xl font-semibold bg-white">
+                    </div>
+                    <div>
+                        <button @click="addQuantity(yourProduct)" class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer">+</button>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2">

@@ -6,10 +6,15 @@ import { getItems, getItemById, editItem, addItem } from '../libs/fetchUtils.js'
 
 const myProducts = ref([])
 const myCarts = ref([])
+const count = ref(0)
 onMounted(async () => {
   try {
     myProducts.value = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
     myCarts.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
+    myCarts.value.forEach((cart) => {
+      count.value += cart.quantity
+    })
+    console.log(count.value);
   } catch(error) {
     console.log(error);
   }
@@ -45,7 +50,7 @@ const addProductToCart = async (product) => {
 
 <template>
   <div>
-    <Header :products="myCarts"/>
+    <Header :count="count"/>
     <UserProductList :products="myProducts" @add-to-cart="addProductToCart"></UserProductList>
   </div>
 </template>
