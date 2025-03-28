@@ -4,8 +4,6 @@ import Header from "./Header.vue";
 import { ref, onMounted, onUpdated, computed } from 'vue'
 import { getItems, getItemById, editItem, addItem } from '../libs/fetchUtils.js'
 
-
-
 const myProducts = ref([])
 const myCarts = ref([])
 const count = computed(() => {

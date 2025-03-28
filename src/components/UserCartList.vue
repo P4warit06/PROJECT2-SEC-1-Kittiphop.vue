@@ -67,8 +67,9 @@ const inputQuantity = async (item) => {
                     combindCart.value.splice(productIndex, 1)
                 }
             }
-        } else if (item && item.quantity >= product.stock) {
+        } else if (item && item.quantity > product.stock) {
             item.quantity = product.stock
+            item.price = item.quantity * product.price
             const editProduct = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, item.id, item)
             const productIndex = combindCart.value.findIndex((product) => product.id === item.id)
             combindCart.value.splice(productIndex, 1, editProduct)
