@@ -169,7 +169,18 @@
       "stock": 47,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation",
-      "quantity": 47
+      "quantity": 6
+    },
+    {
+      "id": "3",
+      "name": "Bluetooth Speaker",
+      "category": "Audio",
+      "price": 49.99,
+      "status": "Low Stock",
+      "stock": 5,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "Portable bluetooth speaker with 20hr battery life",
+      "quantity": 1
     }
   ]
 }
