@@ -50,7 +50,7 @@ const addToCart = (product) => {
         <button
           @click="addToCart(yourItem)"
           :disabled="yourItem.stock === 0"
-          class="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
+          class="cursor-pointer mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           Add to Cart
         </button>
