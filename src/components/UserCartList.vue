@@ -120,7 +120,7 @@ const inputQuantity = async (item) => {
             <div class="flex items-center justify-between p-4 bg-white shadow-lg rounded-lg mb-4">
                 <div class="flex flex-col space-y-1">
                     <span class="text-xl font-semibold text-gray-900">{{ yourProduct.name }}</span>
-                    <span class="text-lg text-green-600">Price: <span class="font-bold">{{ yourProduct.price }}</span></span>
+                    <span class="text-lg text-green-600">Price: <span class="font-bold">{{ yourProduct.price.toFixed(2) }}</span></span>
                     <span class="text-sm text-gray-600">Stock: <span class="font-semibold">{{ yourProduct.stock }}</span></span>
                 </div>
                 <div class="flex justify-center items-center space-x-2">

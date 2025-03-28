@@ -265,5 +265,17 @@
       "status": "Pending"
     }
   ],
-  "carts": []
+  "carts": [
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 269.96999999999997,
+      "status": "Active",
+      "stock": 47,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation",
+      "quantity": 3
+    }
+  ]
 }
