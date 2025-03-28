@@ -3,12 +3,8 @@ import ProductList from './ProductList.vue'
 import AddEditProduct from './AddEditProduct.vue'
 import HeaderManager from './HeaderManager.vue'
 import FilterProduct from './FilterProduct.vue';
-import { ref, onMounted } from 'vue'
-import Header from "./Header.vue";
-import FilterProduct from './FilterProduct.vue';
-import { ref, onMounted , computed } from 'vue'
 import { getItems, deleteItemById, addItem, editItem } from '../libs/fetchUtils.js'
-
+import {ref , computed , onMounted} from 'vue' 
 const myProducts = ref([])
 const selectedProducts = ref([])
 
@@ -199,7 +195,7 @@ const cancelAdd = () => {
 
 <template>
   <div class="p">
-    <Header></Header>
+    <HeaderManager/>
     {{ myProducts.value }}
     <FilterProduct 
       :categories="filterCategories"
