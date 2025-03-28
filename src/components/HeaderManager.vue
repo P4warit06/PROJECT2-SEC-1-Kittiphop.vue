@@ -1,16 +1,6 @@
 <script setup>
-import { ref,computed, onMounted } from "vue";
-import { getItems } from "@/libs/fetchUtils";
+import { ref,computed } from "vue";
 import 'boxicons'
-
-const cartQuantity = ref([])
-const count = ref(0)
-onMounted(async () => {
-  cartQuantity.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
-  cartQuantity.value.forEach((product) => {
-    count.value += product.quantity
-  })
-})
 
 const burgerActive = ref(false);
 
@@ -45,7 +35,7 @@ function toggleMenu() {
     <nav class="hidden md:block">
       <ul class="flex space-x-4">
         <li class="text-white font-bold">
-          <router-link to="/user-products" class="hover:opacity-70">
+          <router-link to="/product-manager" class="hover:opacity-70">
             Product
           </router-link>
         </li>
@@ -54,25 +44,13 @@ function toggleMenu() {
             About
           </router-link>
         </li>
-        <ul class="w-full cursor-pointer hover:opacity-80">
-          <li class="relative">
-            <router-link to="/user-carts">
-            <div class="relative inline-block">
-              <box-icon type='solid' name='cart' class="font-2xl"></box-icon>
-              <p :class="count > 0 ? 'absolute top-0 right-0 text-white bg-red-500 rounded-full text-xs w-4 h-4 flex items-center justify-center' : 'hidden'">
-                {{ count }}
-              </p>
-            </div>
-            </router-link>
-          </li>
-        </ul>
       </ul>
     </nav>
 
     <div v-show="burgerActive" class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
         <ul class="space-y-4 text-lg">
           <li>
-            <router-link to="/user-products" active class="text-black text-center block hover:opacity-60">
+            <router-link to="/product-manager" active class="text-black text-center block hover:opacity-60">
               Product
             </router-link>
           </li>
@@ -82,7 +60,7 @@ function toggleMenu() {
             </router-link>
           </li>
           <li>
-            <router-link to="/user-carts" class="text-black text-center block hover:opacity-60">
+            <router-link to="/about" class="text-black text-center block hover:opacity-60">
               Cart
             </router-link>
           </li>
@@ -109,17 +87,8 @@ function toggleMenu() {
       </div>
   </header>
 
-  <div class="w-full bg-blue-400  py-2">
-    <div class="flex justify-center items-center text-sm sm:text-sm">
-      <a href="#" class="mx-2 hover:opacity-80">Accessories</a>
-      <a href="#" class="mx-2 hover:opacity-80">Audio</a>
-      <a href="#" class="mx-2 hover:opacity-80">Electronics</a>
-      <a href="#" class="mx-2 hover:opacity-80">Wearables</a>
-    </div>
-  </div>
 </template>
 
 <style scoped>
 
 </style>
- 
