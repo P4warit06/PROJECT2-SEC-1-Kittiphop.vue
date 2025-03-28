@@ -11,14 +11,15 @@ const props = defineProps({
     }
   }
 })
-console.log(props.items)
-console.log(props.listType)
 </script>
 
 <template>
   <div class="p-2">
     <div class="text-xl tracking-wider font-semibold">
       <slot name="heading">###Enter your list heading###</slot>
+    </div>
+    <div v-show="items.length === 0" class="text-gray-500"> 
+      <h1>No Product Here</h1>
     </div>
     <ul>
       <li
