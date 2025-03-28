@@ -3,24 +3,92 @@ import ProductList from './ProductList.vue'
 import AddEditProduct from './AddEditProduct.vue'
 import Header from "./Header.vue";
 import FilterProduct from './FilterProduct.vue';
-import { ref, onMounted } from 'vue'
+import { ref, onMounted , computed } from 'vue'
 import { getItems, deleteItemById, addItem, editItem } from '../libs/fetchUtils.js'
 const myProducts = ref([])
 const selectedProducts = ref([])
-const productCategories = ref([])
-const filterCategories = ref([])
-onMounted(async () => {
-  myProducts.value = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
-  productCategories.value = myProducts.value.map((product) => product.category).filter((category) => category !== null && category !== undefined)
-  filterCategories.value = productCategories.value.filter((category, index) => productCategories.value.indexOf(category) === index)
-})
 
+const productForFilter = ref([])
+const arrCat = ref([])
+const arrSta = ref([])
+const searchValue = ref("")
+const searchBy = ref("")
+
+function filterProduct(obj){
+  productForFilter.value = myProducts.value
+  if(obj.type === 'category') arrCat.value = obj.value
+  if(obj.type === 'status') arrSta.value = obj.value 
+  if(obj.type === 'searchValue') searchValue.value = obj.value
+  if(obj.type === 'searchBy') searchBy.value = obj.value
+  if(obj.type === 'clearSearch'){
+    arrCat.value = []
+    arrSta.value = []
+    return productForFilter.value 
+  }
+  if(obj.type === 'clear'){
+    arrCat.value = []
+    arrSta.value = []
+    return productForFilter.value 
+  }
+  if(searchBy.value.length !== 0 && searchValue.value.length !== 0){
+    if(searchBy.value === 'id'){
+      return productForFilter.value = myProducts.value.filter(product => product.id === searchValue.value);
+    }
+    else{
+      return productForFilter.value = myProducts.value.filter(
+      p => p[searchBy.value].toLowerCase().includes(searchValue.value.toLowerCase())
+    )
+    }
+    
+  }
+  if(arrCat.value.length === 0 && arrSta.value.length === 0 ) {
+    return productForFilter.value 
+  }
+  else{
+    let catArr = myProducts.value.filter(
+      product => arrCat.value.includes(product.category)
+    )
+    let staArr = myProducts.value.filter(
+      product => arrSta.value.includes(product.status)
+    )
+    if(arrCat.value.length !== 0 && arrSta.value.length === 0) return productForFilter.value = catArr
+    if(arrCat.value.length === 0 && arrSta.value.length !== 0) return productForFilter.value = staArr
+    if(arrCat.value.length !== 0 && arrSta.value.length !== 0) {
+      let intersect = catArr.filter( 
+        catProduct => staArr.some(staProduct => staProduct.id === catProduct.id)
+      )
+     return productForFilter.value = intersect
+    }
+
+  }
+}
+
+const filterCategories = ref([])
+const filterStatus = ref([])
 onMounted(async () => {
   try {
     myProducts.value = await getItems(
       `${import.meta.env.VITE_APP_URL}/products`
     )
-    console.log(myProducts.value)
+    productForFilter.value = await getItems(
+      `${import.meta.env.VITE_APP_URL}/products`
+    )
+    filterCategories.value = myProducts.value
+    .map( p => p.category )
+    .filter(
+      (p,index , arr) => p !== undefined && 
+      p !== null &&
+      arr.indexOf(p) === index
+    )
+    filterStatus.value = myProducts.value
+    .map(
+      p => p.status
+    )
+    .filter(
+      (p,index , arr) => p !== undefined && 
+      p !== null &&
+      arr.indexOf(p) === index
+    )
   } catch (error) {
     console.log(error)
   }
@@ -122,7 +190,12 @@ const deleteMultipleProduct = async () => {
 <template>
   <div class="p">
     <Header></Header>
-    <FilterProduct :categories="filterCategories"/>
+    {{ myProducts.value }}
+    <FilterProduct 
+      :categories="filterCategories"
+      :status="filterStatus"
+      @filter-product="filterProduct"  
+    />
     <button
       @click="isAdding = !isAdding"
       class="text-green-600 hover:text-green-400 underline cursor-pointer"
@@ -145,7 +218,7 @@ const deleteMultipleProduct = async () => {
       @deleteProduct="deleteProduct" 
       @setEditing="setEditProduct" 
       @update:selectedProducts="selectedProducts = $event"
-      :products="myProducts" 
+      :products="productForFilter" 
       :selectedProducts="selectedProducts"
     />
     
