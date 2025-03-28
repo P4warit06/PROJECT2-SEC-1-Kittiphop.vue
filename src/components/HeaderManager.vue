@@ -51,17 +51,17 @@ function toggleMenu() {
         <ul class="space-y-4 text-lg">
           <li>
             <router-link to="/product-manager" active class="text-black text-center block hover:opacity-60">
-              Product
+              PRODUCT
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/home"  class="text-black text-center block hover:opacity-60">
+              ABOUT
             </router-link>
           </li>
           <li>
             <router-link to="/about" class="text-black text-center block hover:opacity-60">
-              About
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/about" class="text-black text-center block hover:opacity-60">
-              Cart
+              CART
             </router-link>
           </li>
         </ul>
@@ -87,14 +87,6 @@ function toggleMenu() {
       </div>
   </header>
 
-  <div class="w-full bg-blue-400  py-2">
-    <div class="flex justify-center items-center text-sm sm:text-sm text-white">
-      <a href="#" class="mx-2">Accessories</a>
-      <a href="#" class="mx-2">Audio</a>
-      <a href="#" class="mx-2">Electronics</a>
-      <a href="" class="mx-2">Wearables</a>
-    </div>
-  </div>
 </template>
 
 <style scoped>
