@@ -3,14 +3,15 @@ import { ref,computed, onMounted } from "vue";
 import { getItems } from "@/libs/fetchUtils";
 import 'boxicons'
 
-const cartQuantity =ref([])
-const count = ref(0)
-onMounted(async () => {
-  cartQuantity.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
-  cartQuantity.value.forEach((product) => {
-    count.value += product.quantity
-  })
+const props = defineProps({
+  count :{
+    type: Number,
+    default: 0
+  }
 })
+
+const cartQuantity = ref([])
+const count = computed(() => props.count)
 
 const burgerActive = ref(false);
 
