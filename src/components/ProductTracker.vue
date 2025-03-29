@@ -45,11 +45,11 @@ const error = ref('');
 let intervalId = null;
 
 // Simulated product data
-const mockProducts = [
-    { trackingId: 'TRK123', name: 'Wireless Headphones', status: 'Ordered' },
-    { trackingId: 'TRK456', name: 'Smartwatch', status: 'Shipped' },
-    { trackingId: 'TRK789', name: 'Laptop Bag', status: 'Delivered' },
-];
+// const mockProducts = [
+//     { trackingId: 'TRK123', name: 'Wireless Headphones', status: 'Ordered' },
+//     { trackingId: 'TRK456', name: 'Smartwatch', status: 'Shipped' },
+//     { trackingId: 'TRK789', name: 'Laptop Bag', status: 'Delivered' },
+// ];
 
 // Start tracking
 const startTracking = () => {
@@ -125,6 +125,7 @@ onUnmounted(() => {
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
+    color: blueviolet;
 }
 
 .tracking-input {
