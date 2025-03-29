@@ -142,6 +142,39 @@ async function login(url, email, password) {
     throw new Error("Login failed: " + error.message)
   }
 }
+
+async function topUpBalance(url, userId, amount) {
+  try {
+    const user = await getItemById(`${url}/users`, userId)
+    if (!user) throw new Error("User not found")
+
+    const currentBalance = user.balance || 0
+    
+    const newBalance = currentBalance + amount
+
+    const updatedData = { 
+      ...user,
+      balance: newBalance
+    };
+
+    const response = await fetch(`${url}/users/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedData)
+    })
+
+    if (!response.ok) throw new Error("Update failed");
+    
+    return await response.json();
+  } catch (error) {
+    console.error("Top-up error:", error);
+    throw new Error("Failed to top up: " + error.message);
+  }
+}
+
+
 export {
   getItems,
   getItemById,
@@ -151,5 +184,6 @@ export {
   registerUser,
   checkEmailExists,
   login,
+  topUpBalance,
 }
  
