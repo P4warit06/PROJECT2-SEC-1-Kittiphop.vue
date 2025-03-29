@@ -89,7 +89,7 @@ console.log()
         Next Process Button For Admin
       </button>
     </div>
-    <div v-show="finished">
+    <div v-show="selectUser.status === 'Shipped'">
         <h3 class="italic">The Product is Shipped Successfully. Thank you!</h3>
     </div>
   </div>
