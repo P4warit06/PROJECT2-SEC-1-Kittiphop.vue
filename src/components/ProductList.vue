@@ -11,12 +11,12 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-});
+}); 
 
 const productCompute = computed(() => props.products);
 </script>
 <template>
-  <ListModel :items="productCompute" listType="card">
+  <ListModel :items="productCompute" listType="card"> 
     <template #heading> Product List </template>
     <template #listItems="{ yourItem }">
       <!-- Checkbox selectProduct-->

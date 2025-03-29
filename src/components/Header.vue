@@ -3,7 +3,7 @@ import { ref,computed, onMounted } from "vue";
 import { getItems } from "@/libs/fetchUtils";
 import 'boxicons'
 
-const cartQuantity = ref([])
+const cartQuantity =ref([])
 const count = ref(0)
 onMounted(async () => {
   cartQuantity.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
@@ -74,17 +74,17 @@ function toggleMenu() {
           
           <li>
             <router-link to="/user-products" active class="text-black text-center block hover:opacity-60">
-              Product
+              PRODUCT
             </router-link>
           </li>
           <li>
-            <router-link to="/about" class="text-black text-center block hover:opacity-60">
-              About
+            <router-link to="/home" class="text-black text-center block hover:opacity-60">
+              ABOUT
             </router-link>
           </li>
           <li>
             <router-link to="/user-carts" class="text-black text-center block hover:opacity-60">
-              Cart
+              CART
             </router-link>
           </li>
         </ul>
@@ -110,14 +110,6 @@ function toggleMenu() {
       </div>
   </header>
 
-  <div class="w-full bg-blue-400  py-2">
-    <div class="flex justify-center items-center text-sm sm:text-sm">
-      <a href="#" class="mx-2 hover:opacity-80">Accessories</a>
-      <a href="#" class="mx-2 hover:opacity-80">Audio</a>
-      <a href="#" class="mx-2 hover:opacity-80">Electronics</a>
-      <a href="#" class="mx-2 hover:opacity-80">Wearables</a>
-    </div>
-  </div>
 </template>
 
 <style scoped>

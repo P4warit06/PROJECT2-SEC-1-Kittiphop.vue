@@ -52,17 +52,17 @@ function toggleMenu() {
           
           <li>
             <router-link to="/product-manager" active class="text-black text-center block hover:opacity-60">
-              Product
+              PRODUCT
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/home"  class="text-black text-center block hover:opacity-60">
+              ABOUT
             </router-link>
           </li>
           <li>
             <router-link to="/about" class="text-black text-center block hover:opacity-60">
-              About
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/about" class="text-black text-center block hover:opacity-60">
-              Cart
+              CART
             </router-link>
           </li>
         </ul>

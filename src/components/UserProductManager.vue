@@ -4,6 +4,8 @@ import Header from "./Header.vue";
 import { ref, onMounted } from 'vue'
 import { getItems, getItemById, editItem, addItem } from '../libs/fetchUtils.js'
 
+
+
 const myProducts = ref([])
 const myCarts = ref([])
 onMounted(async () => {
@@ -45,6 +47,7 @@ const addProductToCart = async (product) => {
 
 <template>
   <div>
+    
     <Header :products="myCarts"/>
     <UserProductList :products="myProducts" @add-to-cart="addProductToCart"></UserProductList>
   </div>
