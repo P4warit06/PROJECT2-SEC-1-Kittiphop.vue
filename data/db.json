@@ -133,7 +133,7 @@
   ],
   "users": [
     {
-      "id": "1",
+      "id": "0",
       "username": "admin",
       "password": "Myadmin007x@",
       "email": "admin@gmail.com",
@@ -142,128 +142,151 @@
       "contact": "0999999999"
     },
     {
-      "id": "2",
+      "id": "1",
       "username": "Ohm",
       "password": "Ohm12345@",
       "email": "ohm@gmail.com",
       "role": "user",
       "location": "",
       "contact": ""
-    } , 
+    },
     {
-    "id": "3",
-    "username": "Charlie",
-    "password": "charlie12345",
-    "email": "charlie@gmail.com",
-    "role": "user",
-    "location": "",
-    "contact": ""
-  },
-  {
-    "id": "4",
-    "username": "David",
-    "password": "david12345",
-    "email": "david@gmail.com",
-    "role": "user",
-    "location": "",
-    "contact": ""
-  },
-  {
-    "id": "5",
-    "username": "Emma",
-    "password": "emma12345",
-    "email": "emma@gmail.com",
-    "role": "user",
-    "location": "",
-    "contact": ""
-  },
-  {
-    "id": "6",
-    "username": "Frank",
-    "password": "frank12345",
-    "email": "frank@gmail.com",
-    "role": "user",
-    "location": "",
-    "contact": ""
-  },
-  {
-    "id": "7",
-    "username": "Grace",
-    "password": "grace12345",
-    "email": "grace@gmail.com",
-    "role": "user",
-    "location": "",
-    "contact": ""
-  },
-  {
-    "id": "8",
-    "username": "Henry",
-    "password": "henry12345",
-    "email": "henry@gmail.com",
-    "role": "user",
-    "location": "",
-    "contact": ""
-  },
-  {
-    "id": "9",
-    "username": "Ivy",
-    "password": "ivy12345",
-    "email": "ivy@gmail.com",
-    "role": "user",
-    "location": "",
-    "contact": ""
-  },
-  {
-    "id": "10",
-    "username": "Jack",
-    "password": "jack12345",
-    "email": "jack@gmail.com",
-    "role": "user",
-    "location": "",
-    "contact": ""
-  }
-
-  ] ,
-  "tracking" : [
-  {
-    "id": "1" , 
-    "userId": "2" ,
-    "status": "Pending"
-  } , 
+      "id": "2",
+      "username": "Charlie",
+      "password": "charlie12345",
+      "email": "charlie@gmail.com",
+      "role": "user",
+      "location": "",
+      "contact": ""
+    },
     {
-    "id": "2",
-    "userId": "3",
-    "status": "Processing"
-  },
-  {
-    "id": "3",
-    "userId": "4",
-    "status": "Shipped"
-  },
-  {
-    "id": "4",
-    "userId": "5",
-    "status": "Pending"
-  },
-  {
-    "id": "5",
-    "userId": "6",
-    "status": "Cancelled"
-  },
-  {
-    "id": "6",
-    "userId": "7",
-    "status": "Shipping"
-  },
-  {
-    "id": "7",
-    "userId": "8",
-    "status": "Processing"
-  },
-  {
-    "id": "8",
-    "userId": "9",
-    "status": "Pending"
-  }
+      "id": "3",
+      "username": "David",
+      "password": "david12345",
+      "email": "david@gmail.com",
+      "role": "user",
+      "location": "",
+      "contact": ""
+    },
+    {
+      "id": "4",
+      "username": "Emma",
+      "password": "emma12345",
+      "email": "emma@gmail.com",
+      "role": "user",
+      "location": "",
+      "contact": ""
+    },
+    {
+      "id": "5",
+      "username": "Frank",
+      "password": "frank12345",
+      "email": "frank@gmail.com",
+      "role": "user",
+      "location": "",
+      "contact": ""
+    },
+    {
+      "id": "6",
+      "username": "Grace",
+      "password": "grace12345",
+      "email": "grace@gmail.com",
+      "role": "user",
+      "location": "",
+      "contact": ""
+    },
+    {
+      "id": "7",
+      "username": "Henry",
+      "password": "henry12345",
+      "email": "henry@gmail.com",
+      "role": "user",
+      "location": "",
+      "contact": ""
+    },
+    {
+      "id": "8",
+      "username": "Ivy",
+      "password": "ivy12345",
+      "email": "ivy@gmail.com",
+      "role": "user",
+      "location": "",
+      "contact": ""
+    },
+    {
+      "id": "9",
+      "username": "Jack",
+      "password": "jack12345",
+      "email": "jack@gmail.com",
+      "role": "user",
+      "location": "",
+      "contact": ""
+    }
+  ],
+  "tracking": [
+    {
+      "id": "1",
+      "userId": "1",
+      "status": "Shipped"
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "status": "Processing"
+    },
+    {
+      "id": "3",
+      "userId": "3",
+      "status": "Shipped"
+    },
+    {
+      "id": "4",
+      "userId": "4",
+      "status": "Pending"
+    },
+    {
+      "id": "5",
+      "userId": "5",
+      "status": "Cancelled"
+    },
+    {
+      "id": "6",
+      "userId": "6",
+      "status": "Shipping"
+    },
+    {
+      "id": "7",
+      "userId": "7",
+      "status": "Processing"
+    },
+    {
+      "id": "8",
+      "userId": "8",
+      "status": "Pending"
+    }
+  ],
+  "carts": [
+    {
+      "id": "1",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 89.99,
+      "status": "Active",
+      "stock": 47,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "High-quality wireless headphones with noise cancellation",
+      "quantity": 1
+    },
+    {
+      "id": "3",
+      "name": "Bluetooth Speaker",
+      "category": "Audio",
+      "price": 49.99,
+      "status": "Low Stock",
+      "stock": 5,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "Portable bluetooth speaker with 20hr battery life",
+      "quantity": 1
+    }
   ]
 }

@@ -22,12 +22,13 @@ const props = defineProps({
       <h1>No Product Here</h1>
     </div>
     <ul>
+
       <li
         v-for="(item, index) in items"
         :key="index"
         :class="listType === 'card' ? 'shadow-md p-10' : ''"
       >
-        <slot name="listItems" :yourItem="item">Enter your list item</slot>
+        <slot name="listItems" :yourItem="item" >Enter your list item</slot>
         <!-- {{ item }} -->
       </li>
     </ul>

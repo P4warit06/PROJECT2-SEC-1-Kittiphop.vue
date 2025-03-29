@@ -76,6 +76,13 @@ const closeDropdown = () => {
             <div class="flex space-x-6 ml-auto">
               <router-link
                 v-if="currentUser && currentUser.role === 'admin'"
+                to="/user-manager"
+                class="text-white text-xl font-bold hover:text-blue-200 transition duration-300"
+              >
+                USERS
+              </router-link>
+              <router-link
+                v-if="currentUser && currentUser.role === 'admin'"
                 to="/product-manager"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300"
               >

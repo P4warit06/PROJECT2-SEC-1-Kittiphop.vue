@@ -7,6 +7,8 @@ import ProductManager from '@/components/ProductManager.vue'
 import ProductDetail from '@/components/ProductDetail.vue'
 import UserProductManager from '@/components/UserProductManager.vue'
 import UserCartList from '@/components/UserCartList.vue'
+import UserManager from '@/components/UserManager.vue'
+import UserTracking from '@/components/UserTracking.vue'
 
 const history = createWebHistory()
 const routes = [
@@ -48,6 +50,16 @@ const routes = [
         path: '/product-detail/:productId',
         name: 'ProductDetail',
         component: ProductDetail
+    },
+    {
+        path: '/user-manager',
+        name: 'UserManager',
+        component: UserManager
+    },
+    {
+        path: '/user-tracking/:userId',
+        name: 'UserTracking',
+        component: UserTracking
     },
     {
         path: '/:notMatch(.*)',
