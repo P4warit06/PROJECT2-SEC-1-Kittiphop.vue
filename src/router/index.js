@@ -9,6 +9,7 @@ import UserProductManager from '@/components/UserProductManager.vue'
 import UserCartList from '@/components/UserCartList.vue'
 import UserManager from '@/components/UserManager.vue'
 import UserTracking from '@/components/UserTracking.vue'
+import Top_up from '@/components/Top_up.vue'
 
 const history = createWebHistory()
 const routes = [
@@ -62,10 +63,17 @@ const routes = [
         component: UserTracking
     },
     {
+        path: '/top-up',
+        name: 'topUp',
+        component: Top_up 
+    },
+    {
         path: '/:notMatch(.*)',
         name: 'PageNotFound',
         component: PageNotFoundView
     }
+    
+    
 ]
 const router = createRouter({ history,
      routes, 
