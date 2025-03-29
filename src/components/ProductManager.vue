@@ -3,6 +3,7 @@ import ProductList from './ProductList.vue'
 import AddEditProduct from './AddEditProduct.vue'
 import HeaderManager from './HeaderManager.vue'
 import FilterProduct from './FilterProduct.vue';
+import Productracker from './ProductTracker.vue';
 import { getItems, deleteItemById, addItem, editItem } from '../libs/fetchUtils.js'
 import {ref , computed , onMounted} from 'vue' 
 const myProducts = ref([])
@@ -202,6 +203,7 @@ const cancelAdd = () => {
       :status="filterStatus"
       @filter-product="filterProduct"  
     />
+    <Productracker></Productracker>
     <button
       @click="isAdding = !isAdding"
       class="text-green-600 hover:text-green-400 underline cursor-pointer"
