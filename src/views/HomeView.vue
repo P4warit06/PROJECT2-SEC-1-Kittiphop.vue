@@ -67,8 +67,8 @@ const scrollToSection = (ref) => {
               </svg>
             </button>
 
-            <!-- Desktop Navigation -->
-            <div class="hidden lg:flex items-center space-x-6">
+
+            <div class="hidden lg:flex items-center">
               <button @click="scrollToSection(explore)"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">
                 EXPLORE

@@ -32,12 +32,21 @@ async function deleteItemById(url, id) {
 
 async function addItem(url, newItem) {
   try {
+    const allItems = await getItems(url)
+
+    // Generate a new item ID (highest ID + 1)
+    const newId =
+      allItems.length > 0
+        ? String(Math.max(...allItems.map((item) => parseInt(item.id))) + 1)
+        : "1"
+
     const res = await fetch(url, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify({
+        id: newId,
         ...newItem,
       }),
     })

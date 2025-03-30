@@ -15,6 +15,7 @@ const props = defineProps({
 
 const productCompute = computed(() => props.products);
 </script>
+
 <template>
   <ListModel :items="productCompute" listType="card"> 
     <template #heading> Product List </template>
@@ -26,6 +27,7 @@ const productCompute = computed(() => props.products);
           :value="yourItem.id"
           v-model="props.selectedProducts"
           class="mr-2"
+          @change="$emit('update:selectedProducts', selectedProducts)"
         />
         <button
           @click="$emit('setEditing', yourItem)"
