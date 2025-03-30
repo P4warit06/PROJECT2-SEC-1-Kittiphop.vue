@@ -1,7 +1,7 @@
 <script setup>
 import ListModel from "./model/ListModel.vue";
 import { ref, computed } from "vue";
-defineEmits(["deleteProduct", "setEditing", "update:selectedProducts"]);
+defineEmits(["deleteProduct", "setEditing", "selectDeleteProduct", ]);
 const props = defineProps({
   products: {
     type: Array,
@@ -12,22 +12,33 @@ const props = defineProps({
     required: true,
   },
 }); 
+const selectProductList = ref([]);
 
 const productCompute = computed(() => props.products);
 </script>
 
 <template>
   <ListModel :items="productCompute" listType="card"> 
-    <template #heading> Product List </template>
+    <template #heading> Product List 
+       <div class="flex justify-end w-full mt-2">
+          <button 
+          v-if="selectProductList.length > 0"
+            class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+            @click="$emit('selectDeleteProduct',selectProductList)"
+          >
+            Delete Selected ({{selectProductList.length}})
+          </button>
+        </div>
+    </template>
+    
     <template #listItems="{ yourItem }">
       <!-- Checkbox selectProduct-->
       <!-- <div v-show="productCompute ==="></div> -->
         <input
           type="checkbox"
           :value="yourItem.id"
-          v-model="props.selectedProducts"
+          v-model="selectProductList"
           class="mr-2"
-          @change="$emit('update:selectedProducts', selectedProducts)"
         />
         <button
           @click="$emit('setEditing', yourItem)"
