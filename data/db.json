@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 89.99,
       "status": "Active",
-      "stock": 47,
+      "stock": 27,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation"
     },
@@ -16,7 +16,7 @@
       "category": "Audio",
       "price": 49.99,
       "status": "Low Stock",
-      "stock": 5,
+      "stock": 4,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
@@ -126,7 +126,7 @@
       "category": "Accessories",
       "price": 10,
       "status": "Active",
-      "stock": 100,
+      "stock": 93,
       "image": "",
       "description": ""
     }
@@ -159,17 +159,24 @@
       "role": "user",
       "location": "",
       "contact": "",
+<<<<<<< HEAD
       "balance" : 0
+=======
+      "balance": 267460.2200000002
+>>>>>>> 52246c5ab04a522e3d7de6cf9469af37e59f1d50
     },
     {
       "id": "3",
       "username": "David",
-      "password": "david12345",
       "email": "david@gmail.com",
       "role": "user",
       "location": "",
       "contact": "",
+<<<<<<< HEAD
       "balance" : 0
+=======
+      "balance": 49252.090000000004
+>>>>>>> 52246c5ab04a522e3d7de6cf9469af37e59f1d50
     },
     {
       "id": "4",
@@ -228,8 +235,21 @@
       "email": "jack@gmail.com",
       "role": "user",
       "location": "",
+<<<<<<< HEAD
       "contact": "",
       "balance" : 0
+=======
+      "contact": ""
+    },
+    {
+      "id": "10",
+      "username": "smarks",
+      "password": "123456789zx.",
+      "email": "smarks@gmail.com",
+      "role": "user",
+      "location": "baba",
+      "contact": "ababa"
+>>>>>>> 52246c5ab04a522e3d7de6cf9469af37e59f1d50
     }
   ],
   "tracking": [
@@ -276,26 +296,15 @@
   ],
   "carts": [
     {
-      "id": "1",
-      "name": "Wireless Headphones",
-      "category": "Electronics",
-      "price": 89.99,
+      "id": "9a60",
+      "name": "Gun",
+      "category": "Accessories",
+      "price": 898989,
       "status": "Active",
-      "stock": 47,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "High-quality wireless headphones with noise cancellation",
+      "stock": 1,
+      "image": "",
+      "description": "Hello World",
       "quantity": 1
-    },
-    {
-      "id": "3",
-      "name": "Bluetooth Speaker",
-      "category": "Audio",
-      "price": 99.98,
-      "status": "Low Stock",
-      "stock": 5,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "Portable bluetooth speaker with 20hr battery life",
-      "quantity": 2
     }
   ]
 }
