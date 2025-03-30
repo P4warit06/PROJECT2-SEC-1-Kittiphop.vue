@@ -25,7 +25,7 @@
 | 66130500046   | filter product | filter components  | search and category function              | list user and get user by id for tracking             | tracking              |
 | 66130500056   | delete product and design ui. |  delete product by id and ui           |  delete multiple products (admin-side)  | add top-up for user        |buy product (user-side)              | 
 | 66130500059   | update Product ui | update product from backend     | Improve UI   Admin Side         | Create ProductTracker              | Fix Product Tracker & Improve UI              |
-| 66130500062   | creating ui | add retrieve product feature, add components | add get product by id , add ProductDetail component and ui | add Authentication system and ui | improve responsive ui              |
+| 66130500062   | creating ui | add retrieve product feature, add components | add get product by id , add ProductDetail component and ui | add Authentication system and ui | improve responsive ui, update fetch product using state management |
 
 
 ---
