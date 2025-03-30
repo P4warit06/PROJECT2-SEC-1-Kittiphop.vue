@@ -4,6 +4,7 @@ import { ref, onMounted } from "vue"
 
 const about = ref(null)
 const explore = ref(null)
+const landing = ref(null)
 const currentUser = ref(null)
 const isDropdownOpen = ref(false)
 const isMobileMenuOpen = ref(false)
@@ -67,8 +68,13 @@ const scrollToSection = (ref) => {
               </svg>
             </button>
 
+            <div class="hidden lg:flex items-center space-x-6 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-white" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+                <button @click="scrollToSection(landing)" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">HOME</button>
 
-            <div class="hidden lg:flex items-center">
+              
               <button @click="scrollToSection(explore)"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">
                 EXPLORE
@@ -147,6 +153,12 @@ const scrollToSection = (ref) => {
             </button>
 
             <div class="flex flex-col items-center space-y-0 w-full max-w-xs">
+
+              <button @click="scrollToSection(landing)"
+                class="text-white text-2xl font-bold hover:text-blue-200 transition-all duration-300 w-full py-4 border-b border-white/10 flex justify-center items-center">
+                HOME
+              </button>
+
               <button @click="scrollToSection(explore)"
                 class="text-white text-2xl font-bold hover:text-blue-200 transition-all duration-300 w-full py-4 border-b border-white/10 flex justify-center items-center">
                 EXPLORE
@@ -199,7 +211,7 @@ const scrollToSection = (ref) => {
         </div>
       </header>
 
-      <main class="flex flex-col items-center justify-center text-center px-4 py-20 relative z-10 min-h-screen">
+      <main ref="landing" class="flex flex-col items-center justify-center text-center px-4 py-20 relative z-10 min-h-screen">
         <div class="max-w-4xl mx-auto">
           <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             TRANSPORTATION SERVICE
@@ -241,7 +253,7 @@ const scrollToSection = (ref) => {
     </div>
 
     <!-- Explore Section -->
-    <div ref=" explore" class="relative min-h-screen">
+    <div ref="explore" class="relative min-h-screen">
       <div class="absolute inset-0"
         :style="{ backgroundImage : 'url(/images/explore-bg.png)', backgroundColor: 'green', backgroundSize: 'cover' }" />
 
