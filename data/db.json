@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 89.99,
       "status": "Active",
-      "stock": 47,
+      "stock": 27,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation"
     },
@@ -16,7 +16,7 @@
       "category": "Audio",
       "price": 49.99,
       "status": "Low Stock",
-      "stock": 5,
+      "stock": 4,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
@@ -66,7 +66,7 @@
       "category": "Accessories",
       "price": 10,
       "status": "Active",
-      "stock": 100,
+      "stock": 93,
       "image": "",
       "description": ""
     },
@@ -98,7 +98,8 @@
       "email": "ohm@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "2",
@@ -126,7 +127,8 @@
       "email": "emma@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "5",
@@ -135,7 +137,8 @@
       "email": "frank@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "6",
@@ -144,7 +147,8 @@
       "email": "grace@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "7",
@@ -153,7 +157,8 @@
       "email": "henry@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "8",
@@ -162,7 +167,8 @@
       "email": "ivy@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "9",
