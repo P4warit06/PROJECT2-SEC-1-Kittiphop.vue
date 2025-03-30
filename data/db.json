@@ -148,7 +148,8 @@
       "email": "ohm@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "2",
@@ -158,7 +159,7 @@
       "role": "user",
       "location": "",
       "contact": "",
-      "balance": 269340
+      "balance" : 0
     },
     {
       "id": "3",
@@ -167,7 +168,8 @@
       "email": "david@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "4",
@@ -176,7 +178,8 @@
       "email": "emma@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "5",
@@ -185,7 +188,8 @@
       "email": "frank@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "6",
@@ -194,7 +198,8 @@
       "email": "grace@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "7",
@@ -203,7 +208,8 @@
       "email": "henry@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "8",
@@ -212,7 +218,8 @@
       "email": "ivy@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     },
     {
       "id": "9",
@@ -221,7 +228,8 @@
       "email": "jack@gmail.com",
       "role": "user",
       "location": "",
-      "contact": ""
+      "contact": "",
+      "balance" : 0
     }
   ],
   "tracking": [
