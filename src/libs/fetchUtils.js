@@ -98,6 +98,7 @@ async function registerUser(url, userData) {
       role: "user",
       location: userData.location || " ",
       contact: userData.contact || " ",
+      balance: 0,
     }
 
     // Add the new user to the database
@@ -182,6 +183,8 @@ async function topUpBalance(url, userId, amount) {
     throw new Error("Failed to top up: " + error.message);
   }
 }
+
+
 
 
 export {
