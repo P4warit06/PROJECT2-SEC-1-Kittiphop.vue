@@ -237,10 +237,9 @@ const cancelAdd = () => {
       v-show="!isAdding && !isEditing"
       @deleteProduct="deleteExistProduct"
       @setEditing="setEditProduct"
-      @update:selectedProducts="selectedProducts = $event"
       :products="productForFilter"
       :selectedProducts="selectedProducts"
-      @seleteDeleteProduct="deleteMultipleProduct"
+      @selectDeleteProduct="deleteMultipleProduct"
     />
   </div>
 </template>
