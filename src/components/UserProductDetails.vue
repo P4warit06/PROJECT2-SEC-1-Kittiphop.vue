@@ -22,37 +22,45 @@ getSelectProduct()
 </script>
 
 <template>
- <div class="p-5">
-    <div class="p-16 shadow-2xl items-center max-w-lg">
-      <p class="flex flex-col"></p>
-      <p><span class="font-semibold">id: </span> {{ selectProduct.id }}</p>
-      <p>
-        <span class="font-semibold">name: </span>{{ selectProduct.name }}
-      </p>
-      <p>
-        <span class="font-semibold">price: </span> {{ selectProduct.price }}
-      </p>
-      <p>
-        <span class="font-semibold">description: </span
-        >{{ selectProduct.description }}
-      </p>
-      <p>
-        <span class="font-semibold">instock: </span> {{ selectProduct.stock }}
-      </p>
-      <p>
-        <span class="font-semibold">status: </span> {{ selectProduct.status }}
-      </p>
-      <div>
-        <button class="underline text-green-500 mr-1">
-            Buy
-        </button>
-        <button
-            @click="goBack"
-            class="pt-5 ml-5 underline text-purple-500 cursor-pointer"
-        >
-        Back
-        </button>
+  <div class="w-full h-screen bg-gray-100 p-5 overflow-auto flex justify-center items-center">
+    <div class="bg-white p-10 rounded-2xl shadow-2xl flex justify-center items-center w-1/2">
+      <div class="flex flex-col justify-center items-center w-full">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Product Details</h2>
+
+        <div class="flex flex-col lg:flex-row items-center justify-around gap-10 h-full w-1/2">
+          <div class="flex justify-center lg:justify-end items-center">
+            <img
+              class="rounded-xl object-contain w-full max-w-2xl max-h-[600px]"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeizyn8SwFNfeJdYexfcqyurpCe47SKVR0Ew&s"
+              alt="product image"
+            />
+          </div>
+
+          <div class="flex flex-col justify-center items-start lg:w-1/2 max-w-md space-y-5 text-gray-700">
+            <p><span class="font-semibold">ID:</span> {{ selectProduct.id }}</p>
+            <p><span class="font-semibold">Name:</span> {{ selectProduct.name }}</p>
+            <p><span class="font-semibold">Price:</span> ${{ selectProduct.price }}</p>
+            <p><span class="font-semibold">In Stock:</span> {{ selectProduct.stock }}</p>
+            <p><span class="font-semibold">Status:</span> {{ selectProduct.status }}</p>
+            <p><span class="font-semibold">Description:</span> {{ selectProduct.description }}</p>
+
+            <div class="flex gap-4 pt-4 w-full">
+              <button
+                class="cursor-pointer flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded transition"
+              >
+                Buy
+              </button>
+              <button
+                @click="goBack"
+                class="cursor-pointer flex-1 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded transition"
+              >
+                Back
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 </template>
+

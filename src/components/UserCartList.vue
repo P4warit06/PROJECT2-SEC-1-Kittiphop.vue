@@ -272,6 +272,7 @@ const handleBuy = async (product) => {
             class="flex items-center justify-between p-4 bg-white shadow-lg rounded-lg mb-4"
           >
             <div class="flex flex-col space-y-1">
+              <router-link class="flex flex-col" :to="{name: 'UserProductDetail', params: {productId: yourProduct.id}}">
               <span class="text-xl font-semibold text-gray-900">{{
                 yourProduct.name
               }}</span>
@@ -285,6 +286,7 @@ const handleBuy = async (product) => {
                 >Stock:
                 <span class="font-semibold">{{ yourProduct.stock }}</span></span
               >
+              </router-link>
             </div>
             <div class="flex justify-center items-center space-x-2">
               <div>

@@ -16,7 +16,7 @@
       "category": "Audio",
       "price": 49.99,
       "status": "Low Stock",
-      "stock": 4,
+      "stock": 0,
       "image": "/placeholder.svg?height=200&width=200",
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
@@ -66,7 +66,7 @@
       "category": "Accessories",
       "price": 10,
       "status": "Active",
-      "stock": 88,
+      "stock": 74,
       "image": "",
       "description": ""
     },
@@ -98,17 +98,16 @@
       "role": "user",
       "location": "",
       "contact": "",
-      "balance": 4700.05
+      "balance": 4500.09
     },
     {
       "id": "2",
       "username": "Charlie",
-      "password": "Charlie12345@",
       "email": "charlie@gmail.com",
       "role": "user",
       "location": "",
       "contact": "",
-      "balance": 269340
+      "balance": 269200
     },
     {
       "id": "3",
@@ -198,7 +197,7 @@
     {
       "id": "4",
       "userId": "4",
-      "status": "Pending"
+      "status": "Cancelled"
     },
     {
       "id": "5",
@@ -218,31 +217,8 @@
     {
       "id": "8",
       "userId": "8",
-      "status": "Pending"
+      "status": "Shipped"
     }
   ],
-  "carts": [
-    {
-      "id": "2",
-      "name": "Bluetooth Speaker",
-      "category": "Audio",
-      "price": 99.98,
-      "status": "Low Stock",
-      "stock": 4,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "Portable bluetooth speaker with 20hr battery life",
-      "quantity": 2
-    },
-    {
-      "id": "1",
-      "name": "Wireless Headphones",
-      "category": "Electronics",
-      "price": 89.99,
-      "status": "Active",
-      "stock": 27,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "High-quality wireless headphones with noise cancellation",
-      "quantity": 1
-    }
-  ]
+  "carts": []
 }
