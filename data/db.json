@@ -66,7 +66,7 @@
       "category": "Accessories",
       "price": 10,
       "status": "Active",
-      "stock": 93,
+      "stock": 88,
       "image": "",
       "description": ""
     },
@@ -94,12 +94,12 @@
     {
       "id": "1",
       "username": "Ohm",
-      "password": "Ohm12345@",
+      "password": "ohm12345@",
       "email": "ohm@gmail.com",
       "role": "user",
       "location": "",
       "contact": "",
-      "balance": 0
+      "balance": 4950
     },
     {
       "id": "2",
@@ -222,5 +222,17 @@
       "status": "Pending"
     }
   ],
-  "carts": []
+  "carts": [
+    {
+      "id": "8",
+      "name": "Bluetooth Speaker",
+      "category": "Audio",
+      "price": 249.95000000000002,
+      "status": "Low Stock",
+      "stock": 5,
+      "image": "/placeholder.svg?height=200&width=200",
+      "description": "Portable bluetooth speaker with 20hr battery life",
+      "quantity": 5
+    }
+  ]
 }

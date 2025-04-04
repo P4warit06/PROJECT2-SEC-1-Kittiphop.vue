@@ -16,7 +16,6 @@ const addToCart = (product) => {
 </script>
 
 <template>
-
   <ListModel 
     :items="products" 
     listType="card"
@@ -24,6 +23,7 @@ const addToCart = (product) => {
   >
     <template #heading>Products</template>
     <template #listItems="{ yourItem }">
+      <router-link :to="{name: 'UserProductDetail', params: {productId: yourItem.id}}">
       <div class="flex flex-col h-full">
         <div class="flex-grow">
           <img 
@@ -55,6 +55,7 @@ const addToCart = (product) => {
           Add to Cart
         </button>
       </div>
+      </router-link>
     </template>
   </ListModel>
 </template>
