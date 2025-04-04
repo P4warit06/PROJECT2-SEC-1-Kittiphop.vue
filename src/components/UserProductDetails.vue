@@ -42,12 +42,17 @@ getSelectProduct()
       <p>
         <span class="font-semibold">status: </span> {{ selectProduct.status }}
       </p>
-      <button
-        @click="goBack"
-        class="pt-5 underline text-purple-500 cursor-pointer"
-      >
-     Back
-      </button>
+      <div>
+        <button class="underline text-green-500 mr-1">
+            Buy
+        </button>
+        <button
+            @click="goBack"
+            class="pt-5 ml-5 underline text-purple-500 cursor-pointer"
+        >
+        Back
+        </button>
+        </div>
     </div>
   </div>
 </template>
