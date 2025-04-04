@@ -193,7 +193,6 @@ const handleBuy = async (product) => {
 
 <template>
   <div>
-    <!-- NOTIFICATION MESSAGES -->
     <div
       v-if="errorMessage"
       class="fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center"
