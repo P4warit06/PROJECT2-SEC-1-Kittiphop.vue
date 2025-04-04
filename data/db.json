@@ -243,17 +243,6 @@
       "image": "/placeholder.svg?height=200&width=200",
       "description": "High-quality wireless headphones with noise cancellation",
       "quantity": 1
-    },
-    {
-      "id": "4",
-      "name": "Mechanical Keyboard",
-      "category": "Electronics",
-      "price": 129.99,
-      "status": "Active",
-      "stock": 25,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "RGB mechanical gaming keyboard",
-      "quantity": 1
     }
   ]
 }

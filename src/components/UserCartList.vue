@@ -208,7 +208,6 @@ const handleBuy = async (product) => {
       {{ successMessage }}
     </div>
 
-    <!-- BALANCE DISPLAY -->
     <div v-if="currentUser" class="p-4 bg-blue-50 border-b border-blue-100">
       <div class="container mx-auto">
         <p class="text-lg font-medium text-blue-800">
