@@ -69,12 +69,15 @@ const scrollToSection = (ref) => {
             </button>
 
             <div class="hidden lg:flex items-center space-x-6 text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-white" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                </svg>
-                <button @click="scrollToSection(landing)" class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">HOME</button>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-white" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path
+                  d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+              </svg>
+              <button @click="scrollToSection(landing)"
+                class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">HOME</button>
 
-              
+
               <button @click="scrollToSection(explore)"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">
                 EXPLORE
@@ -126,14 +129,11 @@ const scrollToSection = (ref) => {
                       class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150">
                       <p class="cursor-pointer">Logout</p>
                     </button>
-                    <router-link
-                v-if="currentUser"
-                to="/top-up"
-                class="text-black text-2xl font-bold hover:text-blue-200 transition-all duration-300 w-full py-4 border-b border-white/10 flex justify-center items-center"
-                @click="isMobileMenuOpen = false"
-              >
-              Top up
-              </router-link>
+                    <router-link v-if="currentUser" to="/top-up"
+                      class="text-black text-2xl font-bold hover:text-blue-200 transition-all duration-300 w-full py-4 border-b border-white/10 flex justify-center items-center"
+                      @click="isMobileMenuOpen = false">
+                      Top up
+                    </router-link>
                   </div>
                 </div>
               </template>
@@ -211,12 +211,13 @@ const scrollToSection = (ref) => {
         </div>
       </header>
 
-      <main ref="landing" class="flex flex-col items-center justify-center text-center px-4 py-20 relative z-10 min-h-screen">
+      <main ref="landing"
+        class="flex flex-col items-center justify-center text-center px-4 py-20 relative z-10 min-h-screen">
         <div class="max-w-4xl mx-auto">
-          <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-4">
             TRANSPORTATION SERVICE
           </h1>
-          <h2 class="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
+          <h2 class="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">
             WHEREVER YOU WANT
           </h2>
         </div>
@@ -237,15 +238,17 @@ const scrollToSection = (ref) => {
             OUR COMPANY
           </h1>
           <p class="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6">
-            <span class="font-bold text-teal-500">Our platform is designed to</span>
-            empower users to effortlessly list their products for sale, creating a seamless and dynamic marketplace
+            <span class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-white bg-clip-text text-transparent">
+              Our platform is designed to
+            </span>
+            Empower users to effortlessly list their products for sale, creating a seamless and dynamic marketplace
             experience.
             By providing both an intuitive user interface and a comprehensive admin panel, we offer a fully-managed
             environment
             that ensures ease of use for sellers and efficient product oversight for admins.
             Whether you're looking to sell your items in a container-like listing or manage and approve product
             submissions,
-            our website guarantees a smooth and secure selling process from start to finish.
+            our website guarantees a smooth and secure selling process from start to finish .
           </p>
 
         </div>
@@ -263,23 +266,27 @@ const scrollToSection = (ref) => {
             EXPLORE
           </h1>
           <p class="text-white text-base sm:text-lg md:text-xl leading-relaxed my-6">
-            <span class="font-semibold text-lg sm:text-xl md:text-2xl">For our website</span>
+            <span class="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-blue-200 bg-clip-text text-transparent ">
+              For our website
+            </span>
             <br>
-            "Our website is designed as a platform where users can easily list products for sale. It includes both a
+            Our website is designed as a platform where users can easily list products for sale. It includes both a
             user interface and an admin panel to support comprehensive management. On the user side, you can choose
             the
-            products you want to sell and provide the necessary details to list them ,
-            ready for sale at any time.."
+            products you want to sell and provide the necessary details to list them
+            ready for sale at any time . .
           </p>
           <p class="text-white text-base sm:text-lg md:text-xl leading-relaxed my-6.5">
-            <span class="font-semibold text-lg sm:text-xl md:text-2xl">For the admin site</span>
+            <span class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-100 bg-clip-text text-transparent">
+              For Admin Side
+            </span>
             <br>
-            "The admin panel is designed to efficiently manage product listings submitted by users. Admins can
-            oversee
+            The Admin panel is designed to efficiently manage product listings submitted by users. Admins can
+            observe
             and review all listed items, with the ability to edit or delete product from user submissions, ensuring
             a
             smooth
-            and secure selling process on our platform."
+            and secure selling process on our platform .
           </p>
         </div>
       </main>

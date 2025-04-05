@@ -10,7 +10,8 @@ import UserCartList from '@/components/UserCartList.vue'
 import UserManager from '@/components/UserManager.vue'
 import UserTracking from '@/components/UserTracking.vue'
 import Top_up from '@/components/Top_up.vue'
-
+import UserProductDetails from '@/components/UserProductDetails.vue'
+import ProductTracker from '@/components/ProductTracker.vue'
 const history = createWebHistory()
 const routes = [
     {
@@ -48,9 +49,19 @@ const routes = [
         component: ProductManager
     },
     {
+        path: '/product-tracker',
+        name: 'ProductTracker',
+        component: ProductTracker
+    },
+    {
         path: '/product-detail/:productId',
         name: 'ProductDetail',
         component: ProductDetail
+    },
+    {
+        path: '/user-productDetail/:productId',
+        name: 'UserProductDetail',
+        component: UserProductDetails
     },
     {
         path: '/user-manager',
