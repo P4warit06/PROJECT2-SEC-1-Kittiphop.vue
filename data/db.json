@@ -190,7 +190,6 @@
       "image": "https://images.unsplash.com/photo-1737636255601-179dc7535116?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "description": "Eco-friendly electric scooter with long battery life"
     },
-
     {
       "id": "20",
       "name": "VR Headset",
@@ -331,7 +330,6 @@
       "image": "/product-images/default-category-images/wearables.png",
       "description": "1"
     }
-  
   ],
   "users": [
     {
@@ -365,7 +363,7 @@
     {
       "id": "2",
       "userId": "2",
-      "status": "Processing"
+      "status": "Shipped"
     },
     {
       "id": "3",
@@ -398,5 +396,16 @@
       "status": "Pending"
     }
   ],
-  "carts": []
+  "carts": [
+    {
+      "id": "34",
+      "name": "Test Default Wearables Image",
+      "category": "Wearables",
+      "price": 1,
+      "status": "Low Stock",
+      "stock": 1,
+      "image": "/product-images/default-category-images/wearables.png",
+      "description": "1"
+    }
+  ]
 }
