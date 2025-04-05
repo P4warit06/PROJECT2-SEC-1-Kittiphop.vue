@@ -40,22 +40,35 @@ async function addItem(url, newItem) {
         ? String(Math.max(...allItems.map((item) => parseInt(item.id))) + 1)
         : "1"
 
+         // Set default image based on category if no image provided
+    const categoryImages = {
+      'Electronics': '/product-images/default-category-images/electronics.png',
+      'Audio': '/product-images/default-category-images/audio.jpg',
+      'Accessories': '/product-images/default-category-images/accessories.png',
+      'Wearables': '/product-images/default-category-images/wearables.png'
+    };
+
+    const productWithDefaults = {
+      ...newItem,
+      id: newId,
+      image: newItem.image || categoryImages[newItem.category] || '/product-images/default-category-images/default.jpg'
+    };
+
     const res = await fetch(url, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({
-        id: newId,
-        ...newItem,
-      }),
-    })
-    const addedItem = await res.json()
-    return addedItem
+      body: JSON.stringify(productWithDefaults),
+    });
+    const addedItem = await res.json();
+    return addedItem;
   } catch (error) {
-    throw new Error("can not add your item")
+    throw new Error("can not add your item");
   }
 }
+
+
 
 async function editItem(url, id, editItem) {
   try {
@@ -89,11 +102,14 @@ async function registerUser(url, userData) {
         ? String(Math.max(...allUsers.map((user) => parseInt(user.id))) + 1)
         : "1"
 
+        // Hash password ก่อนบันทึก
+    const hashedPassword =  btoa(userData.password);
+
     // Create new user object with default role "user"
     const newUser = {
       id: newId,
       username: userData.username,
-      password: userData.password,
+      password: hashedPassword,
       email: userData.email,
       role: "user",
       location: userData.location || " ",
@@ -136,8 +152,9 @@ async function checkEmailExists(url, email) {
 async function login(url, email, password) {
   try {
     const users = await getItems(`${url}/users`)
+    const hashedInputPassword = btoa(password);
     const user = users.find(
-      (user) => user.email === email && user.password === password
+      (user) => user.email === email && user.password === hashedInputPassword
     )
 
     if (!user) {
@@ -184,8 +201,21 @@ async function topUpBalance(url, userId, amount) {
   }
 }
 
+async function addProductWithImage(url, newItem) {
+  // สร้างชื่อไฟล์ภาพ
+  const imageName = newItem.name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, '-')
+    .trim() + '.jpg'
 
+  const productWithImage = {
+    ...newItem,
+    image: `/product-images/${imageName}`
+  }
 
+  return addItem(url, productWithImage)
+}
 
 export {
   getItems,
