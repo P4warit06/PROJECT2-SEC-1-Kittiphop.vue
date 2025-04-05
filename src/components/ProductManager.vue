@@ -240,6 +240,7 @@ const cancelAdd = () => {
       :products="productForFilter"
       :selectedProducts="selectedProducts"
       @selectDeleteProduct="deleteMultipleProduct"
+      @load-more="handleLoadMore"
     />
   </div>
 </template>

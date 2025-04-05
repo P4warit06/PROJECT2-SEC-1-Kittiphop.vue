@@ -7,7 +7,7 @@
       "price": 89.99,
       "status": "Active",
       "stock": 27,
-      "image": "/product-images/wireless-headphone.jpg",
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
       "description": "High-quality wireless headphone with noise cancellation"
     },
     {
@@ -17,7 +17,7 @@
       "price": 49.99,
       "status": "Low Stock",
       "stock": 4,
-      "image": "/product-images/bluetooth-speaker.jpg",
+      "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&auto=format&fit=crop&q=60",
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
     {
@@ -27,7 +27,7 @@
       "price": 29.99,
       "status": "Out of Stock",
       "stock": 0,
-      "image": "/product-images/laptop-stand.jpg",
+      "image": "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=60",
       "description": "Ergonomic aluminum laptop stand"
     },
     {
@@ -37,49 +37,301 @@
       "price": 129.99,
       "status": "Active",
       "stock": 25,
-      "image": "/product-images/mechanical-keyboard.jpg",
+      "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=800&auto=format&fit=crop&q=60",
       "description": "RGB mechanical gaming keyboard"
     },
     {
       "id": "5",
-      "name": "Hello World",
-      "category": "Audio",
-      "price": 454545,
+      "name": "Smartphone",
+      "category": "Electronics",
+      "price": 699.99,
       "status": "Active",
-      "stock": 1,
-      "image": "/product-images/hello-world.jpg",
-      "description": ""
+      "stock": 15,
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
+      "description": "Latest model smartphone with high-resolution camera"
     },
     {
       "id": "6",
-      "name": "Chuuya",
+      "name": "Gaming Mouse",
       "category": "Accessories",
-      "price": 123,
+      "price": 59.99,
       "status": "Active",
-      "stock": 111,
-      "image": "",
-      "description": "d"
+      "stock": 30,
+      "image": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=800&auto=format&fit=crop&q=60",
+      "description": "High precision gaming mouse with customizable buttons"
     },
     {
       "id": "7",
-      "name": "chuuya",
+      "name": "Smartwatch",
+      "category": "Wearables",
+      "price": 199.99,
+      "status": "Active",
+      "stock": 10,
+      "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&auto=format&fit=crop&q=60",
+      "description": "Smartwatch with fitness tracking and notifications"
+    },
+    {
+      "id": "8",
+      "name": "Wireless Charger",
+      "category": "Accessories",
+      "price": 19.99,
+      "status": "Active",
+      "stock": 50,
+      "image": "https://images.unsplash.com/photo-1616876195047-522271be4e66?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Fast wireless charger for smartphones"
+    },
+    {
+      "id": "9",
+      "name": "Wireless Earbuds",
+      "category": "Audio",
+      "price": 79.99,
+      "status": "Active",
+      "stock": 18,
+      "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=60",
+      "description": "True wireless earbuds with noise cancellation"
+    },
+    {
+      "id": "10",
+      "name": "Fitness Tracker",
+      "category": "Wearables",
+      "price": 49.99,
+      "status": "Active",
+      "stock": 22,
+      "image": "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?w=800&auto=format&fit=crop&q=60",
+      "description": "Wearable fitness tracker with heart rate monitor"
+    },
+    {
+      "id": "11",
+      "name": "HDMI Cable",
+      "category": "Accessories",
+      "price": 9.99,
+      "status": "Active",
+      "stock": 100,
+      "image": "https://images.unsplash.com/photo-1605464315542-bda3e2f4e605?w=800&auto=format&fit=crop&q=60",
+      "description": "High-speed HDMI cable for video and audio"
+    },
+    {
+      "id": "12",
+      "name": "Laptop Backpack",
+      "category": "Accessories",
+      "price": 59.99,
+      "status": "Active",
+      "stock": 15,
+      "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop&q=60",
+      "description": "Stylish and functional laptop backpack"
+    },
+    {
+      "id": "13",
+      "name": "4K Monitor",
+      "category": "Electronics",
+      "price": 299.99,
+      "status": "Active",
+      "stock": 8,
+      "image": "https://images.unsplash.com/photo-1527443060795-0402a18106c2?w=800&auto=format&fit=crop&q=60",
+      "description": "Ultra HD 4K monitor with vibrant colors and high refresh rate"
+    },
+    {
+      "id": "14",
+      "name": "Noise Cancelling Headphones",
+      "category": "Audio",
+      "price": 199.99,
+      "status": "Active",
+      "stock": 12,
+      "image": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800&auto=format&fit=crop&q=60",
+      "description": "Premium noise cancelling headphones for immersive sound"
+    },
+    {
+      "id": "15",
+      "name": "Gaming Chair",
+      "category": "Accessories",
+      "price": 149.99,
+      "status": "Active",
+      "stock": 5,
+      "image": "https://images.unsplash.com/photo-1619725002198-6a689b72f41d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Ergonomic gaming chair with adjustable features"
+    },
+    {
+      "id": "16",
+      "name": "External Hard Drive",
+      "category": "Electronics",
+      "price": 79.99,
+      "status": "Active",
+      "stock": 20,
+      "image": "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=800&auto=format&fit=crop&q=60",
+      "description": "Portable external hard drive with 2TB capacity"
+    },
+    {
+      "id": "17",
+      "name": "Smart Home Hub",
+      "category": "Electronics",
+      "price": 99.99,
+      "status": "Active",
+      "stock": 10,
+      "image": "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&auto=format&fit=crop&q=60",
+      "description": "Control all your smart home devices with ease"
+    },
+    {
+      "id": "18",
+      "name": "Drone",
+      "category": "Electronics",
+      "price": 499.99,
+      "status": "Active",
+      "stock": 5,
+      "image": "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=800&auto=format&fit=crop&q=60",
+      "description": "High-performance drone with 4K camera"
+    },
+    {
+      "id": "19",
+      "name": "Electric Scooter",
+      "category": "Electronics",
+      "price": 299.99,
+      "status": "Active",
+      "stock": 8,
+      "image": "https://images.unsplash.com/photo-1737636255601-179dc7535116?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Eco-friendly electric scooter with long battery life"
+    },
+
+    {
+      "id": "20",
+      "name": "VR Headset",
+      "category": "Electronics",
+      "price": 399.99,
+      "status": "Active",
+      "stock": 10,
+      "image": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
+      "description": "Immersive VR headset for gaming and entertainment"
+    },
+    {
+      "id": "22",
+      "name": "USB-C Hub",
+      "category": "Accessories",
+      "price": 24.99,
+      "status": "Active",
+      "stock": 60,
+      "image": "",
+      "description": "Multi-port USB-C hub for laptops and tablets"
+    },
+    {
+      "id": "23",
+      "name": "Over-Ear Headphones",
+      "category": "Audio",
+      "price": 99.99,
+      "status": "Active",
+      "stock": 20,
+      "image": "",
+      "description": "Comfortable over-ear headphones with deep bass"
+    },
+    {
+      "id": "24",
+      "name": "Smart Glasses",
+      "category": "Wearables",
+      "price": 249.99,
+      "status": "Active",
+      "stock": 12,
+      "image": "",
+      "description": "Smart glasses with AR capabilities"
+    },
+    {
+      "id": "25",
+      "name": "Noise-Isolating Earbuds",
+      "category": "Audio",
+      "price": 59.99,
+      "status": "Active",
+      "stock": 30,
+      "image": "",
+      "description": "Compact earbuds with noise-isolating technology"
+    },
+    {
+      "id": "26",
+      "name": "Fitness Smart Band",
+      "category": "Wearables",
+      "price": 29.99,
+      "status": "Active",
+      "stock": 50,
+      "image": "",
+      "description": "Affordable fitness band with step tracking"
+    },
+    {
+      "id": "27",
+      "name": "Gaming Headset",
+      "category": "Audio",
+      "price": 79.99,
+      "status": "Active",
+      "stock": 25,
+      "image": "",
+      "description": "Gaming headset with surround sound"
+    },
+    {
+      "id": "28",
+      "name": "Tablet Stand",
+      "category": "Accessories",
+      "price": 19.99,
+      "status": "Active",
+      "stock": 70,
+      "image": "",
+      "description": "Adjustable tablet stand for hands-free use"
+    },
+    {
+      "id": "29",
+      "name": "Wireless Gaming Controller",
+      "category": "Electronics",
+      "price": 59.99,
+      "status": "Active",
+      "stock": 15,
+      "image": "",
+      "description": "Ergonomic wireless gaming controller"
+    },
+    {
+      "id": "30",
+      "name": "Bluetooth Fitness Earbuds",
+      "category": "Audio",
+      "price": 49.99,
+      "status": "Active",
+      "stock": 35,
+      "image": "",
+      "description": "Sweatproof earbuds for workouts"
+    },
+    {
+      "id": "31",
+      "name": "Test Default Accessories Image",
       "category": "Accessories",
       "price": 1,
       "status": "Low Stock",
       "stock": 1,
-      "image": "/product-images/chuuya.jpg",
-      "description": "d"
+      "image": "/product-images/default-category-images/accessories.png",
+      "description": "Test Default Accessories Image"
     },
     {
-      "id": "8",
-      "name": "dqw",
-      "category": "Accessories",
-      "price": 312,
-      "status": "Active",
-      "stock": 321321,
-      "image": "/product-images/dqw.jpg",
-      "description": "3"
+      "id": "32",
+      "name": "Test Default Audio Image",
+      "category": "Audio",
+      "price": 1,
+      "status": "Low Stock",
+      "stock": 1,
+      "image": "/product-images/default-category-images/audio.jpg",
+      "description": "1"
+    },
+    {
+      "id": "33",
+      "name": "Test Default Electronics Image",
+      "category": "Electronics",
+      "price": 1,
+      "status": "Low Stock",
+      "stock": 1,
+      "image": "/product-images/default-category-images/electronics.png",
+      "description": "Test Default Electronics Image"
+    },
+    {
+      "id": "34",
+      "name": "Test Default Wearables Image",
+      "category": "Wearables",
+      "price": 1,
+      "status": "Low Stock",
+      "stock": 1,
+      "image": "/product-images/default-category-images/wearables.png",
+      "description": "1"
     }
+  
   ],
   "users": [
     {
@@ -93,101 +345,14 @@
       "contact": "0999999999"
     },
     {
-      "id": "1",
-      "username": "Ohm",
-      "password": "Ohm12345@",
-      "email": "ohm@gmail.com",
-      "role": "user",
-      "location": "",
-      "contact": "",
-      "balance": 0
-    },
-    {
       "id": "2",
-      "username": "Charlie",
-      "password": "Charlie12345@",
-      "email": "charlie@gmail.com",
-      "role": "user",
-      "location": "",
-      "contact": "",
-      "balance": 269340
-    },
-    {
-      "id": "3",
-      "username": "David",
-      "password": "david12345@",
-      "email": "david@gmail.com",
-      "role": "user",
-      "location": "",
-      "contact": ""
-    },
-    {
-      "id": "4",
-      "username": "Emma",
-      "password": "emma12345@",
-      "email": "emma@gmail.com",
-      "role": "user",
-      "location": "",
-      "contact": "",
-      "balance": 0
-    },
-    {
-      "id": "5",
-      "username": "Frank",
-      "password": "frank12345@",
-      "email": "frank@gmail.com",
-      "role": "user",
-      "location": "",
-      "contact": "",
-      "balance": 0
-    },
-    {
-      "id": "6",
-      "username": "Grace",
-      "password": "grace12345@",
-      "email": "grace@gmail.com",
-      "role": "user",
-      "location": "",
-      "contact": "",
-      "balance": 0
-    },
-    {
-      "id": "7",
-      "username": "Henry",
-      "password": "henry12345@",
-      "email": "henry@gmail.com",
-      "role": "user",
-      "location": "",
-      "contact": "",
-      "balance": 0
-    },
-    {
-      "id": "8",
-      "username": "Ivy",
-      "password": "ivy12345@",
-      "email": "ivy@gmail.com",
-      "role": "user",
-      "location": "",
-      "contact": "",
-      "balance": 0
-    },
-    {
-      "id": "9",
-      "username": "Jack",
-      "password": "jack12345@",
-      "email": "jack@gmail.com",
-      "role": "user",
-      "location": "",
-      "contact": ""
-    },
-    {
-      "id": "10",
       "username": "testhashuser",
+      "_comment": "password = QmIxMjM0NTY3ODlA = Ab12345@",
       "password": "QWIxMjM0NUA=",
       "email": "testhashuser@gmail.com",
       "role": "user",
-      "location": "dqwdqw",
-      "contact": "312312",
+      "location": "999/999 ทุ่งครุ ประชาอุทิศ",
+      "contact": "0999999999",
       "balance": 0
     }
   ],

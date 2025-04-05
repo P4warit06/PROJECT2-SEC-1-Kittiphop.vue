@@ -12,7 +12,6 @@ const props = defineProps({
 
 const newProduct = ref({
   ...props.activeProduct,
-  image: props.activeProduct.image || "",
 });
 
 const categories = ref([
@@ -34,6 +33,26 @@ const saveProduct = () => {
   } else {
     emits("addNewProduct", newProduct.value);
   }
+  const saveProduct = () => {
+    // Set default image based on category
+    const categoryImages = {
+      Electronics: "/product-images/default-category-images/electronics.png",
+      Audio: "/product-images/default-category-images/audio.jpg",
+      Accessories: "/product-images/default-category-images/accessories.png",
+      Wearables: "/product-images/default-category-images/wearables.png",
+    }
+    const productToSave = {
+      ...newProduct.value,
+      image:
+        newProduct.value.image || categoryImages[newProduct.value.category],
+    }
+
+    if (newProduct.value.id) {
+      emits("editProduct", productToSave);
+    } else {
+      emits("addNewProduct", productToSave);
+    }
+  };
 };
 </script>
 
@@ -139,6 +158,7 @@ const saveProduct = () => {
             class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
           ></textarea>
         </div>
+
 
         <div class="col-span-1 sm:col-span-2 flex gap-8 justify-center mt-4">
           <button
