@@ -222,6 +222,7 @@ const handleBuy = async (product) => {
 
     <div class="p-6 bg-gray-100 min-h-screen">
       <div class="w-full flex flex-col justify-between items-center mb-6">
+
         <!-- <div class="w-full flex">
           <div class="w-5/6">
             <input
@@ -326,8 +327,7 @@ const handleBuy = async (product) => {
           </div>
         </template>
       </CartModel>
-
-      <CalculatePriceBar :products="checkboxData"></CalculatePriceBar>
+      <CalculatePriceBar :products="checkboxData" @buy="handleBuy"></CalculatePriceBar>
     </div>
   </div>
 </template>

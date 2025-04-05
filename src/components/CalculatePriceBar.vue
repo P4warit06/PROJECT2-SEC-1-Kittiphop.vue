@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 
-
+const emit = defineEmits(['buy'])
 const props = defineProps({
     products: {
         type: Array,
@@ -45,7 +45,7 @@ const clearSelect = () => {
         </div>
       </div>
       <div class="w-full md:w-auto">
-        <button class="w-full md:w-72 bg-blue-300 px-10 py-3 rounded-lg cursor-pointer hover:opacity-80">
+        <button @click="$emit('buy', productData)" class="w-full md:w-72 bg-blue-300 px-10 py-3 rounded-lg cursor-pointer hover:opacity-80">
           Buy
         </button>
       </div>
