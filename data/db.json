@@ -2,13 +2,13 @@
   "products": [
     {
       "id": "1",
-      "name": "Wireless Headphones",
+      "name": "Wireless Headphone",
       "category": "Electronics",
       "price": 89.99,
       "status": "Active",
       "stock": 27,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "High-quality wireless headphones with noise cancellation"
+      "image": "/product-images/wireless-headphone.jpg",
+      "description": "High-quality wireless headphone with noise cancellation"
     },
     {
       "id": "2",
@@ -17,7 +17,7 @@
       "price": 49.99,
       "status": "Low Stock",
       "stock": 4,
-      "image": "/placeholder.svg?height=200&width=200",
+      "image": "/product-images/bluetooth-speaker.jpg",
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
     {
@@ -27,7 +27,7 @@
       "price": 29.99,
       "status": "Out of Stock",
       "stock": 0,
-      "image": "/placeholder.svg?height=200&width=200",
+      "image": "/product-images/laptop-stand.jpg",
       "description": "Ergonomic aluminum laptop stand"
     },
     {
@@ -37,7 +37,7 @@
       "price": 129.99,
       "status": "Active",
       "stock": 25,
-      "image": "/placeholder.svg?height=200&width=200",
+      "image": "/product-images/mechanical-keyboard.jpg",
       "description": "RGB mechanical gaming keyboard"
     },
     {
@@ -47,45 +47,46 @@
       "price": 454545,
       "status": "Active",
       "stock": 1,
-      "image": "",
+      "image": "/product-images/hello-world.jpg",
       "description": ""
     },
     {
       "id": "6",
-      "name": "Gun",
+      "name": "Chuuya",
       "category": "Accessories",
-      "price": 898989,
+      "price": 123,
       "status": "Active",
-      "stock": 1,
+      "stock": 111,
       "image": "",
-      "description": "Hello World"
+      "description": "d"
     },
     {
       "id": "7",
-      "name": "Chinken",
+      "name": "chuuya",
       "category": "Accessories",
-      "price": 10,
-      "status": "Active",
-      "stock": 93,
-      "image": "",
-      "description": ""
+      "price": 1,
+      "status": "Low Stock",
+      "stock": 1,
+      "image": "/product-images/chuuya.jpg",
+      "description": "d"
     },
     {
       "id": "8",
-      "name": "Bluetooth Speaker",
-      "category": "Audio",
-      "price": 49.99,
-      "status": "Low Stock",
-      "stock": 5,
-      "image": "/placeholder.svg?height=200&width=200",
-      "description": "Portable bluetooth speaker with 20hr battery life"
+      "name": "dqw",
+      "category": "Accessories",
+      "price": 312,
+      "status": "Active",
+      "stock": 321321,
+      "image": "/product-images/dqw.jpg",
+      "description": "3"
     }
   ],
   "users": [
     {
       "id": "0",
       "username": "admin",
-      "password": "Myadmin007x@",
+      "_comment": "password = QmIxMjM0NTY3ODlA = Bb123456789@",
+      "password": "QmIxMjM0NTY3ODlA",
       "email": "admin@gmail.com",
       "role": "admin",
       "location": "29",
