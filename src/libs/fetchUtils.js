@@ -7,9 +7,21 @@ async function getItems(url) {
     throw new Error("can not get your items")
   }
 }
+
 async function getItemById(url, id) {
   try {
     const data = await fetch(`${url}/${id}`)
+    const item = await data.json()
+    return item
+  } catch (error) {
+    if (data.status === 404) return undefined
+    throw new Error("can not get your item")
+  }
+}
+
+async function getCartById(url, id) {
+  try {
+    const data = await fetch(`${url}/${id}/carts`)
     const item = await data.json()
     return item
   } catch (error) {
@@ -115,6 +127,7 @@ async function registerUser(url, userData) {
       location: userData.location || " ",
       contact: userData.contact || " ",
       balance: 0,
+      carts: []
     }
 
     // Add the new user to the database
@@ -216,6 +229,8 @@ async function addProductWithImage(url, newItem) {
 
   return addItem(url, productWithImage)
 }
+
+
 
 export {
   getItems,

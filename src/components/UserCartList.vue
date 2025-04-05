@@ -11,9 +11,10 @@ import CalculatePriceBar from "./CalculatePriceBar.vue";
 
 const combindCart = ref([]);
 const checkboxData = ref([])
+const testCartUser = ref([])
 onMounted(async () => {
   combindCart.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`);
-
+  console.log(combindCart.value[0]);
   const storedUser = localStorage.getItem("currentUser");
   if (storedUser) {
     currentUser.value = JSON.parse(storedUser);
