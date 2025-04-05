@@ -178,6 +178,16 @@
       "role": "user",
       "location": "",
       "contact": ""
+    },
+    {
+      "id": "10",
+      "username": "testhashuser",
+      "password": "QWIxMjM0NUA=",
+      "email": "testhashuser@gmail.com",
+      "role": "user",
+      "location": "dqwdqw",
+      "contact": "312312",
+      "balance": 0
     }
   ],
   "tracking": [

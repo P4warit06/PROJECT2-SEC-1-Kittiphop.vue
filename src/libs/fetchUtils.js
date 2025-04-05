@@ -89,11 +89,14 @@ async function registerUser(url, userData) {
         ? String(Math.max(...allUsers.map((user) => parseInt(user.id))) + 1)
         : "1"
 
+        // Hash password ก่อนบันทึก
+    const hashedPassword =  btoa(userData.password);
+
     // Create new user object with default role "user"
     const newUser = {
       id: newId,
       username: userData.username,
-      password: userData.password,
+      password: hashedPassword,
       email: userData.email,
       role: "user",
       location: userData.location || " ",
@@ -136,8 +139,9 @@ async function checkEmailExists(url, email) {
 async function login(url, email, password) {
   try {
     const users = await getItems(`${url}/users`)
+    const hashedInputPassword = btoa(password);
     const user = users.find(
-      (user) => user.email === email && user.password === password
+      (user) => user.email === email && user.password === hashedInputPassword
     )
 
     if (!user) {
@@ -183,8 +187,6 @@ async function topUpBalance(url, userId, amount) {
     throw new Error("Failed to top up: " + error.message);
   }
 }
-
-
 
 
 export {
