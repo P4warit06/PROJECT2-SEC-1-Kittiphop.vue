@@ -1,14 +1,16 @@
 <script setup>
 import CartModel from "./model/CartModel.vue";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import {
   getItems,
   editItem,
   deleteItemById,
   getItemById,
 } from "@/libs/fetchUtils";
+import CalculatePriceBar from "./CalculatePriceBar.vue";
 
 const combindCart = ref([]);
+const checkboxData = ref([])
 onMounted(async () => {
   combindCart.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`);
 
@@ -189,6 +191,7 @@ const handleBuy = async (product) => {
     errorMessage.value = "An error occurred during purchase";
   }
 };
+
 </script>
 
 <template>
@@ -219,7 +222,7 @@ const handleBuy = async (product) => {
 
     <div class="p-6 bg-gray-100 min-h-screen">
       <div class="w-full flex flex-col justify-between items-center mb-6">
-        <div class="w-full flex">
+        <!-- <div class="w-full flex">
           <div class="w-5/6">
             <input
               type="text"
@@ -234,7 +237,7 @@ const handleBuy = async (product) => {
               Search
             </button>
           </div>
-        </div>
+        </div> -->
 
         <div class="w-full flex justify-between items-center">
           <div class="flex items-center space-x-2 border p-3 rounded-lg mt-4">
@@ -272,6 +275,10 @@ const handleBuy = async (product) => {
             class="flex items-center justify-between p-4 bg-white shadow-lg rounded-lg mb-4"
           >
             <div class="flex flex-col space-y-1">
+              <div>
+                <input type="checkbox" :value="yourProduct" v-model="checkboxData">
+              </div>
+
               <router-link class="flex flex-col" :to="{name: 'UserProductDetail', params: {productId: yourProduct.id}}">
               <span class="text-xl font-semibold text-gray-900">{{
                 yourProduct.name
@@ -316,17 +323,11 @@ const handleBuy = async (product) => {
                 </button>
               </div>
             </div>
-            <div class="flex items-center space-x-2">
-              <button
-                @click="handleBuy(yourProduct)"
-                class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200"
-              >
-                Buy
-              </button>
-            </div>
           </div>
         </template>
       </CartModel>
+
+      <CalculatePriceBar :products="checkboxData"></CalculatePriceBar>
     </div>
   </div>
 </template>
