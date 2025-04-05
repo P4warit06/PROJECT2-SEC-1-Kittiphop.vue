@@ -59,7 +59,7 @@ const routes = [
         component: ProductDetail
     },
     {
-        path: '/user-productDetail/:productId',
+        path: '/user-product-detail/:productId',
         name: 'UserProductDetail',
         component: UserProductDetails
     },
@@ -89,4 +89,24 @@ const routes = [
 const router = createRouter({ history,
      routes, 
     })
-export default router
+    router.beforeEach((to, from) => {
+        const isAuthenticated = localStorage.getItem('currentUser') !== null;
+        const publicPaths = ['UserProduct', 'UserProductDetail', 'Home','Login','SignUp','PageNotFound'];
+
+        if (to.name === 'ProductManager' && 'currentUser' in localStorage) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser.role !== 'admin') {
+                return { name: 'UserProduct' };
+            }
+        }
+
+        if (!isAuthenticated && !publicPaths.includes(to.name)) {
+            return { name: 'Login' };
+        }
+
+        if (to.name === 'Login' && isAuthenticated) {
+            return { name: 'Home' };
+        }
+    });
+
+    export default router

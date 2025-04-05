@@ -105,19 +105,19 @@ async function submitForm(event) {
 }
 
 function closeModal() {
-  showSuccessModal.value = false;
-  router.push("/login");
+  showSuccessModal.value = false
+  router.push("/login")
 }
 
 function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
 }
 function isPasswordValid(password) {
-  const hasMinLength = password.length >= 8;
-  const hasNumber = /\d/.test(password);
-  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  return hasMinLength && hasNumber && hasSpecial;
+  const hasMinLength = password.length >= 8
+  const hasNumber = /\d/.test(password)
+  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+  return hasMinLength && hasNumber && hasSpecial
 }
 </script>
 
@@ -240,22 +240,23 @@ function isPasswordValid(password) {
         <div class="flex justify-center space-x-4">
           <button
             type="button"
-            class="w-10 h-10 rounded-full border border-red-500 flex items-center justify-center"
+            class="w-10 h-10 rounded-full border border-red-500 flex items-center justify-center text-red-500 hover:text-white hover:bg-red-500  transition cursor-pointer"
           >
-            <span class="text-red-500 font-bold">G</span>
+            <span class=" font-bold ">G</span>
           </button>
           <button
             type="button"
-            class="w-10 h-10 rounded-full border border-blue-500 flex items-center justify-center"
+            class="w-10 h-10 rounded-full border border-blue-500 flex items-center justify-center hover:text-white text-blue-500 hover:bg-blue-500 transition cursor-pointer"
           >
-            <span class="text-blue-500 font-bold">f</span>
+            <span class=" font-bold">f</span>
           </button>
           <button
             type="button"
-            class="w-10 h-10 rounded-full border border-blue-600 flex items-center justify-center"
+            class="w-10 h-10 rounded-full border border-blue-600 flex items-center justify-center hover:bg-blue-600  text-blue-600  hover:text-white transition cursor-pointer"
           >
-            <span class="text-blue-600 font-bold">in</span>
+            <span class="font-bold">in</span>
           </button>
+          
         </div>
 
         <div class="text-center mt-4">
