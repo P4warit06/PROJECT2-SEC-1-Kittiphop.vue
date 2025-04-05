@@ -15,33 +15,44 @@ const calculateQuantity = computed(() => {
 const calculatePrice = computed(() => {
     return productData.value.reduce((total, product) => total + product.price, 0)
 })
+const clearSelect = () => {
+    productData.value.length = 0
+}
 </script>
 
 <template>
-    <div class="w-full h-42 p-5 bg-white rounded-lg shadow-lg">
-        <div class="w-full h-full flex justify-between items-center">
-            <div class="flex items-center">
-                <span class="mr-1">Select Products: </span>
-                <p class="text-xl font-bold text-center text-blue-500">{{ productData.length }}</p>
-                
-            </div>
-            <div class="flex justify-between items-center">
-                <div class="flex flex-col items-start">
-                    <div class="flex items-center">
-                        <h1 class="mr-1">Price:</h1>
-                        <h1 class="text-xl font-bold text-blue-500">{{ calculatePrice.toFixed(2) }}</h1>
-                    </div>
-
-                    <div class="flex items-center">
-                        <h1 class="mr-1">Quantity:</h1>
-                        <h1 class="text-xl font-bold text-blue-500">{{ calculateQuantity }}</h1>
-                    </div>
-                </div>
-                <div class="mx-5">
-                    <button class="bg-blue-300 px-40 py-5 rounded-lg cursor-pointer hover:opacity-80">Buy</button>
-                </div>
-            </div>
+<div class="w-full p-15 bg-white rounded-lg shadow-lg">
+  <div class="w-full h-full flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
+    <div class="flex flex-col md:flex-row md:items-center">
+      <div class="flex items-center md:justify-start">
+        <span class="mr-1">Select Products: </span>
+        <p class="text-xl font-bold text-blue-500">{{ productData.length }}</p>
+        <div v-show="productData.length > 0" class="ml-3">
+          <button @click="clearSelect()" class="underline cursor-pointer">Clear</button>
         </div>
+      </div>
     </div>
+    
+    <div class="flex flex-col gap-4 md:flex-row md:items-center">
+      <div class="flex flex-col items-start md:items-start">
+        <div class="flex items-center">
+          <h1 class="mr-1">Total Price:</h1>
+          <h1 class="text-xl font-bold text-blue-500">{{ calculatePrice.toFixed(2) }}</h1>
+        </div>
+        <div class="flex items-center">
+          <h1 class="mr-1">Quantity:</h1>
+          <h1 class="text-xl font-bold text-blue-500">{{ calculateQuantity }}</h1>
+        </div>
+      </div>
+      <div class="w-full md:w-auto">
+        <button class="w-full md:w-72 bg-blue-300 px-10 py-3 rounded-lg cursor-pointer hover:opacity-80">
+          Buy
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 </template>
