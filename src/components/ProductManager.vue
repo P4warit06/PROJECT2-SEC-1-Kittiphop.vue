@@ -213,9 +213,8 @@ const cancelAdd = () => {
   <div class="p">
     <HeaderManager />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
-    <ProductTracker />
     <button @click="isAdding = !isAdding"
-      class="px-4 py-2 bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105">
+      class="mt-2 mx-3 px-5 py-2 bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105">
       Add New Product
     </button>
 
