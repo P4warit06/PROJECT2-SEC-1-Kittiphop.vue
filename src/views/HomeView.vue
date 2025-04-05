@@ -1,6 +1,9 @@
 <script setup>
 import { useRouter } from "vue-router"
 import { ref, onMounted } from "vue"
+import { useProducts } from '@/stores/products'
+import ProductList from '@/components/ProductList.vue'
+
 
 const about = ref(null)
 const explore = ref(null)
@@ -9,11 +12,31 @@ const currentUser = ref(null)
 const isDropdownOpen = ref(false)
 const isMobileMenuOpen = ref(false)
 
+
+
+
+const productStore = useProducts()
+const isLoading = ref(true)
+
+
+onMounted(async () => {
+  try {
+    const productsData = await getItems('/products')
+    productStore.initialProducts(productsData)
+  } catch (error) {
+    console.error('Failed to load products:', error)
+  } finally {
+    isLoading.value = false
+  }
+})
+
+
 onMounted(() => {
   const userJson = localStorage.getItem("currentUser") // String
   if (userJson) {
     currentUser.value = JSON.parse(userJson) //แปลง String กลับเป็น Object
   }
+  
 })
 
 const router = useRouter()
@@ -252,6 +275,66 @@ const scrollToSection = (ref) => {
       </main>
     </div>
 
+    <div class="home-page">
+    <!-- ใช้ ProductList Component -->
+    <ProductList
+      :products="productStore.products"
+      :loading="isLoading"
+      title="สินค้าแนะนำ"
+      @select-product="handleSelectProduct"
+    />
+  </div>
+
+  
+
+    <div>
+    <!-- WHY CHOOSE US Section Page -->
+    <div class="relative min-h-screen">
+      <div class="absolute inset-0" :style="{
+          backgroundImage: `url(/images/explore-bg.png)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }" />
+
+      <main class="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-20 relative z-20 min-h-screen">
+        <div >
+      <div class="container mx-auto px-4">
+        <h2 class="text-white text-3xl sm:text-4xl md:text-5xl font-bold  sm:mb-30">WHY CHOOSE US</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Feature 1: Fast Delivery -->
+          <div class="text-center">
+            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4">
+              <span class="text-6xl">🚚</span>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2 text-white">Fast Delivery</h3>
+            <p class="text-white text-xl">Get your products delivered within 24 hours</p>
+          </div>
+
+          <!-- Feature 2: Quality Products -->
+          <div class="text-center">
+            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4">
+              <span class="text-6xl">⭐</span>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2 text-white">Quality Products</h3>
+            <p class="text-white text-xl">We ensure the highest quality standards</p>
+          </div>
+
+          <!-- Feature 3: Best Prices -->
+          <div class="text-center">
+            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4">
+              <span class="text-6xl">💰</span>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2 text-white">Best Prices</h3>
+            <p class="text-white text-xl">Competitive prices for all our products</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      </main>
+    </div>
+  </div>
+
     <!-- Explore Section -->
     <div ref="explore" class="relative min-h-screen">
       <div class="absolute inset-0"
@@ -319,4 +402,20 @@ a {
 .fixed {
   animation: fadeIn 0.2s ease-out forwards;
 }
+
+/* scrollbar */
+::-webkit-scrollbar {
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+}
+
 </style>
