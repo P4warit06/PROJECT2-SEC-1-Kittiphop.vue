@@ -343,23 +343,13 @@
       "contact": "0999999999"
     },
     {
-      "id": "2",
-      "username": "testhashuser",
-      "_comment": "password = QmIxMjM0NTY3ODlA = Ab12345@",
+      "id": "1",
+      "username": "a",
+      "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
-      "email": "testhashuser@gmail.com",
+      "email": "a@b.com",
       "role": "user",
-      "location": "999/999 ทุ่งครุ ประชาอุทิศ",
-      "contact": "0999999999",
-      "balance": 0
-    },
-    {
-      "id": "3",
-      "username": "smully",
-      "password": "QWIxMjM0NUA=",
-      "email": "smully@a.com",
-      "role": "user",
-      "location": "ddddd",
+      "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
       "contact": "0987654321",
       "balance": 0
     }

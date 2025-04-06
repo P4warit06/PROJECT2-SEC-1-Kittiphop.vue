@@ -11,20 +11,18 @@ const props = defineProps({
 
 const emit = defineEmits(['add-to-cart'])
 
+//062 Pongsakorn's
 const limitShowProduct = ref(10)
-
 const displayedProducts = computed(() => {
   return props.products.slice(0, limitShowProduct.value)
 })
-
 const hasMoreProducts = computed(() => {
   return limitShowProduct.value < props.products.length
 })
-
-
 const loadMoreProducts = () => {
   limitShowProduct.value += 10 
 }
+/*  ------------------ */
 
 const addToCart = (product) => {
   emit('add-to-cart', product)

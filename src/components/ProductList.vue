@@ -13,23 +13,18 @@ const props = defineProps({
     required: true,
   },
 })
-
 const selectProductList = ref([]);
-const limitShowProduct = ref(10); // จำนวนสินค้าที่แสดงเริ่มต้น
 
-// คำนวณสินค้าที่จะแสดง (10 ชิ้นแรก แล้วเพิ่มเมื่อคลิก Load More)
+//062 Pongsakorn's 
+const limitShowProduct = ref(10); 
 const displayedProducts = computed(() => {
-  return props.products.slice(0, limitShowProduct.value);
+  return props.products.slice(0, limitShowProduct.value)
 })
-
-// ตรวจสอบว่ายังมีสินค้าเหลือให้โหลดเพิ่มหรือไม่
 const hasMoreProducts = computed(() => {
-  return limitShowProduct.value < props.products.length;
+  return limitShowProduct.value < props.products.length
 })
-
-// ฟังก์ชันโหลดสินค้าเพิ่ม
 const loadMoreProducts = () => {
-  limitShowProduct.value += 10; // เพิ่มทีละ 10 ชิ้น
+  limitShowProduct.value += 10; 
 }
 </script>
 
