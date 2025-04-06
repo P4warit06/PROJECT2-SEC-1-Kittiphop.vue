@@ -151,7 +151,7 @@ const selectAll = (event) => {
 }
 
 const isSelectAll = computed(() => {
-  return combindCart.value.length > 0 && checkboxData.value.length === combindCart.value.length
+  return checkboxData.value.length === combindCart.value.length
 })
 
 </script>
