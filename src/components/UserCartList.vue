@@ -11,10 +11,11 @@ import CalculatePriceBar from "./CalculatePriceBar.vue";
 
 const combindCart = ref([]);
 const checkboxData = ref([])
-const testCartUser = ref([])
+const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
+const myUser = ref({})
 onMounted(async () => {
-  combindCart.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`);
-  console.log(combindCart.value[0]);
+  myUser.value = await getItemById(`${import.meta.env.VITE_APP_URL}/users`, getUser.value.id)
+  combindCart.value = [...myUser.value.carts]
   const storedUser = localStorage.getItem("currentUser");
   if (storedUser) {
     currentUser.value = JSON.parse(storedUser);
@@ -32,15 +33,13 @@ const addQuantity = async (item) => {
       console.log(unitPrice);
       item.quantity += 1;
       item.price = unitPrice * item.quantity;
-      const editProduct = await editItem(
-        `${import.meta.env.VITE_APP_URL}/carts`,
-        item.id,
-        item
-      );
       const productIndex = combindCart.value.findIndex(
         (product) => product.id === item.id
       );
-      combindCart.value.splice(productIndex, 1, editProduct);
+      combindCart.value.splice(productIndex, 1, item);
+      myUser.value.carts.splice(productIndex, 1, item);
+      console.log(myUser.value.carts);
+      await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
     } else {
       console.log("Stock is not enough or product not found.");
     }
@@ -51,74 +50,22 @@ const addQuantity = async (item) => {
 
 const decreaseQuantity = async (item) => {
   try {
+    const productIndex = combindCart.value.findIndex(
+          (product) => product.id === item.id
+    );
     if (item) {
       const unitPrice = item.price / item.quantity;
       item.quantity -= 1;
       if (item.quantity <= 0) {
-        const status = await deleteItemById(
-          `${import.meta.env.VITE_APP_URL}/carts`,
-          item.id
-        );
-        if (status === 200) {
-          const removeIndex = combindCart.value.findIndex(
-            (product) => product.id === item.id
-          );
-          if (removeIndex !== -1) {
-            combindCart.value.splice(removeIndex, 1);
-          }
-        }
+        combindCart.value.splice(productIndex, 1)
+        myUser.value.carts.splice(productIndex, 1)
+        await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
       } else {
         item.price -= unitPrice;
-        const editProduct = await editItem(
-          `${import.meta.env.VITE_APP_URL}/carts`,
-          item.id,
-          item
-        );
-        const productIndex = combindCart.value.findIndex(
-          (product) => product.id === item.id
-        );
-        combindCart.value.splice(productIndex, 1, editProduct);
+        combindCart.value.splice(productIndex, 1, item)
+        myUser.value.carts.splice(productIndex, 1, item)
+        await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
       }
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const inputQuantity = async (item) => {
-  try {
-    const product = combindCart.value.find((product) => product.id === item.id);
-    if (item && item.quantity < product.stock) {
-      const editProduct = await editItem(
-        `${import.meta.env.VITE_APP_URL}/carts`,
-        item.id,
-        item
-      );
-      const productIndex = combindCart.value.findIndex(
-        (product) => product.id === item.id
-      );
-      combindCart.value.splice(productIndex, 1, editProduct);
-      if (editProduct.quantity <= 0) {
-        const status = await deleteItemById(
-          `${import.meta.env.VITE_APP_URL}/carts`,
-          editProduct.id
-        );
-        if (status === 200) {
-          combindCart.value.splice(productIndex, 1);
-        }
-      }
-    } else if (item && item.quantity > product.stock) {
-      item.quantity = product.stock;
-      item.price = item.quantity * product.price;
-      const editProduct = await editItem(
-        `${import.meta.env.VITE_APP_URL}/carts`,
-        item.id,
-        item
-      );
-      const productIndex = combindCart.value.findIndex(
-        (product) => product.id === item.id
-      );
-      combindCart.value.splice(productIndex, 1, editProduct);
     }
   } catch (error) {
     console.log(error);
