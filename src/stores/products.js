@@ -1,6 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia"
 import { ref } from "vue"
 
+//062 Pongsakorn's
 export const useProducts = defineStore("products", () => {
   //state
   const products = ref([])
@@ -12,19 +13,15 @@ export const useProducts = defineStore("products", () => {
   const initialProducts = (initializedProducts) => {
     products.value = [...initializedProducts]
   }
-
   const addProduct = (product) => {
     products.value.push(product)
   }
-
   const editProduct = (editProduct, index) => {
     products.value.splice(index, 1, editProduct)
   }
-
   const deleteProduct = (index) => {
     products.value.splice(index, 1)
   }
-
   return {
     products,
     initialProducts,
@@ -33,7 +30,7 @@ export const useProducts = defineStore("products", () => {
     editProduct,
     deleteProduct,
   }
-}) // ปิดวงเล็บให้ถูกต้องที่นี่
+})
 
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useProducts, import.meta.hot))

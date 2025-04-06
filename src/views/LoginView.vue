@@ -40,6 +40,16 @@ const handleLogin = async () => {
       backgroundSize: 'cover',
     }"
   >
+  <button 
+      @click="router.push('/')" 
+      class="absolute top-4 left-4 md:top-8 md:left-8 p-2 rounded-full border-1 border-blue-700 bg-opacity-70 hover:bg-opacity-100 transition-all duration-200 text-gray-400 cursor-pointer hover:text-gray-600 shadow-sm"
+      aria-label="Back to home"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+        <path d="M19 12H5"></path>
+        <path d="M12 19l-7-7 7-7"></path>
+      </svg>
+    </button>
     <div class="w-full max-w-sm p-6 bg-white rounded-lg shadow-lg">
       <h2 class="text-2xl font-bold text-center text-gray-700">LOGIN</h2>
 

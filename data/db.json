@@ -344,14 +344,26 @@
       "carts": []
     },
     {
-      "id": "2",
-      "username": "testhashuser",
-      "_comment": "password = QmIxMjM0NTY3ODlA = Ab12345@",
+      "id": "1",
+      "username": "a",
+      "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
-      "email": "testhashuser@gmail.com",
+      "email": "a@b.com",
       "role": "user",
-      "location": "999/999 ทุ่งครุ ประชาอุทิศ",
-      "contact": "0999999999",
+      "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
+      "contact": "0987654321",
+      "balance": 0,
+      "carts": []
+    },
+    {
+      "id": "2",
+      "username": "b",
+      "_comment": "real password = Ab12345@",
+      "password": "QWIxMjM0NUA=",
+      "email": "b@a.com",
+      "role": "user",
+      "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
+      "contact": "0987654321",
       "balance": 0,
       "carts": []
     },
@@ -369,6 +381,8 @@
     {
       "id": "4",
       "username": "kittiphop2548",
+      "_comment": "real password = Ab12345@",
+      "password": "QWIxMjM0NUA=",
       "email": "kittiphop2548@gmail.com",
       "role": "user",
       "location": "KMUTT",
@@ -409,7 +423,7 @@
     {
       "id": "2",
       "userId": "2",
-      "status": "Processing"
+      "status": "Shipped"
     },
     {
       "id": "3",
@@ -440,74 +454,6 @@
       "id": "8",
       "userId": "8",
       "status": "Shipped"
-    }
-  ],
-  "carts": [
-    {
-      "id": "2",
-      "name": "Bluetooth Speaker",
-      "category": "Audio",
-      "price": 49.99,
-      "status": "Low Stock",
-      "stock": 4,
-      "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&auto=format&fit=crop&q=60",
-      "description": "Portable bluetooth speaker with 20hr battery life",
-      "quantity": 1
-    },
-    {
-      "id": "3",
-      "name": "Smartphone",
-      "category": "Electronics",
-      "price": 699.99,
-      "status": "Active",
-      "stock": 15,
-      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
-      "description": "Latest model smartphone with high-resolution camera",
-      "quantity": 1
-    },
-    {
-      "id": "4",
-      "name": "Fitness Tracker",
-      "category": "Wearables",
-      "price": 259.98,
-      "status": "Active",
-      "stock": 22,
-      "image": "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?w=800&auto=format&fit=crop&q=60",
-      "description": "Wearable fitness tracker with heart rate monitor",
-      "quantity": 2
-    },
-    {
-      "id": "5",
-      "name": "Noise Cancelling Headphones",
-      "category": "Audio",
-      "price": 199.99,
-      "status": "Active",
-      "stock": 12,
-      "image": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800&auto=format&fit=crop&q=60",
-      "description": "Premium noise cancelling headphones for immersive sound",
-      "quantity": 1
-    },
-    {
-      "id": "6",
-      "name": "Smart Glasses",
-      "category": "Wearables",
-      "price": 249.99,
-      "status": "Active",
-      "stock": 12,
-      "image": "/product-images/default-category-images/wearables.png",
-      "description": "Smart glasses with AR capabilities",
-      "quantity": 1
-    },
-    {
-      "id": "7",
-      "name": "External Hard Drive",
-      "category": "Electronics",
-      "price": 79.99,
-      "status": "Active",
-      "stock": 20,
-      "image": "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=800&auto=format&fit=crop&q=60",
-      "description": "Portable external hard drive with 2TB capacity",
-      "quantity": 1
     }
   ]
 }

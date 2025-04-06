@@ -1,11 +1,11 @@
 <script setup>
 import { ref, reactive } from "vue";
-import { registerUser, checkEmailExists } from "../libs/fetchUtils.js";
+import { registerUser, checkExistEmail } from "../libs/fetchUtils.js";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const currentStep = ref(1);
-const showSuccessModal = ref(false);
+const showSuccessRegister = ref(false);
 const formData = reactive({
   email: "",
   password: "",
@@ -16,35 +16,33 @@ const formData = reactive({
 });
 const errorMessage = ref("");
 const isLoading = ref(false);
-const registrationSuccess = ref(false);
+const isRegisterSuccessful = ref(false);
 
 async function nextStep(event) {
   if (event) event.preventDefault();
-  errorMessage.value = "";
-
+  errorMessage.value = ""
   if (!formData.email) {
     errorMessage.value = "Email is required";
-    return;
+    return
   }
-
-  if (!isValidEmail(formData.email)) {
+  if (!checkEmail(formData.email)) {
     errorMessage.value = "Please enter a valid email";
-    return;
+    return
   }
-
+  
   if (!formData.password) {
     errorMessage.value = "Password is required";
-    return;
+    return
   }
-
-  if (!isPasswordValid(formData.password)) {
+  if (!checkPassword(formData.password)) {
     errorMessage.value =
       "Password must be at least 8 characters with 1 number and 1 special character";
-    return;
+    return
   }
+  
   try {
     isLoading.value = true;
-    const emailExists = await checkEmailExists(
+    const emailExists = await checkExistEmail(
       import.meta.env.VITE_APP_URL,
       formData.email
     );
@@ -77,9 +75,23 @@ async function submitForm(event) {
   if (event) event.preventDefault();
 
   errorMessage.value = "";
+  // Validate location (address)
+  if (!formData.location) {
+    errorMessage.value = "Please enter your address";
+    return;
+  }
 
-  if (!formData.location || !formData.contact) {
-    errorMessage.value = "Please fill in all fields";
+  if (formData.location.length < 5) {
+    errorMessage.value = "Address should be at least 5 characters long";
+    return;
+  }
+
+  if (!formData.contact) {
+    errorMessage.value = "Please enter your phone number";
+    return;
+  }
+  if (!checkPhoneNumber(formData.contact)) {
+    errorMessage.value = "Please enter a valid phone number (10 digits starting with 0)";
     return;
   }
 
@@ -88,38 +100,42 @@ async function submitForm(event) {
     
     // Send the data to backend using the registerUser function
     const result = await registerUser(import.meta.env.VITE_APP_URL, formData);
-    console.log("Registration successful:", result);
-    registrationSuccess.value = true;
-
-    showSuccessModal.value = true;
-
+    isRegisterSuccessful.value = true;
+    showSuccessRegister.value = true;
     setTimeout(() => {
-      router.push("/login");
-    }, 5000);
+      router.push("/login")
+    }, 5000)
 
   } catch (error) {
-    console.error("Registration error:", error);
+    console.error("Registration error:", error)
     errorMessage.value = "Registration failed: " + error.message;
   } finally {
     isLoading.value = false;
   }
 }
 
-function closeModal() {
-  showSuccessModal.value = false;
-  router.push("/login");
+function checkPhoneNumber(phone) {
+  const phoneRegex = /^0[2689]\d{8}$/;
+  return phoneRegex.test(phone);
 }
 
-function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+function closeModal() {
+  showSuccessRegister.value = false
+  router.push("/login")
 }
-function isPasswordValid(password) {
-  const hasMinLength = password.length >= 8;
-  const hasNumber = /\d/.test(password);
-  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  return hasMinLength && hasNumber && hasSpecial;
+
+function checkEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
 }
+function checkPassword(password) {
+  const hasMinLength = password.length >= 8
+  const hasNumber = /\d/.test(password)
+  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+  return hasMinLength && hasNumber && hasSpecial
+}
+
+
 </script>
 
 <template>
@@ -129,7 +145,20 @@ function isPasswordValid(password) {
       backgroundImage: `url(/images/authen-bg.png)`,
       backgroundSize: 'cover',
     }"
+    
   >
+   <!-- Back arrow button -->
+   <button 
+      @click="router.push('/')" 
+      class="absolute top-4 left-4 md:top-8 md:left-8 p-2 rounded-full border-1 border-blue-700 bg-opacity-70 hover:bg-opacity-100 transition-all duration-200 text-gray-400 cursor-pointer hover:text-gray-600 shadow-sm"
+      aria-label="Back to home"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+        <path d="M19 12H5"></path>
+        <path d="M12 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+  
     <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
       <div class="flex justify-center mb-6">
         <h2 class="text-2xl font-bold text-center text-gray-700">SIGN UP</h2>
@@ -179,7 +208,7 @@ function isPasswordValid(password) {
         </div>
       </div>
       <div
-        v-if="registrationSuccess"
+        v-if="isRegisterSuccessful"
         class="mb-4 p-2 bg-green-100 text-green-700 rounded"
       >
         Registration successful! Redirecting to login page...
@@ -226,7 +255,7 @@ function isPasswordValid(password) {
         <button
           type="submit"
           :disabled="isLoading"
-          class="w-full bg-blue-500 text-white py-3 rounded-md font-medium hover:bg-blue-600 transition disabled:opacity-50"
+          class="w-full bg-blue-500 text-white py-3 rounded-md font-medium hover:bg-blue-600 transition disabled:opacity-50 cursor-pointer"
         >
           <span v-if="isLoading">Processing...</span>
           <span v-else>NEXT</span>
@@ -241,22 +270,23 @@ function isPasswordValid(password) {
         <div class="flex justify-center space-x-4">
           <button
             type="button"
-            class="w-10 h-10 rounded-full border border-red-500 flex items-center justify-center"
+            class="w-10 h-10 rounded-full border border-red-500 flex items-center justify-center text-red-500 hover:text-white hover:bg-red-500  transition cursor-pointer"
           >
-            <span class="text-red-500 font-bold">G</span>
+            <span class=" font-bold ">G</span>
           </button>
           <button
             type="button"
-            class="w-10 h-10 rounded-full border border-blue-500 flex items-center justify-center"
+            class="w-10 h-10 rounded-full border border-blue-500 flex items-center justify-center hover:text-white text-blue-500 hover:bg-blue-500 transition cursor-pointer"
           >
-            <span class="text-blue-500 font-bold">f</span>
+            <span class=" font-bold">f</span>
           </button>
           <button
             type="button"
-            class="w-10 h-10 rounded-full border border-blue-600 flex items-center justify-center"
+            class="w-10 h-10 rounded-full border border-blue-600 flex items-center justify-center hover:bg-blue-600  text-blue-600  hover:text-white transition cursor-pointer"
           >
-            <span class="text-blue-600 font-bold">in</span>
+            <span class="font-bold">in</span>
           </button>
+          
         </div>
 
         <div class="text-center mt-4">
@@ -274,34 +304,39 @@ function isPasswordValid(password) {
         @submit.prevent="submitForm"
         class="space-y-4"
       >
-        <div>
-          <label for="location" class="block text-gray-600 mb-1"
-            >Location</label
-          >
-          <input
-            v-model="formData.location"
-            type="text"
-            id="location"
-            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          />
-        </div>
-        <div>
-          <label for="contact" class="block text-gray-600 mb-1">Contact</label>
-          <input
-            v-model="formData.contact"
-            type="text"
-            id="contact"
-            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          />
-        </div>
+      <div>
+      <label for="location" class="block text-gray-600 mb-1"
+        >Address</label
+      >
+      <input
+        v-model="formData.location"
+        type="text"
+        id="location"
+        placeholder="e.g. 126 Pracha Uthit Rd, Bangkok 10140"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+    </div>
+    <div>
+      <label for="contact" class="block text-gray-600 mb-1">Phone Number</label>
+      <input
+        v-model="formData.contact"
+        type="tel"
+        id="contact"
+        placeholder="e.g. 0812357969"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+      <p class="text-gray-400 text-sm mt-1">
+        Please enter a valid Thai phone number (10 digits starting with 0)
+      </p>
+    </div>
 
         <button
           type="submit"
-          :disabled="isLoading || registrationSuccess"
-          class="w-full bg-blue-500 text-white py-3 rounded-md font-medium hover:bg-blue-600 transition disabled:opacity-50"
+          :disabled="isLoading || isRegisterSuccessful"
+          class="w-full bg-blue-500 text-white py-3 rounded-md font-medium hover:bg-blue-600 transition disabled:opacity-50 cursor-pointer"
         >
           <span v-if="isLoading">Processing...</span>
-          <span v-else-if="registrationSuccess">Success!</span>
+          <span v-else-if="isRegisterSuccessful">Success!</span>
           <span v-else>SIGN UP</span>
         </button>
 
@@ -309,8 +344,8 @@ function isPasswordValid(password) {
           <button
             type="button"
             @click="prevStep"
-            class="text-blue-500"
-            :disabled="isLoading || registrationSuccess"
+            class="text-blue-500 hover:underline cursor-pointer"
+            :disabled="isLoading || isRegisterSuccessful"
           >
             Back
           </button>
@@ -319,7 +354,7 @@ function isPasswordValid(password) {
     </div>
 
     <!-- Success Modal -->
-    <div v-if="showSuccessModal" class="fixed inset-0 flex items-center justify-center z-50">
+    <div v-if="showSuccessRegister" class="fixed inset-0 flex items-center justify-center z-50">
       <div class="absolute inset-0 bg-black opacity-50" @click="closeModal"></div>
       <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 z-10 shadow-xl">
         <div class="text-center">

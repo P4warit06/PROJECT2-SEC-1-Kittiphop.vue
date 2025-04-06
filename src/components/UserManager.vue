@@ -8,9 +8,10 @@ import { getItems } from '../libs/fetchUtils.js'
 const myUsers = ref([]);
 onMounted( async () => {
     try{
-        myUsers.value = await getItems(
+        const allUsers = myUsers.value = await getItems(
            `${import.meta.env.VITE_APP_URL}/users`
         )
+        myUsers.value = allUsers.filter(user => user.role !== 'admin')
     console.log(myUsers.value)
     }
     catch(error){
