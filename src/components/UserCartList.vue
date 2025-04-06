@@ -257,7 +257,7 @@ const isSelectAll = computed(() => {
                 </router-link>
               </div>
 
-              <div class="flex justify-center items-center space-x-2 w-full md:w-auto">
+              <div class="sm:flex sm:justify-center sm:items-center sm:space-x-2 sm:w-full sm:w-auto">
                 <button
                   @click="decreaseQuantity(yourProduct)"
                   class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300"
@@ -270,7 +270,7 @@ const isSelectAll = computed(() => {
                   v-model="yourProduct.quantity"
                   min="0"
                   :max="yourProduct.stock"
-                  class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-lg font-semibold"
+                  class="mx-1 w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-lg font-semibold"
                 />
 
                 <button

@@ -21,7 +21,7 @@ const clearSelect = () => {
 </script>
 
 <template>
-<div class="w-full p-15 bg-white rounded-lg shadow-lg">
+<div class="w-full p-10 bg-white rounded-lg shadow-lg">
   <div class="w-full h-full flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
     <div class="flex flex-col md:flex-row md:items-center">
       <div class="flex items-center md:justify-start">
