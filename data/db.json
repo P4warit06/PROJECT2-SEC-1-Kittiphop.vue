@@ -365,7 +365,30 @@
       "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
       "contact": "0987654321",
       "balance": 0,
-      "carts": []
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 179.98,
+          "status": "Active",
+          "stock": 27,
+          "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 2
+        },
+        {
+          "id": "5",
+          "name": "Smartphone",
+          "category": "Electronics",
+          "price": 699.99,
+          "status": "Active",
+          "stock": 15,
+          "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
+          "description": "Latest model smartphone with high-resolution camera",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "3",

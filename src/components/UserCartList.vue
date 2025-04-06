@@ -202,8 +202,8 @@ const isSelectAll = computed(() => {
           </div>
         </div> -->
 
-        <div class="w-full flex justify-between items-center">
-          <div class="flex items-center space-x-2 border p-3 rounded-lg mt-4">
+        <div class="w-full flex flex-col md:flex-row md:justify-between md:items-center">
+          <div class="flex items-center space-x-2 border p-3 rounded-lg mt-4 w-full md:w-auto">
             <input
               @change="selectAll"
               :checked="isSelectAll"
@@ -213,8 +213,8 @@ const isSelectAll = computed(() => {
             />
             <label for="selectAll" class="text-lg text-black">Select All</label>
           </div>
-          <div class="flex items-center space-x-2 border rounded-lg mt-4">
-            <select class="p-3">
+          <div class="flex items-center space-x-2 border rounded-lg mt-4 w-full md:w-auto">
+            <select class="p-3 w-full md:w-auto">
               <option disabled value="">Select category</option>
               <option value="">Select category</option>
               <option value="">Select category</option>
@@ -223,73 +223,66 @@ const isSelectAll = computed(() => {
           </div>
         </div>
       </div>
-
+      
       <CartModel :products="combindCart">
-        <template #heading>
-          <h1 class="text-3xl font-bold text-gray-800 mb-4">Order</h1>
-          <div
-            v-show="combindCart.length <= 0"
-            class="w-full flex justify-center items-center my-5"
-          >
-            <h1 class="text-4xl text-gray-500">No products available</h1>
-          </div>
-        </template>
+          <template #heading>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 text-center md:text-left">Order</h1>
+            <div
+              v-show="combindCart.length <= 0"
+              class="w-full flex justify-center items-center my-5"
+            >
+              <h1 class="text-xl md:text-4xl text-gray-500 text-center">No products available</h1>
+            </div>
+          </template>
 
-        <template #listProduct="{ yourProduct }">
-          <div
-            class="flex items-center justify-between p-4 bg-white shadow-lg rounded-lg mb-4"
-          >
-            <div class="flex flex-col space-y-1">
-              <div>
-                <input type="checkbox" :value="yourProduct" v-model="checkboxData">
+          <template #listProduct="{ yourProduct }">
+            <div
+              class="flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-white shadow-lg rounded-lg mb-4 space-y-4 md:space-y-0"
+            >
+              <div class="flex flex-col space-y-2 w-full md:w-2/3">
+                <div>
+                  <input type="checkbox" :value="yourProduct" v-model="checkboxData">
+                </div>
+
+                <router-link class="flex flex-col" :to="{name: 'UserProductDetail', params: {productId: yourProduct.id}}">
+                  <span class="text-lg md:text-xl font-semibold text-gray-900">{{ yourProduct.name }}</span>
+                  <span class="text-sm md:text-lg text-green-600">
+                    Price:
+                    <span class="font-bold">{{ yourProduct.price.toFixed(2) }}</span>
+                  </span>
+                  <span class="text-sm text-gray-600">
+                    Stock:
+                    <span class="font-semibold">{{ yourProduct.stock }}</span>
+                  </span>
+                </router-link>
               </div>
 
-              <router-link class="flex flex-col" :to="{name: 'UserProductDetail', params: {productId: yourProduct.id}}">
-              <span class="text-xl font-semibold text-gray-900">{{
-                yourProduct.name
-              }}</span>
-              <span class="text-lg text-green-600"
-                >Price:
-                <span class="font-bold">{{
-                  yourProduct.price.toFixed(2)
-                }}</span></span
-              >
-              <span class="text-sm text-gray-600"
-                >Stock:
-                <span class="font-semibold">{{ yourProduct.stock }}</span></span
-              >
-              </router-link>
-            </div>
-            <div class="flex justify-center items-center space-x-2">
-              <div>
+              <div class="flex justify-center items-center space-x-2 w-full md:w-auto">
                 <button
                   @click="decreaseQuantity(yourProduct)"
-                  class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 cursor-pointer"
+                  class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300"
                 >
                   -
                 </button>
-              </div>
-              <div>
+
                 <input
                   type="number"
                   v-model="yourProduct.quantity"
                   min="0"
                   :max="yourProduct.stock"
-                  class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-xl font-semibold bg-white"
+                  class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-lg font-semibold"
                 />
-              </div>
-              <div>
+
                 <button
                   @click="addQuantity(yourProduct)"
-                  class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer"
+                  class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
                 >
                   +
                 </button>
               </div>
             </div>
-          </div>
-        </template>
-      </CartModel>
+          </template>
+        </CartModel>
       <CalculatePriceBar :products="checkboxData" @buy="handleBuy"></CalculatePriceBar>
     </div>
   </div>
