@@ -7,24 +7,35 @@ import { getItems, getItemById, editItem, addItem } from '../libs/fetchUtils.js'
 import {useProducts} from '../stores/products.js'
 const {initialProducts, getProducts } =useProducts();
 
+import { useRouter } from 'vue-router'
+
 const myUser = ref(JSON.parse(localStorage.getItem("currentUser")));
-const myCarts = ref(myUser.value.carts)
-console.log(myUser.value);
+const myCarts = ref(myUser.value?.carts || [])
+console.log(`CurrentUser : ${myUser.value}`);
 
 
 const count = computed(() => {
-  return myCarts.value.reduce((total, cart) => total + cart.quantity, 0);
+  return myCarts.value?.reduce((total, cart) => total + (cart.quantity || 0), 0) || 0;
 })
 
 onMounted(async () => {
   try {
+    const userData = localStorage.getItem("currentUser")
+    if (userData) {
+      myUser.value = JSON.parse(userData)
+      myCarts.value = myUser.value?.carts || []
+    } else {
+      console.warn("No user logged in");
+    }
+
     const fetchedProducts = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
     initialProducts(fetchedProducts)
     
     // myCarts.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
     console.log(count.value);
   } catch(error) {
-    console.log(error);
+    console.error("Error in UserProductManager setup:", error);
+    //เพิ่ม error message ให้ user เห็น
   }
 })
 
