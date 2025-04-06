@@ -13,6 +13,7 @@ const combindCart = ref([]);
 const checkboxData = ref([])
 const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
 const myUser = ref({})
+
 onMounted(async () => {
   myUser.value = await getItemById(`${import.meta.env.VITE_APP_URL}/users`, getUser.value.id)
   combindCart.value = [...myUser.value.carts]
@@ -140,6 +141,19 @@ const handleBuy = async (product) => {
   }
 };
 
+const selectAll = (event) => {
+  console.log(event.target.checked);
+  if (event.target.checked) {
+    checkboxData.value = [...combindCart.value]
+  } else {
+    checkboxData.value = []
+  } 
+}
+
+const isSelectAll = computed(() => {
+  return combindCart.value.length > 0 && checkboxData.value.length === combindCart.value.length
+})
+
 </script>
 
 <template>
@@ -191,6 +205,8 @@ const handleBuy = async (product) => {
         <div class="w-full flex justify-between items-center">
           <div class="flex items-center space-x-2 border p-3 rounded-lg mt-4">
             <input
+              @change="selectAll"
+              :checked="isSelectAll"
               type="checkbox"
               id="selectAll"
               class="h-5 w-5 text-blue-500"
@@ -255,7 +271,6 @@ const handleBuy = async (product) => {
               </div>
               <div>
                 <input
-                  @input="inputQuantity(yourProduct)"
                   type="number"
                   v-model="yourProduct.quantity"
                   min="0"
@@ -281,7 +296,6 @@ const handleBuy = async (product) => {
 </template>
 
 <style scoped>
-/* Your optional animations */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;

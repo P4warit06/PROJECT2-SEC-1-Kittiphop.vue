@@ -376,15 +376,26 @@
       "balance": 0,
       "carts": [
         {
-          "id": "31",
-          "name": "Test Default Accessories Image",
-          "category": "Accessories",
-          "price": 1,
-          "status": "Low Stock",
-          "stock": 1,
-          "image": "/product-images/default-category-images/accessories.png",
-          "description": "Test Default Accessories Image",
-          "quantity": 1
+          "id": "20",
+          "name": "VR Headset",
+          "category": "Electronics",
+          "price": 1599.96,
+          "status": "Active",
+          "stock": 10,
+          "image": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
+          "description": "Immersive VR headset for gaming and entertainment",
+          "quantity": 4
+        },
+        {
+          "id": "5",
+          "name": "Smartphone",
+          "category": "Electronics",
+          "price": 1399.98,
+          "status": "Active",
+          "stock": 15,
+          "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
+          "description": "Latest model smartphone with high-resolution camera",
+          "quantity": 2
         }
       ]
     }
