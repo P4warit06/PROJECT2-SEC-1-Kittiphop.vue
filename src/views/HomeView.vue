@@ -124,7 +124,11 @@ const scrollToSection = (ref) => {
                   </button>
 
                   <div v-if="isDropdownOpen" @click.stop
-                    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 ">
+                    <router-link :to="{name : 'UserProfile', params: { userId: currentUser.id }}"
+                      class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150">
+                      <p class="cursor-pointer">Profile</p>
+                    </router-link>
                     <button @click="handleLogout"
                       class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150">
                       <p class="cursor-pointer">Logout</p>
