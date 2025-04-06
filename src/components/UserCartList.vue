@@ -229,7 +229,7 @@ const isSelectAll = computed(() => {
           <h1 class="text-3xl font-bold text-gray-800 mb-4">Order</h1>
           <div
             v-show="combindCart.length <= 0"
-            class="w-full flex justify-center items-center"
+            class="w-full flex justify-center items-center my-5"
           >
             <h1 class="text-4xl text-gray-500">No products available</h1>
           </div>
