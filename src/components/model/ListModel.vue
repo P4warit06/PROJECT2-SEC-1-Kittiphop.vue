@@ -33,7 +33,7 @@ const props = defineProps({
       <div
         v-for="(item, index) in items"
         :key="index"
-        class="border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-4"
+        class="border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-4"
       >
         <slot name="listItems" :yourItem="item">Enter your list item</slot>
       </div>
