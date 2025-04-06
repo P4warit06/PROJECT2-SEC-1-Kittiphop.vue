@@ -12,6 +12,7 @@ const formData = reactive({
   username: "",
   location: "",
   contact: "",
+  carts: []
 });
 const errorMessage = ref("");
 const isLoading = ref(false);
@@ -96,7 +97,7 @@ async function submitForm(event) {
 
   try {
     isLoading.value = true;
-
+    
     // Send the data to backend using the registerUser function
     const result = await registerUser(import.meta.env.VITE_APP_URL, formData);
     isRegisterSuccessful.value = true;

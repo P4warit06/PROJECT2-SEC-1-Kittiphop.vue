@@ -7,20 +7,35 @@ import { getItems, getItemById, editItem, addItem } from '../libs/fetchUtils.js'
 import {useProducts} from '../stores/products.js'
 const {initialProducts, getProducts } =useProducts();
 
-const myCarts = ref([])
+import { useRouter } from 'vue-router'
+
+const myUser = ref(JSON.parse(localStorage.getItem("currentUser")));
+const myCarts = ref(myUser.value?.carts || [])
+console.log(`CurrentUser : ${myUser.value}`);
+
+
 const count = computed(() => {
-  return myCarts.value.reduce((total, cart) => total + cart.quantity, 0);
+  return myCarts.value?.reduce((total, cart) => total + (cart.quantity || 0), 0) || 0;
 })
 
 onMounted(async () => {
   try {
+    const userData = localStorage.getItem("currentUser")
+    if (userData) {
+      myUser.value = JSON.parse(userData)
+      myCarts.value = myUser.value?.carts || []
+    } else {
+      console.warn("No user logged in");
+    }
+
     const fetchedProducts = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
     initialProducts(fetchedProducts)
     
-    myCarts.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
+    // myCarts.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
     console.log(count.value);
   } catch(error) {
-    console.log(error);
+    console.error("Error in UserProductManager setup:", error);
+    //เพิ่ม error message ให้ user เห็น
   }
 })
 
@@ -34,7 +49,7 @@ const addProductToCart = async (product) => {
                 const cartItem = myCarts.value[findIndexProduct];
                 if (cartItem.quantity < currentProduct.value.stock) {
                     cartItem.quantity += 1;
-                    cartItem.price = cartItem.quantity * currentProduct.value.price; // คำนวณราคาใหม่
+                    cartItem.price = cartItem.quantity * currentProduct.value.price;
                     const updatedCartItem = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, cartItem.id, cartItem);
                     myCarts.value.splice(findIndexProduct, 1, updatedCartItem);
                 } else {
@@ -46,9 +61,13 @@ const addProductToCart = async (product) => {
                   quantity: 1, 
                   price: currentProduct.value.price 
                 };
-                const addedCartItem = await addItem(`${import.meta.env.VITE_APP_URL}/carts`, newCartItem);
-                myCarts.value.push(addedCartItem);
-            }
+
+
+                myCarts.value.push(newCartItem);
+                console.log(myCarts.value)
+                myUser.value.carts.push(newCartItem)
+                await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
+              }
         }
     } catch (error) {
         console.log(error);

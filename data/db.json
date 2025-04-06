@@ -340,7 +340,8 @@
       "email": "admin@gmail.com",
       "role": "admin",
       "location": "29",
-      "contact": "0999999999"
+      "contact": "0999999999",
+      "carts": []
     },
     {
       "id": "1",
@@ -351,7 +352,66 @@
       "role": "user",
       "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
       "contact": "0987654321",
-      "balance": 0
+      "balance": 0,
+      "carts": []
+    },
+    {
+      "id": "2",
+      "username": "b",
+      "_comment": "real password = Ab12345@",
+      "password": "QWIxMjM0NUA=",
+      "email": "b@a.com",
+      "role": "user",
+      "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
+      "contact": "0987654321",
+      "balance": 0,
+      "carts": []
+    },
+    {
+      "id": "3",
+      "username": "Ohmmy",
+      "password": "b2htMTIzNDVA",
+      "email": "Ohmmy@gmail.com",
+      "role": "user",
+      "location": "KMUTT",
+      "contact": "0999999999",
+      "balance": 0,
+      "carts": []
+    },
+    {
+      "id": "4",
+      "username": "kittiphop2548",
+      "_comment": "real password = Ab12345@",
+      "password": "QWIxMjM0NUA=",
+      "email": "kittiphop2548@gmail.com",
+      "role": "user",
+      "location": "KMUTT",
+      "contact": "0999999999",
+      "balance": 0,
+      "carts": [
+        {
+          "id": "5",
+          "name": "Smartphone",
+          "category": "Electronics",
+          "price": 699.99,
+          "status": "Active",
+          "stock": 15,
+          "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
+          "description": "Latest model smartphone with high-resolution camera",
+          "quantity": 1
+        },
+        {
+          "id": "5",
+          "name": "Smartphone",
+          "category": "Electronics",
+          "price": 699.99,
+          "status": "Active",
+          "stock": 15,
+          "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
+          "description": "Latest model smartphone with high-resolution camera",
+          "quantity": 1
+        }
+      ]
     }
   ],
   "tracking": [
@@ -373,7 +433,7 @@
     {
       "id": "4",
       "userId": "4",
-      "status": "Pending"
+      "status": "Cancelled"
     },
     {
       "id": "5",
@@ -393,7 +453,7 @@
     {
       "id": "8",
       "userId": "8",
-      "status": "Pending"
+      "status": "Shipped"
     }
   ],
   "carts": [
@@ -405,7 +465,8 @@
       "status": "Low Stock",
       "stock": 1,
       "image": "/product-images/default-category-images/wearables.png",
-      "description": "1"
+      "description": "1",
+      "quantity": 1
     },
     {
       "id": "35",
