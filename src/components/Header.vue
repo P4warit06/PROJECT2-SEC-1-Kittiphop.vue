@@ -46,19 +46,18 @@ function toggleMenu() {
 
   <!-- NavBar User -->
     <nav class="hidden md:block">
-      <ul class="flex space-x-4">
+      <ul class="flex space-x-4 items-center">
         <li class="text-white font-bold">
           <router-link to="/user-products" class="hover:opacity-70">
-            Product
+            PRODUCT
           </router-link>
         </li>
         <li class="text-white font-bold">
           <router-link to="/home" class="hover:opacity-70">
-            About
+            ABOUT
           </router-link>
         </li>
-        <ul class="w-full cursor-pointer hover:opacity-80">
-          <li class="relative">
+        <li class="">
             <router-link to="/user-carts">
             <div class="relative inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 36 36"><!-- Icon from Clarity by VMware - https://github.com/vmware/clarity-assets/blob/master/LICENSE --><circle cx="13.5" cy="29.5" r="2.5" fill="currentColor" class="clr-i-solid clr-i-solid-path-1"/><circle cx="26.5" cy="29.5" r="2.5" fill="currentColor" class="clr-i-solid clr-i-solid-path-2"/><path fill="currentColor" d="M33.1 6.39a1 1 0 0 0-.79-.39H9.21l-.45-1.43a1 1 0 0 0-.66-.65L4 2.66a1 1 0 1 0-.59 1.92L7 5.68l4.58 14.47l-1.63 1.34l-.13.13A2.66 2.66 0 0 0 9.74 25A2.75 2.75 0 0 0 12 26h16.69a1 1 0 0 0 0-2H11.84a.67.67 0 0 1-.56-1l2.41-2h15.43a1 1 0 0 0 1-.76l3.2-13a1 1 0 0 0-.22-.85" class="clr-i-solid clr-i-solid-path-3"/><path fill="none" d="M0 0h36v36H0z"/></svg>
@@ -68,7 +67,7 @@ function toggleMenu() {
             </div>
             </router-link>
           </li>
-        </ul>
+  
       </ul>
     </nav>
 

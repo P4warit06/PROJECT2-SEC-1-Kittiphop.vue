@@ -6,6 +6,7 @@ import { ref } from 'vue';
 const {params: {productId}} = useRoute();
 const selectProduct = ref({})
 
+
 const getSelectProduct = async () => {
     try {
         selectProduct.value = await getItemById(`${import.meta.env.VITE_APP_URL}/products`, productId)
@@ -18,6 +19,7 @@ const router = useRouter()
 function goBack() {
   router.go(-1)
 }
+
 getSelectProduct()
 </script>
 
@@ -57,6 +59,7 @@ getSelectProduct()
                 Back
               </button>
             </div>
+            
           </div>
         </div>
       </div>

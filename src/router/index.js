@@ -88,7 +88,7 @@ const router = createRouter({ history, routes });
 
 //062 Pongsakorn's
 // Comment ไว้ก่อนเดี๋ยวเข้า path ลำบาก
-/*
+
 router.beforeEach((to, from) => {
   const isAuthenticated = localStorage.getItem("currentUser") !== null;
   const publicPaths = [
@@ -119,6 +119,6 @@ router.beforeEach((to, from) => {
     return { name: "Home" };
   }
 });
-*/
+
 
 export default router;
