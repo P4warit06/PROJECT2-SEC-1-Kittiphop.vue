@@ -33,8 +33,6 @@ async function deleteItemById(url, id) {
 async function addItem(url, newItem) {
   try {
     const allItems = await getItems(url)
-
-    // Generate a new item ID (highest ID + 1)
     const newId =
       allItems.length > 0
         ? String(Math.max(...allItems.map((item) => parseInt(item.id))) + 1)
@@ -45,13 +43,13 @@ async function addItem(url, newItem) {
       'Audio': '/product-images/default-category-images/audio.jpg',
       'Accessories': '/product-images/default-category-images/accessories.png',
       'Wearables': '/product-images/default-category-images/wearables.png'
-    };
+    }
 
     const productWithDefaults = {
       ...newItem,
       id: newId,
       image: newItem.image || categoryImages[newItem.category] || '/product-images/default-category-images/default.jpg'
-    };
+    }
 
     const res = await fetch(url, {
       method: "POST",
@@ -59,11 +57,11 @@ async function addItem(url, newItem) {
         "content-type": "application/json",
       },
       body: JSON.stringify(productWithDefaults),
-    });
-    const addedItem = await res.json();
-    return addedItem;
+    })
+    const addedItem = await res.json()
+    return addedItem
   } catch (error) {
-    throw new Error("can not add your item");
+    throw new Error("can not add your item")
   }
 }
 
@@ -92,19 +90,14 @@ async function editItem(url, id, editItem) {
 // 062 Pongsakorn's
 async function registerUser(url, userData) {
   try {
-    // Get all users to generate a new ID
     const allUsers = await getItems(`${url}/users`)
-
-    // Generate a new ID (highest ID + 1)
     const newId =
       allUsers.length > 0
         ? String(Math.max(...allUsers.map((user) => parseInt(user.id))) + 1)
         : "1"
 
-        // Hash password ก่อนบันทึก
-    const hashedPassword =  btoa(userData.password);
+    const hashedPassword =  btoa(userData.password)
 
-    // Create new user object with default role "user"
     const newUser = {
       id: newId,
       username: userData.username,
@@ -116,7 +109,6 @@ async function registerUser(url, userData) {
       balance: 0,
     }
 
-    // Add the new user to the database
     const res = await fetch(`${url}/users`, {
       method: "POST",
       headers: {
@@ -137,7 +129,7 @@ async function registerUser(url, userData) {
   }
 }
 // 062 Pongsakorn's
-async function checkEmailExists(url, email) {
+async function checkExistEmail(url, email) {
   try {
     const users = await getItems(`${url}/users`)
     return users.some((user) => user.email === email)
@@ -151,17 +143,13 @@ async function checkEmailExists(url, email) {
 async function login(url, email, password) {
   try {
     const users = await getItems(`${url}/users`)
-    const hashedInputPassword = btoa(password);
-
+    const hashedInputPassword = btoa(password)
     const user = users.find(
       (user) => user.email === email && user.password === hashedInputPassword
     )
-
     if (!user) {
       throw new Error("Invalid email or password")
     }
-
-    // Return the user without the password for security
     const { password: _, ...userWithoutPassword } = user
     return userWithoutPassword
   } catch (error) {
@@ -182,7 +170,7 @@ async function topUpBalance(url, userId, amount) {
     const updatedData = { 
       ...user,
       balance: newBalance
-    };
+    }
 
     const response = await fetch(`${url}/users/${userId}`, {
       method: "PUT",
@@ -192,12 +180,12 @@ async function topUpBalance(url, userId, amount) {
       body: JSON.stringify(updatedData)
     })
 
-    if (!response.ok) throw new Error("Update failed");
+    if (!response.ok) throw new Error("Update failed")
     
-    return await response.json();
+    return await response.json()
   } catch (error) {
-    console.error("Top-up error:", error);
-    throw new Error("Failed to top up: " + error.message);
+    console.error("Top-up error:", error)
+    throw new Error("Failed to top up: " + error.message)
   }
 }
 
@@ -208,7 +196,7 @@ export {
   addItem,
   editItem,
   registerUser,
-  checkEmailExists,
+  checkExistEmail,
   login,
   topUpBalance,
 }

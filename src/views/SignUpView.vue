@@ -1,11 +1,11 @@
 <script setup>
 import { ref, reactive } from "vue";
-import { registerUser, checkEmailExists } from "../libs/fetchUtils.js";
+import { registerUser, checkExistEmail } from "../libs/fetchUtils.js";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const currentStep = ref(1);
-const showSuccessModal = ref(false);
+const showSuccessRegister = ref(false);
 const formData = reactive({
   email: "",
   password: "",
@@ -15,35 +15,33 @@ const formData = reactive({
 });
 const errorMessage = ref("");
 const isLoading = ref(false);
-const registrationSuccess = ref(false);
+const isRegisterSuccessful = ref(false);
 
 async function nextStep(event) {
   if (event) event.preventDefault();
-  errorMessage.value = "";
-
+  errorMessage.value = ""
   if (!formData.email) {
     errorMessage.value = "Email is required";
-    return;
+    return
   }
-
-  if (!isValidEmail(formData.email)) {
+  if (!checkEmail(formData.email)) {
     errorMessage.value = "Please enter a valid email";
-    return;
+    return
   }
-
+  
   if (!formData.password) {
     errorMessage.value = "Password is required";
-    return;
+    return
   }
-
-  if (!isPasswordValid(formData.password)) {
+  if (!checkPassword(formData.password)) {
     errorMessage.value =
       "Password must be at least 8 characters with 1 number and 1 special character";
-    return;
+    return
   }
+  
   try {
     isLoading.value = true;
-    const emailExists = await checkEmailExists(
+    const emailExists = await checkExistEmail(
       import.meta.env.VITE_APP_URL,
       formData.email
     );
@@ -76,9 +74,23 @@ async function submitForm(event) {
   if (event) event.preventDefault();
 
   errorMessage.value = "";
+  // Validate location (address)
+  if (!formData.location) {
+    errorMessage.value = "Please enter your address";
+    return;
+  }
 
-  if (!formData.location || !formData.contact) {
-    errorMessage.value = "Please fill in all fields";
+  if (formData.location.length < 5) {
+    errorMessage.value = "Address should be at least 5 characters long";
+    return;
+  }
+
+  if (!formData.contact) {
+    errorMessage.value = "Please enter your phone number";
+    return;
+  }
+  if (!checkPhoneNumber(formData.contact)) {
+    errorMessage.value = "Please enter a valid phone number (10 digits starting with 0)";
     return;
   }
 
@@ -87,33 +99,35 @@ async function submitForm(event) {
 
     // Send the data to backend using the registerUser function
     const result = await registerUser(import.meta.env.VITE_APP_URL, formData);
-    console.log("Registration successful:", result);
-    registrationSuccess.value = true;
-
-    showSuccessModal.value = true;
-
+    isRegisterSuccessful.value = true;
+    showSuccessRegister.value = true;
     setTimeout(() => {
-      router.push("/login");
-    }, 5000);
+      router.push("/login")
+    }, 5000)
 
   } catch (error) {
-    console.error("Registration error:", error);
+    console.error("Registration error:", error)
     errorMessage.value = "Registration failed: " + error.message;
   } finally {
     isLoading.value = false;
   }
 }
 
+function checkPhoneNumber(phone) {
+  const phoneRegex = /^0[689]\d{8}$/;
+  return phoneRegex.test(phone);
+}
+
 function closeModal() {
-  showSuccessModal.value = false
+  showSuccessRegister.value = false
   router.push("/login")
 }
 
-function isValidEmail(email) {
+function checkEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return emailRegex.test(email)
 }
-function isPasswordValid(password) {
+function checkPassword(password) {
   const hasMinLength = password.length >= 8
   const hasNumber = /\d/.test(password)
   const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password)
@@ -178,7 +192,7 @@ function isPasswordValid(password) {
         </div>
       </div>
       <div
-        v-if="registrationSuccess"
+        v-if="isRegisterSuccessful"
         class="mb-4 p-2 bg-green-100 text-green-700 rounded"
       >
         Registration successful! Redirecting to login page...
@@ -274,34 +288,39 @@ function isPasswordValid(password) {
         @submit.prevent="submitForm"
         class="space-y-4"
       >
-        <div>
-          <label for="location" class="block text-gray-600 mb-1"
-            >Location</label
-          >
-          <input
-            v-model="formData.location"
-            type="text"
-            id="location"
-            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          />
-        </div>
-        <div>
-          <label for="contact" class="block text-gray-600 mb-1">Contact</label>
-          <input
-            v-model="formData.contact"
-            type="text"
-            id="contact"
-            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          />
-        </div>
+      <div>
+      <label for="location" class="block text-gray-600 mb-1"
+        >Address</label
+      >
+      <input
+        v-model="formData.location"
+        type="text"
+        id="location"
+        placeholder="e.g. 126 Pracha Uthit Rd, Bangkok 10140"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+    </div>
+    <div>
+      <label for="contact" class="block text-gray-600 mb-1">Phone Number</label>
+      <input
+        v-model="formData.contact"
+        type="tel"
+        id="contact"
+        placeholder="e.g. 0812357969"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+      <p class="text-gray-400 text-sm mt-1">
+        Please enter a valid Thai phone number (10 digits starting with 0)
+      </p>
+    </div>
 
         <button
           type="submit"
-          :disabled="isLoading || registrationSuccess"
+          :disabled="isLoading || isRegisterSuccessful"
           class="w-full bg-blue-500 text-white py-3 rounded-md font-medium hover:bg-blue-600 transition disabled:opacity-50"
         >
           <span v-if="isLoading">Processing...</span>
-          <span v-else-if="registrationSuccess">Success!</span>
+          <span v-else-if="isRegisterSuccessful">Success!</span>
           <span v-else>SIGN UP</span>
         </button>
 
@@ -310,7 +329,7 @@ function isPasswordValid(password) {
             type="button"
             @click="prevStep"
             class="text-blue-500"
-            :disabled="isLoading || registrationSuccess"
+            :disabled="isLoading || isRegisterSuccessful"
           >
             Back
           </button>
@@ -319,7 +338,7 @@ function isPasswordValid(password) {
     </div>
 
     <!-- Success Modal -->
-    <div v-if="showSuccessModal" class="fixed inset-0 flex items-center justify-center z-50">
+    <div v-if="showSuccessRegister" class="fixed inset-0 flex items-center justify-center z-50">
       <div class="absolute inset-0 bg-black opacity-50" @click="closeModal"></div>
       <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 z-10 shadow-xl">
         <div class="text-center">

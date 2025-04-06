@@ -33,7 +33,7 @@ export const useProducts = defineStore("products", () => {
     editProduct,
     deleteProduct,
   }
-}) // ปิดวงเล็บให้ถูกต้องที่นี่
+})
 
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useProducts, import.meta.hot))

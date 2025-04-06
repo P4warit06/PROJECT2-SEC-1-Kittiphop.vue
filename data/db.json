@@ -352,6 +352,16 @@
       "location": "999/999 ทุ่งครุ ประชาอุทิศ",
       "contact": "0999999999",
       "balance": 0
+    },
+    {
+      "id": "3",
+      "username": "smully",
+      "password": "QWIxMjM0NUA=",
+      "email": "smully@a.com",
+      "role": "user",
+      "location": "ddddd",
+      "contact": "0987654321",
+      "balance": 0
     }
   ],
   "tracking": [

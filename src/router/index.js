@@ -9,7 +9,7 @@ import UserProductManager from '@/components/UserProductManager.vue'
 import UserCartList from '@/components/UserCartList.vue'
 import UserManager from '@/components/UserManager.vue'
 import UserTracking from '@/components/UserTracking.vue'
-import Top_up from '@/components/Top_up.vue'
+import TopUp from '@/components/TopUp.vue'
 import UserProductDetails from '@/components/UserProductDetails.vue'
 import ProductTracker from '@/components/ProductTracker.vue'
 const history = createWebHistory()
@@ -76,7 +76,7 @@ const routes = [
     {
         path: '/top-up',
         name: 'topUp',
-        component: Top_up 
+        component: TopUp 
     },
     {
         path: '/:notMatch(.*)',
@@ -91,22 +91,21 @@ const router = createRouter({ history,
     })
     router.beforeEach((to, from) => {
         const isAuthenticated = localStorage.getItem('currentUser') !== null;
-        const publicPaths = ['UserProduct', 'UserProductDetail', 'Home','Login','SignUp','PageNotFound'];
-
-        if (to.name === 'ProductManager' && 'currentUser' in localStorage) {
+        const publicPaths = ['UserProduct', 'UserProductDetail', 'Home', 'Login', 'SignUp', 'PageNotFound'];
+        const adminPaths = ['ProductManager', 'ProductTracker', 'ProductDetail', 'UserManager'];
+    
+        if (adminPaths.includes(to.name) && isAuthenticated) {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             if (currentUser.role !== 'admin') {
                 return { name: 'UserProduct' };
             }
         }
-
         if (!isAuthenticated && !publicPaths.includes(to.name)) {
             return { name: 'Login' };
         }
-
         if (to.name === 'Login' && isAuthenticated) {
             return { name: 'Home' };
         }
-    });
+    })
 
     export default router
