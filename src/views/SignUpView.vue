@@ -19,7 +19,6 @@ async function submitForm(event) {
   if (event) event.preventDefault();
   errorMessage.value = ""
   
-  // Validate email
   if (!formData.email) {
     errorMessage.value = "Email is required";
     return
@@ -28,8 +27,6 @@ async function submitForm(event) {
     errorMessage.value = "Please enter a valid email";
     return
   }
-  
-  // Validate password
   if (!formData.password) {
     errorMessage.value = "Password is required";
     return
@@ -207,12 +204,10 @@ function checkPassword(password) {
       </form>
     </div>
 
-    <!-- Success Modal -->
     <div v-if="showSuccessRegister" class="fixed inset-0 flex items-center justify-center z-50">
       <div class="absolute inset-0 bg-black opacity-50" @click="closeModal"></div>
       <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 z-10 shadow-xl">
         <div class="text-center">
-          <!-- Success Icon -->
           <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
             <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />

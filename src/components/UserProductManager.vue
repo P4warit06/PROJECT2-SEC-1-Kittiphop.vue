@@ -3,16 +3,14 @@ import UserProductList from './UserProductList.vue';
 import Header from "./Header.vue";
 import { ref, onMounted, computed } from 'vue'
 import { getItems, getItemById, editItem, addItem } from '../libs/fetchUtils.js' // เพิ่ม import editItem และ addItem
-
-import {useProducts} from '../stores/products.js'
-const {initialProducts, getProducts } =useProducts();
-
 import { useRouter } from 'vue-router'
+import {useProducts} from '../stores/products.js'
 
-const myUser = ref(JSON.parse(localStorage.getItem("currentUser")));
-const myCarts = ref(myUser.value?.carts || [])
-console.log(`CurrentUser : ${myUser.value}`);
+const {initialProducts, getProducts } = useProducts();
 
+const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
+const myUser = ref({})
+const myCarts = ref([])
 
 const count = computed(() => {
   return myCarts.value?.reduce((total, cart) => total + (cart.quantity || 0), 0) || 0;
@@ -20,22 +18,20 @@ const count = computed(() => {
 
 onMounted(async () => {
   try {
-    const userData = localStorage.getItem("currentUser")
-    if (userData) {
-      myUser.value = JSON.parse(userData)
-      myCarts.value = myUser.value?.carts || []
+    if (getUser.value) {
+        myUser.value = await getItemById(`${import.meta.env.VITE_APP_URL}/users`, getUser.value.id)
+        myCarts.value = [...myUser.value.carts]
+        console.log(myUser.value);
+        console.log(myCarts.value);
     } else {
       console.warn("No user logged in");
     }
-
+    
     const fetchedProducts = await getItems(`${import.meta.env.VITE_APP_URL}/products`)
     initialProducts(fetchedProducts)
-    
-    // myCarts.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`)
     console.log(count.value);
   } catch(error) {
     console.error("Error in UserProductManager setup:", error);
-    //เพิ่ม error message ให้ user เห็น
   }
 })
 
@@ -50,8 +46,9 @@ const addProductToCart = async (product) => {
                 if (cartItem.quantity < currentProduct.value.stock) {
                     cartItem.quantity += 1;
                     cartItem.price = cartItem.quantity * currentProduct.value.price;
-                    const updatedCartItem = await editItem(`${import.meta.env.VITE_APP_URL}/carts`, cartItem.id, cartItem);
-                    myCarts.value.splice(findIndexProduct, 1, updatedCartItem);
+                    myCarts.value.splice(findIndexProduct, 1, cartItem)
+                    myUser.value.carts.splice(findIndexProduct, 1, cartItem)
+                    await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value);
                 } else {
                     console.log("Stock is not enough!");
                 }
@@ -61,11 +58,8 @@ const addProductToCart = async (product) => {
                   quantity: 1, 
                   price: currentProduct.value.price 
                 };
-
-
                 myCarts.value.push(newCartItem);
-                console.log(myCarts.value)
-                myUser.value.carts.push(newCartItem)
+                myUser.value.carts.push(newCartItem)             
                 await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
               }
         }

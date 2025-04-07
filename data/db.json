@@ -364,28 +364,28 @@
       "role": "user",
       "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
       "contact": "0987654321",
-      "balance": 33345,
+      "balance": 0,
       "carts": [
         {
           "id": "1",
           "name": "Wireless Headphone",
           "category": "Electronics",
-          "price": 89.99,
+          "price": 179.97999999999996,
           "status": "Active",
           "stock": 27,
           "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
           "description": "High-quality wireless headphone with noise cancellation",
-          "quantity": 1
+          "quantity": 2
         },
         {
-          "id": "1",
-          "name": "Wireless Headphone",
+          "id": "5",
+          "name": "Smartphone",
           "category": "Electronics",
-          "price": 89.99,
+          "price": 699.99,
           "status": "Active",
-          "stock": 27,
-          "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
-          "description": "High-quality wireless headphone with noise cancellation",
+          "stock": 15,
+          "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
+          "description": "Latest model smartphone with high-resolution camera",
           "quantity": 1
         }
       ]
@@ -413,26 +413,26 @@
       "balance": 0,
       "carts": [
         {
-          "id": "5",
-          "name": "Smartphone",
+          "id": "20",
+          "name": "VR Headset",
           "category": "Electronics",
-          "price": 699.99,
+          "price": 1599.96,
           "status": "Active",
-          "stock": 15,
-          "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
-          "description": "Latest model smartphone with high-resolution camera",
-          "quantity": 1
+          "stock": 10,
+          "image": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
+          "description": "Immersive VR headset for gaming and entertainment",
+          "quantity": 4
         },
         {
           "id": "5",
           "name": "Smartphone",
           "category": "Electronics",
-          "price": 699.99,
+          "price": 1399.98,
           "status": "Active",
           "stock": 15,
           "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
           "description": "Latest model smartphone with high-resolution camera",
-          "quantity": 1
+          "quantity": 2
         }
       ]
     }
@@ -477,30 +477,6 @@
       "id": "8",
       "userId": "8",
       "status": "Shipped"
-    }
-  ],
-  "carts": [
-    {
-      "id": "34",
-      "name": "Test Default Wearables Image",
-      "category": "Wearables",
-      "price": 1,
-      "status": "Low Stock",
-      "stock": 1,
-      "image": "/product-images/default-category-images/wearables.png",
-      "description": "1",
-      "quantity": 1
-    },
-    {
-      "id": "35",
-      "name": "Bluetooth Speaker",
-      "category": "Audio",
-      "price": 49.99,
-      "status": "Low Stock",
-      "stock": 4,
-      "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&auto=format&fit=crop&q=60",
-      "description": "Portable bluetooth speaker with 20hr battery life",
-      "quantity": 1
     }
   ]
 }

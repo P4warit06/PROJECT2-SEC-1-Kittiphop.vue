@@ -11,10 +11,12 @@ import CalculatePriceBar from "./CalculatePriceBar.vue";
 
 const combindCart = ref([]);
 const checkboxData = ref([])
-const testCartUser = ref([])
+const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
+const myUser = ref({})
+
 onMounted(async () => {
-  combindCart.value = await getItems(`${import.meta.env.VITE_APP_URL}/carts`);
-  console.log(combindCart.value[0]);
+  myUser.value = await getItemById(`${import.meta.env.VITE_APP_URL}/users`, getUser.value.id)
+  combindCart.value = [...myUser.value.carts]
   const storedUser = localStorage.getItem("currentUser");
   if (storedUser) {
     currentUser.value = JSON.parse(storedUser);
@@ -32,15 +34,13 @@ const addQuantity = async (item) => {
       console.log(unitPrice);
       item.quantity += 1;
       item.price = unitPrice * item.quantity;
-      const editProduct = await editItem(
-        `${import.meta.env.VITE_APP_URL}/carts`,
-        item.id,
-        item
-      );
       const productIndex = combindCart.value.findIndex(
         (product) => product.id === item.id
       );
-      combindCart.value.splice(productIndex, 1, editProduct);
+      combindCart.value.splice(productIndex, 1, item);
+      myUser.value.carts.splice(productIndex, 1, item);
+      console.log(myUser.value.carts);
+      await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
     } else {
       console.log("Stock is not enough or product not found.");
     }
@@ -51,74 +51,22 @@ const addQuantity = async (item) => {
 
 const decreaseQuantity = async (item) => {
   try {
+    const productIndex = combindCart.value.findIndex(
+          (product) => product.id === item.id
+    );
     if (item) {
       const unitPrice = item.price / item.quantity;
       item.quantity -= 1;
       if (item.quantity <= 0) {
-        const status = await deleteItemById(
-          `${import.meta.env.VITE_APP_URL}/carts`,
-          item.id
-        );
-        if (status === 200) {
-          const removeIndex = combindCart.value.findIndex(
-            (product) => product.id === item.id
-          );
-          if (removeIndex !== -1) {
-            combindCart.value.splice(removeIndex, 1);
-          }
-        }
+        combindCart.value.splice(productIndex, 1)
+        myUser.value.carts.splice(productIndex, 1)
+        await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
       } else {
         item.price -= unitPrice;
-        const editProduct = await editItem(
-          `${import.meta.env.VITE_APP_URL}/carts`,
-          item.id,
-          item
-        );
-        const productIndex = combindCart.value.findIndex(
-          (product) => product.id === item.id
-        );
-        combindCart.value.splice(productIndex, 1, editProduct);
+        combindCart.value.splice(productIndex, 1, item)
+        myUser.value.carts.splice(productIndex, 1, item)
+        await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
       }
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const inputQuantity = async (item) => {
-  try {
-    const product = combindCart.value.find((product) => product.id === item.id);
-    if (item && item.quantity < product.stock) {
-      const editProduct = await editItem(
-        `${import.meta.env.VITE_APP_URL}/carts`,
-        item.id,
-        item
-      );
-      const productIndex = combindCart.value.findIndex(
-        (product) => product.id === item.id
-      );
-      combindCart.value.splice(productIndex, 1, editProduct);
-      if (editProduct.quantity <= 0) {
-        const status = await deleteItemById(
-          `${import.meta.env.VITE_APP_URL}/carts`,
-          editProduct.id
-        );
-        if (status === 200) {
-          combindCart.value.splice(productIndex, 1);
-        }
-      }
-    } else if (item && item.quantity > product.stock) {
-      item.quantity = product.stock;
-      item.price = item.quantity * product.price;
-      const editProduct = await editItem(
-        `${import.meta.env.VITE_APP_URL}/carts`,
-        item.id,
-        item
-      );
-      const productIndex = combindCart.value.findIndex(
-        (product) => product.id === item.id
-      );
-      combindCart.value.splice(productIndex, 1, editProduct);
     }
   } catch (error) {
     console.log(error);
@@ -193,6 +141,19 @@ const handleBuy = async (product) => {
   }
 };
 
+const selectAll = (event) => {
+  console.log(event.target.checked);
+  if (event.target.checked) {
+    checkboxData.value = [...combindCart.value]
+  } else {
+    checkboxData.value = []
+  } 
+}
+
+const isSelectAll = computed(() => {
+  return checkboxData.value.length === combindCart.value.length
+})
+
 </script>
 
 <template>
@@ -241,17 +202,19 @@ const handleBuy = async (product) => {
           </div>
         </div> -->
 
-        <div class="w-full flex justify-between items-center">
-          <div class="flex items-center space-x-2 border p-3 rounded-lg mt-4">
+        <div class="w-full flex flex-col md:flex-row md:justify-between md:items-center">
+          <div class="flex items-center space-x-2 border p-3 rounded-lg mt-4 w-full md:w-auto">
             <input
+              @change="selectAll"
+              :checked="isSelectAll"
               type="checkbox"
               id="selectAll"
               class="h-5 w-5 text-blue-500"
             />
             <label for="selectAll" class="text-lg text-black">Select All</label>
           </div>
-          <div class="flex items-center space-x-2 border rounded-lg mt-4">
-            <select class="p-3">
+          <div class="flex items-center space-x-2 border rounded-lg mt-4 w-full md:w-auto">
+            <select class="p-3 w-full md:w-auto">
               <option disabled value="">Select category</option>
               <option value="">Select category</option>
               <option value="">Select category</option>
@@ -260,81 +223,72 @@ const handleBuy = async (product) => {
           </div>
         </div>
       </div>
-
+      
       <CartModel :products="combindCart">
-        <template #heading>
-          <h1 class="text-3xl font-bold text-gray-800 mb-4">Order</h1>
-          <div
-            v-show="combindCart.length <= 0"
-            class="w-full flex justify-center items-center"
-          >
-            <h1 class="text-4xl text-gray-500">No products available</h1>
-          </div>
-        </template>
+          <template #heading>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 text-center md:text-left">Order</h1>
+            <div
+              v-show="combindCart.length <= 0"
+              class="w-full flex justify-center items-center my-5"
+            >
+              <h1 class="text-xl md:text-4xl text-gray-500 text-center">No products available</h1>
+            </div>
+          </template>
 
-        <template #listProduct="{ yourProduct }">
-          <div
-            class="flex items-center justify-between p-4 bg-white shadow-lg rounded-lg mb-4"
-          >
-            <div class="flex flex-col space-y-1">
-              <div>
-                <input type="checkbox" :value="yourProduct" v-model="checkboxData">
+          <template #listProduct="{ yourProduct }">
+            <div
+              class="flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-white shadow-lg rounded-lg mb-4 space-y-4 md:space-y-0"
+            >
+              <div class="flex flex-col space-y-2 w-full md:w-2/3">
+                <div>
+                  <input type="checkbox" :value="yourProduct" v-model="checkboxData">
+                </div>
+
+                <router-link class="flex flex-col" :to="{name: 'UserProductDetail', params: {productId: yourProduct.id}}">
+                  <span class="text-lg md:text-xl font-semibold text-gray-900">{{ yourProduct.name }}</span>
+                  <span class="text-sm md:text-lg text-green-600">
+                    Price:
+                    <span class="font-bold">{{ yourProduct.price.toFixed(2) }}</span>
+                  </span>
+                  <span class="text-sm text-gray-600">
+                    Stock:
+                    <span class="font-semibold">{{ yourProduct.stock }}</span>
+                  </span>
+                </router-link>
               </div>
 
-              <router-link class="flex flex-col" :to="{name: 'UserProductDetail', params: {productId: yourProduct.id}}">
-              <span class="text-xl font-semibold text-gray-900">{{
-                yourProduct.name
-              }}</span>
-              <span class="text-lg text-green-600"
-                >Price:
-                <span class="font-bold">{{
-                  yourProduct.price.toFixed(2)
-                }}</span></span
-              >
-              <span class="text-sm text-gray-600"
-                >Stock:
-                <span class="font-semibold">{{ yourProduct.stock }}</span></span
-              >
-              </router-link>
-            </div>
-            <div class="flex justify-center items-center space-x-2">
-              <div>
+              <div class="sm:flex sm:justify-center sm:items-center sm:space-x-2 sm:w-full sm:w-auto">
                 <button
                   @click="decreaseQuantity(yourProduct)"
-                  class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 cursor-pointer"
+                  class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300"
                 >
                   -
                 </button>
-              </div>
-              <div>
+
                 <input
-                  @input="inputQuantity(yourProduct)"
                   type="number"
                   v-model="yourProduct.quantity"
                   min="0"
                   :max="yourProduct.stock"
-                  class="w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-xl font-semibold bg-white"
+                  class="mx-1 w-16 border border-gray-300 rounded-lg px-3 py-1 text-center text-lg font-semibold"
                 />
-              </div>
-              <div>
+
                 <button
                   @click="addQuantity(yourProduct)"
-                  class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer"
+                  class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
                 >
                   +
                 </button>
               </div>
             </div>
-          </div>
-        </template>
-      </CartModel>
+          </template>
+        </CartModel>
       <CalculatePriceBar :products="checkboxData" @buy="handleBuy"></CalculatePriceBar>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Your optional animations */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;

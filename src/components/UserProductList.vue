@@ -40,9 +40,9 @@ const addToCart = (product) => {
               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <div class="w-1/6 ml-2">
+          <div class="w-2/6 ml-2 md:w-1/6 md:ml-2">
             <button
-              class="w-full bg-blue-500 text-white h-full rounded-lg cursor-pointer hover:opacity-85"
+              class="max-md:text-sm w-full bg-blue-500 text-white h-full rounded-lg cursor-pointer hover:opacity-85"
             >
               Search
             </button>

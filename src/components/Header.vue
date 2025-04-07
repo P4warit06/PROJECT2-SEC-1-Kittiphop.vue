@@ -44,7 +44,11 @@ function toggleMenu() {
 
 
     <nav class="hidden md:block">
+<<<<<<< HEAD
       <ul class="flex space-x-4 items-center">
+=======
+      <ul class="flex justify-center items-center space-x-4">
+>>>>>>> origin
         <li class="text-white font-bold">
           <router-link to="/user-products" class="hover:opacity-70">
             PRODUCT
