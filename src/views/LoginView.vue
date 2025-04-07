@@ -42,7 +42,7 @@ const handleLogin = async () => {
   >
   <button 
       @click="router.push('/')" 
-      class="absolute top-4 left-4 md:top-8 md:left-8 p-2 rounded-full border-1 border-blue-700 bg-opacity-70 hover:bg-opacity-100 transition-all duration-200 text-gray-400 cursor-pointer hover:text-gray-600 shadow-sm"
+      class="absolute top-4 left-4 md:top-8 md:left-8 p-2 rounded-full border-1 border-white bg-opacity-70 hover:opacity-50 transition-all duration-200 text-gray-400 cursor-pointer hover:text-gray-600 shadow-sm"
       aria-label="Back to home"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
