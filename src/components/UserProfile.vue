@@ -14,7 +14,7 @@ const isEditing = ref(false);
 const successMessage = ref("");
 const errorMessage = ref("");
 
-const formUpdateProfile = reactive({
+const updateAddressContact = reactive({
   location: "",
   contact: "",
 });
@@ -41,8 +41,8 @@ async function loadUser() {
       router.push("/home");
       return;
     }
-    formUpdateProfile.location = user.value.location || "";
-    formUpdateProfile.contact = user.value.contact || "";
+    updateAddressContact.location = user.value.location || "";
+    updateAddressContact.contact = user.value.contact || "";
   } catch (error) {
     console.error("Error loading user data:", error);
     errorMessage.value = "Failed to load user profile";
@@ -53,8 +53,8 @@ async function loadUser() {
 
 function toggleEdit() {
   if (isEditing.value) {
-    formUpdateProfile.location = user.value.location || "";
-    formUpdateProfile.contact = user.value.contact || "";
+    updateAddressContact.location = user.value.location || "";
+    updateAddressContact.contact = user.value.contact || "";
     errorMessage.value = "";
   }
   isEditing.value = !isEditing.value;
@@ -70,8 +70,8 @@ async function saveUpdateProfile() {
   successMessage.value = "";
 
   if (
-    formUpdateProfile.contact &&
-    !checkPhoneNumber(formUpdateProfile.contact)
+    updateAddressContact.contact &&
+    !checkPhoneNumber(updateAddressContact.contact)
   ) {
     errorMessage.value =
       "Please enter a valid phone number (10 digits starting with 0)";
@@ -81,8 +81,8 @@ async function saveUpdateProfile() {
     isLoading.value = true;
     const updatedUserData = {
       ...user.value,
-      location: formUpdateProfile.location,
-      contact: formUpdateProfile.contact,
+      location: updateAddressContact.location,
+      contact: updateAddressContact.contact,
     };
     const result = await editItem(
       `${import.meta.env.VITE_APP_URL}/users`,
@@ -194,7 +194,7 @@ onMounted(loadUser);
             </label>
             <textarea
               v-if="isEditing"
-              v-model="formUpdateProfile.location"
+              v-model="updateAddressContact.location"
               rows="3"
               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
@@ -209,7 +209,7 @@ onMounted(loadUser);
             </label>
             <input
               v-if="isEditing"
-              v-model="formUpdateProfile.contact"
+              v-model="updateAddressContact.contact"
               type="tel"
               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="e.g. 0812345678"
