@@ -329,6 +329,16 @@
       "stock": 1,
       "image": "/product-images/default-category-images/wearables.png",
       "description": "1"
+    },
+    {
+      "id": "35",
+      "name": "Microphone",
+      "category": "Accessories",
+      "price": 100,
+      "status": "Active",
+      "stock": 5,
+      "image": "/product-images/default-category-images/audio.jpg",
+      "description": "Wireless microphone"
     }
   ],
   "users": [
