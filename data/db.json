@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 89.99,
       "status": "Active",
-      "stock": 27,
+      "stock": 26,
       "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
       "description": "High-quality wireless headphone with noise cancellation"
     },
@@ -36,7 +36,7 @@
       "category": "Electronics",
       "price": 129.99,
       "status": "Active",
-      "stock": 25,
+      "stock": 24,
       "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=800&auto=format&fit=crop&q=60",
       "description": "RGB mechanical gaming keyboard"
     },
@@ -46,7 +46,7 @@
       "category": "Electronics",
       "price": 699.99,
       "status": "Active",
-      "stock": 15,
+      "stock": 0,
       "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
       "description": "Latest model smartphone with high-resolution camera"
     },
@@ -56,7 +56,7 @@
       "category": "Accessories",
       "price": 59.99,
       "status": "Active",
-      "stock": 30,
+      "stock": 26,
       "image": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=800&auto=format&fit=crop&q=60",
       "description": "High precision gaming mouse with customizable buttons"
     },
@@ -76,7 +76,7 @@
       "category": "Accessories",
       "price": 19.99,
       "status": "Active",
-      "stock": 50,
+      "stock": 45,
       "image": "https://images.unsplash.com/photo-1616876195047-522271be4e66?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "description": "Fast wireless charger for smartphones"
     },
@@ -86,7 +86,7 @@
       "category": "Audio",
       "price": 79.99,
       "status": "Active",
-      "stock": 18,
+      "stock": 16,
       "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=60",
       "description": "True wireless earbuds with noise cancellation"
     },
@@ -96,7 +96,7 @@
       "category": "Wearables",
       "price": 49.99,
       "status": "Active",
-      "stock": 22,
+      "stock": 21,
       "image": "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?w=800&auto=format&fit=crop&q=60",
       "description": "Wearable fitness tracker with heart rate monitor"
     },
@@ -196,7 +196,7 @@
       "category": "Electronics",
       "price": 399.99,
       "status": "Active",
-      "stock": 10,
+      "stock": 2,
       "image": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
       "description": "Immersive VR headset for gaming and entertainment"
     },
@@ -410,46 +410,12 @@
       "username": "kittiphop2548",
       "fullname": "Kittipop Siranonchai",
       "_comment": "real password = Ab12345@",
-      "password": "QWIxMjM0NUA=",
       "email": "kittiphop2548@gmail.com",
       "role": "user",
       "location": "",
       "contact": "0999999999",
-      "balance": 0,
+      "balance": 57190.37,
       "carts": [
-        {
-          "id": "20",
-          "name": "VR Headset",
-          "category": "Electronics",
-          "price": 399.99,
-          "status": "Active",
-          "stock": 10,
-          "image": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
-          "description": "Immersive VR headset for gaming and entertainment",
-          "quantity": 1
-        },
-        {
-          "id": "5",
-          "name": "Smartphone",
-          "category": "Electronics",
-          "price": 699.99,
-          "status": "Active",
-          "stock": 15,
-          "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
-          "description": "Latest model smartphone with high-resolution camera",
-          "quantity": 1
-        },
-        {
-          "id": "1",
-          "name": "Wireless Headphone",
-          "category": "Electronics",
-          "price": 89.99,
-          "status": "Active",
-          "stock": 27,
-          "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
-          "description": "High-quality wireless headphone with noise cancellation",
-          "quantity": 1
-        },
         {
           "id": "2",
           "name": "Bluetooth Speaker",
@@ -459,6 +425,17 @@
           "stock": 4,
           "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&auto=format&fit=crop&q=60",
           "description": "Portable bluetooth speaker with 20hr battery life",
+          "quantity": 1
+        },
+        {
+          "id": "6",
+          "name": "Gaming Mouse",
+          "category": "Accessories",
+          "price": 59.99,
+          "status": "Active",
+          "stock": 26,
+          "image": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=800&auto=format&fit=crop&q=60",
+          "description": "High precision gaming mouse with customizable buttons",
           "quantity": 1
         }
       ]

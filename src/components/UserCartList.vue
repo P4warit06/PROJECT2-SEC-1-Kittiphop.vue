@@ -1,142 +1,170 @@
 <script setup>
-import CartModel from "./model/CartModel.vue"
-import { ref, onMounted, computed } from "vue"
+import CartModel from "./model/CartModel.vue";
+import { ref, onMounted, computed } from "vue";
 import {
   getItems,
   editItem,
   deleteItemById,
   getItemById,
-} from "@/libs/fetchUtils"
-import CalculatePriceBar from "./CalculatePriceBar.vue"
+} from "@/libs/fetchUtils";
+import CalculatePriceBar from "./CalculatePriceBar.vue";
 
-const combindCart = ref([])
+const combindCart = ref([]);
 const checkboxData = ref([])
-const getUser = ref(JSON.parse(localStorage.getItem("currentUser")))
+const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
 const myUser = ref({})
 
 onMounted(async () => {
   myUser.value = await getItemById(`${import.meta.env.VITE_APP_URL}/users`, getUser.value.id)
   combindCart.value = [...myUser.value.carts]
-  const storedUser = localStorage.getItem("currentUser")
+  const storedUser = localStorage.getItem("currentUser");
   if (storedUser) {
-    currentUser.value = JSON.parse(storedUser)
+    currentUser.value = JSON.parse(storedUser);
   } else {
-    errorMessage.value = "Please login first"
+    errorMessage.value = "Please login first";
   }
-})
+});
 
 const addQuantity = async (item) => {
   try {
-    const product = combindCart.value.find((product) => product.id === item.id)
+    const product = combindCart.value.find((product) => product.id === item.id);
 
     if (product && item.quantity < product.stock) {
-      const unitPrice = item.price / item.quantity || item.price
-      console.log(unitPrice)
-      item.quantity += 1
-      item.price = unitPrice * item.quantity
+      const unitPrice = item.price / item.quantity || item.price;
+      console.log(unitPrice);
+      item.quantity += 1;
+      item.price = unitPrice * item.quantity;
       const productIndex = combindCart.value.findIndex(
         (product) => product.id === item.id
-      )
-      combindCart.value.splice(productIndex, 1, item)
-      myUser.value.carts.splice(productIndex, 1, item)
-      console.log(myUser.value.carts)
+      );
+      combindCart.value.splice(productIndex, 1, item);
+      myUser.value.carts.splice(productIndex, 1, item);
+      console.log(myUser.value.carts);
       await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
     } else {
-      console.log("Stock is not enough or product not found.")
+      console.log("Stock is not enough or product not found.");
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 const decreaseQuantity = async (item) => {
   try {
     const productIndex = combindCart.value.findIndex(
           (product) => product.id === item.id
-    )
+    );
     if (item) {
-      const unitPrice = item.price / item.quantity
-      item.quantity -= 1
+      const unitPrice = item.price / item.quantity;
+      item.quantity -= 1;
       if (item.quantity <= 0) {
         combindCart.value.splice(productIndex, 1)
         myUser.value.carts.splice(productIndex, 1)
         await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
       } else {
-        item.price -= unitPrice
+        item.price -= unitPrice;
         combindCart.value.splice(productIndex, 1, item)
         myUser.value.carts.splice(productIndex, 1, item)
         await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
       }
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-const currentUser = ref(null)
-const errorMessage = ref("")
-const successMessage = ref("")
+const currentUser = ref(null);
+const errorMessage = ref("");
+const successMessage = ref("");
 
-const handleBuy = async (product) => {
+const handleBuy = async () => {
   try {
-    errorMessage.value = ''
-    successMessage.value = ''
+    errorMessage.value = '';
+    successMessage.value = '';
 
-    const user = currentUser.value
+    
+    if (checkboxData.value.length === 0) {
+      errorMessage.value = "Please select at least one item to purchase";
+      return;
+    }
+
+    const user = currentUser.value;
     if (!user) {
-      errorMessage.value = "User not found"
-      return
+      errorMessage.value = "User not found";
+      return;
     }
-    if (user.balance < product.price) {
-      errorMessage.value = `Insufficient balance! Needed: $${product.price.toFixed(2)}`
-      return
+
+  
+    const totalPrice = checkboxData.value.reduce((sum, product) => sum + product.price, 0);
+
+ 
+    if (user.balance < totalPrice) {
+      errorMessage.value = `Insufficient balance! Needed: $${totalPrice.toFixed(2)}`;
+      return;
     }
-    const productInDB = await getItemById(
-      `${import.meta.env.VITE_APP_URL}/products`,
-      product.id
-    )
-    if (product.quantity > productInDB.stock) {
-      errorMessage.value = `"${product.name}" is out of stock!`
-      return
+
+    
+    for (const product of checkboxData.value) {
+      const productInDB = await getItemById(
+        `${import.meta.env.VITE_APP_URL}/products`,
+        product.id
+      );
+
+      if (product.quantity > productInDB.stock) {
+        errorMessage.value = `"${product.name}" is out of stock!`;
+        return;
+      }
     }
-    user.balance -= product.price
+
+ 
+    user.balance -= totalPrice;
+    
+    for (const product of checkboxData.value) {
+      const productInDB = await getItemById(
+        `${import.meta.env.VITE_APP_URL}/products`,
+        product.id
+      );
+
+    
+      await editItem(
+        `${import.meta.env.VITE_APP_URL}/products`,
+        product.id,
+        { ...productInDB, stock: productInDB.stock - product.quantity }
+      );
+
+   
+      const productIndex = combindCart.value.findIndex(
+        (item) => item.id === product.id
+      );
+      if (productIndex !== -1) {
+        combindCart.value.splice(productIndex, 1);
+        myUser.value.carts.splice(productIndex, 1);
+      }
+    }
+
+   
     const updatedUser = await editItem(
       `${import.meta.env.VITE_APP_URL}/users`,
       user.id,
-      { ...user, balance: user.balance }
-    )
+      { ...user, balance: user.balance, carts: myUser.value.carts }
+    );
 
-    await editItem(
-      `${import.meta.env.VITE_APP_URL}/products`,
-      product.id,
-      { ...productInDB, stock: productInDB.stock - product.quantity }
-    )
+    currentUser.value = updatedUser;
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
 
-    const status = await deleteItemById(
-      `${import.meta.env.VITE_APP_URL}/carts`,
-      product.id
-    )
-    
-    if (status === 200) {
-      const productIndex = combindCart.value.findIndex(
-        (item) => item.id === product.id
-      )
-      if (productIndex !== -1) {
-        combindCart.value.splice(productIndex, 1)
-      }
-    }
-    currentUser.value = updatedUser
-    localStorage.setItem("currentUser", JSON.stringify(updatedUser))
-    successMessage.value = "Purchase successful!"
-    setTimeout(() => (successMessage.value = ""), 3000)
+
+    checkboxData.value = [];
+
+    successMessage.value = "Purchase successful!";
+    setTimeout(() => (successMessage.value = ""), 3000);
   } catch (error) {
-    console.error("Purchase failed:", error)
-    errorMessage.value = "An error occurred during purchase"
+    console.error("Purchase failed:", error);
+    errorMessage.value = "An error occurred during purchase";
   }
-}
+};
 
 const selectAll = (event) => {
-  console.log(event.target.checked)
+  console.log(event.target.checked);
   if (event.target.checked) {
     checkboxData.value = [...combindCart.value]
   } else {
@@ -157,7 +185,7 @@ const isSelectAll = computed(() => {
       class="fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center"
     >
       {{ errorMessage }}
-      <button @click="errorMessage = ''" class="ml-2 text-xl">&times</button>
+      <button @click="errorMessage = ''" class="ml-2 text-xl">&times;</button>
     </div>
 
     <div
@@ -285,10 +313,10 @@ const isSelectAll = computed(() => {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s
+  transition: opacity 0.5s;
 }
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0
+  opacity: 0;
 }
 </style>
