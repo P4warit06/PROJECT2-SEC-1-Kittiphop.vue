@@ -257,7 +257,7 @@ const isSelectAll = computed(() => {
                 </router-link>
               </div>
 
-              <div class="sm:flex sm:justify-center sm:items-center sm:space-x-2 sm:w-full sm:w-auto">
+              <div class="sm:flex sm:justify-end sm:items-center sm:space-x-2 sm:w-full sm:w-auto">
                 <button
                   @click="decreaseQuantity(yourProduct)"
                   class="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300"

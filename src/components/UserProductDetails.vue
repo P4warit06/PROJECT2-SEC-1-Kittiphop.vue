@@ -33,7 +33,7 @@ getSelectProduct()
           <div class="flex justify-center lg:justify-end items-center">
             <img
               class="rounded-xl object-contain w-full max-w-2xl max-h-[600px]"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeizyn8SwFNfeJdYexfcqyurpCe47SKVR0Ew&s"
+              :src="selectProduct.image"
               alt="product image"
             />
           </div>
