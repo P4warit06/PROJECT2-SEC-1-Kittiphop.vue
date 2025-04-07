@@ -1,7 +1,7 @@
 <script setup>
 import ProductList from "./ProductList.vue"
 import AddEditProduct from "./AddEditProduct.vue"
-import HeaderManager from "./HeaderManager.vue"
+import NavbarAdmin from "./NavbarAdmin.vue"
 import FilterProduct from "./FilterProduct.vue"
 import ProductTracker from "./ProductTracker.vue"
 import {
@@ -211,7 +211,7 @@ const cancelAdd = () => {
 
 <template>
   <div class="p">
-    <HeaderManager />
+    <NavbarAdmin />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
     <!-- Image Display Section -->
     <div class="mx-auto my-2 w-full h-full max-w-[80%]">

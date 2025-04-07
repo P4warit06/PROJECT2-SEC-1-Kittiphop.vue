@@ -1,6 +1,6 @@
 <script setup>
 import UserProductList from './UserProductList.vue'
-import Header from "./Header.vue"
+import Navbar from "./Navbar.vue"
 import { ref, onMounted, computed } from 'vue'
 import { getItems, getItemById, editItem, addItem } from '../libs/fetchUtils.js' // เพิ่ม import editItem และ addItem
 import { useRouter } from 'vue-router'
@@ -73,7 +73,7 @@ const addProductToCart = async (product) => {
 
 <template>
   <div>
-    <Header :count="count"/>
+    <Navbar :count="count"/>
     <UserProductList :products="getProducts()" @add-to-cart="addProductToCart"></UserProductList>
   </div>
 </template>
