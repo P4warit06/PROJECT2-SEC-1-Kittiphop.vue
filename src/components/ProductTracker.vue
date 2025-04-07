@@ -1,31 +1,3 @@
-<template>
-    <div class="product-tracker">
-        <h1>Real-Time Product Tracking</h1>
-
-        <!-- Tracking ID Input -->
-        <div class="tracking-input">
-            <input v-model="trackingId" type="text" placeholder="Enter Tracking ID" class="search-input" />
-            <button @click="startTracking" class="track-button">Track</button>
-        </div>
-
-        <!-- Product Status -->
-        <div v-if="product" class="product-status">
-            <h2>{{ product.name }}</h2>
-            <p><strong>Tracking ID:</strong> {{ product.trackingId }}</p>
-            <p><strong>Status:</strong> {{ product.status }}</p>
-            <div class="status-indicator" :class="getStatusClass(product.status)">
-                {{ product.status }}
-            </div>
-        </div>
-
-        <!-- Loading State -->
-        <div v-if="loading" class="loading">Loading...</div>
-
-        <!-- Error Message -->
-        <div v-if="error" class="error">{{ error }}</div>
-    </div>
-</template>
-
 <script setup>
 import { ref, onUnmounted } from 'vue'
 
@@ -119,6 +91,55 @@ onUnmounted(() => {
 })
 </script>
 
+
+<template>
+    <div class="flex flex-col items-center justify-center text-center py-8">
+        <h1 class="text-4xl md:text-5xl lg:text-4xl font-bold text-[#0f2240] mb-2">Discover New Paths</h1>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0f2240]">with truly integrated logistics</h2>
+    </div>
+    <div class="product-tracker">
+
+        <div class="flex w-full max-w-4xl  overflow-hidden shadow-sm">
+            <div class="flex items-center bg-gray-100 flex-grow px-4 py-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input v-model="trackingId" type="text" placeholder="PSLU 8002936"
+                    class="bg-transparent w-full outline-none text-gray-700 placeholder-gray-500 text-lg" />
+            </div>
+            <button @click="startTracking"
+                class="bg-[#1c49ed] hover:bg-blue-700 text-white font-medium px-8 py-3 text-sm">
+                Track
+            </button>
+        </div>
+
+        <!-- Product Picture  -->
+        <div class="mx-auto my-20 w-full max-w-[2000px]">
+            <div class="relative w-full overflow-hidden">
+                <img src="/product-images/product-list-banner.png" alt="Product Management Banner"
+                    class="w-full h-full object-contain scale-110" />
+            </div>
+        </div>
+
+        <!-- Product Status -->
+        <div v-if="product" class="product-status">
+            <h2>{{ product.name }}</h2>
+            <p><strong>Tracking ID:</strong> {{ product.trackingId }}</p>
+            <p><strong>Status:</strong> {{ product.status }}</p>
+            <div class="status-indicator" :class="getStatusClass(product.status)">
+                {{ product.status }}
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div v-if="loading" class="loading">Loading...</div>
+
+        <!-- Error Message -->
+        <div v-if="error" class="error">{{ error }}</div>
+    </div>
+</template>
 <style scoped>
 .product-tracker {
     padding: 20px;
@@ -128,11 +149,7 @@ onUnmounted(() => {
     color: blueviolet;
 }
 
-.tracking-input {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+
 
 .search-input {
     flex: 1;
@@ -142,18 +159,9 @@ onUnmounted(() => {
     font-size: 16px;
 }
 
-.track-button {
-    padding: 10px 20px;
-    background-color: #2196f3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.track-button:hover {
-    background-color: #1976d2;
-}
+
+
 
 .product-status {
     margin-top: 20px;
