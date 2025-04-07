@@ -335,7 +335,7 @@
     {
       "id": "0",
       "username": "admin",
-      "fullName": "Admin Admin",
+      "fullname": "Admin Admin",
       "_comment": "password = QmIxMjM0NTY3ODlA = Bb123456789@",
       "password": "QmIxMjM0NTY3ODlA",
       "email": "admin@gmail.com",
@@ -347,7 +347,7 @@
     {
       "id": "1",
       "username": "ab",
-      "fullName": "a b",
+      "fullname": "a b",
       "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
       "email": "a@bb.com",
@@ -360,7 +360,7 @@
     {
       "id": "2",
       "username": "b",
-      "fullName": "b c",
+      "fullname": "b c",
       "_comment": "real password = Ab12345@",
       "password": "QmIxMjM0NUA=",
       "email": "b@a.com",
@@ -396,7 +396,7 @@
     {
       "id": "3",
       "username": "Ohmmy",
-      "fullName": "Ohmmy Ohm",
+      "fullname": "Ohmmy Ohm",
       "password": "b2htMTIzNDVA",
       "email": "Ohmmy@gmail.com",
       "role": "user",
@@ -408,7 +408,7 @@
     {
       "id": "4",
       "username": "kittiphop2548",
-      "fullName": "Kittipop Siranonchai",
+      "fullname": "Kittipop Siranonchai",
       "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
       "email": "kittiphop2548@gmail.com",
