@@ -18,37 +18,62 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="p-4">
-    <div class="text-xl tracking-wider font-semibold mb-4">
-      <slot name="heading">###Enter your list heading###</slot>
+  <div class="p-4 max-w-7xl mx-auto">
+    <div class="mb-6 border-b border-gray-200 pb-3">
+      <h2 class="text-2xl font-bold text-gray-800 tracking-wide">
+        <slot name="heading">###Enter your list heading###</slot>
+      </h2>
     </div>
-    <div v-show="items.length === 0" class="text-gray-500 text-center py-8"> 
-      <h1>No Product Here</h1>
+    
+    <div v-show="items.length === 0" class="py-12 px-4 text-center bg-gray-50 rounded-lg shadow-sm"> 
+      <svg class="mx-auto h-16 w-16 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 12H4m8-8v16"/>
+      </svg>
+      <h3 class="mt-3 text-lg font-medium text-gray-700">No Products Available</h3>
     </div>
     
     <div 
-      v-if="listType === 'card'"
-      :class="['grid gap-4', gridCols]"
+      v-if="listType === 'card' && items.length > 0"
+      :class="['grid gap-6', gridCols]"
     >
       <div
         v-for="(item, index) in items"
         :key="index"
-        class="border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-4"
+        class="group bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden"
       >
-        <slot name="listItems" :yourItem="item">Enter your list item</slot>
+        <div class="p-4 h-full flex flex-col">
+          <slot name="listItems" :yourItem="item">Enter your list item</slot>
+        </div>
+        <div class="bg-gradient-to-r from-blue-50 to-white h-1 w-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
       </div>
     </div>
     
-    <ul v-if="listType === 'list'" class="space-y-2">
-      <li
+    <div v-if="listType === 'list' && items.length > 0" class="space-y-3 bg-white rounded-lg shadow">
+      <div
         v-for="(item, index) in items"
         :key="index"
-        class="border-b py-2 max-w-2xl mx-auto "
+        class="py-4 px-6 hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0 flex items-center"
       >
-        <slot name="listItems" :yourItem="item">Enter your list item</slot>
-      </li>
-    </ul>
+        <div class="w-full">
+          <slot name="listItems" :yourItem="item">Enter your list item</slot>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.grid > div {
+  transform: translateY(0);
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
+}
+
+.grid > div:hover {
+  transform: translateY(-4px);
+}
+
+.space-y-3 > div:hover {
+  cursor: pointer;
+}
+</style>
