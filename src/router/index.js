@@ -88,7 +88,8 @@ const routes = [
     path: "/:notMatch(.*)",
     name: "PageNotFound",
     component: PageNotFoundView,
-  },
+  }
+
 ];
 const router = createRouter({ history, routes });
 

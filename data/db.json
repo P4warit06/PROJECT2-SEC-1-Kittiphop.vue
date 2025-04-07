@@ -345,27 +345,50 @@
     },
     {
       "id": "1",
-      "username": "a",
+      "username": "ab",
       "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
-      "email": "a@b.com",
+      "email": "a@bb.com",
       "role": "user",
       "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
       "contact": "0987654321",
-      "balance": 0,
-      "carts": []
+      "balance": 10,
+      "carts": [],
+      "hasChangedUsername": true
     },
     {
       "id": "2",
       "username": "b",
       "_comment": "real password = Ab12345@",
-      "password": "QWIxMjM0NUA=",
       "email": "b@a.com",
       "role": "user",
       "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
       "contact": "0987654321",
-      "balance": 0,
-      "carts": []
+      "balance": 33345,
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 89.99,
+          "status": "Active",
+          "stock": 27,
+          "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 1
+        },
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 89.99,
+          "status": "Active",
+          "stock": 27,
+          "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "3",

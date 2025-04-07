@@ -1,7 +1,6 @@
 <script setup>
 import { ref,computed, onMounted } from "vue";
 import { getItems } from "@/libs/fetchUtils";
-import 'boxicons'
 
 const props = defineProps({
   count :{
@@ -44,7 +43,6 @@ function toggleMenu() {
     </button>
 
 
-  <!-- NavBar User -->
     <nav class="hidden md:block">
       <ul class="flex space-x-4 items-center">
         <li class="text-white font-bold">
@@ -70,8 +68,6 @@ function toggleMenu() {
   
       </ul>
     </nav>
-
-
 
     <div v-show="burgerActive" class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
         <ul class="space-y-4 text-lg">
