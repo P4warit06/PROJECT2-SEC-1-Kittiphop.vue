@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref } from "vue"
 const props = defineProps({
   categories: {
     type: Array,
@@ -9,36 +9,36 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-});
-const selectedCat = ref([]);
-const selectedSta = ref([]);
-defineEmits(["filterProduct"]);
+})
+const selectedCat = ref([])
+const selectedSta = ref([])
+defineEmits(["filterProduct"])
 
-const catDisplay = ref(false);
-const staDisplay = ref(false);
-const test = ref({ checked: false });
+const catDisplay = ref(false)
+const staDisplay = ref(false)
+const test = ref({ checked: false })
 function removeChecked() {
-  selectedCat.value = [];
-  selectedSta.value = [];
+  selectedCat.value = []
+  selectedSta.value = []
 }
-const searchBy = ref("");
+const searchBy = ref("")
 
-const searchValue = ref("");
+const searchValue = ref("")
 
 function clearSearch() {
-  searchValue.value = "";
+  searchValue.value = ""
 }
-const errorSearchBy = ref(false);
-const errorMessage = ref("");
+const errorSearchBy = ref(false)
+const errorMessage = ref("")
 function checkInput() {
-  errorSearchBy.value = false;
+  errorSearchBy.value = false
   if (searchBy.value === 'id' && !Number(searchValue.value) && searchValue.value !== '') {
-    errorSearchBy.value = true;
-    errorMessage.value = "Please input number only";
+    errorSearchBy.value = true
+    errorMessage.value = "Please input number only"
   }
   if (searchBy.value === "") {
-    errorSearchBy.value = true;
-    errorMessage.value = "Please Select Search By";
+    errorSearchBy.value = true
+    errorMessage.value = "Please Select Search By"
   }
 }
 </script>
@@ -65,14 +65,14 @@ function checkInput() {
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
             @keyup.enter="
               () => {
-                $emit('filterProduct', { value: searchValue, type: 'searchValue' });
-                checkInput();
+                $emit('filterProduct', { value: searchValue, type: 'searchValue' })
+                checkInput()
               }
             " />
           <button v-if="searchValue" @click="
             () => {
-              clearSearch();
-              $emit('filterProduct', { value: '', type: 'clearSearch' });
+              clearSearch()
+              $emit('filterProduct', { value: '', type: 'clearSearch' })
             }
           " class="absolute right-2 top-2 text-gray-400 hover:text-red-500">
             ✖
@@ -81,8 +81,8 @@ function checkInput() {
 
         <button @click="
           () => {
-            $emit('filterProduct', { value: searchValue, type: 'searchValue' });
-            checkInput();
+            $emit('filterProduct', { value: searchValue, type: 'searchValue' })
+            checkInput()
           }
         " class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
           Search
@@ -99,8 +99,8 @@ function checkInput() {
         <h2 class="text-lg font-semibold text-teal-600">Filter By</h2>
         <button @click="
           () => {
-            $emit('filterProduct', { type: 'clear' });
-            removeChecked();
+            $emit('filterProduct', { type: 'clear' })
+            removeChecked()
           }
         " class="text-sm text-red-500 hover:underline">
           Clear

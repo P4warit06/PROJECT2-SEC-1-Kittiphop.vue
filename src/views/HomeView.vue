@@ -126,18 +126,19 @@ const scrollToSection = (ref) => {
                   <div v-if="isDropdownOpen" @click.stop
                     class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 ">
                     <router-link :to="{name : 'UserProfile', params: { userId: currentUser.id }}"
-                      class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150">
+                      class="flex px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150 justify-center">
                       <p class="cursor-pointer">Profile</p>
                     </router-link>
-                    <button @click="handleLogout"
-                      class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150">
-                      <p class="cursor-pointer">Logout</p>
-                    </button>
                     <router-link v-if="currentUser" to="/top-up"
-                      class="text-black text-2xl font-bold hover:text-blue-200 transition-all duration-300 w-full py-4 border-b border-white/10 flex justify-center items-center"
+                      class="text-black text-2xl font-bold hover:text-blue-200 transition-all duration-300 w-full py-4 border-b border-white/10 flex justify-center "
                       @click="isMobileMenuOpen = false">
                       Top up
                     </router-link>
+                    <button @click="handleLogout"
+                      class="flex w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150 justify-center">
+                      <p class="cursor-pointer">Logout</p>
+                    </button>
+                   
                   </div>
                 </div>
               </template>

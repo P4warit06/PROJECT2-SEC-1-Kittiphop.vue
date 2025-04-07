@@ -9,6 +9,7 @@ const formData = reactive({
   email: "",
   password: "",
   username: "",
+  fullname: "",
   carts: []
 });
 const errorMessage = ref("");
@@ -52,8 +53,7 @@ async function submitForm(event) {
       formData.username = formData.email.split("@")[0];
     }
 
-    // Send the data to backend using the registerUser function
-    const result = await registerUser(import.meta.env.VITE_APP_URL, formData);
+   await registerUser(import.meta.env.VITE_APP_URL, formData);
     isRegisterSuccessful.value = true;
     showSuccessRegister.value = true;
     setTimeout(() => {

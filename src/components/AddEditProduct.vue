@@ -1,37 +1,37 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch } from "vue"
 
-const emits = defineEmits(["addNewProduct", "editProduct", "cancelAdding"]);
+const emits = defineEmits(["addNewProduct", "editProduct", "cancelAdding"])
 
 const props = defineProps({
   activeProduct: {
     type: Object,
     required: true,
   },
-});
+})
 
 const newProduct = ref({
   ...props.activeProduct,
-});
+})
 
 const categories = ref([
   { name: "Accessories", value: "Accessories" },
   { name: "Audio", value: "Audio" },
   { name: "Electronics", value: "Electronics" },
   { name: "Wearables", value: "Wearables" },
-]);
+])
 
 const status = ref([
   { name: "Active", value: "Active" },
   { name: "Low Stock", value: "Low Stock" },
   { name: "Out of Stock", value: "Out of Stock" },
-]);
+])
 
 const saveProduct = () => {
   if (newProduct.value.id) {
-    emits("editProduct", newProduct.value);
+    emits("editProduct", newProduct.value)
   } else {
-    emits("addNewProduct", newProduct.value);
+    emits("addNewProduct", newProduct.value)
   }
   const saveProduct = () => {
     // Set default image based on category
@@ -48,12 +48,12 @@ const saveProduct = () => {
     }
 
     if (newProduct.value.id) {
-      emits("editProduct", productToSave);
+      emits("editProduct", productToSave)
     } else {
-      emits("addNewProduct", productToSave);
+      emits("addNewProduct", productToSave)
     }
-  };
-};
+  }
+}
 </script>
 
 <template>

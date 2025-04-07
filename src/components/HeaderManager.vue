@@ -1,10 +1,10 @@
 <script setup>
-import { ref,computed } from "vue";
+import { ref,computed } from "vue"
 
-const burgerActive = ref(false);
+const burgerActive = ref(false)
 
 function toggleMenu() {
-  burgerActive.value = !burgerActive.value;
+  burgerActive.value = !burgerActive.value
 }
 </script>
 

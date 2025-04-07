@@ -5,7 +5,7 @@ import { getItems } from '../libs/fetchUtils.js'
 
 
 
-const myUsers = ref([]);
+const myUsers = ref([])
 onMounted( async () => {
     try{
         const allUsers = myUsers.value = await getItems(
