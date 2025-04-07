@@ -213,8 +213,20 @@ const cancelAdd = () => {
   <div class="p">
     <HeaderManager />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
+    <!-- Image Display Section -->
+    <div class="mx-auto my-2 w-full h-full max-w-[80%]">
+      <div class="relative w-full  overflow-hidden rounded-lg shadow-md border">
+        <img 
+          src="/product-images/product-list-banner.png" 
+          alt="Product Management Banner"
+          class="w-full h-[40vh] object-cover"
+        />
+
+      </div>
+    </div>
+
     <button @click="isAdding = !isAdding"
-      class="mt-2 mx-3 px-5 py-2 bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105">
+      class="mt-2 mx-3 px-5 py-2 bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
       Add New Product
     </button>
 
