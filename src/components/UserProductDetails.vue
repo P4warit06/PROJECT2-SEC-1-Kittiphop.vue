@@ -10,22 +10,16 @@ const {
 const selectProduct = ref({})
 const getUser = JSON.parse(localStorage.getItem("currentUser"))
 const myUser = ref({})
-const userCart = ref([])
 onMounted(async () => {
   try {
     if (getUser) { 
       myUser.value = await getItemById(`${import.meta.env.VITE_APP_URL}/users`, getUser.id)
-      userCart.value = [...myUser.value.carts]
     }
   } catch(error) {
     console.error("Error in UserProductManager setup:", error)
   }
 })
 const addToCartInDetail = async () => {
-  console.log(myUser.value);
-  console.log(userCart.value);
-  console.log(selectProduct.value);
-  
   try {
     if (selectProduct.value.stock > 0) {
         const findIndexProduct = myUser.value.carts.findIndex((product) => product.id === selectProduct.value.id)
@@ -45,8 +39,6 @@ const addToCartInDetail = async () => {
           await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
         }
     }
-    
-  
   } catch(error) {
     console.log(error)
   }
@@ -103,6 +95,9 @@ getSelectProduct()
       <div class="flex items-center gap-2 mt-2">
         <span class="text-amber-600 text-sm">4 ★★★★☆</span>
         <span class="text-gray-500 text-sm">999 ratings</span>
+      </div>
+      <div>
+        <span class="text-gray-500 text-sm">Stock: {{ product.stock }}</span>
       </div>
     </template>
     

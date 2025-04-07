@@ -22,8 +22,6 @@ onMounted(async () => {
     if (getUser.value) {
         myUser.value = await getItemById(`${import.meta.env.VITE_APP_URL}/users`, getUser.value.id)
         myCarts.value = [...myUser.value.carts]
-        console.log(myUser.value)
-        console.log(myCarts.value)
     } else {
       console.warn("No user logged in")
     }
