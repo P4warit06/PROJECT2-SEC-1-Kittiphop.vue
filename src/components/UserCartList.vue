@@ -77,10 +77,16 @@ const currentUser = ref(null);
 const errorMessage = ref("");
 const successMessage = ref("");
 
-const handleBuy = async (product) => {
+const handleBuy = async () => {
   try {
     errorMessage.value = '';
     successMessage.value = '';
+
+    
+    if (checkboxData.value.length === 0) {
+      errorMessage.value = "Please select at least one item to purchase";
+      return;
+    }
 
     const user = currentUser.value;
     if (!user) {
@@ -88,50 +94,66 @@ const handleBuy = async (product) => {
       return;
     }
 
-    if (user.balance < product.price) {
-      errorMessage.value = `Insufficient balance! Needed: $${product.price.toFixed(2)}`;
+  
+    const totalPrice = checkboxData.value.reduce((sum, product) => sum + product.price, 0);
+
+ 
+    if (user.balance < totalPrice) {
+      errorMessage.value = `Insufficient balance! Needed: $${totalPrice.toFixed(2)}`;
       return;
     }
 
-    const productInDB = await getItemById(
-      `${import.meta.env.VITE_APP_URL}/products`,
-      product.id
-    );
-
-    if (product.quantity > productInDB.stock) {
-      errorMessage.value = `"${product.name}" is out of stock!`;
-      return;
-    }
-
-    user.balance -= product.price;
-    const updatedUser = await editItem(
-      `${import.meta.env.VITE_APP_URL}/users`,
-      user.id,
-      { ...user, balance: user.balance }
-    );
-
-    await editItem(
-      `${import.meta.env.VITE_APP_URL}/products`,
-      product.id,
-      { ...productInDB, stock: productInDB.stock - product.quantity }
-    );
-
-    const status = await deleteItemById(
-      `${import.meta.env.VITE_APP_URL}/carts`,
-      product.id
-    );
     
-    if (status === 200) {
+    for (const product of checkboxData.value) {
+      const productInDB = await getItemById(
+        `${import.meta.env.VITE_APP_URL}/products`,
+        product.id
+      );
+
+      if (product.quantity > productInDB.stock) {
+        errorMessage.value = `"${product.name}" is out of stock!`;
+        return;
+      }
+    }
+
+ 
+    user.balance -= totalPrice;
+    
+    for (const product of checkboxData.value) {
+      const productInDB = await getItemById(
+        `${import.meta.env.VITE_APP_URL}/products`,
+        product.id
+      );
+
+    
+      await editItem(
+        `${import.meta.env.VITE_APP_URL}/products`,
+        product.id,
+        { ...productInDB, stock: productInDB.stock - product.quantity }
+      );
+
+   
       const productIndex = combindCart.value.findIndex(
         (item) => item.id === product.id
       );
       if (productIndex !== -1) {
         combindCart.value.splice(productIndex, 1);
+        myUser.value.carts.splice(productIndex, 1);
       }
     }
 
+   
+    const updatedUser = await editItem(
+      `${import.meta.env.VITE_APP_URL}/users`,
+      user.id,
+      { ...user, balance: user.balance, carts: myUser.value.carts }
+    );
+
     currentUser.value = updatedUser;
     localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+
+
+    checkboxData.value = [];
 
     successMessage.value = "Purchase successful!";
     setTimeout(() => (successMessage.value = ""), 3000);
