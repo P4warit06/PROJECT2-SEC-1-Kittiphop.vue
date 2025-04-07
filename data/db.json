@@ -362,12 +362,12 @@
       "username": "b",
       "fullname": "b c",
       "_comment": "real password = Ab12345@",
-      "password": "QmIxMjM0NUA=",
+      "password": "QWIxMjM0NUA=",
       "email": "b@a.com",
       "role": "user",
-      "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
-      "contact": "0987654321",
-      "balance": 0,
+      "location": "",
+      "contact": "",
+      "balance": 1111,
       "carts": [
         {
           "id": "1",
