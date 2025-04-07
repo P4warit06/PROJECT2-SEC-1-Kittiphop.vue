@@ -67,7 +67,7 @@ function toggleEdit() {
   if (isEditing.value) {
     updateAddressContact.location = user.value.location || ""
     updateAddressContact.contact = user.value.contact || ""
-    updateAddressContact.fullName = user.value.fullName || ""
+    updateAddressContact.fullname = user.value.fullname || ""
     errorMsg.value = ""
   }
   isEditing.value = !isEditing.value
@@ -94,7 +94,7 @@ async function saveUpdateProfile() {
       ...user.value,
       location: updateAddressContact.location,
       contact: updateAddressContact.contact,
-      fullName: updateAddressContact.fullName
+      fullname: updateAddressContact.fullname
     }
     
     const result = await editItem(
@@ -107,7 +107,7 @@ async function saveUpdateProfile() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"))
     currentUser.location = result.location
     currentUser.contact = result.contact
-    currentUser.fullName = result.fullName
+    currentUser.fullname = result.fullname
     localStorage.setItem("currentUser", JSON.stringify(currentUser))
     successMsg.value = "Profile updated successfully!"
     isEditing.value = false
@@ -282,13 +282,13 @@ onMounted(loadUser)
                     </label>
                     <input
                       v-if="isEditing"
-                      v-model="updateAddressContact.fullName"
+                      v-model="updateAddressContact.fullname"
                       type="text"
                       class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Enter your full name"
                     />
                     <div v-else class="px-4 py-3 bg-gray-50 rounded-md text-gray-800">
-                      {{ user.fullName || "No name" }}
+                      {{ user.fullname || "No name" }}
                     </div>
                   </div>
                   
