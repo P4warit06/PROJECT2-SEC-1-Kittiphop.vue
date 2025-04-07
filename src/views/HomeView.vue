@@ -130,7 +130,7 @@ const scrollToSection = (ref) => {
                       <p class="cursor-pointer">Profile</p>
                     </router-link>
                     <router-link v-if="currentUser" to="/top-up"
-                      class="text-black text-2xl font-bold hover:text-blue-200 transition-all duration-300 w-full py-4 border-b border-white/10 flex justify-center "
+                      class="flex px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150 justify-center "
                       @click="isMobileMenuOpen = false">
                       Top up
                     </router-link>
@@ -259,6 +259,54 @@ const scrollToSection = (ref) => {
         </div>
       </main>
     </div>
+    <div>
+      
+    <!-- WHY CHOOSE US Section Page -->
+    <div class="relative min-h-screen">
+      <div class="absolute inset-0" :style="{
+          backgroundImage: `url(/images/explore-bg.png)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }" />
+
+      <main class="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-20 relative z-20 min-h-screen">
+        <div >
+      <div class="container mx-auto px-4">
+        <h2 class="text-white text-3xl sm:text-4xl md:text-5xl font-bold  sm:mb-30">WHY CHOOSE US</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Feature 1: Fast Delivery -->
+          <div class="text-center">
+            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4">
+              <span class="text-6xl">🚚</span>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2 text-white">Fast Delivery</h3>
+            <p class="text-white text-xl">Get your products delivered within 24 hours</p>
+          </div>
+
+          <!-- Feature 2: Quality Products -->
+          <div class="text-center">
+            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4">
+              <span class="text-6xl">⭐</span>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2 text-white">Quality Products</h3>
+            <p class="text-white text-xl">We ensure the highest quality standards</p>
+          </div>
+
+          <!-- Feature 3: Best Prices -->
+          <div class="text-center">
+            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4">
+              <span class="text-6xl">💰</span>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2 text-white">Best Prices</h3>
+            <p class="text-white text-xl">Competitive prices for all our products</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      </main>
+    </div>
+  </div>
 
     <!-- Explore Section -->
     <div ref="explore" class="relative min-h-screen">
