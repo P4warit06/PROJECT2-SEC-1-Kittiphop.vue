@@ -23,7 +23,7 @@ const hasMoreProducts = computed(() => {
 const loadMoreProducts = () => {
   limitShowProduct.value += 10 
 }
-/*  ------------------ */
+
 
 const showIfNotLogin = ref(false)
 const isAuthenticated = computed(() => {
@@ -40,7 +40,7 @@ const addToCart = (product) => {
     emit('add-to-cart', product)
   }
 }
-
+/*  ------------------ */
 
 
 </script>
