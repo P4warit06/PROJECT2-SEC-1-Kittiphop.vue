@@ -335,6 +335,7 @@
     {
       "id": "0",
       "username": "admin",
+      "fullname": "Admin Admin",
       "_comment": "password = QmIxMjM0NTY3ODlA = Bb123456789@",
       "password": "QmIxMjM0NTY3ODlA",
       "email": "admin@gmail.com",
@@ -345,21 +346,23 @@
     },
     {
       "id": "1",
-      "username": "a",
+      "username": "ab",
+      "fullname": "a b",
       "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
-      "email": "a@b.com",
+      "email": "a@bb.com",
       "role": "user",
       "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
       "contact": "0987654321",
-      "balance": 0,
+      "balance": 10,
       "carts": []
     },
     {
       "id": "2",
       "username": "b",
+      "fullname": "b c",
       "_comment": "real password = Ab12345@",
-      "password": "QWIxMjM0NUA=",
+      "password": "QmIxMjM0NUA=",
       "email": "b@a.com",
       "role": "user",
       "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
@@ -393,6 +396,7 @@
     {
       "id": "3",
       "username": "Ohmmy",
+      "fullname": "Ohmmy Ohm",
       "password": "b2htMTIzNDVA",
       "email": "Ohmmy@gmail.com",
       "role": "user",
@@ -404,11 +408,12 @@
     {
       "id": "4",
       "username": "kittiphop2548",
+      "fullname": "Kittipop Siranonchai",
       "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
       "email": "kittiphop2548@gmail.com",
       "role": "user",
-      "location": "KMUTT",
+      "location": "",
       "contact": "0999999999",
       "balance": 0,
       "carts": [
@@ -435,6 +440,18 @@
           "quantity": 2
         }
       ]
+    },
+    {
+      "id": "5",
+      "username": "test",
+      "fullname": "",
+      "password": "QWIxMjM0NUA=",
+      "email": "test@jest.com",
+      "role": "user",
+      "location": "",
+      "contact": "0987654321",
+      "balance": 0,
+      "carts": []
     }
   ],
   "tracking": [

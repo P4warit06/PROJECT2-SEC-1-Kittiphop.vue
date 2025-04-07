@@ -1,126 +1,126 @@
 <script setup>
-import ProductList from "./ProductList.vue";
-import AddEditProduct from "./AddEditProduct.vue";
-import HeaderManager from "./HeaderManager.vue";
-import FilterProduct from "./FilterProduct.vue";
-import ProductTracker from "./ProductTracker.vue";
+import ProductList from "./ProductList.vue"
+import AddEditProduct from "./AddEditProduct.vue"
+import HeaderManager from "./HeaderManager.vue"
+import FilterProduct from "./FilterProduct.vue"
+import ProductTracker from "./ProductTracker.vue"
 import {
   getItems,
   deleteItemById,
   addItem,
   editItem,
-} from "../libs/fetchUtils.js";
-import { ref, onMounted } from "vue";
-import { useProducts } from "../stores/products.js";
-import { storeToRefs } from "pinia";
+} from "../libs/fetchUtils.js"
+import { ref, onMounted } from "vue"
+import { useProducts } from "../stores/products.js"
+import { storeToRefs } from "pinia"
 
 const {initialProducts, addProduct, editProduct, deleteProduct } =
-  useProducts();
-const { products } = storeToRefs(useProducts());
+  useProducts()
+const { products } = storeToRefs(useProducts())
 
-const selectedProducts = ref([]);
-const productForFilter = ref([]);
-const arrCat = ref([]);
-const arrSta = ref([]);
-const searchValue = ref("");
-const searchBy = ref("");
+const selectedProducts = ref([])
+const productForFilter = ref([])
+const arrCat = ref([])
+const arrSta = ref([])
+const searchValue = ref("")
+const searchBy = ref("")
 
 function filterProduct(obj) {
-  productForFilter.value = [...products.value];
-  if (obj.type === "category") arrCat.value = obj.value;
-  if (obj.type === "status") arrSta.value = obj.value;
-  if (obj.type === "searchValue") searchValue.value = obj.value;
-  if (obj.type === "searchBy") searchBy.value = obj.value;
+  productForFilter.value = [...products.value]
+  if (obj.type === "category") arrCat.value = obj.value
+  if (obj.type === "status") arrSta.value = obj.value
+  if (obj.type === "searchValue") searchValue.value = obj.value
+  if (obj.type === "searchBy") searchBy.value = obj.value
   if (obj.type === "clearSearch" || obj.type === "clear") {
-    arrCat.value = [];
-    arrSta.value = [];
-    return (productForFilter.value = [...products.value]);
+    arrCat.value = []
+    arrSta.value = []
+    return (productForFilter.value = [...products.value])
   }
   if (searchBy.value.length !== 0 && searchValue.value.length !== 0) {
     if (searchBy.value === "id") {
       return (productForFilter.value = products.value.filter(
         (product) => product.id === searchValue.value
-      ));
+      ))
     } else {
       return (productForFilter.value = products.value.filter((p) =>
         p[searchBy.value]
           .toLowerCase()
           .includes(searchValue.value.toLowerCase())
-      ));
+      ))
     }
   }
   if (arrCat.value.length === 0 && arrSta.value.length === 0) {
-    return productForFilter.value;
+    return productForFilter.value
   } else {
     let catArr = products.value.filter((product) =>
       arrCat.value.includes(product.category)
-    );
+    )
     let staArr = products.value.filter((product) =>
       arrSta.value.includes(product.status)
-    );
+    )
     if (arrCat.value.length !== 0 && arrSta.value.length === 0)
-      return (productForFilter.value = catArr);
+      return (productForFilter.value = catArr)
     if (arrCat.value.length === 0 && arrSta.value.length !== 0)
-      return (productForFilter.value = staArr);
+      return (productForFilter.value = staArr)
     if (arrCat.value.length !== 0 && arrSta.value.length !== 0) {
       let intersect = catArr.filter((catProduct) =>
         staArr.some((staProduct) => staProduct.id === catProduct.id)
-      );
-      return (productForFilter.value = intersect);
+      )
+      return (productForFilter.value = intersect)
     }
   }
 }
 
-const filterCategories = ref([]);
-const filterStatus = ref([]);
+const filterCategories = ref([])
+const filterStatus = ref([])
 
 onMounted(async () => {
   try {
     const fetchedProducts = await getItems(
       `${import.meta.env.VITE_APP_URL}/products`
-    );
-    initialProducts(fetchedProducts);
-    productForFilter.value = [...fetchedProducts];
+    )
+    initialProducts(fetchedProducts)
+    productForFilter.value = [...fetchedProducts]
 
     filterCategories.value = fetchedProducts
       .map((p) => p.category)
       .filter(
         (p, index, arr) =>
           p !== undefined && p !== null && arr.indexOf(p) === index
-      );
+      )
     filterStatus.value = fetchedProducts
       .map((p) => p.status)
       .filter(
         (p, index, arr) =>
           p !== undefined && p !== null && arr.indexOf(p) === index
-      );
+      )
   } catch (error) {
-    console.error("Error loading products:", error);
+    console.error("Error loading products:", error)
   }
-});
+})
 
 const addNewProduct = async (product) => {
   try {
     const addedItem = await addItem(
       `${import.meta.env.VITE_APP_URL}/products`,
       product
-    );
+    )
     if (addedItem) {
-      addProduct(addedItem);
-      productForFilter.value = [...products.value];
+      addProduct(addedItem)
+      productForFilter.value = [...products.value]
     }
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
-  isAdding.value = false;
-};
+  isAdding.value = false
+}
 
 const cancelAdding = () => {
-  isAdding.value = false;
-};
+  isAdding.value = false
+}
 
-const isAdding = ref(false);
-const isEditing = ref(false);
+const isAdding = ref(false)
+const isEditing = ref(false)
 const currentProduct = ref({
   name: "",
   category: "",
@@ -129,12 +129,12 @@ const currentProduct = ref({
   stock: 0,
   image: "",
   description: "",
-});
+})
 
 const setEditProduct = (editProduct) => {
-  isEditing.value = true;
-  currentProduct.value = { ...editProduct };
-};
+  isEditing.value = true
+  currentProduct.value = { ...editProduct }
+}
 
 const updateProduct = async (product) => {
   try {
@@ -142,16 +142,16 @@ const updateProduct = async (product) => {
       `${import.meta.env.VITE_APP_URL}/products`,
       product.id,
       product
-    );
+    )
     const editIndex = products.value.findIndex(
       (item) => item.id === editedItem.id
-    );
-    editProduct(editedItem, editIndex);
-    productForFilter.value = [...products.value];
+    )
+    editProduct(editedItem, editIndex)
+    productForFilter.value = [...products.value]
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
-  isEditing.value = false;
+  isEditing.value = false
   currentProduct.value = {
     name: "",
     category: "",
@@ -160,26 +160,26 @@ const updateProduct = async (product) => {
     stock: 0,
     image: "",
     description: "",
-  };
-};
+  }
+}
 
 const deleteExistProduct = async (id) => {
   try {
     const status = await deleteItemById(
       `${import.meta.env.VITE_APP_URL}/products`,
       id
-    );
+    )
     if (status === 200) {
-      const removeIndex = products.value.findIndex((item) => item.id === id);
+      const removeIndex = products.value.findIndex((item) => item.id === id)
       if (removeIndex !== -1) {
-        deleteProduct(removeIndex);
-        productForFilter.value = [...products.value];
+        deleteProduct(removeIndex)
+        productForFilter.value = [...products.value]
       }
     }
   } catch (error) {
-    console.error("Error deleting item:", error);
+    console.error("Error deleting item:", error)
   }
-};
+}
 
 const deleteMultipleProduct = async (idList) => {
   try {
@@ -187,26 +187,26 @@ const deleteMultipleProduct = async (idList) => {
       const status = await deleteItemById(
         `${import.meta.env.VITE_APP_URL}/products`,
         idList[i]
-      );
+      )
       if (status === 200) {
         const removeIndex = products.value.findIndex(
           (item) => item.id === idList[i]
-        );
+        )
         if (removeIndex !== -1) {
-          deleteProduct(removeIndex);
+          deleteProduct(removeIndex)
         }
       }
     }
-    productForFilter.value = [...products.value];
+    productForFilter.value = [...products.value]
   } catch (error) {
-    console.error("Error deleting items:", error);
+    console.error("Error deleting items:", error)
   }
-};
+}
 
 const cancelAdd = () => {
-  isAdding.value = false;
-  isEditing.value = false;
-};
+  isAdding.value = false
+  isEditing.value = false
+}
 </script>
 
 <template>

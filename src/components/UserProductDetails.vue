@@ -1,16 +1,17 @@
 <script setup>
-import { useRoute, useRouter } from 'vue-router';
-import { getItemById } from '@/libs/fetchUtils';
-import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
+import { getItemById } from '@/libs/fetchUtils'
+import { ref } from 'vue'
 
-const {params: {productId}} = useRoute();
+const {params: {productId}} = useRoute()
 const selectProduct = ref({})
+
 
 const getSelectProduct = async () => {
     try {
         selectProduct.value = await getItemById(`${import.meta.env.VITE_APP_URL}/products`, productId)
     } catch(error) {
-        console.log(error);
+        console.log(error)
     }
 }
 
@@ -18,6 +19,7 @@ const router = useRouter()
 function goBack() {
   router.go(-1)
 }
+
 getSelectProduct()
 </script>
 
@@ -57,10 +59,13 @@ getSelectProduct()
                 Back
               </button>
             </div>
+            
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped> </style>
 

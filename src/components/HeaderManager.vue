@@ -1,11 +1,10 @@
 <script setup>
-import { ref,computed } from "vue";
-import 'boxicons'
+import { ref,computed } from "vue"
 
-const burgerActive = ref(false);
+const burgerActive = ref(false)
 
 function toggleMenu() {
-  burgerActive.value = !burgerActive.value;
+  burgerActive.value = !burgerActive.value
 }
 </script>
 
@@ -22,50 +21,55 @@ function toggleMenu() {
     <nav class="hidden md:block">
       <ul class="flex space-x-4">
         <li class="text-white font-bold">
+          <router-link to="/user-manager" class="hover:opacity-70">
+            USER
+          </router-link>
+        </li>
+        <li class="text-white font-bold">
+
           <router-link to="/product-manager" class="hover:opacity-70">
-            Product
+            PRODUCT
           </router-link>
         </li>
         <li class="text-white font-bold">
           <router-link to="/product-tracker" class="hover:opacity-70">
-            Product Tracker
+            PRODUCT TRACKER
           </router-link>
         </li>
         <li class="text-white font-bold">
           <router-link to="/home" class="hover:opacity-70">
-            About
+            ABOUT
           </router-link>
         </li>
       </ul>
     </nav>
 
     <div v-show="burgerActive"
-      class="w-full h-screen fixed inset-0 flex flex-col items-center p-20 backdrop-blur-md text-white md:hidden z-50">
-      <ul class="space-y-4 text-lg">
-
-        <li>
-          <router-link to="/product-manager" active class="text-black text-center block hover:opacity-60">
-            PRODUCT
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/home" class="text-black text-center block hover:opacity-60">
-            ABOUT
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/about" class="text-black text-center block hover:opacity-60">
-            CART
-          </router-link>
-        </li>
-      </ul>
-      <button @click="burgerActive = !burgerActive"
-        class="absolute top-4 right-4 text-black font-bold hover:opacity-70 focus:outline-none cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
+  class="w-full h-screen fixed inset-0 flex flex-col items-center justify-center p-4 backdrop-blur-md text-white md:hidden z-50">
+  <ul class="space-y-8 text-lg w-full text-center">
+    <li>
+      <router-link to="/product-manager" class="text-black block hover:opacity-60 py-2">
+        PRODUCT
+      </router-link>
+    </li>
+    <li>
+      <router-link to="/home" class="text-black block hover:opacity-60 py-2">
+        ABOUT
+      </router-link>
+    </li>
+    <li>
+      <router-link to="/about" class="text-black block hover:opacity-60 py-2">
+        CART
+      </router-link>
+    </li>
+  </ul>
+  <button @click="burgerActive = !burgerActive"
+    class="absolute top-4 right-4 text-black font-bold hover:opacity-70 focus:outline-none cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</div>
   </header>
 
 </template>

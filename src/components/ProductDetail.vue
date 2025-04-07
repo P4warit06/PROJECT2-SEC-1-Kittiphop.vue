@@ -1,28 +1,28 @@
 <script setup>
-import { ref } from "vue";
-import { getItemById } from "../libs/fetchUtils.js";
-import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue"
+import { getItemById } from "../libs/fetchUtils.js"
+import { useRoute, useRouter } from "vue-router"
 const {
   params: { productId },
-} = useRoute();
-const selectProduct = ref({});
+} = useRoute()
+const selectProduct = ref({})
 
 async function getProductById() {
   try {
     selectProduct.value = await getItemById(
       `${import.meta.env.VITE_APP_URL}/products`,
       productId
-    );
+    )
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
 
-getProductById();
+getProductById()
 
-const router = useRouter();
+const router = useRouter()
 function goBack() {
-  router.go(-1);
+  router.go(-1)
 }
 // console.log(productId)
 </script>

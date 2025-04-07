@@ -4,23 +4,22 @@ import { registerUser, checkExistEmail } from "../libs/fetchUtils.js";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const currentStep = ref(1);
 const showSuccessRegister = ref(false);
 const formData = reactive({
   email: "",
   password: "",
   username: "",
-  location: "",
-  contact: "",
+  fullname: "",
   carts: []
 });
 const errorMessage = ref("");
 const isLoading = ref(false);
 const isRegisterSuccessful = ref(false);
 
-async function nextStep(event) {
+async function submitForm(event) {
   if (event) event.preventDefault();
   errorMessage.value = ""
+  
   if (!formData.email) {
     errorMessage.value = "Email is required";
     return
@@ -29,7 +28,6 @@ async function nextStep(event) {
     errorMessage.value = "Please enter a valid email";
     return
   }
-  
   if (!formData.password) {
     errorMessage.value = "Password is required";
     return
@@ -55,51 +53,7 @@ async function nextStep(event) {
       formData.username = formData.email.split("@")[0];
     }
 
-    currentStep.value = 2;
-  } catch (error) {
-    console.error("Email check error:", error);
-    errorMessage.value = "Error checking email: " + error.message;
-  } finally {
-    isLoading.value = false;
-  }
-}
-
-function prevStep() {
-  if (currentStep.value > 1) {
-    currentStep.value--;
-    errorMessage.value = "";
-  }
-}
-
-async function submitForm(event) {
-  if (event) event.preventDefault();
-
-  errorMessage.value = "";
-  // Validate location (address)
-  if (!formData.location) {
-    errorMessage.value = "Please enter your address";
-    return;
-  }
-
-  if (formData.location.length < 5) {
-    errorMessage.value = "Address should be at least 5 characters long";
-    return;
-  }
-
-  if (!formData.contact) {
-    errorMessage.value = "Please enter your phone number";
-    return;
-  }
-  if (!checkPhoneNumber(formData.contact)) {
-    errorMessage.value = "Please enter a valid phone number (10 digits starting with 0)";
-    return;
-  }
-
-  try {
-    isLoading.value = true;
-    
-    // Send the data to backend using the registerUser function
-    const result = await registerUser(import.meta.env.VITE_APP_URL, formData);
+   await registerUser(import.meta.env.VITE_APP_URL, formData);
     isRegisterSuccessful.value = true;
     showSuccessRegister.value = true;
     setTimeout(() => {
@@ -114,11 +68,6 @@ async function submitForm(event) {
   }
 }
 
-function checkPhoneNumber(phone) {
-  const phoneRegex = /^0[2689]\d{8}$/;
-  return phoneRegex.test(phone);
-}
-
 function closeModal() {
   showSuccessRegister.value = false
   router.push("/login")
@@ -128,14 +77,13 @@ function checkEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return emailRegex.test(email)
 }
+
 function checkPassword(password) {
   const hasMinLength = password.length >= 8
   const hasNumber = /\d/.test(password)
   const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password)
   return hasMinLength && hasNumber && hasSpecial
 }
-
-
 </script>
 
 <template>
@@ -145,12 +93,11 @@ function checkPassword(password) {
       backgroundImage: `url(/images/authen-bg.png)`,
       backgroundSize: 'cover',
     }"
-    
   >
-   <!-- Back arrow button -->
+
    <button 
       @click="router.push('/')" 
-      class="absolute top-4 left-4 md:top-8 md:left-8 p-2 rounded-full border-1 border-blue-700 bg-opacity-70 hover:bg-opacity-100 transition-all duration-200 text-gray-400 cursor-pointer hover:text-gray-600 shadow-sm"
+      class="absolute top-4 left-4 md:top-8 md:left-8 p-2 rounded-full border-1 border-white bg-opacity-70 hover:opacity-50 transition-all duration-200 text-gray-400 cursor-pointer hover:text-gray-600 shadow-sm"
       aria-label="Back to home"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
@@ -164,49 +111,6 @@ function checkPassword(password) {
         <h2 class="text-2xl font-bold text-center text-gray-700">SIGN UP</h2>
       </div>
 
-      <!-- Progress Steps -->
-      <div class="flex items-center justify-center mb-8">
-        <div class="flex items-center">
-          <div
-            :class="[
-              'rounded-full w-8 h-8 flex items-center justify-center text-white font-medium',
-              currentStep > 1
-                ? 'bg-green-500'
-                : currentStep === 1
-                ? 'bg-blue-500'
-                : 'bg-gray-300',
-            ]"
-          >
-            <span v-if="currentStep === 1">1</span>
-            <span v-else class="text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </span>
-          </div>
-          <div class="w-16 h-1 bg-gray-300 mx-1"></div>
-        </div>
-
-        <div class="flex items-center">
-          <div
-            :class="[
-              'rounded-full w-8 h-8 flex items-center justify-center text-white font-medium',
-              currentStep === 2 ? 'bg-blue-500' : 'bg-gray-300',
-            ]"
-          >
-            <span>2</span>
-          </div>
-        </div>
-      </div>
       <div
         v-if="isRegisterSuccessful"
         class="mb-4 p-2 bg-green-100 text-green-700 rounded"
@@ -222,8 +126,7 @@ function checkPassword(password) {
       </div>
 
       <form
-        v-if="currentStep === 1"
-        @submit.prevent="nextStep"
+        @submit.prevent="submitForm"
         class="space-y-4"
       >
         <div>
@@ -258,7 +161,8 @@ function checkPassword(password) {
           class="w-full bg-blue-500 text-white py-3 rounded-md font-medium hover:bg-blue-600 transition disabled:opacity-50 cursor-pointer"
         >
           <span v-if="isLoading">Processing...</span>
-          <span v-else>NEXT</span>
+          <span v-else-if="isRegisterSuccessful">Success!</span>
+          <span v-else>SIGN UP</span>
         </button>
 
         <div class="flex items-center my-4">
@@ -298,67 +202,12 @@ function checkPassword(password) {
           >
         </div>
       </form>
-
-      <form
-        v-if="currentStep === 2"
-        @submit.prevent="submitForm"
-        class="space-y-4"
-      >
-      <div>
-      <label for="location" class="block text-gray-600 mb-1"
-        >Address</label
-      >
-      <input
-        v-model="formData.location"
-        type="text"
-        id="location"
-        placeholder="e.g. 126 Pracha Uthit Rd, Bangkok 10140"
-        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-      />
-    </div>
-    <div>
-      <label for="contact" class="block text-gray-600 mb-1">Phone Number</label>
-      <input
-        v-model="formData.contact"
-        type="tel"
-        id="contact"
-        placeholder="e.g. 0812357969"
-        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-      />
-      <p class="text-gray-400 text-sm mt-1">
-        Please enter a valid Thai phone number (10 digits starting with 0)
-      </p>
     </div>
 
-        <button
-          type="submit"
-          :disabled="isLoading || isRegisterSuccessful"
-          class="w-full bg-blue-500 text-white py-3 rounded-md font-medium hover:bg-blue-600 transition disabled:opacity-50 cursor-pointer"
-        >
-          <span v-if="isLoading">Processing...</span>
-          <span v-else-if="isRegisterSuccessful">Success!</span>
-          <span v-else>SIGN UP</span>
-        </button>
-
-        <div class="text-center">
-          <button
-            type="button"
-            @click="prevStep"
-            class="text-blue-500 hover:underline cursor-pointer"
-            :disabled="isLoading || isRegisterSuccessful"
-          >
-            Back
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Success Modal -->
     <div v-if="showSuccessRegister" class="fixed inset-0 flex items-center justify-center z-50">
       <div class="absolute inset-0 bg-black opacity-50" @click="closeModal"></div>
       <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 z-10 shadow-xl">
         <div class="text-center">
-          <!-- Success Icon -->
           <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
             <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />

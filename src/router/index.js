@@ -5,13 +5,14 @@ import SignUpView from "@/views/SignUpView.vue";
 import PageNotFoundView from "@/views/PageNotFoundView.vue";
 import ProductManager from "@/components/ProductManager.vue";
 import ProductDetail from "@/components/ProductDetail.vue";
+import ProductTracker from "@/components/ProductTracker.vue";
 import UserProductManager from "@/components/UserProductManager.vue";
 import UserCartList from "@/components/UserCartList.vue";
 import UserManager from "@/components/UserManager.vue";
 import UserTracking from "@/components/UserTracking.vue";
-import TopUp from "@/components/TopUp.vue";
 import UserProductDetails from "@/components/UserProductDetails.vue";
-import ProductTracker from "@/components/ProductTracker.vue";
+import UserProfile from "@/components/UserProfile.vue";
+import TopUp from "@/components/TopUp.vue";
 const history = createWebHistory();
 const routes = [
   {
@@ -74,6 +75,11 @@ const routes = [
     component: UserTracking,
   },
   {
+    path: "/user-profile/:userId",
+    name: "UserProfile",
+    component: UserProfile,
+  },
+  {
     path: "/top-up",
     name: "topUp",
     component: TopUp,
@@ -82,13 +88,13 @@ const routes = [
     path: "/:notMatch(.*)",
     name: "PageNotFound",
     component: PageNotFoundView,
-  },
+  }
+
 ];
 const router = createRouter({ history, routes });
 
 //062 Pongsakorn's
-// Comment ไว้ก่อนเดี๋ยวเข้า path ลำบาก
-/*
+
 router.beforeEach((to, from) => {
   const isAuthenticated = localStorage.getItem("currentUser") !== null;
   const publicPaths = [
@@ -119,6 +125,6 @@ router.beforeEach((to, from) => {
     return { name: "Home" };
   }
 });
-*/
+
 
 export default router;

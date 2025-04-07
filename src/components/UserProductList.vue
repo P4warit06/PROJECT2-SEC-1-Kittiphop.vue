@@ -1,7 +1,8 @@
 <script setup>
 import ListModel from './model/ListModel.vue'
-import { ref, computed } from 'vue'
-
+import { ref, computed, watch } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const props = defineProps({
   products: {
     type: Array,
@@ -22,11 +23,26 @@ const hasMoreProducts = computed(() => {
 const loadMoreProducts = () => {
   limitShowProduct.value += 10 
 }
-/*  ------------------ */
+
+
+const showIfNotLogin = ref(false)
+const isAuthenticated = computed(() => {
+  return localStorage.getItem("currentUser") !== null
+})
 
 const addToCart = (product) => {
-  emit('add-to-cart', product)
+  if (!isAuthenticated.value) {
+    showIfNotLogin.value = true
+    setTimeout(() => {
+      router.push('/login')
+    },5000)
+  } else {
+    emit('add-to-cart', product)
+  }
 }
+/*  ------------------ */
+
+
 </script>
 
 <template>
@@ -57,8 +73,9 @@ const addToCart = (product) => {
   >
     <template #heading>Products</template>
     <template #listItems="{ yourItem }">
+      <div class="flex flex-col h-full">
       <router-link :to="{name: 'UserProductDetail', params: {productId: yourItem.id}}">
-        <div class="flex flex-col h-full">
+        
           <div class="flex-grow">
             <img 
               v-if="yourItem.image" 
@@ -80,7 +97,7 @@ const addToCart = (product) => {
               Stock: {{ yourItem.stock }}
             </p>
           </div>
-          
+        </router-link>
           <button
             @click.stop="addToCart(yourItem)"
             :disabled="yourItem.stock === 0"
@@ -89,7 +106,7 @@ const addToCart = (product) => {
             Add to Cart
           </button>
         </div>
-      </router-link>
+      
     </template>
   </ListModel>
 
@@ -101,6 +118,39 @@ const addToCart = (product) => {
     >
       Load More
     </button>
+  </div>
+  
+  <!-- Login Required Modal -->
+  <div v-if="showIfNotLogin" class="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 backdrop-blur-sm">
+    
+    <div class="bg-white rounded-lg p-8 max-w-md w-full shadow-xl">
+      <div class="text-center flex flex-col items-center">
+        <div class="mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+        
+        <h3 class="text-2xl font-bold text-gray-800 mt-4">Login Required</h3>
+        <p class="text-gray-600 mt-2 mb-6">You need to be logged in to add items to your cart.</p>
+        
+        <p class="text-sm text-gray-500 mb-4">
+          Redirecting to login page...
+        </p>
+        
+        <div class="flex justify-center space-x-4">
+          <router-link
+            to="/login" 
+            class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            Login Now
+          </router-link>
+        
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
