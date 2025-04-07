@@ -27,96 +27,96 @@
 </template>
 
 <script setup>
-import { ref, onUnmounted } from 'vue';
+import { ref, onUnmounted } from 'vue'
 
 // Tracking ID input
-const trackingId = ref('');
+const trackingId = ref('')
 
 // Product data
-const product = ref(null);
+const product = ref(null)
 
 // Loading state
-const loading = ref(false);
+const loading = ref(false)
 
 // Error message
-const error = ref('');
+const error = ref('')
 
 // Interval for real-time updates
-let intervalId = null;
+let intervalId = null
 
 // Simulated product data
 // const mockProducts = [
 //     { trackingId: 'TRK123', name: 'Wireless Headphones', status: 'Ordered' },
 //     { trackingId: 'TRK456', name: 'Smartwatch', status: 'Shipped' },
 //     { trackingId: 'TRK789', name: 'Laptop Bag', status: 'Delivered' },
-// ];
+// ]
 
 // Start tracking
 const startTracking = () => {
     if (!trackingId.value) {
-        error.value = 'Please enter a tracking ID.';
-        return;
+        error.value = 'Please enter a tracking ID.'
+        return
     }
 
     // Reset states
-    product.value = null;
-    error.value = '';
-    loading.value = true;
+    product.value = null
+    error.value = ''
+    loading.value = true
 
     // Simulate API call to fetch product
     setTimeout(() => {
         const foundProduct = mockProducts.find(
             (p) => p.trackingId === trackingId.value
-        );
+        )
 
         if (foundProduct) {
-            product.value = foundProduct;
-            startRealTimeUpdates(foundProduct);
+            product.value = foundProduct
+            startRealTimeUpdates(foundProduct)
         } else {
-            error.value = 'Product not found.';
+            error.value = 'Product not found.'
         }
 
-        loading.value = false;
-    }, 1000);
-};
+        loading.value = false
+    }, 1000)
+}
 
 // Simulate real-time updates
 const startRealTimeUpdates = (product) => {
-    const statuses = ['Ordered', 'Shipped', 'Out for Delivery', 'Delivered'];
-    let currentIndex = statuses.indexOf(product.status);
+    const statuses = ['Ordered', 'Shipped', 'Out for Delivery', 'Delivered']
+    let currentIndex = statuses.indexOf(product.status)
 
     intervalId = setInterval(() => {
         if (currentIndex < statuses.length - 1) {
-            currentIndex++;
-            product.value.status = statuses[currentIndex];
+            currentIndex++
+            product.value.status = statuses[currentIndex]
         } else {
-            clearInterval(intervalId); // Stop updates when delivered
+            clearInterval(intervalId) // Stop updates when delivered
         }
-    }, 3000); // Update every 3 seconds
-};
+    }, 3000) // Update every 3 seconds
+}
 
 // Get CSS class based on status
 const getStatusClass = (status) => {
     switch (status) {
         case 'Ordered':
-            return 'status-ordered';
+            return 'status-ordered'
         case 'Shipped':
-            return 'status-shipped';
+            return 'status-shipped'
         case 'Out for Delivery':
-            return 'status-out-for-delivery';
+            return 'status-out-for-delivery'
         case 'Delivered':
-            return 'status-delivered';
+            return 'status-delivered'
         default:
-            return '';
+            return ''
     }
-};
+}
 
 // Cleanup interval on component unmount
 onUnmounted(() => {
     if (intervalId) {
-        clearInterval(intervalId);
+        clearInterval(intervalId)
     }
-});
+})
 </script>
 
 <style scoped>

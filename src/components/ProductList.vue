@@ -1,8 +1,8 @@
 <script setup>
-import ListModel from "./model/ListModel.vue";
-import { ref, computed } from "vue";
+import ListModel from "./model/ListModel.vue"
+import { ref, computed } from "vue"
 
-defineEmits(["deleteProduct", "setEditing", "selectDeleteProduct"]);
+defineEmits(["deleteProduct", "setEditing", "selectDeleteProduct"])
 const props = defineProps({
   products: {
     type: Array,
@@ -13,10 +13,10 @@ const props = defineProps({
     required: true,
   },
 })
-const selectProductList = ref([]);
+const selectProductList = ref([])
 
 //062 Pongsakorn's 
-const limitShowProduct = ref(10); 
+const limitShowProduct = ref(10) 
 const displayedProducts = computed(() => {
   return props.products.slice(0, limitShowProduct.value)
 })
@@ -24,7 +24,7 @@ const hasMoreProducts = computed(() => {
   return limitShowProduct.value < props.products.length
 })
 const loadMoreProducts = () => {
-  limitShowProduct.value += 10; 
+  limitShowProduct.value += 10 
 }
 </script>
 

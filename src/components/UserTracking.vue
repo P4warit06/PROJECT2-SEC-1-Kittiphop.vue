@@ -1,38 +1,38 @@
 <script setup>
-import { useRoute } from "vue-router";
-import { ref } from "vue";
-import { getItemById, editItem } from "@/libs/fetchUtils";
+import { useRoute } from "vue-router"
+import { ref } from "vue"
+import { getItemById, editItem } from "@/libs/fetchUtils"
 const {
   params: { userId },
-} = useRoute();
+} = useRoute()
 
-const selectUser = ref({});
+const selectUser = ref({})
 
 async function getTrackingByUserId() {
   selectUser.value = await getItemById(
     `${import.meta.env.VITE_APP_URL}/tracking`,
     userId
-  );
-  console.log(selectUser.value);
+  )
+  console.log(selectUser.value)
 }
-getTrackingByUserId();
+getTrackingByUserId()
 
-const statusValue = ["Pending", "Processing", "Shipping", "Shipped"];
-const cancelled = ref(false);
+const statusValue = ["Pending", "Processing", "Shipping", "Shipped"]
+const cancelled = ref(false)
 
 const updateState = async (tracking) => {
   try {
     return editedTracking = await editItem(
       `${import.meta.env.VITE_APP_URL}/tracking`,tracking.id,tracking
-    );
+    )
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}
 
 function cancel() {
-  cancelled.value = true;
-  selectUser.value.status = "Cancelled";
+  cancelled.value = true
+  selectUser.value.status = "Cancelled"
   updateState(selectUser.value)
 }
 

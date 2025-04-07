@@ -1,6 +1,6 @@
 <script setup>
-import { ref,computed, onMounted } from "vue";
-import { getItems } from "@/libs/fetchUtils";
+import { ref,computed, onMounted } from "vue"
+import { getItems } from "@/libs/fetchUtils"
 
 const props = defineProps({
   count :{
@@ -12,10 +12,10 @@ const props = defineProps({
 const cartQuantity = ref([])
 const count = computed(() => props.count)
 
-const burgerActive = ref(false);
+const burgerActive = ref(false)
 
 function toggleMenu() {
-  burgerActive.value = !burgerActive.value;
+  burgerActive.value = !burgerActive.value
 }
 </script>
 

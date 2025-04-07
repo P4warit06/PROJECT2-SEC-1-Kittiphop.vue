@@ -113,11 +113,12 @@ async function registerUser(url, userData) {
     const newUser = {
       id: newId,
       username: userData.username,
+      fullname: userData.fullname,
       password: hashedPassword,
       email: userData.email,
       role: "user",
-      location: userData.location || " ",
-      contact: userData.contact || " ",
+      location: userData.location ,
+      contact: userData.contact,
       balance: 0,
       carts: []
     }
