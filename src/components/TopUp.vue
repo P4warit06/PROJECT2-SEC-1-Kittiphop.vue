@@ -167,12 +167,13 @@ const handleRecharge = async () => {
           New Balance: <span class="font-semibold text-green-600">฿{{ currentBalance.toLocaleString() }}</span>
         </p>
 
-        <button
-  class="mt-6 w-full bg-green-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-600 transition duration-200"
-  @click="showSuccessModal = false"
->
-  OK
-</button>
+        <router-link
+          to="/home"
+          class="mt-6 inline-block w-full bg-green-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-600 transition duration-200"
+          @click.native="showSuccessModal = false"
+        >
+          OK
+        </router-link>
       </div>
     </div>
   </div>
