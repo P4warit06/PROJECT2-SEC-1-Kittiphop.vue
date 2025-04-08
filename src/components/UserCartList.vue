@@ -590,7 +590,7 @@ const isSelectAll = computed(() => {
             <path d="M12 19l-7-7 7-7"></path>
           </svg>
         </button>
-        <p class="text-lg font-medium text-blue-800">
+        <p class="text-lg font-medium text-blue-800 ">
           Your Balance:
           <span class="font-bold">${{ currentUser.balance.toFixed(2) }}</span>
         </p>

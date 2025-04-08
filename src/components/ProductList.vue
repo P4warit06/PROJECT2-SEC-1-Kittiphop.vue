@@ -117,11 +117,7 @@ const toggleSelectAll = () => {
 
             <button
               v-if="selectProductList.length > 0"
-<<<<<<< HEAD
-              class="w-10 h-10 sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer ml-8"
-=======
-              class="w-[40vh] h-[8vh] sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer"
->>>>>>> origin
+               class="w-10 h-10 sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer ml-8"
               @click="$emit('selectDeleteProduct', selectProductList)"
             >
               <svg

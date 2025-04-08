@@ -70,7 +70,7 @@ const addToCart = (product) => {
    <div class="mx-auto my-2 w-full h-full max-w-[80%]">
       <div class="relative w-full  overflow-hidden rounded-lg shadow-md border">
         <img 
-          src="/product-images/product-list-banner.png" 
+          src="/product-images/talalelo-tralala.png" 
           alt="Product Management Banner"
           class="w-full h-[40vh] object-cover"
         />

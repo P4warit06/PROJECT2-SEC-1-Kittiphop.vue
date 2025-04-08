@@ -213,11 +213,19 @@ const cancelAdd = () => {
     <NavbarAdmin />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
    
-
+    <div class="mr-38">
     <button @click="isAdding = !isAdding"
-      class="mt-2 mx-3 px-5 py-2 bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
-      Add New Product
-    </button>
+  class="mt-6 px-5 py-2 
+         bg-gradient-to-r from-green-600 to-green-400 ml-5 
+         text-white font-semibold rounded-2xl shadow-md 
+         hover:from-green-500 hover:to-green-500 
+         transition duration-300 ease-in-out transform hover:scale-105 
+         cursor-pointer 
+         w-full sm:w-auto  
+         sm:float-right sm:mr-45 text-center">
+  Add New Product
+</button>
+</div>
 
     <AddEditProduct v-if="isAdding || isEditing" :active-product="currentProduct" @add-new-product="addNewProduct"
       @edit-product="updateProduct" @cancel-adding="cancelAdd" />

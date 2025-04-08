@@ -49,7 +49,7 @@ const scrollToSection = (ref) => {
     <!-- Home Section -->
     <div class="relative min-h-screen">
       <div class="absolute inset-0 z-0" :style="{
-          backgroundImage: `url(/images/home-bg.jpg)`,
+          backgroundImage: `url(/images/bg-home.jpg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }" />   
@@ -238,22 +238,27 @@ const scrollToSection = (ref) => {
       </header>
 
       <main ref="landing"
-        class="flex flex-col items-center justify-center text-center px-4 py-20 relative z-10 min-h-screen">
-        <div class="max-w-4xl mx-auto">
-          <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-4">
-            TRANSPORTATION SERVICE
-          </h1>
-          <h2 class="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">
-            WHEREVER YOU WANT
-          </h2>
-        </div>
-      </main>
+  class="flex flex-col items-center justify-start md:justify-center text-center px-4 py-10 relative z-10 min-h-screen">
+  <div class="mt-20 md:mt-0 max-w-4xl mx-auto">
+    <!-- TRANSPORTATION SERVICE -->
+    <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 font-[Poppins]">
+      TRANSPORTATION SERVICE
+    </h1>
+    <!-- AND SHOP FOR WHATEVER YOU WANT -->
+    <h2 class="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold mt-2">
+      AND SHOP FOR WHATEVER YOU WANT
+    </h2>
+  </div>
+</main>
+
+
+
     </div>
 
     <!-- About Section -->
     <div ref="about" class="relative min-h-screen">
       <div class="absolute inset-0" :style="{
-          backgroundImage: `url(/images/about-bg.jpg)`,
+          backgroundImage: `url(/images/bg-home2.jpg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }" />
@@ -264,7 +269,7 @@ const scrollToSection = (ref) => {
             OUR COMPANY
           </h1>
           <p class="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-6">
-            <span class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-white bg-clip-text text-transparent">
+            <span class="text-3xl font-bold bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
               Our platform is designed to
             </span>
             Empower users to effortlessly list their products for sale, creating a seamless and dynamic marketplace
@@ -280,12 +285,22 @@ const scrollToSection = (ref) => {
         </div>
       </main>
     </div>
+
     <div>
+
+      <div class="relative min-h-screen">
+      <div class="absolute inset-0" :style="{
+          backgroundImage: `url(/images/bg-home3.jpg)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }" />
+      </div>
+
       
     <!-- WHY CHOOSE US Section Page -->
     <div class="relative min-h-screen">
       <div class="absolute inset-0" :style="{
-          backgroundImage: `url(/images/explore-bg.png)`,
+          backgroundImage: `url(/images/bg-home4.jpg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }" />
@@ -298,7 +313,7 @@ const scrollToSection = (ref) => {
         <div class="grid md:grid-cols-3 gap-8">
           <!-- Feature 1: Fast Delivery -->
           <div class="text-center">
-            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4">
+            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 hover:scale-110 hover:bg-gray-200">
               <span class="text-6xl">🚚</span>
             </div>
             <h3 class="text-2xl font-semibold mb-2 text-white">Fast Delivery</h3>
@@ -307,7 +322,7 @@ const scrollToSection = (ref) => {
 
           <!-- Feature 2: Quality Products -->
           <div class="text-center">
-            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4">
+            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 hover:scale-110 hover:bg-gray-200">
               <span class="text-6xl">⭐</span>
             </div>
             <h3 class="text-2xl font-semibold mb-2 text-white">Quality Products</h3>
@@ -316,7 +331,7 @@ const scrollToSection = (ref) => {
 
           <!-- Feature 3: Best Prices -->
           <div class="text-center">
-            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4">
+            <div class="bg-gray-100 rounded-full w-30 h-30 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 hover:scale-110 hover:bg-gray-200">
               <span class="text-6xl">💰</span>
             </div>
             <h3 class="text-2xl font-semibold mb-2 text-white">Best Prices</h3>
@@ -332,7 +347,7 @@ const scrollToSection = (ref) => {
     <!-- Explore Section -->
     <div ref="explore" class="relative min-h-screen">
       <div class="absolute inset-0"
-        :style="{ backgroundImage : 'url(/images/explore-bg.png)', backgroundColor: 'green', backgroundSize: 'cover' }" />
+        :style="{ backgroundImage : 'url(/images/bg-home5.jpg)', backgroundColor: 'green', backgroundSize: 'cover' }" />
 
       <main class="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-20 relative z-20 min-h-screen">
         <div class="max-w-4xl mx-auto">
