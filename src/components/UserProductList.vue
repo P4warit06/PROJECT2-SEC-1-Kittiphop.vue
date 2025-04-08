@@ -92,7 +92,7 @@ const addToCart = (product) => {
     <template #heading>Products</template>
     
     <template #listItems="{ yourItem }">
-      <div class="flex flex-col h-full">
+      <div class="flex flex-col w-full h-full">
         <router-link :to="{name: 'UserProductDetail', params: {productId: yourItem.id}}">
           <div class="flex-grow">
             <img 
