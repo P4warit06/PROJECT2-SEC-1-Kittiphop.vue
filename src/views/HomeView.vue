@@ -96,7 +96,7 @@ const scrollToSection = (ref) => {
               </router-link>
               <router-link v-if="currentUser && currentUser.role === 'admin'" to="/product-tracker"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
-                PRODUCT TRACKER
+                TRACKER
               </router-link>
               <router-link v-if="!currentUser || currentUser.role === 'user'" to="/user-products"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
@@ -133,7 +133,7 @@ const scrollToSection = (ref) => {
                       class="flex px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150 justify-center">
                       <p class="cursor-pointer">Profile</p>
                     </router-link>
-                    <router-link v-if="currentUser" to="/top-up"
+                    <router-link v-if="currentUser && currentUser.role !== 'admin'" to="/top-up"
                       class="flex px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150 justify-center "
                       @click="isMobileMenuOpen = false">
                       Top up
@@ -220,6 +220,7 @@ const scrollToSection = (ref) => {
                 </router-link>
                 
                 <router-link 
+                  v-if="currentUser && currentUser.role !== 'admin'"
                   to="/top-up"
                   class="text-white text-2xl font-bold hover:text-green-300 transition-all duration-300 w-full py-4 flex justify-center items-center bg-white/10 hover:bg-green-500/30 rounded-md mb-4"
                   @click="isMobileMenuOpen = false"

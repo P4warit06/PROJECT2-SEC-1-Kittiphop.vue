@@ -99,8 +99,8 @@ function checkInput() {
             $emit('filterProduct', { type: 'clear' })
             removeChecked()
           }
-        " class="text-sm text-red-500 hover:underline absolute right-4 top-2">
-          Clear All
+        " class="text-sm text-red-500 hover:underline absolute right-2 top-1">
+          Clear
         </button>
       <div class="flex justify-between items-center mb-2 mr-4">
         <h2 class="text-lg font-semibold text-teal-600">Filter By</h2>

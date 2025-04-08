@@ -247,7 +247,7 @@
       "price": 29.99,
       "status": "Active",
       "stock": 50,
-      "image": "",
+      "image": "https://m.media-amazon.com/images/I/51--Fsb1yvL._AC_SL1021_.jpg",
       "description": "Affordable fitness band with step tracking"
     },
     {
@@ -257,7 +257,7 @@
       "price": 79.99,
       "status": "Active",
       "stock": 25,
-      "image": "",
+      "image": "https://5.imimg.com/data5/SELLER/Default/2022/1/SC/XU/WN/16604728/rapoo-vh150-gaming-headset-500x500.jpg",
       "description": "Gaming headset with surround sound"
     },
     {
@@ -267,7 +267,7 @@
       "price": 19.99,
       "status": "Active",
       "stock": 70,
-      "image": "",
+      "image": "https://mlvrv2qgedqb.i.optimole.com/cb:xZj_.59b0b/w:auto/h:auto/q:mauto/f:best/https://livdesk.com/wp-content/uploads/2023/06/Liv-Mobile-Tablet-Stand-V.2-White-07-scaled.jpg",
       "description": "Adjustable tablet stand for hands-free use"
     },
     {
@@ -277,7 +277,7 @@
       "price": 59.99,
       "status": "Active",
       "stock": 15,
-      "image": "",
+      "image": "https://row.hyperx.com/cdn/shop/products/hyperx_clutch_wireless_gaming_controller_1_main.jpg?v=1662421125",
       "description": "Ergonomic wireless gaming controller"
     },
     {
@@ -287,7 +287,7 @@
       "price": 49.99,
       "status": "Active",
       "stock": 35,
-      "image": "",
+      "image": "https://m.media-amazon.com/images/I/612rpEAEA1L._AC_UF894,1000_QL80_.jpg",
       "description": "Sweatproof earbuds for workouts"
     },
     {
@@ -352,7 +352,19 @@
       "role": "admin",
       "location": "29",
       "contact": "0999999999",
-      "carts": []
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 100,
+          "status": "Active",
+          "stock": 26,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "1",
@@ -375,10 +387,22 @@
       "password": "QWIxMjM0NUA=",
       "email": "bubble@hotmail.com",
       "role": "user",
-      "location": "125 cosno",
-      "contact": "0909317480",
-      "balance": 34014.05000000001,
-      "carts": []
+      "location": "123",
+      "contact": "0812345678",
+      "balance": 9999,
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 100,
+          "status": "Active",
+          "stock": 26,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "3",
@@ -436,7 +460,19 @@
       "email": "smully@gmail.com",
       "role": "user",
       "balance": 0,
-      "carts": [],
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 200,
+          "status": "Active",
+          "stock": 26,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 2
+        }
+      ],
       "location": "123",
       "contact": ""
     }

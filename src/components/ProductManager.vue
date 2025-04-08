@@ -3,7 +3,6 @@ import ProductList from "./ProductList.vue"
 import AddEditProduct from "./AddEditProduct.vue"
 import NavbarAdmin from "./NavbarAdmin.vue"
 import FilterProduct from "./FilterProduct.vue"
-import ProductTracker from "./ProductTracker.vue"
 import {
   getItems,
   deleteItemById,
@@ -117,9 +116,6 @@ const addNewProduct = async (product) => {
   isAdding.value = false
 }
 
-const cancelAdding = () => {
-  isAdding.value = false
-}
 
 const isAdding = ref(false)
 const isEditing = ref(false)
@@ -220,28 +216,25 @@ function toggleEditMode() {
   <div>
     <NavbarAdmin />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
-
-
+    
+    
     <div class="w-full p-3 mt-5 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
       <div class="w-full max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
         <button @click="isAdding = !isAdding"
           v-show="isEditMode"
-          class="mt-2 mx-3 px-5 py-2 bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
+          class="mt-2 mx-3 px-5 py-2 bg-green-600/80 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
           Add New Product
-        </button>
-      </div>
-      <div class="w-full flex justify-end items-center pr-5">
-        <button @click="toggleEditMode" :class="isEditMode ? 'px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center transition-colors' : 'px-4 py-2 bg-blue-300 text-white rounded-lg hover:bg-blue-400 flex items-center transition-colors'">
-          Toggle mode
         </button>
       </div>
     </div>
 
+    
     <AddEditProduct v-if="isAdding || isEditing" :active-product="currentProduct" @add-new-product="addNewProduct"
       @edit-product="updateProduct" @cancel-adding="cancelAdd" />
 
     <ProductList v-show="!isAdding && !isEditing" @deleteProduct="deleteExistProduct" @setEditing="setEditProduct"
-      :products="productForFilter" :selectedProducts="selectedProducts" :is-edit="isEditMode" @selectDeleteProduct="deleteMultipleProduct" />
+      :products="productForFilter" :selectedProducts="selectedProducts" :is-edit="isEditMode" @selectDeleteProduct="deleteMultipleProduct" 
+      @toggle-edit-mode="toggleEditMode" />
   </div>
 </template>
 

@@ -7,15 +7,15 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const combindCart = ref([]);
-const checkboxData = ref([]);
-const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
-const myUser = ref({});
-const showProfileForm = ref(false);
-const profileFormLoading = ref(false);
-const profileFormError = ref("");
-const showConfirmForm = ref(false);
-
+const combindCart = ref([])
+const checkboxData = ref([])
+const getUser = ref(JSON.parse(localStorage.getItem("currentUser")))
+const myUser = ref({})
+const showProfileForm = ref(false)
+const profileFormLoading = ref(false)
+const profileFormError = ref("")
+const showConfirmForm = ref(false)
+ 
 const profileForm = reactive({
   fullname: "",
   location: "",
