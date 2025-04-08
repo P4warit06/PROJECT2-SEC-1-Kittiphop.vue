@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue"
-import { getItemById } from "../libs/fetchUtils.js"
+import { getItemById } from "@/libs/fetchUtils.js"
 import { useRoute, useRouter } from "vue-router"
-import ProductDetailModel from "./model/ProductDetailModel.vue"
+import ProductDetailModel from "@/components/model/ProductDetailModel.vue"
 
 const {
   params: { productId },

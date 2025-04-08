@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive, onMounted } from "vue"
-import { getItemById, editItem } from "../libs/fetchUtils.js"
+import { getItemById, editItem } from "@/libs/fetchUtils.js"
 import { useRoute, useRouter } from "vue-router"
 
 const {

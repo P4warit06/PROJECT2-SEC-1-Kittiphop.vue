@@ -2,7 +2,7 @@
 import { useRoute, useRouter } from "vue-router"
 import { editItem, getItemById } from "@/libs/fetchUtils"
 import { onMounted, ref } from "vue"
-import ProductDetailModel from "./model/ProductDetailModel.vue"
+import ProductDetailModel from "@/components/model/ProductDetailModel.vue"
 
 const {
   params: { productId },

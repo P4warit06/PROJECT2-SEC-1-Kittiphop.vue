@@ -1,6 +1,6 @@
 <script setup>
-import NavbarModel from "./model/NavbarModel.vue"
-import NavigationItem from "./common/NavigationItem.vue"
+import NavbarModel from "@/components/model/NavbarModel.vue"
+import NavigationItem from "@/components/common/NavigationItem.vue"
 </script>
 
 <template>

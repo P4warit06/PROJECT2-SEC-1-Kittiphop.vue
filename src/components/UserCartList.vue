@@ -1,8 +1,8 @@
 <script setup>
-import CartModel from "./model/CartModel.vue"
+import CartModel from "@/components/model/CartModel.vue"
 import { ref, onMounted, computed, reactive } from "vue"
 import { getItemById, editItem } from "@/libs/fetchUtils"
-import CalculatePriceBar from "./CalculatePriceBar.vue"
+import CalculatePriceBar from "@/components/CalculatePriceBar.vue"
 import { useRouter } from "vue-router"
 
 const router = useRouter()

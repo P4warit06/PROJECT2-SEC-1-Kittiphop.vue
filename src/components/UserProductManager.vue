@@ -1,11 +1,9 @@
 <script setup>
-import UserProductList from './UserProductList.vue'
-import UserProductDetails from './UserProductDetails.vue'
+import UserProductList from '@/components/UserProductList.vue'
 import Navbar from "./Navbar.vue"
 import { ref, onMounted, computed } from 'vue'
-import { getItems, getItemById, editItem, addItem } from '../libs/fetchUtils.js' // เพิ่ม import editItem และ addItem
-import { useRouter } from 'vue-router'
-import {useProducts} from '../stores/products.js'
+import { getItems, getItemById, editItem, addItem } from '@/libs/fetchUtils.js' 
+import {useProducts} from '@/stores/products.js'
 
 const {initialProducts, getProducts } = useProducts()
 

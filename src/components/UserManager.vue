@@ -1,7 +1,7 @@
 <script setup>
-import UserList from "./UserList.vue"
+import UserList from "@/components/UserList.vue"
 import {ref , onMounted} from 'vue'
-import { getItems } from '../libs/fetchUtils.js'
+import { getItems } from '@/libs/fetchUtils.js'
 
 
 

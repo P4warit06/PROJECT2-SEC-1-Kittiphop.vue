@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive } from "vue";
-import { registerUser, checkExistEmail } from "../libs/fetchUtils.js";
+import { registerUser, checkExistEmail } from "@/libs/fetchUtils.js";
 import { useRouter } from "vue-router";
 
 const router = useRouter();

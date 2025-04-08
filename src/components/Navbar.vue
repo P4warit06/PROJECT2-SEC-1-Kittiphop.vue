@@ -1,8 +1,8 @@
 <script setup>
 import { computed } from "vue"
-import NavbarModel from "./model/NavbarModel.vue"
-import NavigationItem from "./common/NavigationItem.vue"
-import CartIcon from "./common/CartIcon.vue"
+import NavbarModel from "@/components/model/NavbarModel.vue"
+import NavigationItem from "@/components/common/NavigationItem.vue"
+import CartIcon from "@/components/common/CartIcon.vue"
 
 const props = defineProps({
   count: {

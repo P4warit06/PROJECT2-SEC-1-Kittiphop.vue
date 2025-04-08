@@ -1,9 +1,9 @@
 <script setup>
-import ProductList from "./ProductList.vue"
-import AddEditProduct from "./AddEditProduct.vue"
-import NavbarAdmin from "./NavbarAdmin.vue"
-import FilterProduct from "./FilterProduct.vue"
-import ProductTracker from "./ProductTracker.vue"
+import ProductList from "@/components/ProductList.vue"
+import AddEditProduct from "@/components/AddEditProduct.vue"
+import NavbarAdmin from "@/components/NavbarAdmin.vue"
+import FilterProduct from "@/components/FilterProduct.vue"
+import ProductTracker from "@/components/ProductTracker.vue"
 import {
   getItems,
   deleteItemById,

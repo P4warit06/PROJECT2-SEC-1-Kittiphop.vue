@@ -1,5 +1,5 @@
 <script setup>
-import { topUpBalance } from '../libs/fetchUtils.js'
+import { topUpBalance } from '@/libs/fetchUtils.js'
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onUnmounted } from 'vue'
-import NavbarAdmin from './NavbarAdmin.vue'
+import NavbarAdmin from '@/components/NavbarAdmin.vue'
 
 const trackingId = ref('')
 const trackingInfo = ref(null)

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue"
-import { login } from "../libs/fetchUtils.js"
+import { login } from "@/libs/fetchUtils.js"
 import { useRouter } from "vue-router"
 
 const email = ref("")
