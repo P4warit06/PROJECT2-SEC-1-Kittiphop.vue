@@ -55,7 +55,6 @@ const isEditMode = computed(() => props.isEdit)
 </script>
 
 <template>
-  <h1>{{ isEditMode }}</h1>
   <div class="bg-white rounded-lg shadow-md p-6 mb-6">
     <!-- Top Controls Section -->
     <div class="flex flex-col md:flex-row justify-end items-center mb-6">
