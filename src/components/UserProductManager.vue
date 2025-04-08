@@ -1,5 +1,6 @@
 <script setup>
 import UserProductList from './UserProductList.vue'
+import UserProductDetails from './UserProductDetails.vue'
 import Navbar from "./Navbar.vue"
 import { ref, onMounted, computed } from 'vue'
 import { getItems, getItemById, editItem, addItem } from '../libs/fetchUtils.js' // เพิ่ม import editItem และ addItem
@@ -21,8 +22,6 @@ onMounted(async () => {
     if (getUser.value) {
         myUser.value = await getItemById(`${import.meta.env.VITE_APP_URL}/users`, getUser.value.id)
         myCarts.value = [...myUser.value.carts]
-        console.log(myUser.value)
-        console.log(myCarts.value)
     } else {
       console.warn("No user logged in")
     }
@@ -36,6 +35,7 @@ onMounted(async () => {
 })
 
 const currentProduct = ref({})
+
 const addProductToCart = async (product) => {
     try {
         currentProduct.value = await getItemById(`${import.meta.env.VITE_APP_URL}/products`, product.id)
