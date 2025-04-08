@@ -6,6 +6,7 @@ const emit = defineEmits([
   "deleteProduct",
   "setEditing",
   "selectDeleteProduct",
+  "toggle-edit-mode",
 ]);
 const props = defineProps({
   products: {
@@ -21,7 +22,6 @@ const props = defineProps({
     required: true
   }
 });
-// View type toggle
 const currentListType = ref("card");
 const toggleListType = () => {
   currentListType.value = currentListType.value === "card" ? "list" : "card";
@@ -29,7 +29,6 @@ const toggleListType = () => {
 
 const selectProductList = ref([]);
 
-// Pagination logic
 const limitShowProduct = ref(10);
 const listProducts = computed(() => {
   return props.products.slice(0, limitShowProduct.value);
@@ -41,7 +40,6 @@ const loadMoreProducts = () => {
   limitShowProduct.value += 10;
 };
 
-// Select all functionality
 const selectAll = ref(false);
 const toggleSelectAll = () => {
   selectAll.value = !selectAll.value;
@@ -56,7 +54,6 @@ const isEditMode = computed(() => props.isEdit)
 
 <template>
   <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-    <!-- Top Controls Section -->
     <div class="flex flex-col md:flex-row justify-end items-center mb-6">
       <div class="flex items-center space-x-4 w-full md:w-auto">
         <button
@@ -81,6 +78,13 @@ const isEditMode = computed(() => props.isEdit)
             <path d="M9 3v18"></path>
             <path d="M15 3v18"></path>
           </svg>
+        </button>
+        
+        <button 
+          @click="$emit('toggle-edit-mode')" 
+          :class="isEdit ? 'px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center transition-colors' : 'px-4 py-2 bg-blue-300 text-white rounded-lg hover:bg-blue-400 flex items-center transition-colors'"
+        >
+          Edit mode
         </button>
       </div>
     </div>
@@ -143,11 +147,9 @@ const isEditMode = computed(() => props.isEdit)
             'flex flex-col h-full': currentListType === 'card',
           }"
         >
-          <!-- Card & List Mode Content with Better Layout -->
           <div
             :class="{ 'flex items-center w-full': currentListType === 'list' }"
           >
-            <!-- Checkbox for both views -->
             <div
               :class="{
                 'mr-3': currentListType === 'list',
@@ -163,7 +165,6 @@ const isEditMode = computed(() => props.isEdit)
               />
             </div>
 
-            <!-- Product Image -->
             <div
               :class="{
                 'w-20 h-20 mr-4 flex-shrink-0': currentListType === 'list',
@@ -204,7 +205,6 @@ const isEditMode = computed(() => props.isEdit)
               </div>
             </div>
 
-            <!-- Product Details -->
             <div :class="{ 'flex-1': currentListType === 'list' }">
               <h3 class="font-bold text-lg text-gray-800">
                 {{ yourItem.name }}
@@ -263,7 +263,6 @@ const isEditMode = computed(() => props.isEdit)
             </div>
           </div>
 
-          <!-- Action Buttons -->
           <div
             :class="{
               'flex justify-end items-center space-x-2 mt-4 sm:mt-0':
