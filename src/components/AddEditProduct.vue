@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue"
+import { ref } from "vue"
 
 const emits = defineEmits(["addNewProduct", "editProduct", "cancelAdding"])
 
@@ -28,64 +28,56 @@ const status = ref([
 ])
 
 const saveProduct = () => {
-  if (newProduct.value.id) {
-    emits("editProduct", newProduct.value)
-  } else {
-    emits("addNewProduct", newProduct.value)
+  const categoryImages = {
+    Electronics: "/product-images/default-category-images/electronics.png",
+    Audio: "/product-images/default-category-images/audio.jpg",
+    Accessories: "/product-images/default-category-images/accessories.png",
+    Wearables: "/product-images/default-category-images/wearables.png",
   }
-  const saveProduct = () => {
-    // Set default image based on category
-    const categoryImages = {
-      Electronics: "/product-images/default-category-images/electronics.png",
-      Audio: "/product-images/default-category-images/audio.jpg",
-      Accessories: "/product-images/default-category-images/accessories.png",
-      Wearables: "/product-images/default-category-images/wearables.png",
-    }
-    const productToSave = {
-      ...newProduct.value,
-      image:
-        newProduct.value.image || categoryImages[newProduct.value.category],
-    }
+  const productToSave = {
+    ...newProduct.value,
+    image:
+      newProduct.value.image || categoryImages[newProduct.value.category],
+  }
 
-    if (newProduct.value.id) {
-      emits("editProduct", productToSave)
-    } else {
-      emits("addNewProduct", productToSave)
-    }
+  if (newProduct.value.id) {
+    emits("editProduct", productToSave)
+  } else {
+    emits("addNewProduct", productToSave)
   }
 }
 </script>
 
 <template>
   <div
-    class="fixed inset-0 flex justify-center items-center backdrop-blur-sm overflow-auto"
+    class="fixed inset-0 flex justify-center items-center backdrop-blur-sm overflow-auto z-50"
   >
     <div
-      class="p-10 bg-white rounded-3xl shadow-2xl max-w-4xl mx-auto flex flex-col justify-center items-center max-h-screen overflow-y-auto"
+      class="p-6 bg-white rounded-2xl shadow-2xl max-w-3xl mx-auto flex flex-col justify-center items-center max-h-[90vh] overflow-y-auto w-[90%]"
     >
       <h1
-        class="text-4xl font-extrabold text-gray-900 mb-10 text-center w-full max-sm:text-xl"
+        class="text-2xl font-bold text-gray-900 mb-6 text-center w-full max-sm:text-xl"
       >
         {{ !newProduct.id ? "Add New Product" : "Edit Product" }}
       </h1>
 
       <div
-        class="grid grid-cols-1 overflow-auto px-1 sm:grid-cols-2 gap-8 w-full"
+        class="grid grid-cols-1 overflow-auto px-1 sm:grid-cols-2 gap-5 w-full"
       >
         <div>
-          <label class="block text-lg font-medium text-gray-700 mb-2"
+          <label class="block text-base font-medium text-gray-700 mb-1"
             >Product Name:</label
           >
           <input
             v-model="newProduct.name"
             type="text"
             placeholder="Enter product name"
-            class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
           />
         </div>
 
         <div>
-          <label class="block text-lg font-medium text-gray-700 mb-2"
+          <label class="block text-base font-medium text-gray-700 mb-1"
             >Stock:</label
           >
           <input
@@ -93,12 +85,12 @@ const saveProduct = () => {
             type="number"
             min="0"
             placeholder="Stock"
-            class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
           />
         </div>
 
         <div>
-          <label class="block text-lg font-medium text-gray-700 mb-2"
+          <label class="block text-base font-medium text-gray-700 mb-1"
             >Price:</label
           >
           <input
@@ -106,17 +98,17 @@ const saveProduct = () => {
             type="number"
             min="0"
             placeholder="Price"
-            class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
           />
         </div>
 
         <div>
-          <label class="block text-lg font-medium text-gray-700 mb-2"
+          <label class="block text-base font-medium text-gray-700 mb-1"
             >Status:</label
           >
           <select
             v-model="newProduct.status"
-            class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
           >
             <option disabled value="">Choose one</option>
             <option
@@ -130,12 +122,12 @@ const saveProduct = () => {
         </div>
 
         <div>
-          <label class="block text-lg font-medium text-gray-700 mb-2"
+          <label class="block text-base font-medium text-gray-700 mb-1"
             >Category:</label
           >
           <select
             v-model="newProduct.category"
-            class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
           >
             <option disabled value="">Choose one</option>
             <option
@@ -149,27 +141,26 @@ const saveProduct = () => {
         </div>
 
         <div class="col-span-1 sm:col-span-2">
-          <label class="block text-lg font-medium text-gray-700 mb-2"
+          <label class="block text-base font-medium text-gray-700 mb-1"
             >Description:</label
           >
           <textarea
             v-model="newProduct.description"
             placeholder="Product description"
-            class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none h-20"
           ></textarea>
         </div>
 
-
-        <div class="col-span-1 sm:col-span-2 flex gap-8 justify-center mt-4">
+        <div class="col-span-1 sm:col-span-2 flex gap-4 justify-center mt-4">
           <button
             @click="saveProduct"
-            class="w-full sm:w-2/3 bg-indigo-500 text-white py-3 rounded-xl hover:bg-indigo-600 cursor-pointer"
+            class="w-full sm:w-1/3 bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 cursor-pointer text-sm"
           >
             {{ newProduct.id ? "Save Changes" : "Add Product" }}
           </button>
           <button
             @click="$emit('cancelAdding')"
-            class="w-full sm:w-2/3 bg-gray-400 text-white py-3 rounded-xl hover:bg-red-500 cursor-pointer"
+            class="w-full sm:w-1/3 bg-gray-400 text-white py-2 rounded-lg hover:bg-red-500 cursor-pointer text-sm"
           >
             Cancel
           </button>

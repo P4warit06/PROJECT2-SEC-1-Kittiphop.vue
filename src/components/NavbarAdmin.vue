@@ -10,7 +10,7 @@ import NavigationItem from "./common/NavigationItem.vue"
     <template #navigation-items>
       <NavigationItem to="/user-manager">USER</NavigationItem>
       <NavigationItem to="/product-manager">PRODUCT</NavigationItem>
-      <NavigationItem to="/product-tracker">PRODUCT TRACKER</NavigationItem>
+      <NavigationItem to="/product-tracker">TRACKER</NavigationItem>
       <NavigationItem to="/home">ABOUT</NavigationItem>
     </template>
     

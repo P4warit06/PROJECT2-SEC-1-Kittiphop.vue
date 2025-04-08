@@ -6,6 +6,7 @@ const emit = defineEmits([
   "deleteProduct",
   "setEditing",
   "selectDeleteProduct",
+  "toggle-edit-mode",
 ]);
 const props = defineProps({
   products: {
@@ -21,7 +22,6 @@ const props = defineProps({
     required: true
   }
 });
-// View type toggle
 const currentListType = ref("card");
 const toggleListType = () => {
   currentListType.value = currentListType.value === "card" ? "list" : "card";
@@ -29,7 +29,6 @@ const toggleListType = () => {
 
 const selectProductList = ref([]);
 
-// Pagination logic
 const limitShowProduct = ref(10);
 const listProducts = computed(() => {
   return props.products.slice(0, limitShowProduct.value);
@@ -41,7 +40,6 @@ const loadMoreProducts = () => {
   limitShowProduct.value += 10;
 };
 
-// Select all functionality
 const selectAll = ref(false);
 const toggleSelectAll = () => {
   selectAll.value = !selectAll.value;
@@ -56,7 +54,6 @@ const isEditMode = computed(() => props.isEdit)
 
 <template>
   <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-    <!-- Top Controls Section -->
     <div class="flex flex-col md:flex-row justify-end items-center mb-6">
       <div class="flex items-center space-x-4 w-full md:w-auto">
         <button
@@ -82,6 +79,13 @@ const isEditMode = computed(() => props.isEdit)
             <path d="M15 3v18"></path>
           </svg>
         </button>
+        
+        <button 
+          @click="$emit('toggle-edit-mode')" 
+          :class="isEdit ? 'px-4 py-2 bg-green-500/90 text-white rounded-lg hover:bg-blue-600 flex items-center transition-colors' : 'px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 flex items-center transition-colors'"
+        >
+          Edit
+        </button>
       </div>
     </div>
 
@@ -98,6 +102,7 @@ const isEditMode = computed(() => props.isEdit)
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full gap-2">
           <div class="flex items-center">
             <h2 class="text-xl font-bold">Product Management</h2>
+            
           </div>
           
           <div class="flex flex-col sm:flex-row sm:items-center gap-2">
@@ -143,16 +148,23 @@ const isEditMode = computed(() => props.isEdit)
             'flex flex-col h-full': currentListType === 'card',
           }"
         >
-          <!-- Card & List Mode Content with Better Layout -->
-          <div
-            :class="{ 'flex items-center w-full': currentListType === 'list' }"
+          <router-link
+            :to="{
+              name: 'ProductDetail',
+              params: { productId: yourItem.id },
+            }"
+            class="flex-1 cursor-pointer"
+            :class="{
+              'flex items-center w-full': currentListType === 'list',
+              'flex flex-col': currentListType === 'card'
+            }"
           >
-            <!-- Checkbox for both views -->
             <div
               :class="{
                 'mr-3': currentListType === 'list',
                 'mb-3 self-start': currentListType === 'card',
               }"
+              @click.stop
             >
               <input
                 v-show="isEditMode"
@@ -163,7 +175,6 @@ const isEditMode = computed(() => props.isEdit)
               />
             </div>
 
-            <!-- Product Image -->
             <div
               :class="{
                 'w-20 h-20 mr-4 flex-shrink-0': currentListType === 'list',
@@ -204,7 +215,6 @@ const isEditMode = computed(() => props.isEdit)
               </div>
             </div>
 
-            <!-- Product Details -->
             <div :class="{ 'flex-1': currentListType === 'list' }">
               <h3 class="font-bold text-lg text-gray-800">
                 {{ yourItem.name }}
@@ -218,16 +228,10 @@ const isEditMode = computed(() => props.isEdit)
                 }"
               >
                 <div class="flex items-center">
-                  <span class="text-gray-500 text-sm mr-1">ID:</span>
-                  <router-link
-                    :to="{
-                      name: 'ProductDetail',
-                      params: { productId: yourItem.id },
-                    }"
-                    class="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                  >
+                  <span class="text-gray-500 text-sm mr-1">ID: </span>
+                  <span class="text-blue-600 text-sm font-medium">
                     {{ yourItem.id }}
-                  </router-link>
+                  </span>
                 </div>
 
                 <div class="flex items-center">
@@ -261,9 +265,8 @@ const isEditMode = computed(() => props.isEdit)
                 </div>
               </div>
             </div>
-          </div>
+          </router-link>
 
-          <!-- Action Buttons -->
           <div
             :class="{
               'flex justify-end items-center space-x-2 mt-4 sm:mt-0':
