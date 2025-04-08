@@ -7,7 +7,6 @@ const loading = ref(false)
 const error = ref('')
 let intervalId = null
 const showImage = ref(true)
-// Start tracking
 const startTracking = () => {
     if (!trackingId.value) {
         error.value = 'Please enter a tracking ID.'

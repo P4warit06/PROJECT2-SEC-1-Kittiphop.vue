@@ -3,7 +3,6 @@ import ProductList from "./ProductList.vue"
 import AddEditProduct from "./AddEditProduct.vue"
 import NavbarAdmin from "./NavbarAdmin.vue"
 import FilterProduct from "./FilterProduct.vue"
-import ProductTracker from "./ProductTracker.vue"
 import {
   getItems,
   deleteItemById,
@@ -228,18 +227,14 @@ function toggleEditMode() {
           Add New Product
         </button>
       </div>
-      <div class="w-full flex justify-end items-center pr-5">
-        <button @click="toggleEditMode" :class="isEditMode ? 'px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center transition-colors' : 'px-4 py-2 bg-blue-300 text-white rounded-lg hover:bg-blue-400 flex items-center transition-colors'">
-          Toggle mode
-        </button>
-      </div>
     </div>
 
     <AddEditProduct v-if="isAdding || isEditing" :active-product="currentProduct" @add-new-product="addNewProduct"
       @edit-product="updateProduct" @cancel-adding="cancelAdd" />
 
     <ProductList v-show="!isAdding && !isEditing" @deleteProduct="deleteExistProduct" @setEditing="setEditProduct"
-      :products="productForFilter" :selectedProducts="selectedProducts" :is-edit="isEditMode" @selectDeleteProduct="deleteMultipleProduct" />
+      :products="productForFilter" :selectedProducts="selectedProducts" :is-edit="isEditMode" @selectDeleteProduct="deleteMultipleProduct" 
+      @toggle-edit-mode="toggleEditMode" />
   </div>
 </template>
 
