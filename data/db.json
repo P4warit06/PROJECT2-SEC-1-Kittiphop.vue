@@ -414,30 +414,7 @@
       "location": "123",
       "contact": "0999999999",
       "balance": 57130.380000000005,
-      "carts": [
-        {
-          "id": "2",
-          "name": "Bluetooth Speaker",
-          "category": "Audio",
-          "price": 99.97999999999999,
-          "status": "Low Stock",
-          "stock": 4,
-          "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&auto=format&fit=crop&q=60",
-          "description": "Portable bluetooth speaker with 20hr battery life",
-          "quantity": 2
-        },
-        {
-          "id": "4",
-          "name": "Mechanical Keyboard",
-          "category": "Electronics",
-          "price": 129.99,
-          "status": "Active",
-          "stock": 25,
-          "image": "https://vader-prod.s3.amazonaws.com/1688564124-61MwcHryNYL.jpg",
-          "description": "RGB mechanical gaming keyboard",
-          "quantity": 1
-        }
-      ]
+      "carts": []
     },
     {
       "id": "5",
