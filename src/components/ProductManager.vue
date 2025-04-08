@@ -3,14 +3,13 @@ import ProductList from "./ProductList.vue"
 import AddEditProduct from "./AddEditProduct.vue"
 import NavbarAdmin from "./NavbarAdmin.vue"
 import FilterProduct from "./FilterProduct.vue"
-import ProductTracker from "./ProductTracker.vue"
 import {
   getItems,
   deleteItemById,
   addItem,
   editItem,
 } from "../libs/fetchUtils.js"
-import { ref, onMounted, computed } from "vue"
+import { ref, onMounted } from "vue"
 import { useProducts } from "../stores/products.js"
 import { storeToRefs } from "pinia"
 
@@ -207,47 +206,24 @@ const cancelAdd = () => {
   isAdding.value = false
   isEditing.value = false
 }
-const isEditMode = ref(false)
-function toggleEditMode() {
-  isEditMode.value = !isEditMode.value
-}
-
 </script>
 
 <template>
-  <div>
+  <div class="p">
     <NavbarAdmin />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
-    <div class="mx-auto my-2 w-full h-full max-w-[80%]">
-      <div class="relative w-full  overflow-hidden rounded-lg shadow-md border">
-        <img 
-          src="/product-images/product-list-banner.png" 
-          alt="Product Management Banner"
-          class="w-full h-[40vh] object-cover"
-        />
-      </div>
-    </div>
+   
 
-    <div class="w-full p-3 mt-5 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
-      <div class="w-full max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
-        <button @click="isAdding = !isAdding"
-          v-show="isEditMode"
-          class="mt-2 mx-3 px-5 py-2 bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
-          Add New Product
-        </button>
-      </div>
-      <div class="w-full flex justify-end items-center pr-5">
-        <button @click="toggleEditMode" :class="isEditMode ? 'px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center transition-colors' : 'px-4 py-2 bg-blue-300 text-white rounded-lg hover:bg-blue-400 flex items-center transition-colors'">
-          Toggle mode
-        </button>
-      </div>
-    </div>
+    <button @click="isAdding = !isAdding"
+      class="mt-2 mx-3 px-5 py-2 bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
+      Add New Product
+    </button>
 
     <AddEditProduct v-if="isAdding || isEditing" :active-product="currentProduct" @add-new-product="addNewProduct"
       @edit-product="updateProduct" @cancel-adding="cancelAdd" />
 
     <ProductList v-show="!isAdding && !isEditing" @deleteProduct="deleteExistProduct" @setEditing="setEditProduct"
-      :products="productForFilter" :selectedProducts="selectedProducts" :is-edit="isEditMode" @selectDeleteProduct="deleteMultipleProduct" />
+      :products="productForFilter" :selectedProducts="selectedProducts" @selectDeleteProduct="deleteMultipleProduct" />
   </div>
 </template>
 
