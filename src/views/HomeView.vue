@@ -52,7 +52,7 @@ const scrollToSection = (ref) => {
           backgroundImage: `url(/images/home-bg.jpg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-        }" />
+        }" />   
 
       <!-- Navigation Bar -->
       <header class="fixed top-0 left-0 w-full z-50 bg-transparent">
