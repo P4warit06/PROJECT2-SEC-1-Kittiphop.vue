@@ -219,7 +219,7 @@ function toggleEditMode() {
     
     
     <div class="w-full p-3 mt-5 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
-      <div class="w-full max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
+      <div class="w-full max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center text-center flex justify-center">
         <button @click="isAdding = !isAdding"
           v-show="isEditMode"
           class="mt-2 mx-3 px-5 py-2 bg-green-600/80 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">

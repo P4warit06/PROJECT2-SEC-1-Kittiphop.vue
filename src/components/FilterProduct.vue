@@ -93,13 +93,13 @@ function checkInput() {
     </div>
 
     <!-- Filter Section -->
-    <div class="gap-4 relative w-full md:w-1/3 bg-gray-50 border border-gray-200 p-4 rounded-lg drop-shadow-md flex">
+    <div class="gap-4 relative w-full md:w-1/3 bg-gray-50 border border-gray-200 p-4 rounded-lg drop-shadow-md flex max-lg:flex-col">
               <button @click="
           () => {
             $emit('filterProduct', { type: 'clear' })
             removeChecked()
           }
-        " class="text-sm text-red-500 hover:underline absolute right-2 top-1">
+        " class="text-sm text-white bg-red-600 hover:bg-red-700 hover:underline border-2 border-red-700 rounded-xl px-4 py-2 absolute right-2 top-1 transition duration-300 mt-4 max-lg:flex-col">
           Clear
         </button>
       <div class="flex justify-between items-center mb-2 mr-4">

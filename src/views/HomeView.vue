@@ -239,9 +239,10 @@ const scrollToSection = (ref) => {
         </div>
       </header>
 
+      
       <main ref="landing"
   class="flex flex-col items-center justify-start md:justify-center text-center px-4 py-10 relative z-10 min-h-screen">
-  <div class="mt-20 md:mt-0 max-w-4xl mx-auto">
+  <div class="mt-10 md:mt-0 max-w-4xl mx-auto">
     <!-- TRANSPORTATION SERVICE -->
     <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 font-[Poppins]">
       TRANSPORTATION SERVICE
@@ -252,6 +253,7 @@ const scrollToSection = (ref) => {
     </h2>
   </div>
 </main>
+
 
 
 
@@ -291,14 +293,16 @@ const scrollToSection = (ref) => {
     <!-- productlist -->
      <div>
     <div>
-      <div class="relative min-h-screen ">
+      
+      <div class="relative min-h-screen flex justify-center items-center" >
       <div class="absolute inset-0" :style="{
           backgroundImage: `url(/images/bg-home3.jpg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }" />
+        <ProductListHomePage/>
     </div>
-    <ProductListHomePage/>
+    
   </div>
 
       

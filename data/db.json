@@ -389,7 +389,7 @@
       "role": "user",
       "location": "125 cosno",
       "contact": "0909317480",
-      "balance": 33564.10000000001,
+      "balance": 33594.10000000001,
       "carts": []
     },
     {
@@ -488,7 +488,7 @@
     {
       "id": "5",
       "userId": "5",
-      "status": "Cancelled"
+      "status": "Shipped"
     },
     {
       "id": "6",

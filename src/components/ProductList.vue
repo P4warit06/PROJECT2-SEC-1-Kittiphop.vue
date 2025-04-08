@@ -55,7 +55,7 @@ const isEditMode = computed(() => props.isEdit)
 <template>
   <div class="bg-white rounded-lg shadow-md p-6 mb-6">
     <div class="flex flex-col md:flex-row justify-end items-center mb-6">
-      <div class="flex items-center space-x-4 w-full md:w-auto">
+      <div class="flex items-center space-x-4 w-full md:w-auto justify-center mr-85  max-xl:mr-0">
         <button
           @click="toggleListType"
           class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center transition-colors"
