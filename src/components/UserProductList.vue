@@ -11,6 +11,7 @@ const props = defineProps({
   },
 })
 
+
 const emit = defineEmits(['add-to-cart'])
 
 const currentListType = ref('card')
