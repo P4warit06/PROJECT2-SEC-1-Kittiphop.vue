@@ -703,7 +703,7 @@ const isSelectAll = computed(() => {
             </div>
 
             <div
-              class="sm:flex sm:justify-end sm:items-center sm:space-x-2 sm:w-full sm:w-auto"
+              class="sm:flex sm:justify-end sm:items-center sm:space-x-2 sm:w-auto"
             >
               <button
                 @click="decreaseQuantity(yourProduct)"

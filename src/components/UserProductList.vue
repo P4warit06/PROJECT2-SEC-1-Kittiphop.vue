@@ -48,8 +48,16 @@ const addToCart = (product) => {
 </script>
 
 <template>
-
-
+  
+   <div class="mx-auto my-2 w-full h-full max-w-[80%] ">
+      <div class="relative w-full overflow-hidden rounded-lg shadow-md border z-[-10]">
+        <img 
+          src="/product-images/talalelo-tralala.png " 
+          alt="Product Management Banner"
+          class="w-full h-[40vh] object-cover "
+        />
+      </div>
+</div>
   
   <!-- Added toggle view button -->
   <div class="flex justify-end px-4">

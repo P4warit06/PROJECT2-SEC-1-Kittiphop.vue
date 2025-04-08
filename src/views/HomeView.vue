@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from "vue-router"
 import { ref, onMounted } from "vue"
+import ProductListHomePage from "@/components/ProductListHomePage.vue"
 
 const about = ref(null)
 const explore = ref(null)
@@ -287,15 +288,18 @@ const scrollToSection = (ref) => {
       </main>
     </div>
 
+    <!-- productlist -->
+     <div>
     <div>
-
-      <div class="relative min-h-screen">
+      <div class="relative min-h-screen ">
       <div class="absolute inset-0" :style="{
           backgroundImage: `url(/images/bg-home3.jpg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }" />
-      </div>
+    </div>
+    <ProductListHomePage/>
+  </div>
 
       
     <!-- WHY CHOOSE US Section Page -->
