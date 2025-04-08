@@ -84,15 +84,19 @@ const scrollToSection = (ref) => {
               </button>
             </div>
 
-            <!-- Navigation Links - Desktop -->
             <div class="hidden lg:flex items-center space-x-6">
               <router-link v-if="currentUser && currentUser.role === 'admin'" to="/user-manager"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
                 USERS
               </router-link>
+              
               <router-link v-if="currentUser && currentUser.role === 'admin'" to="/product-manager"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
                 PRODUCT
+              </router-link>
+              <router-link v-if="currentUser && currentUser.role === 'admin'" to="/product-tracker"
+                class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
+                PRODUCT TRACKER
               </router-link>
               <router-link v-if="!currentUser || currentUser.role === 'user'" to="/user-products"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
