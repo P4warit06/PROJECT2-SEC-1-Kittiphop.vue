@@ -7,7 +7,7 @@ const emit = defineEmits([
   "deleteProduct",
   "setEditing",
   "selectDeleteProduct",
-])
+]);
 const props = defineProps({
   products: {
     type: Array,
@@ -17,33 +17,38 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-})
-
-const currentListType = ref("card")
+  isEdit: {
+    type: Boolean,
+    required: true
+  }
+});
+// View type toggle
+const currentListType = ref("card");
 const toggleListType = () => {
-  currentListType.value = currentListType.value === "card" ? "list" : "card"
-}
+  currentListType.value = currentListType.value === "card" ? "list" : "card";
+};
 
-const selectProductList = ref([])
+const selectProductList = ref([]);
 
-const limitShowProduct = ref(10)
+// Pagination logic
+const limitShowProduct = ref(10);
 const listProducts = computed(() => {
-  return props.products.slice(0, limitShowProduct.value)
-})
+  return props.products.slice(0, limitShowProduct.value);
+});
 const hasMoreProducts = computed(() => {
-  return limitShowProduct.value < props.products.length
-})
+  return limitShowProduct.value < props.products.length;
+});
 const loadMoreProducts = () => {
-  limitShowProduct.value += 10
-}
+  limitShowProduct.value += 10;
+};
 
 const selectAll = ref(false)
 const toggleSelectAll = () => {
-  selectAll.value = !selectAll.value
+  selectAll.value = !selectAll.value;
   if (selectAll.value) {
-    selectProductList.value = listProducts.value.map((item) => item.id)
+    selectProductList.value = listProducts.value.map((item) => item.id);
   } else {
-    selectProductList.value = []
+    selectProductList.value = [];
   }
 }
 
@@ -92,31 +97,25 @@ function goToProductDetail(productId) {
           ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
           : ''
       "
-    >
+    > 
       <template #heading>
-        <div
-          class="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full gap-2"
-        >
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full gap-2">
           <div class="flex items-center">
             <h2 class="text-xl font-bold">Product Management</h2>
           </div>
-
+          
           <div class="flex flex-col sm:flex-row sm:items-center gap-2">
             <div class="flex items-center">
               <input
                 type="checkbox"
                 id="select-all"
                 :checked="selectAll"
-                @change="toggleSelectAll"
+                @change="toggleSelectAll" 
                 class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-              />
-              <label
-                for="select-all"
-                class="ml-2 text-sm font-medium text-gray-700"
-                >Select All</label
               >
+              <label for="select-all" class="ml-2 text-sm font-medium text-gray-700">Select All</label>
             </div>
-
+            
             <button
               v-if="selectProductList.length > 0"
               class="w-[40vh] h-[8vh] sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer"
@@ -167,6 +166,7 @@ function goToProductDetail(productId) {
               />
             </div>
 
+            <!-- Product Image -->
             <div
               :class="{
                 'w-20 h-20 mr-4 flex-shrink-0': currentListType === 'list',
@@ -209,6 +209,7 @@ function goToProductDetail(productId) {
               </div>
             </div>
 
+            <!-- Product Details -->
             <div :class="{ 'flex-1': currentListType === 'list' }">
               <h3 class="font-bold text-lg text-gray-800 cursor-pointer hover:text-blue-600" @click="goToProductDetail(yourItem.id)">
                 {{ yourItem.name }}
