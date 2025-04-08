@@ -26,6 +26,7 @@ const searchBy = ref("")
 
 function filterProduct(obj) {
   productForFilter.value = [...products.value]
+  
   if (obj.type === "category") arrCat.value = obj.value
   if (obj.type === "status") arrSta.value = obj.value
   if (obj.type === "searchValue") searchValue.value = obj.value
@@ -59,6 +60,7 @@ function filterProduct(obj) {
     )
     if (arrCat.value.length !== 0 && arrSta.value.length === 0)
       return (productForFilter.value = catArr)
+    console.log(productForFilter.value)
     if (arrCat.value.length === 0 && arrSta.value.length !== 0)
       return (productForFilter.value = staArr)
     if (arrCat.value.length !== 0 && arrSta.value.length !== 0) {
