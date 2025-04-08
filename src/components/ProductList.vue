@@ -264,6 +264,21 @@ function goToProductDetail(productId) {
                     {{ yourItem.status }}
                   </span>
                 </div>
+
+                <div>
+                  <span class="text-gray-500 text-sm mr-1">Stock:</span>
+                  <span
+                    :class="{
+                      'text-green-600': yourItem.stock > 10,
+                      'text-yellow-600':
+                        yourItem.stock <= 10 && yourItem.stock > 0,
+                      'text-red-600': yourItem.stock === 0,
+                    }"
+                    class="font-medium"
+                  >
+                    {{ yourItem.stock }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
