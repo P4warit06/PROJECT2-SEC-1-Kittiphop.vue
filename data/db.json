@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 89.99,
       "status": "Active",
-      "stock": 27,
+      "stock": 26,
       "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
       "description": "High-quality wireless headphone with noise cancellation"
     },
@@ -359,15 +359,12 @@
       "username": "ab",
       "fullname": "a b",
       "_comment": "real password = Ab12345@",
-      "password": "QWIxMjM0NUA=",
       "email": "a@bb.com",
       "role": "user",
       "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
       "contact": "0987654321",
-      "balance": 10,
-      "carts": [
-
-      ]
+      "balance": 919.01,
+      "carts": []
     },
     {
       "id": "2",
@@ -438,8 +435,20 @@
       "role": "user",
       "location": "",
       "contact": "0987654321",
-      "balance": 0,
-      "carts": []
+      "balance": 99999,
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 179.98,
+          "status": "Active",
+          "stock": 26,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 2
+        }
+      ]
     }
   ],
   "tracking": [
