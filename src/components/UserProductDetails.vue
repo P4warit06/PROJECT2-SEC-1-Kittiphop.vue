@@ -1,13 +1,48 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router"
-import { getItemById } from "@/libs/fetchUtils"
-import { ref } from "vue"
+import { editItem, getItemById } from "@/libs/fetchUtils"
+import { onMounted, ref } from "vue"
 import ProductDetailModel from "./model/ProductDetailModel.vue"
 
 const {
   params: { productId },
 } = useRoute()
 const selectProduct = ref({})
+const getUser = JSON.parse(localStorage.getItem("currentUser"))
+const myUser = ref({})
+onMounted(async () => {
+  try {
+    if (getUser) { 
+      myUser.value = await getItemById(`${import.meta.env.VITE_APP_URL}/users`, getUser.id)
+    }
+  } catch(error) {
+    console.error("Error in UserProductManager setup:", error)
+  }
+})
+const addToCartInDetail = async () => {
+  try {
+    if (selectProduct.value.stock > 0) {
+        const findIndexProduct = myUser.value.carts.findIndex((product) => product.id === selectProduct.value.id)
+        if (findIndexProduct !== -1) {
+            const cartItem = myUser.value.carts[findIndexProduct]
+            if (cartItem.quantity < selectProduct.value.stock) {          
+            cartItem.quantity += 1
+            cartItem.price = cartItem.quantity * selectProduct.value.price
+            myUser.value.carts.splice(findIndexProduct, 1, cartItem)
+            await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
+            } else {
+              console.log("Stock is not enough!")
+            }
+        } else {
+          const newCartItem = {...selectProduct.value, quantity:1, price:selectProduct.value.price}
+          myUser.value.carts.push(newCartItem)
+          await editItem(`${import.meta.env.VITE_APP_URL}/users`, myUser.value.id, myUser.value)
+        }
+    }
+  } catch(error) {
+    console.log(error)
+  }
+}
 
 const getSelectProduct = async () => {
   try {
@@ -30,7 +65,6 @@ getSelectProduct()
 
 <template>
   <ProductDetailModel :product="selectProduct">
-    <!-- Navigation Slot -->
     <template #navigation>
       <button
         @click="goBack"
@@ -62,6 +96,9 @@ getSelectProduct()
         <span class="text-amber-600 text-sm">4 ★★★★☆</span>
         <span class="text-gray-500 text-sm">999 ratings</span>
       </div>
+      <div>
+        <span class="text-gray-500 text-sm">Stock: {{ product.stock }}</span>
+      </div>
     </template>
     
     <template #price="{ product }">
@@ -82,6 +119,7 @@ getSelectProduct()
     
     <template #actions>
       <button
+        @click="addToCartInDetail"
         class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition cursor-pointer"
       >
         Add to Cart

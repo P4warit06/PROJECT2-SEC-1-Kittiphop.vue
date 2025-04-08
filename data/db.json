@@ -4,9 +4,9 @@
       "id": "1",
       "name": "Wireless Headphone",
       "category": "Electronics",
-      "price": 89.99,
+      "price": 100,
       "status": "Active",
-      "stock": 27,
+      "stock": 26,
       "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
       "description": "High-quality wireless headphone with noise cancellation"
     },
@@ -356,62 +356,39 @@
     },
     {
       "id": "1",
-      "username": "ab",
-      "fullname": "a b",
+      "username": "ajarn",
+      "fullname": "",
       "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
-      "email": "a@bb.com",
+      "email": "ajarn@gmail.com",
       "role": "user",
-      "location": "126 Pracha Uthit Rd, Bang Mot, Thung Khru, Bangkok 10140",
-      "contact": "0987654321",
-      "balance": 10,
+      "location": "",
+      "contact": "",
+      "balance": 0,
       "carts": []
     },
     {
       "id": "2",
-      "username": "b",
-      "fullname": "b c",
+      "username": "bubble",
+      "fullname": "Bubble Boom",
       "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
-      "email": "b@a.com",
+      "email": "bubble@hotmail.com",
       "role": "user",
       "location": "",
       "contact": "",
-      "balance": 1111,
-      "carts": [
-        {
-          "id": "1",
-          "name": "Wireless Headphone",
-          "category": "Electronics",
-          "price": 269.9699999999999,
-          "status": "Active",
-          "stock": 27,
-          "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
-          "description": "High-quality wireless headphone with noise cancellation",
-          "quantity": 3
-        },
-        {
-          "id": "5",
-          "name": "Smartphone",
-          "category": "Electronics",
-          "price": 699.99,
-          "status": "Active",
-          "stock": 15,
-          "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60",
-          "description": "Latest model smartphone with high-resolution camera",
-          "quantity": 1
-        }
-      ]
+      "balance": 0,
+      "carts": []
     },
     {
       "id": "3",
       "username": "Ohmmy",
-      "fullname": "Ohmmy Ohm",
+      "fullname": "",
       "password": "b2htMTIzNDVA",
       "email": "Ohmmy@gmail.com",
       "role": "user",
-      "location": "KMUTT",
-      "contact": "0999999999",
+      "location": "",
+      "contact": "",
       "balance": 0,
       "carts": []
     },
@@ -420,9 +397,10 @@
       "username": "kittiphop2548",
       "fullname": "Kittipop Siranonchai",
       "_comment": "real password = Ab12345@",
+      "password": "QWIxMjM0NUA=",
       "email": "kittiphop2548@gmail.com",
       "role": "user",
-      "location": "",
+      "location": "123",
       "contact": "0999999999",
       "balance": 57190.37,
       "carts": [
@@ -452,15 +430,15 @@
     },
     {
       "id": "5",
-      "username": "test",
+      "username": "smully",
       "fullname": "",
       "password": "QWIxMjM0NUA=",
-      "email": "test@jest.com",
+      "email": "smully@gmail.com",
       "role": "user",
-      "location": "",
-      "contact": "0987654321",
       "balance": 0,
-      "carts": []
+      "carts": [],
+      "location": "123",
+      "contact": ""
     }
   ],
   "tracking": [
