@@ -1,8 +1,11 @@
 <script setup>
 import CartModel from "./model/CartModel.vue"
 import { ref, onMounted, computed, reactive } from "vue"
-import { getItemById } from "@/libs/fetchUtils"
+import { getItemById, editItem } from "@/libs/fetchUtils"
 import CalculatePriceBar from "./CalculatePriceBar.vue"
+import { useRouter } from "vue-router"
+
+const router = useRouter()
 
 const combindCart = ref([])
 const checkboxData = ref([])
@@ -11,6 +14,7 @@ const myUser = ref({})
 const showProfileForm = ref(false)
 const profileFormLoading = ref(false)
 const profileFormError = ref("")
+const showConfirmForm = ref(false)
 
 const profileForm = reactive({
   fullname: "",
@@ -27,7 +31,6 @@ onMounted(async () => {
   const storedUser = localStorage.getItem("currentUser")
   if (storedUser) {
     currentUser.value = JSON.parse(storedUser)
-    // Initialize profile form with current values
     profileForm.fullname = myUser.value.fullname || ""
     profileForm.location = myUser.value.location || ""
     profileForm.contact = myUser.value.contact || ""
@@ -142,19 +145,11 @@ const saveProfile = async () => {
         contact: profileForm.contact,
       }
     )
-
-    // Update local references
     myUser.value = updatedUser
     currentUser.value = updatedUser
-
-    // Update localStorage
     localStorage.setItem("currentUser", JSON.stringify(updatedUser))
-
-    // Close modal and continue with purchase
     showProfileForm.value = false
-
-    // Proceed with purchase
-    processPurchase()
+    showConfirmForm.value = true
   } catch (error) {
     profileFormError.value = "Failed to update profile: " + error.message
   } finally {
@@ -162,11 +157,17 @@ const saveProfile = async () => {
   }
 }
 
-const isProfileComplete = () => {
-  const hasName = myUser.value.fullname ? myUser.value.fullname.trim() !== "" : false;
-  const hasLocation = myUser.value.location ? myUser.value.location.trim() !== "" : false;
-  const hasContact = myUser.value.contact ? myUser.value.contact.trim() !== "" : false;
-  return hasName && hasLocation && hasContact;
+const checkProfileForm = () => {
+  const hasName = myUser.value.fullname
+    ? myUser.value.fullname.trim() !== ""
+    : false
+  const hasLocation = myUser.value.location
+    ? myUser.value.location.trim() !== ""
+    : false
+  const hasContact = myUser.value.contact
+    ? myUser.value.contact.trim() !== ""
+    : false
+  return hasName && hasLocation && hasContact
 }
 
 const handleBuy = async () => {
@@ -197,17 +198,14 @@ const handleBuy = async () => {
       return
     }
 
-    // Check if profile is complete
-    if (!isProfileComplete()) {
+    if (!checkProfileForm()) {
       profileForm.fullname = myUser.value.fullname || ""
       profileForm.location = myUser.value.location || ""
       profileForm.contact = myUser.value.contact || ""
       showProfileForm.value = true
       return
     }
-
-
-    await processPurchase()
+    showConfirmForm.value = true
   } catch (error) {
     console.error("Purchase validation failed:", error)
     buyErrorMsg.value = "An error occurred during purchase validation"
@@ -216,9 +214,9 @@ const handleBuy = async () => {
 
 const processPurchase = async () => {
   try {
-    // Re-validate selection and balance in case things changed
     if (checkboxData.value.length === 0) {
       buyErrorMsg.value = "Please select at least one item to purchase"
+      showConfirmForm.value = false
       return
     }
 
@@ -231,8 +229,11 @@ const processPurchase = async () => {
       buyErrorMsg.value = `Insufficient balance! Needed: $${totalPrice.toFixed(
         2
       )}`
+      showConfirmForm.value = false
       return
     }
+
+    // Check stock availability
     for (const product of checkboxData.value) {
       const productInDB = await getItemById(
         `${import.meta.env.VITE_APP_URL}/products`,
@@ -240,6 +241,7 @@ const processPurchase = async () => {
       )
       if (product.quantity > productInDB.stock) {
         buyErrorMsg.value = `"${product.name}" is out of stock!`
+        showConfirmForm.value = false
         return
       }
     }
@@ -277,14 +279,28 @@ const processPurchase = async () => {
     localStorage.setItem("currentUser", JSON.stringify(updatedUser))
 
     checkboxData.value = []
+    showConfirmForm.value = false
 
     buySuccessMsg.value = "Purchase successful!"
     setTimeout(() => (buySuccessMsg.value = ""), 3000)
   } catch (error) {
     console.error("Purchase failed:", error)
     buyErrorMsg.value = "An error occurred during purchase"
+    showConfirmForm.value = false
   }
 }
+
+const cancelPurchase = () => {
+  showConfirmForm.value = false
+}
+
+const goBack = () => {
+  router.go(-1)
+}
+
+const orderTotal = computed(() => {
+  return checkboxData.value.reduce((sum, product) => sum + product.price, 0)
+})
 
 const selectAll = (event) => {
   console.log(event.target.checked)
@@ -321,7 +337,7 @@ const isSelectAll = computed(() => {
     </div>
     <div
       v-if="showProfileForm"
-      class="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      class="fixed inset-0 bg-black/80 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
     >
       <div class="bg-white rounded-lg shadow-xl w-full max-w-md md:max-w-lg">
         <div class="p-6 border-b border-gray-200">
@@ -416,8 +432,164 @@ const isSelectAll = computed(() => {
       </div>
     </div>
 
+    <div
+      v-if="showConfirmForm"
+      class="fixed inset-0 bg-black/80 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl w-full max-w-3xl overflow-hidden"
+      >
+        <div class="p-6 border-b border-gray-200 bg-blue-50">
+          <div class="flex justify-between items-center">
+            <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+              Order Confirm
+            </h2>
+            <button
+              @click="cancelPurchase"
+              class="text-gray-500 hover:text-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-6 max-h-[60vh] overflow-y-auto">
+          <div class="space-y-4">
+            <div class="border-b border-gray-200 pb-4">
+              <h3 class="text-lg font-medium text-gray-800 mb-2">
+                Shipping Information
+              </h3>
+              <p class="text-gray-700">
+                <span class="font-medium">Name:</span> {{ myUser.fullname }}
+              </p>
+              <p class="text-gray-700">
+                <span class="font-medium">Phone:</span> {{ myUser.contact }}
+              </p>
+              <p class="text-gray-700">
+                <span class="font-medium">Address:</span> {{ myUser.location }}
+              </p>
+            </div>
+
+            <div class="border-b border-gray-200 pb-4">
+              <h3 class="text-lg font-medium text-gray-800 mb-2">
+                Order Summary
+              </h3>
+              <div class="space-y-3">
+                <div
+                  v-for="product in checkboxData"
+                  :key="product.id"
+                  class="flex justify-between"
+                >
+                  <div class="flex-grow">
+                    <p class="font-medium">{{ product.name }}</p>
+                    <p class="text-sm text-gray-500">
+                      Quantity: {{ product.quantity }}
+                    </p>
+                  </div>
+                  <p class="font-medium">${{ product.price.toFixed(2) }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-b border-gray-200 pb-4">
+              <h3 class="text-lg font-medium text-gray-800 mb-2">
+                Payment Details
+              </h3>
+              <div class="flex justify-between">
+                <p class="text-gray-700">Current Balance</p>
+                <p class="font-medium">${{ currentUser.balance.toFixed(2) }}</p>
+              </div>
+              <div class="flex justify-between mt-2">
+                <p class="text-gray-700">Order Total</p>
+                <p class="font-medium">${{ orderTotal.toFixed(2) }}</p>
+              </div>
+              <div class="flex justify-between mt-2 text-lg font-bold">
+                <p>Remaining Balance</p>
+                <p class="text-blue-600">
+                  ${{ (currentUser.balance - orderTotal).toFixed(2) }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-4"
+        >
+          <button
+            @click="goBack"
+            class="px-4 py-2 text-blue-600 hover:text-blue-800 flex items-center sm:w-auto w-full justify-center cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-1"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Continue Shopping
+          </button>
+
+          <div
+            class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 sm:w-auto w-full"
+          >
+            <button
+              @click="cancelPurchase"
+              class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:w-auto w-full"
+            >
+              Cancel
+            </button>
+            <button
+              @click="processPurchase"
+              class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 sm:w-auto w-full cursor-pointer"
+            >
+              Confirm Purchase
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div v-if="currentUser" class="p-4 bg-blue-50 border-b border-blue-100">
-      <div class="container mx-auto">
+      <div class="container mx-auto flex justify-between items-center">
+        <button
+          @click="goBack"
+          class="flex items-center text-blue-600 hover:text-blue-800 transition-colors px-3 py-1 rounded-full hover:bg-blue-100"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5"
+          >
+            <path d="M19 12H5"></path>
+            <path d="M12 19l-7-7 7-7"></path>
+          </svg>
+        </button>
         <p class="text-lg font-medium text-blue-800">
           Your Balance:
           <span class="font-bold">${{ currentUser.balance.toFixed(2) }}</span>
