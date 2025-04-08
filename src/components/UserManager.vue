@@ -2,7 +2,7 @@
 import UserList from "./UserList.vue"
 import {ref , onMounted} from 'vue'
 import { getItems } from '../libs/fetchUtils.js'
-
+import NavbarAdmin from "./NavbarAdmin.vue"
 
 
 const myUsers = ref([])
@@ -21,6 +21,7 @@ onMounted( async () => {
 
 </script>
 <template>
+    <NavbarAdmin/>
   <UserList :users="myUsers"></UserList>
 </template>
 <style scoped></style>
