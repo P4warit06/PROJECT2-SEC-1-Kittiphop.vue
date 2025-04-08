@@ -45,14 +45,7 @@ const toggleSelectAll = () => {
   } else {
     selectProductList.value = []
   }
-<<<<<<< HEAD
 }
-
-// Removed searchQuery and filteredProducts as this will be handled by ProductManager.vue
-=======
-};
-const isEditMode = computed(() => props.isEdit)
->>>>>>> origin
 </script>
 
 <template>
