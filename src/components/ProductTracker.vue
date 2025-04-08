@@ -9,18 +9,14 @@ let intervalId = null
 const showImage =ref(true)
 // Start tracking
 const startTracking = () => {
-    showImage.value =false
     if (!trackingId.value) {
         error.value = 'Please enter a tracking ID.'
         return
     }
-
-    // Reset states
+    showImage.value =false
     trackingInfo.value = null
     error.value = ''
     loading.value = true
-
-    // Fetch tracking info from db.json
     fetch('/data/db.json')
         .then(response => {
             if (!response.ok) {
@@ -32,10 +28,8 @@ const startTracking = () => {
             const foundTracking = data.tracking.find(
                 (t) => t.id === trackingId.value
             )
-
             if (foundTracking) {
                 trackingInfo.value = foundTracking
-                // Don't start real-time updates for cancelled orders
                 if (foundTracking.status !== 'Cancelled') {
                     startRealTimeUpdates(foundTracking)
                 }
@@ -52,36 +46,31 @@ const startTracking = () => {
         })
 }
 
-// Simulate real-time updates
 const startRealTimeUpdates = (tracking) => {
     const statusFlow = {
-        'Processing': 'Shipping',
-        'Shipping': 'Shipped',
-        'Shipped': 'Delivered',
-        'Delivered': 'Delivered' // Final state
+        'Processing': 'Processing',
+        'Shipping': 'Shipping',
+        'Shipped': 'Shipped',
+        'Delivered': 'Delivered' 
     }
-
     intervalId = setInterval(() => {
         if (statusFlow[trackingInfo.value.status]) {
             trackingInfo.value.status = statusFlow[trackingInfo.value.status]
 
-            // Stop updates when delivered
             if (trackingInfo.value.status === 'Delivered') {
                 clearInterval(intervalId)
             }
         }
     }, 3000)
 }
-
-// Get CSS class based on status
 const getStatusClass = (status) => {
     switch (status) {
         case 'Processing':
-            return 'status-ordered'
+            return 'status-processing'
         case 'Shipping':
-            return 'status-shipped'
+            return 'status-shipping'
         case 'Shipped':
-            return 'status-out-for-delivery'
+            return 'status-shipped'
         case 'Delivered':
             return 'status-delivered'
         case 'Cancelled':
@@ -91,14 +80,12 @@ const getStatusClass = (status) => {
     }
 }
 
-// Cleanup interval on component unmount
 onUnmounted(() => {
     if (intervalId) {
         clearInterval(intervalId)
     }
 })
 </script>
-
 <template>
     <div class="flex flex-col items-center justify-center text-center py-8">
         <h1 class="text-4xl md:text-5xl lg:text-4xl font-bold text-[#0f2240] mb-2">Discover New Paths</h1>
@@ -143,7 +130,6 @@ onUnmounted(() => {
             </div>
         </div>
 
-        <!-- Loading State -->
         <div v-if="loading" class="loading mt-8 text-center">
             <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
             <p class="mt-2">Loading tracking information...</p>
@@ -186,43 +172,28 @@ onUnmounted(() => {
     min-width: 120px;
     text-align: center;
 }
-
-.status-ordered {
+.status-shipping {
     background-color: #ff9800;
-    /* Orange */
 }
-
 .status-shipped {
-    background-color: #2196f3;
-    /* Blue */
-}
-
-.status-out-for-delivery {
-    background-color: #9c27b0;
-    /* Purple */
-}
-
-.status-delivered {
     background-color: #4caf50;
-    /* Green */
 }
 
+.status-processing {
+    background-color: #9c27b0;
+}
 .status-cancelled {
-    background-color: #f44336;
-    /* Red */
+    background-color: #FF0033;
 }
-
 .loading {
     color: #2196f3;
 }
-
 .error {
     color: #f44336;
 }
 .fade-leave-active {
     transition: opacity 0.5s;
 }
-
 .fade-leave-to {
     opacity: 0;
 }
