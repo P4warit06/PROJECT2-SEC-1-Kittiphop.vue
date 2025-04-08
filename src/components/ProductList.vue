@@ -97,17 +97,10 @@ const toggleSelectAll = () => {
           </div>
 
           <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-<<<<<<< HEAD
-            <div class="flex items-center">
-              <input
-                type="checkbox"
-                id="select-all"
-=======
             <div v-show="isEditMode" class="flex items-center">
               <input 
                 type="checkbox" 
                 id="select-all" 
->>>>>>> origin
                 :checked="selectAll"
                 @change="toggleSelectAll"
                 class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
@@ -136,13 +129,7 @@ const toggleSelectAll = () => {
                   clip-rule="evenodd"
                 />
               </svg>
-<<<<<<< HEAD
-              <span class="text-lg"
-                >Delete Selected ({{ selectProductList.length }})</span
-              >
-=======
               <span class="text-sm">Delete Selected ({{ selectProductList.length }})</span>
->>>>>>> origin
             </button>
           </div>
         </div>
