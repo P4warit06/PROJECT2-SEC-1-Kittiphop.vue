@@ -47,26 +47,7 @@ const addToCart = (product) => {
 </script>
 
 <template>
-  <div class="m-6">
-    <div class="w-full flex flex-col justify-between items-center mb-6">
-      <div class="w-full flex">
-        <div class="w-5/6">
-          <input
-            type="text"
-            placeholder="Search"
-            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <div class="w-2/6 ml-2 md:w-1/6 md:ml-2">
-          <button
-            class="max-md:text-sm w-full bg-blue-500 text-white h-full rounded-lg cursor-pointer hover:opacity-85"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+
   
   <!-- Added toggle view button -->
   <div class="flex justify-end px-4">

@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 100,
       "status": "Active",
-      "stock": 26,
+      "stock": 25,
       "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
       "description": "High-quality wireless headphone with noise cancellation"
     },
@@ -16,7 +16,7 @@
       "category": "Audio",
       "price": 49.99,
       "status": "Low Stock",
-      "stock": 4,
+      "stock": 0,
       "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MW443?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1716251410589",
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
@@ -36,7 +36,7 @@
       "category": "Electronics",
       "price": 129.99,
       "status": "Active",
-      "stock": 25,
+      "stock": 24,
       "image": "https://vader-prod.s3.amazonaws.com/1688564124-61MwcHryNYL.jpg",
       "description": "RGB mechanical gaming keyboard"
     },
@@ -370,14 +370,14 @@
     {
       "id": "2",
       "username": "bubble",
-      "fullname": "Bubble Boom",
+      "fullname": "Bubble Boomwe กแกำำ",
       "_comment": "real password = Ab12345@",
       "password": "QWIxMjM0NUA=",
       "email": "bubble@hotmail.com",
       "role": "user",
-      "location": "",
-      "contact": "",
-      "balance": 0,
+      "location": "125 cosno",
+      "contact": "0909317480",
+      "balance": 34014.05000000001,
       "carts": []
     },
     {

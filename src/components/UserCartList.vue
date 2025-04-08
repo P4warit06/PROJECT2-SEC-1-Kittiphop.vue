@@ -1,137 +1,142 @@
 <script setup>
-import CartModel from "./model/CartModel.vue"
-import { ref, onMounted, computed, reactive } from "vue"
-import { getItemById, editItem } from "@/libs/fetchUtils"
-import CalculatePriceBar from "./CalculatePriceBar.vue"
-import { useRouter } from "vue-router"
+import CartModel from "./model/CartModel.vue";
+import { ref, onMounted, computed, reactive } from "vue";
+import { getItemById, editItem } from "@/libs/fetchUtils";
+import CalculatePriceBar from "./CalculatePriceBar.vue";
+import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 
-const combindCart = ref([])
-const checkboxData = ref([])
-const getUser = ref(JSON.parse(localStorage.getItem("currentUser")))
-const myUser = ref({})
-const showProfileForm = ref(false)
-const profileFormLoading = ref(false)
-const profileFormError = ref("")
-const showConfirmForm = ref(false)
+const combindCart = ref([]);
+const checkboxData = ref([]);
+const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
+const myUser = ref({});
+const showProfileForm = ref(false);
+const profileFormLoading = ref(false);
+const profileFormError = ref("");
+const showConfirmForm = ref(false);
 
 const profileForm = reactive({
   fullname: "",
   location: "",
   contact: "",
-})
-
+});
+const myTracking = ref({});
 onMounted(async () => {
   myUser.value = await getItemById(
     `${import.meta.env.VITE_APP_URL}/users`,
     getUser.value.id
-  )
-  combindCart.value = [...myUser.value.carts]
-  const storedUser = localStorage.getItem("currentUser")
+  );
+
+  myTracking.value = await getItemById(
+    `${import.meta.env.VITE_APP_URL}/tracking`,
+    getUser.value.id
+  );
+  combindCart.value = [...myUser.value.carts];
+  const storedUser = localStorage.getItem("currentUser");
   if (storedUser) {
-    currentUser.value = JSON.parse(storedUser)
-    profileForm.fullname = myUser.value.fullname || ""
-    profileForm.location = myUser.value.location || ""
-    profileForm.contact = myUser.value.contact || ""
+    currentUser.value = JSON.parse(storedUser);
+    profileForm.fullname = myUser.value.fullname || "";
+    profileForm.location = myUser.value.location || "";
+    profileForm.contact = myUser.value.contact || "";
   } else {
-    buyErrorMsg.value = "Please login first"
+    buyErrorMsg.value = "Please login first";
   }
-})
+});
 
 const addQuantity = async (item) => {
   try {
-    const product = combindCart.value.find((product) => product.id === item.id)
+    const product = combindCart.value.find((product) => product.id === item.id);
 
     if (product && item.quantity < product.stock) {
-      const unitPrice = item.price / item.quantity || item.price
-      console.log(unitPrice)
-      item.quantity += 1
-      item.price = unitPrice * item.quantity
+      const unitPrice = item.price / item.quantity || item.price;
+      console.log(unitPrice);
+      item.quantity += 1;
+      item.price = unitPrice * item.quantity;
       const productIndex = combindCart.value.findIndex(
         (product) => product.id === item.id
-      )
-      combindCart.value.splice(productIndex, 1, item)
-      myUser.value.carts.splice(productIndex, 1, item)
-      console.log(myUser.value.carts)
+      );
+      combindCart.value.splice(productIndex, 1, item);
+      myUser.value.carts.splice(productIndex, 1, item);
+      console.log(myUser.value.carts);
       await editItem(
         `${import.meta.env.VITE_APP_URL}/users`,
         myUser.value.id,
         myUser.value
-      )
+      );
     } else {
-      console.log("Stock is not enough or product not found.")
+      console.log("Stock is not enough or product not found.");
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 const decreaseQuantity = async (item) => {
   try {
     const productIndex = combindCart.value.findIndex(
       (product) => product.id === item.id
-    )
+    );
     if (item) {
-      const unitPrice = item.price / item.quantity
-      item.quantity -= 1
+      const unitPrice = item.price / item.quantity;
+      item.quantity -= 1;
       if (item.quantity <= 0) {
-        combindCart.value.splice(productIndex, 1)
-        myUser.value.carts.splice(productIndex, 1)
+        combindCart.value.splice(productIndex, 1);
+        myUser.value.carts.splice(productIndex, 1);
         await editItem(
           `${import.meta.env.VITE_APP_URL}/users`,
           myUser.value.id,
           myUser.value
-        )
+        );
       } else {
-        item.price -= unitPrice
-        combindCart.value.splice(productIndex, 1, item)
-        myUser.value.carts.splice(productIndex, 1, item)
+        item.price -= unitPrice;
+        combindCart.value.splice(productIndex, 1, item);
+        myUser.value.carts.splice(productIndex, 1, item);
         await editItem(
           `${import.meta.env.VITE_APP_URL}/users`,
           myUser.value.id,
           myUser.value
-        )
+        );
       }
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-const currentUser = ref(null)
-const buyErrorMsg = ref("")
-const buySuccessMsg = ref("")
+const currentUser = ref(null);
+const buyErrorMsg = ref("");
+const buySuccessMsg = ref("");
 
 function checkPhoneNumber(phone) {
-  const phoneRegex = /^0[2689]\d{8}$/
-  return phoneRegex.test(phone)
+  const phoneRegex = /^0[2689]\d{8}$/;
+  return phoneRegex.test(phone);
 }
 
 const saveProfile = async () => {
   try {
-    profileFormError.value = ""
-    profileFormLoading.value = true
+    profileFormError.value = "";
+    profileFormLoading.value = true;
 
     // Validate contact number
     if (profileForm.contact && !checkPhoneNumber(profileForm.contact)) {
       profileFormError.value =
-        "Please enter a valid phone number (10 digits starting with 0)"
-      profileFormLoading.value = false
-      return
+        "Please enter a valid phone number (10 digits starting with 0)";
+      profileFormLoading.value = false;
+      return;
     }
 
     // Validate other required fields
     if (!profileForm.fullname.trim()) {
-      profileFormError.value = "Full name is required"
-      profileFormLoading.value = false
-      return
+      profileFormError.value = "Full name is required";
+      profileFormLoading.value = false;
+      return;
     }
 
     if (!profileForm.location.trim()) {
-      profileFormError.value = "Address is required"
-      profileFormLoading.value = false
-      return
+      profileFormError.value = "Address is required";
+      profileFormLoading.value = false;
+      return;
     }
 
     // Update user profile
@@ -144,93 +149,93 @@ const saveProfile = async () => {
         location: profileForm.location,
         contact: profileForm.contact,
       }
-    )
-    myUser.value = updatedUser
-    currentUser.value = updatedUser
-    localStorage.setItem("currentUser", JSON.stringify(updatedUser))
-    showProfileForm.value = false
-    showConfirmForm.value = true
+    );
+    myUser.value = updatedUser;
+    currentUser.value = updatedUser;
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+    showProfileForm.value = false;
+    showConfirmForm.value = true;
   } catch (error) {
-    profileFormError.value = "Failed to update profile: " + error.message
+    profileFormError.value = "Failed to update profile: " + error.message;
   } finally {
-    profileFormLoading.value = false
+    profileFormLoading.value = false;
   }
-}
+};
 
 const checkProfileForm = () => {
   const hasName = myUser.value.fullname
     ? myUser.value.fullname.trim() !== ""
-    : false
+    : false;
   const hasLocation = myUser.value.location
     ? myUser.value.location.trim() !== ""
-    : false
+    : false;
   const hasContact = myUser.value.contact
     ? myUser.value.contact.trim() !== ""
-    : false
-  return hasName && hasLocation && hasContact
-}
+    : false;
+  return hasName && hasLocation && hasContact;
+};
 
 const handleBuy = async () => {
   try {
-    buyErrorMsg.value = ""
-    buySuccessMsg.value = ""
+    buyErrorMsg.value = "";
+    buySuccessMsg.value = "";
 
     if (checkboxData.value.length === 0) {
-      buyErrorMsg.value = "Please select at least one item to purchase"
-      return
+      buyErrorMsg.value = "Please select at least one item to purchase";
+      return;
     }
 
-    const user = currentUser.value
+    const user = currentUser.value;
     if (!user) {
-      buyErrorMsg.value = "User not found"
-      return
+      buyErrorMsg.value = "User not found";
+      return;
     }
 
     const totalPrice = checkboxData.value.reduce(
       (sum, product) => sum + product.price,
       0
-    )
+    );
 
     if (user.balance < totalPrice) {
       buyErrorMsg.value = `Insufficient balance! Needed: $${totalPrice.toFixed(
         2
-      )}`
-      return
+      )}`;
+      return;
     }
 
     if (!checkProfileForm()) {
-      profileForm.fullname = myUser.value.fullname || ""
-      profileForm.location = myUser.value.location || ""
-      profileForm.contact = myUser.value.contact || ""
-      showProfileForm.value = true
-      return
+      profileForm.fullname = myUser.value.fullname || "";
+      profileForm.location = myUser.value.location || "";
+      profileForm.contact = myUser.value.contact || "";
+      showProfileForm.value = true;
+      return;
     }
-    showConfirmForm.value = true
+    showConfirmForm.value = true;
   } catch (error) {
-    console.error("Purchase validation failed:", error)
-    buyErrorMsg.value = "An error occurred during purchase validation"
+    console.error("Purchase validation failed:", error);
+    buyErrorMsg.value = "An error occurred during purchase validation";
   }
-}
+};
 
 const processPurchase = async () => {
   try {
     if (checkboxData.value.length === 0) {
-      buyErrorMsg.value = "Please select at least one item to purchase"
-      showConfirmForm.value = false
-      return
+      buyErrorMsg.value = "Please select at least one item to purchase";
+      showConfirmForm.value = false;
+      return;
     }
 
     const totalPrice = checkboxData.value.reduce(
       (sum, product) => sum + product.price,
       0
-    )
+    );
 
     if (currentUser.value.balance < totalPrice) {
       buyErrorMsg.value = `Insufficient balance! Needed: $${totalPrice.toFixed(
         2
-      )}`
-      showConfirmForm.value = false
-      return
+      )}`;
+      showConfirmForm.value = false;
+      return;
     }
 
     // Check stock availability
@@ -238,30 +243,43 @@ const processPurchase = async () => {
       const productInDB = await getItemById(
         `${import.meta.env.VITE_APP_URL}/products`,
         product.id
-      )
+      );
       if (product.quantity > productInDB.stock) {
-        buyErrorMsg.value = `"${product.name}" is out of stock!`
-        showConfirmForm.value = false
-        return
+        buyErrorMsg.value = `"${product.name}" is out of stock!`;
+        showConfirmForm.value = false;
+        return;
       }
     }
-
-    currentUser.value.balance -= totalPrice
+    const updateState = async (tracking) => {
+      try {
+        return (editedTracking = await editItem(
+          `${import.meta.env.VITE_APP_URL}/tracking`,
+          getUser.value.id,
+          tracking
+        ));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    myTracking.value.status = "Processing";
+    updateState(myTracking.value);
+    currentUser.value.balance -= totalPrice;
+    console.log(myTracking.value.status);
     for (const product of checkboxData.value) {
       const productInDB = await getItemById(
         `${import.meta.env.VITE_APP_URL}/products`,
         product.id
-      )
+      );
       await editItem(`${import.meta.env.VITE_APP_URL}/products`, product.id, {
         ...productInDB,
         stock: productInDB.stock - product.quantity,
-      })
+      });
       const productIndex = combindCart.value.findIndex(
         (item) => item.id === product.id
-      )
+      );
       if (productIndex !== -1) {
-        combindCart.value.splice(productIndex, 1)
-        myUser.value.carts.splice(productIndex, 1)
+        combindCart.value.splice(productIndex, 1);
+        myUser.value.carts.splice(productIndex, 1);
       }
     }
 
@@ -273,50 +291,50 @@ const processPurchase = async () => {
         balance: currentUser.value.balance,
         carts: myUser.value.carts,
       }
-    )
+    );
 
-    currentUser.value = updatedUser
-    localStorage.setItem("currentUser", JSON.stringify(updatedUser))
+    currentUser.value = updatedUser;
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
 
-    checkboxData.value = []
-    showConfirmForm.value = false
+    checkboxData.value = [];
+    showConfirmForm.value = false;
 
-    buySuccessMsg.value = "Purchase successful!"
-    setTimeout(() => (buySuccessMsg.value = ""), 3000)
+    buySuccessMsg.value = "Purchase successful!";
+    setTimeout(() => (buySuccessMsg.value = ""), 3000);
   } catch (error) {
-    console.error("Purchase failed:", error)
-    buyErrorMsg.value = "An error occurred during purchase"
-    showConfirmForm.value = false
+    console.error("Purchase failed:", error);
+    buyErrorMsg.value = "An error occurred during purchase";
+    showConfirmForm.value = false;
   }
-}
+};
 
 const cancelPurchase = () => {
-  showConfirmForm.value = false
-}
+  showConfirmForm.value = false;
+};
 
 const goBack = () => {
-  router.go(-1)
-}
+  router.go(-1);
+};
 
 const orderTotal = computed(() => {
-  return checkboxData.value.reduce((sum, product) => sum + product.price, 0)
-})
+  return checkboxData.value.reduce((sum, product) => sum + product.price, 0);
+});
 
 const selectAll = (event) => {
-  console.log(event.target.checked)
+  console.log(event.target.checked);
   if (event.target.checked) {
-    checkboxData.value = [...combindCart.value]
+    checkboxData.value = [...combindCart.value];
   } else {
-    checkboxData.value = []
+    checkboxData.value = [];
   }
-}
+};
 
 const isSelectAll = computed(() => {
   return (
     checkboxData.value.length === combindCart.value.length &&
     combindCart.value.length > 0
-  )
-})
+  );
+});
 </script>
 
 <template>
@@ -557,12 +575,16 @@ const isSelectAll = computed(() => {
             >
               Cancel
             </button>
-            <button
-              @click="processPurchase"
-              class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 sm:w-auto w-full cursor-pointer"
+            <router-link
+              :to="{ name: 'UserTracking', params: { userId: getUser.id } }"
             >
-              Confirm Purchase
-            </button>
+              <button
+                @click="processPurchase"
+                class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 sm:w-auto w-full cursor-pointer"
+              >
+                Confirm Purchase
+              </button>
+            </router-link>
           </div>
         </div>
       </div>

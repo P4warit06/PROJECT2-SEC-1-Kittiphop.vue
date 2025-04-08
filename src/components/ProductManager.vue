@@ -27,6 +27,7 @@ const searchBy = ref("")
 
 function filterProduct(obj) {
   productForFilter.value = [...products.value]
+  
   if (obj.type === "category") arrCat.value = obj.value
   if (obj.type === "status") arrSta.value = obj.value
   if (obj.type === "searchValue") searchValue.value = obj.value
@@ -60,6 +61,7 @@ function filterProduct(obj) {
     )
     if (arrCat.value.length !== 0 && arrSta.value.length === 0)
       return (productForFilter.value = catArr)
+    console.log(productForFilter.value)
     if (arrCat.value.length === 0 && arrSta.value.length !== 0)
       return (productForFilter.value = staArr)
     if (arrCat.value.length !== 0 && arrSta.value.length !== 0) {
@@ -218,15 +220,7 @@ function toggleEditMode() {
   <div>
     <NavbarAdmin />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
-    <div class="mx-auto my-2 w-full h-full max-w-[80%]">
-      <div class="relative w-full  overflow-hidden rounded-lg shadow-md border">
-        <img 
-          src="/product-images/product-list-banner.png" 
-          alt="Product Management Banner"
-          class="w-full h-[40vh] object-cover"
-        />
-      </div>
-    </div>
+
 
     <div class="w-full p-3 mt-5 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
       <div class="w-full max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
