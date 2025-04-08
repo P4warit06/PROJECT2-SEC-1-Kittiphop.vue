@@ -11,10 +11,13 @@ const router = useRouter()
 const user = ref(null)
 const isLoading = ref(true)
 const isEditing = ref(false)
+
 const successMsg = ref("")
 const errorMsg = ref("")
 const isTabChanging = ref('profile')
 const showSidebar = ref(false) 
+
+const isAdmin = ref(false)
 
 function changeTab(tab) {
   isTabChanging.value = tab
@@ -47,6 +50,8 @@ async function loadUser() {
     }
 
     const currentUser = JSON.parse(currentUserJson)
+    isAdmin.value = currentUser.role === 'admin'
+    
     if (currentUser.id !== userId) {
       router.push("/home")
       return
@@ -317,7 +322,7 @@ onMounted(loadUser)
                     </div>
                   </div>
 
-                  <div>
+                  <div v-if="!isAdmin">
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                       Account Balance
                     </label>

@@ -1,12 +1,13 @@
 <script setup>
-import ListModel from "./model/ListModel.vue"
-import { ref, computed } from "vue"
+import ListModel from "./model/ListModel.vue";
+import { ref, computed } from "vue";
 
 const emit = defineEmits([
   "deleteProduct",
   "setEditing",
   "selectDeleteProduct",
-])
+  "toggle-edit-mode",
+]);
 const props = defineProps({
   products: {
     type: Array,
@@ -16,43 +17,43 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-})
-
-// View type toggle
-const currentListType = ref("card")
-const toggleListType = () => {
-  currentListType.value = currentListType.value === "card" ? "list" : "card"
-}
-
-const selectProductList = ref([])
-
-// Pagination logic
-const limitShowProduct = ref(10)
-const listProducts = computed(() => {
-  return props.products.slice(0, limitShowProduct.value)
-})
-const hasMoreProducts = computed(() => {
-  return limitShowProduct.value < props.products.length
-})
-const loadMoreProducts = () => {
-  limitShowProduct.value += 10
-}
-
-// Select all functionality
-const selectAll = ref(false)
-const toggleSelectAll = () => {
-  selectAll.value = !selectAll.value
-  if (selectAll.value) {
-    selectProductList.value = listProducts.value.map((item) => item.id)
-  } else {
-    selectProductList.value = []
+  isEdit: {
+    type: Boolean,
+    required: true
   }
-}
+});
+const currentListType = ref("card");
+const toggleListType = () => {
+  currentListType.value = currentListType.value === "card" ? "list" : "card";
+};
+
+const selectProductList = ref([]);
+
+const limitShowProduct = ref(10);
+const listProducts = computed(() => {
+  return props.products.slice(0, limitShowProduct.value);
+});
+const hasMoreProducts = computed(() => {
+  return limitShowProduct.value < props.products.length;
+});
+const loadMoreProducts = () => {
+  limitShowProduct.value += 10;
+};
+
+const selectAll = ref(false);
+const toggleSelectAll = () => {
+  selectAll.value = !selectAll.value;
+  if (selectAll.value) {
+    selectProductList.value = listProducts.value.map((item) => item.id);
+  } else {
+    selectProductList.value = [];
+  }
+};
+const isEditMode = computed(() => props.isEdit)
 </script>
 
 <template>
   <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-    <!-- Top Controls Section -->
     <div class="flex flex-col md:flex-row justify-end items-center mb-6">
       <div class="flex items-center space-x-4 w-full md:w-auto">
         <button
@@ -78,10 +79,16 @@ const toggleSelectAll = () => {
             <path d="M15 3v18"></path>
           </svg>
         </button>
+        
+        <button 
+          @click="$emit('toggle-edit-mode')" 
+          :class="isEdit ? 'px-4 py-2 bg-green-500/90 text-white rounded-lg hover:bg-blue-600 flex items-center transition-colors' : 'px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 flex items-center transition-colors'"
+        >
+          Edit
+        </button>
       </div>
     </div>
 
-    <!-- List component with enhanced styling -->
     <ListModel
       :items="listProducts"
       :listType="currentListType"
@@ -90,31 +97,26 @@ const toggleSelectAll = () => {
           ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
           : ''
       "
-    >
+    > 
       <template #heading>
-        <div
-          class="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full gap-2"
-        >
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full gap-2">
           <div class="flex items-center">
             <h2 class="text-xl font-bold">Product Management</h2>
+            
           </div>
-
+          
           <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-            <div class="flex items-center">
-              <input
-                type="checkbox"
-                id="select-all"
+            <div v-show="isEditMode" class="flex items-center">
+              <input 
+                type="checkbox" 
+                id="select-all" 
                 :checked="selectAll"
-                @change="toggleSelectAll"
+                @change="toggleSelectAll" 
                 class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-              />
-              <label
-                for="select-all"
-                class="ml-2 text-sm font-medium text-gray-700"
-                >Select All</label
               >
+              <label for="select-all" class="ml-2 text-sm font-medium text-gray-700">Select All</label>
             </div>
-
+            
             <button
               v-if="selectProductList.length > 0"
                class="w-10 h-10 sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer ml-8"
@@ -132,9 +134,7 @@ const toggleSelectAll = () => {
                   clip-rule="evenodd"
                 />
               </svg>
-              <span class="text-lg"
-                >Delete Selected ({{ selectProductList.length }})</span
-              >
+              <span class="text-sm">Delete Selected ({{ selectProductList.length }})</span>
             </button>
           </div>
         </div>
@@ -148,18 +148,26 @@ const toggleSelectAll = () => {
             'flex flex-col h-full': currentListType === 'card',
           }"
         >
-          <!-- Card & List Mode Content with Better Layout -->
-          <div
-            :class="{ 'flex items-center w-full': currentListType === 'list' }"
+          <router-link
+            :to="{
+              name: 'ProductDetail',
+              params: { productId: yourItem.id },
+            }"
+            class="flex-1 cursor-pointer"
+            :class="{
+              'flex items-center w-full': currentListType === 'list',
+              'flex flex-col': currentListType === 'card'
+            }"
           >
-            <!-- Checkbox for both views -->
             <div
               :class="{
                 'mr-3': currentListType === 'list',
                 'mb-3 self-start': currentListType === 'card',
               }"
+              @click.stop
             >
               <input
+                v-show="isEditMode"
                 type="checkbox"
                 :value="yourItem.id"
                 v-model="selectProductList"
@@ -167,7 +175,6 @@ const toggleSelectAll = () => {
               />
             </div>
 
-            <!-- Product Image -->
             <div
               :class="{
                 'w-20 h-20 mr-4 flex-shrink-0': currentListType === 'list',
@@ -221,16 +228,10 @@ const toggleSelectAll = () => {
                 }"
               >
                 <div class="flex items-center">
-                  <span class="text-gray-500 text-sm mr-1">ID:</span>
-                  <router-link
-                    :to="{
-                      name: 'ProductDetail',
-                      params: { productId: yourItem.id },
-                    }"
-                    class="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                  >
+                  <span class="text-gray-500 text-sm mr-1">ID: </span>
+                  <span class="text-blue-600 text-sm font-medium">
                     {{ yourItem.id }}
-                  </router-link>
+                  </span>
                 </div>
 
                 <div class="flex items-center">
@@ -264,9 +265,8 @@ const toggleSelectAll = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </router-link>
 
-          <!-- Action Buttons -->
           <div
             :class="{
               'flex justify-end items-center space-x-2 mt-4 sm:mt-0':
@@ -275,6 +275,7 @@ const toggleSelectAll = () => {
             }"
           >
             <button
+              v-show="isEditMode"
               @click="$emit('setEditing', yourItem)"
               class="inline-flex items-center px-3 py-1.5 bg-blue-100 text-blue-700 rounded-md hover:bg-indigo-200 transition-colors cursor-pointer"
             >
@@ -291,6 +292,7 @@ const toggleSelectAll = () => {
               Edit
             </button>
             <button
+              v-show="isEditMode"
               @click="$emit('deleteProduct', yourItem.id)"
               class="inline-flex items-center px-3 py-1.5 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition-colors cursor-pointer"
             >

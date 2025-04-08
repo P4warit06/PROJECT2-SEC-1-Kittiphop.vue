@@ -9,7 +9,7 @@ import {
   addItem,
   editItem,
 } from "../libs/fetchUtils.js"
-import { ref, onMounted } from "vue"
+import { ref, onMounted, computed } from "vue"
 import { useProducts } from "../stores/products.js"
 import { storeToRefs } from "pinia"
 
@@ -26,6 +26,7 @@ const searchBy = ref("")
 
 function filterProduct(obj) {
   productForFilter.value = [...products.value]
+  
   if (obj.type === "category") arrCat.value = obj.value
   if (obj.type === "status") arrSta.value = obj.value
   if (obj.type === "searchValue") searchValue.value = obj.value
@@ -59,6 +60,7 @@ function filterProduct(obj) {
     )
     if (arrCat.value.length !== 0 && arrSta.value.length === 0)
       return (productForFilter.value = catArr)
+    console.log(productForFilter.value)
     if (arrCat.value.length === 0 && arrSta.value.length !== 0)
       return (productForFilter.value = staArr)
     if (arrCat.value.length !== 0 && arrSta.value.length !== 0) {
@@ -114,9 +116,6 @@ const addNewProduct = async (product) => {
   isAdding.value = false
 }
 
-const cancelAdding = () => {
-  isAdding.value = false
-}
 
 const isAdding = ref(false)
 const isEditing = ref(false)
@@ -206,32 +205,36 @@ const cancelAdd = () => {
   isAdding.value = false
   isEditing.value = false
 }
+const isEditMode = ref(false)
+function toggleEditMode() {
+  isEditMode.value = !isEditMode.value
+}
+
 </script>
 
 <template>
-  <div class="p">
+  <div>
     <NavbarAdmin />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
-   
-    <div class="mr-38">
-    <button @click="isAdding = !isAdding"
-  class="mt-6 px-5 py-2 
-         bg-gradient-to-r from-green-600 to-green-400 ml-5 
-         text-white font-semibold rounded-2xl shadow-md 
-         hover:from-green-500 hover:to-green-500 
-         transition duration-300 ease-in-out transform hover:scale-105 
-         cursor-pointer 
-         w-full sm:w-auto  
-         sm:float-right sm:mr-45 text-center">
-  Add New Product
-</button>
-</div>
+    
+    
+    <div class="w-full p-3 mt-5 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
+      <div class="w-full max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
+        <button @click="isAdding = !isAdding"
+          v-show="isEditMode"
+          class="mt-2 mx-3 px-5 py-2 bg-green-600/80 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
+          Add New Product
+        </button>
+      </div>
+    </div>
 
+    
     <AddEditProduct v-if="isAdding || isEditing" :active-product="currentProduct" @add-new-product="addNewProduct"
       @edit-product="updateProduct" @cancel-adding="cancelAdd" />
 
     <ProductList v-show="!isAdding && !isEditing" @deleteProduct="deleteExistProduct" @setEditing="setEditProduct"
-      :products="productForFilter" :selectedProducts="selectedProducts" @selectDeleteProduct="deleteMultipleProduct" />
+      :products="productForFilter" :selectedProducts="selectedProducts" :is-edit="isEditMode" @selectDeleteProduct="deleteMultipleProduct" 
+      @toggle-edit-mode="toggleEditMode" />
   </div>
 </template>
 

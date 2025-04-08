@@ -16,7 +16,6 @@ defineEmits(["filterProduct"])
 
 const catDisplay = ref(false)
 const staDisplay = ref(false)
-const test = ref({ checked: false })
 function removeChecked() {
   selectedCat.value = []
   selectedSta.value = []
@@ -43,11 +42,12 @@ function checkInput() {
 }
 </script>
 <template>
-  <div class="w-full flex flex-col justify-center items-center gap-4 p-4 bg-white rounded-xl  text-blue-900">
+  <div class="w-full flex flex-col justify-center items-center gap-4 p-4 rounded-xl  text-blue-900">
+    
     <div class="search w-full md:w-2/3">
       <div class="flex flex-col md:flex-row gap-3 ">
         <div class="relative inline-block">
-          <select class="px-4 py-2 border rounded-lg text-white bg-gradient-to-r from-purple-500 to-blue-600 appearance-none focus:outline-none pr-10"
+          <select class="px-4 py-2 border rounded-lg text-white bg-gradient-to-r from-blue-600 to-blue-800 appearance-none focus:outline-none pr-10"
             v-model="searchBy" @change="$emit('filterProduct', { value: searchBy, type: 'searchBy' })">
             <option value="" disabled>Search By</option>
             <option value="id" class="text-black">Id</option>
@@ -93,27 +93,28 @@ function checkInput() {
     </div>
 
     <!-- Filter Section -->
-    <div class="filter w-full md:w-1/3 bg-gray-50 border border-gray-200 p-4 rounded-lg drop-shadow-md">
-      <div class="flex justify-between items-center mb-2">
-        <h2 class="text-lg font-semibold text-teal-600">Filter By</h2>
-        <button @click="
+    <div class="gap-4 relative w-full md:w-1/3 bg-gray-50 border border-gray-200 p-4 rounded-lg drop-shadow-md flex">
+              <button @click="
           () => {
             $emit('filterProduct', { type: 'clear' })
             removeChecked()
           }
-        " class="text-sm text-red-500 hover:underline">
+        " class="text-sm text-red-500 hover:underline absolute right-2 top-1">
           Clear
         </button>
+      <div class="flex justify-between items-center mb-2 mr-4">
+        <h2 class="text-lg font-semibold text-teal-600">Filter By</h2>
+
       </div>
 
       <!-- Category Filter -->
       <div class="mb-3">
         <button @click="catDisplay = !catDisplay"
-          class="w-full flex justify-between items-center py-2 px-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+          class=" flex justify-between items-center py-2 px-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition">
           <span class="font-medium">Category</span>
           <span>{{ catDisplay ? '▲' : '▼' }}</span>
         </button>
-        <div v-show="catDisplay" class="mt-2 space-y-1">
+          <div v-show="catDisplay" class="mt-2 space-y-1 absolute bg-white/90 ">
           <div v-for="(category, index) in categories" :key="index" class="flex items-center px-2">
             <input type="checkbox" :value="category" v-model="selectedCat" class="mr-2" @change="
               $emit('filterProduct', { value: selectedCat, type: 'category' })
@@ -126,11 +127,11 @@ function checkInput() {
       <!-- Status Filter -->
       <div>
         <button @click="staDisplay = !staDisplay"
-          class="w-full flex justify-between items-center py-2 px-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+          class="flex justify-between items-center py-2 px-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition">
           <span class="font-medium">Status</span>
           <span>{{ staDisplay ? '▲' : '▼' }}</span>
         </button>
-        <div v-show="staDisplay" class="mt-2 space-y-1">
+        <div v-show="staDisplay" class="mt-2 space-y-1 absolute bg-white/90">
           <div v-for="(status, index) in status" :key="index" class="flex items-center px-2">
             <input type="checkbox" :value="status" v-model="selectedSta" class="mr-2" @change="
               $emit('filterProduct', { value: selectedSta, type: 'status' })
