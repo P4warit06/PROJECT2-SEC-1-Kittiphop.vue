@@ -352,7 +352,19 @@
       "role": "admin",
       "location": "29",
       "contact": "0999999999",
-      "carts": []
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 100,
+          "status": "Active",
+          "stock": 26,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "1",
@@ -375,10 +387,22 @@
       "password": "QWIxMjM0NUA=",
       "email": "bubble@hotmail.com",
       "role": "user",
-      "location": "",
-      "contact": "",
-      "balance": 0,
-      "carts": []
+      "location": "123",
+      "contact": "0812345678",
+      "balance": 9999,
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 100,
+          "status": "Active",
+          "stock": 26,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "3",
@@ -436,7 +460,19 @@
       "email": "smully@gmail.com",
       "role": "user",
       "balance": 0,
-      "carts": [],
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 200,
+          "status": "Active",
+          "stock": 26,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 2
+        }
+      ],
       "location": "123",
       "contact": ""
     }

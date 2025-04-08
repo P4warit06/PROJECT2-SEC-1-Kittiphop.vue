@@ -1,6 +1,7 @@
 <script setup>
 import ListModel from "./model/ListModel.vue"
 import { ref, computed } from "vue"
+import { useRouter } from "vue-router"
 
 const emit = defineEmits([
   "deleteProduct",
@@ -18,7 +19,6 @@ const props = defineProps({
   },
 })
 
-// View type toggle
 const currentListType = ref("card")
 const toggleListType = () => {
   currentListType.value = currentListType.value === "card" ? "list" : "card"
@@ -26,7 +26,6 @@ const toggleListType = () => {
 
 const selectProductList = ref([])
 
-// Pagination logic
 const limitShowProduct = ref(10)
 const listProducts = computed(() => {
   return props.products.slice(0, limitShowProduct.value)
@@ -38,7 +37,6 @@ const loadMoreProducts = () => {
   limitShowProduct.value += 10
 }
 
-// Select all functionality
 const selectAll = ref(false)
 const toggleSelectAll = () => {
   selectAll.value = !selectAll.value
@@ -48,11 +46,16 @@ const toggleSelectAll = () => {
     selectProductList.value = []
   }
 }
+
+const router = useRouter()
+
+function goToProductDetail(productId) {
+  router.push({ name: 'ProductDetail', params: { productId } })
+}
 </script>
 
 <template>
   <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-    <!-- Top Controls Section -->
     <div class="flex flex-col md:flex-row justify-end items-center mb-6">
       <div class="flex items-center space-x-4 w-full md:w-auto">
         <button
@@ -81,7 +84,6 @@ const toggleSelectAll = () => {
       </div>
     </div>
 
-    <!-- List component with enhanced styling -->
     <ListModel
       :items="listProducts"
       :listType="currentListType"
@@ -148,11 +150,9 @@ const toggleSelectAll = () => {
             'flex flex-col h-full': currentListType === 'card',
           }"
         >
-          <!-- Card & List Mode Content with Better Layout -->
           <div
             :class="{ 'flex items-center w-full': currentListType === 'list' }"
           >
-            <!-- Checkbox for both views -->
             <div
               :class="{
                 'mr-3': currentListType === 'list',
@@ -167,12 +167,13 @@ const toggleSelectAll = () => {
               />
             </div>
 
-            <!-- Product Image -->
             <div
               :class="{
                 'w-20 h-20 mr-4 flex-shrink-0': currentListType === 'list',
                 'w-full h-40 mb-4': currentListType === 'card',
               }"
+              @click="goToProductDetail(yourItem.id)"
+              class="cursor-pointer"
             >
               <img
                 v-if="yourItem.image"
@@ -209,7 +210,7 @@ const toggleSelectAll = () => {
             </div>
 
             <div :class="{ 'flex-1': currentListType === 'list' }">
-              <h3 class="font-bold text-lg text-gray-800">
+              <h3 class="font-bold text-lg text-gray-800 cursor-pointer hover:text-blue-600" @click="goToProductDetail(yourItem.id)">
                 {{ yourItem.name }}
               </h3>
 
@@ -266,7 +267,6 @@ const toggleSelectAll = () => {
             </div>
           </div>
 
-          <!-- Action Buttons -->
           <div
             :class="{
               'flex justify-end items-center space-x-2 mt-4 sm:mt-0':
