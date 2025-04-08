@@ -17,7 +17,7 @@ import NavigationItem from "./common/NavigationItem.vue"
     <template #mobile-navigation-items>
       <NavigationItem to="/user-manager" mobile>USER</NavigationItem>
       <NavigationItem to="/product-manager" mobile>PRODUCT</NavigationItem>
-      <NavigationItem to="/product-tracker" mobile>PRODUCT TRACKER</NavigationItem>
+      <NavigationItem to="/product-tracker" mobile>TRACKER</NavigationItem>
       <NavigationItem to="/home" mobile>ABOUT</NavigationItem>
     </template>
   </NavbarModel>
