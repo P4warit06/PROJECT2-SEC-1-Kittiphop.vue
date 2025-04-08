@@ -1,6 +1,7 @@
 <script setup>
-import ListModel from "./model/ListModel.vue";
-import { ref, computed } from "vue";
+import ListModel from "./model/ListModel.vue"
+import { ref, computed } from "vue"
+import { useRouter } from "vue-router"
 
 const emit = defineEmits([
   "deleteProduct",
@@ -41,8 +42,7 @@ const loadMoreProducts = () => {
   limitShowProduct.value += 10;
 };
 
-// Select all functionality
-const selectAll = ref(false);
+const selectAll = ref(false)
 const toggleSelectAll = () => {
   selectAll.value = !selectAll.value;
   if (selectAll.value) {
@@ -50,13 +50,17 @@ const toggleSelectAll = () => {
   } else {
     selectProductList.value = [];
   }
-};
-const isEditMode = computed(() => props.isEdit)
+}
+
+const router = useRouter()
+
+function goToProductDetail(productId) {
+  router.push({ name: 'ProductDetail', params: { productId } })
+}
 </script>
 
 <template>
   <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-    <!-- Top Controls Section -->
     <div class="flex flex-col md:flex-row justify-end items-center mb-6">
       <div class="flex items-center space-x-4 w-full md:w-auto">
         <button
@@ -101,10 +105,10 @@ const isEditMode = computed(() => props.isEdit)
           </div>
           
           <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-            <div v-show="isEditMode" class="flex items-center">
-              <input 
-                type="checkbox" 
-                id="select-all" 
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="select-all"
                 :checked="selectAll"
                 @change="toggleSelectAll" 
                 class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
@@ -114,7 +118,7 @@ const isEditMode = computed(() => props.isEdit)
             
             <button
               v-if="selectProductList.length > 0"
-              class="w-[40vh] h-[4vh] sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer"
+              class="w-[40vh] h-[8vh] sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer"
               @click="$emit('selectDeleteProduct', selectProductList)"
             >
               <svg
@@ -129,7 +133,9 @@ const isEditMode = computed(() => props.isEdit)
                   clip-rule="evenodd"
                 />
               </svg>
-              <span class="text-sm">Delete Selected ({{ selectProductList.length }})</span>
+              <span class="text-lg"
+                >Delete Selected ({{ selectProductList.length }})</span
+              >
             </button>
           </div>
         </div>
@@ -143,11 +149,9 @@ const isEditMode = computed(() => props.isEdit)
             'flex flex-col h-full': currentListType === 'card',
           }"
         >
-          <!-- Card & List Mode Content with Better Layout -->
           <div
             :class="{ 'flex items-center w-full': currentListType === 'list' }"
           >
-            <!-- Checkbox for both views -->
             <div
               :class="{
                 'mr-3': currentListType === 'list',
@@ -155,7 +159,6 @@ const isEditMode = computed(() => props.isEdit)
               }"
             >
               <input
-                v-show="isEditMode"
                 type="checkbox"
                 :value="yourItem.id"
                 v-model="selectProductList"
@@ -169,6 +172,8 @@ const isEditMode = computed(() => props.isEdit)
                 'w-20 h-20 mr-4 flex-shrink-0': currentListType === 'list',
                 'w-full h-40 mb-4': currentListType === 'card',
               }"
+              @click="goToProductDetail(yourItem.id)"
+              class="cursor-pointer"
             >
               <img
                 v-if="yourItem.image"
@@ -206,7 +211,7 @@ const isEditMode = computed(() => props.isEdit)
 
             <!-- Product Details -->
             <div :class="{ 'flex-1': currentListType === 'list' }">
-              <h3 class="font-bold text-lg text-gray-800">
+              <h3 class="font-bold text-lg text-gray-800 cursor-pointer hover:text-blue-600" @click="goToProductDetail(yourItem.id)">
                 {{ yourItem.name }}
               </h3>
 
@@ -259,11 +264,25 @@ const isEditMode = computed(() => props.isEdit)
                     {{ yourItem.status }}
                   </span>
                 </div>
+
+                <div>
+                  <span class="text-gray-500 text-sm mr-1">Stock:</span>
+                  <span
+                    :class="{
+                      'text-green-600': yourItem.stock > 10,
+                      'text-yellow-600':
+                        yourItem.stock <= 10 && yourItem.stock > 0,
+                      'text-red-600': yourItem.stock === 0,
+                    }"
+                    class="font-medium"
+                  >
+                    {{ yourItem.stock }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Action Buttons -->
           <div
             :class="{
               'flex justify-end items-center space-x-2 mt-4 sm:mt-0':
@@ -272,7 +291,6 @@ const isEditMode = computed(() => props.isEdit)
             }"
           >
             <button
-              v-show="isEditMode"
               @click="$emit('setEditing', yourItem)"
               class="inline-flex items-center px-3 py-1.5 bg-blue-100 text-blue-700 rounded-md hover:bg-indigo-200 transition-colors cursor-pointer"
             >
@@ -289,7 +307,6 @@ const isEditMode = computed(() => props.isEdit)
               Edit
             </button>
             <button
-              v-show="isEditMode"
               @click="$emit('deleteProduct', yourItem.id)"
               class="inline-flex items-center px-3 py-1.5 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition-colors cursor-pointer"
             >

@@ -84,15 +84,19 @@ const scrollToSection = (ref) => {
               </button>
             </div>
 
-            <!-- Navigation Links - Desktop -->
             <div class="hidden lg:flex items-center space-x-6">
               <router-link v-if="currentUser && currentUser.role === 'admin'" to="/user-manager"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
                 USERS
               </router-link>
+              
               <router-link v-if="currentUser && currentUser.role === 'admin'" to="/product-manager"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
                 PRODUCT
+              </router-link>
+              <router-link v-if="currentUser && currentUser.role === 'admin'" to="/product-tracker"
+                class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
+                TRACKER
               </router-link>
               <router-link v-if="!currentUser || currentUser.role === 'user'" to="/user-products"
                 class="text-white text-xl font-bold hover:text-blue-200 transition duration-300">
@@ -115,7 +119,7 @@ const scrollToSection = (ref) => {
                 <div class="relative">
                   <button @click.stop="toggleDropdown"
                     class="flex items-center text-white text-xl font-bold hover:text-blue-200 transition duration-300 cursor-pointer">
-                    <span>{{ currentUser.username }}</span>
+                    <span>{{ currentUser.username.toUpperCase() }}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1"
                       :class="{ 'transform rotate-180': isDropdownOpen }" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
@@ -129,7 +133,7 @@ const scrollToSection = (ref) => {
                       class="flex px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150 justify-center">
                       <p class="cursor-pointer">Profile</p>
                     </router-link>
-                    <router-link v-if="currentUser" to="/top-up"
+                    <router-link v-if="currentUser && currentUser.role !== 'admin'" to="/top-up"
                       class="flex px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-150 justify-center "
                       @click="isMobileMenuOpen = false">
                       Top up
@@ -203,9 +207,27 @@ const scrollToSection = (ref) => {
               <template v-else>
                 <div class="w-full py-4 flex justify-center items-center">
                   <div class="px-4 py-2 bg-white/10 rounded-full mb-4">
-                    <span class="text-white text-lg">{{ currentUser.username }}</span>
+                    <span class="text-white text-lg">{{ currentUser.username.toUpperCase()}}</span>
                   </div>
                 </div>
+                
+                <router-link 
+                  :to="{name : 'UserProfile', params: { userId: currentUser.id }}"
+                  class="text-white text-2xl font-bold hover:text-blue-300 transition-all duration-300 w-full py-4 flex justify-center items-center bg-white/10 hover:bg-blue-500/30 rounded-md mb-4"
+                  @click="isMobileMenuOpen = false"
+                >
+                  MY PROFILE
+                </router-link>
+                
+                <router-link 
+                  v-if="currentUser && currentUser.role !== 'admin'"
+                  to="/top-up"
+                  class="text-white text-2xl font-bold hover:text-green-300 transition-all duration-300 w-full py-4 flex justify-center items-center bg-white/10 hover:bg-green-500/30 rounded-md mb-4"
+                  @click="isMobileMenuOpen = false"
+                >
+                  TOP UP
+                </router-link>
+                
                 <button @click="handleLogout"
                   class="text-white text-2xl font-bold hover:text-red-300 transition-all duration-300 w-full py-4 flex justify-center items-center bg-gray-600/80 hover:bg-red-500/30 rounded-md">
                   LOGOUT

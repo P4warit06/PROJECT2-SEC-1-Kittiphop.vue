@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onUnmounted } from 'vue'
+import NavbarAdmin from './NavbarAdmin.vue'
 
 const trackingId = ref('')
 const trackingInfo = ref(null)
@@ -7,6 +8,7 @@ const loading = ref(false)
 const error = ref('')
 let intervalId = null
 const showImage =ref(true)
+
 // Start tracking
 const startTracking = () => {
     showImage.value =false
@@ -91,7 +93,7 @@ const getStatusClass = (status) => {
     }
 }
 
-// Cleanup interval on component unmount
+
 onUnmounted(() => {
     if (intervalId) {
         clearInterval(intervalId)
@@ -100,6 +102,7 @@ onUnmounted(() => {
 </script>
 
 <template>
+    <NavbarAdmin />
     <div class="flex flex-col items-center justify-center text-center py-8">
         <h1 class="text-4xl md:text-5xl lg:text-4xl font-bold text-[#0f2240] mb-2">Discover New Paths</h1>
         <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0f2240]">with truly integrated logistics</h2>
