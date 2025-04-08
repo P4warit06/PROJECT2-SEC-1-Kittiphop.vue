@@ -206,24 +206,6 @@ const isSelectAll = computed(() => {
 
     <div class="p-6 bg-gray-100 min-h-screen">
       <div class="w-full flex flex-col justify-between items-center mb-6">
-
-        <!-- <div class="w-full flex">
-          <div class="w-5/6">
-            <input
-              type="text"
-              placeholder="Search"
-              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div class="w-1/6 ml-2">
-            <button
-              class="w-full bg-blue-500 text-white h-full rounded-lg cursor-pointer hover:opacity-85"
-            >
-              Search
-            </button>
-          </div>
-        </div> -->
-
         <div class="w-full flex flex-col md:flex-row md:justify-between md:items-center">
           <div class="flex items-center space-x-2 border p-3 rounded-lg mt-4 w-full md:w-auto">
             <input
@@ -234,14 +216,6 @@ const isSelectAll = computed(() => {
               class="h-5 w-5 text-blue-500"
             />
             <label for="selectAll" class="text-lg text-black">Select All</label>
-          </div>
-          <div class="flex items-center space-x-2 border rounded-lg mt-4 w-full md:w-auto">
-            <select class="p-3 w-full md:w-auto">
-              <option disabled value="">Select category</option>
-              <option value="">Select category</option>
-              <option value="">Select category</option>
-              <option value="">Select category</option>
-            </select>
           </div>
         </div>
       </div>

@@ -43,16 +43,15 @@ function checkInput() {
 }
 </script>
 <template>
-  <div class="w-full flex flex-col md:flex-row gap-4 p-4 bg-white rounded-xl  text-blue-900">
-    <!-- Search Section -->
+  <div class="w-full flex flex-col justify-center items-center gap-4 p-4 bg-white rounded-xl  text-blue-900">
     <div class="search w-full md:w-2/3">
       <div class="flex flex-col md:flex-row gap-3 ">
         <div class="relative inline-block">
           <select class="px-4 py-2 border rounded-lg text-white bg-gradient-to-r from-purple-500 to-blue-600 appearance-none focus:outline-none pr-10"
             v-model="searchBy" @change="$emit('filterProduct', { value: searchBy, type: 'searchBy' })">
             <option value="" disabled>Search By</option>
-            <option value="id">Id</option>
-            <option value="name">Name</option>
+            <option value="id" class="text-black">Id</option>
+            <option value="name" class="text-black">Name</option>
           </select>
           <div class="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 text-white">
             ▼

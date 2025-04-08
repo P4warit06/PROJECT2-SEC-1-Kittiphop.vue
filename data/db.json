@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Wireless Headphone",
       "category": "Electronics",
-      "price": 89.99,
+      "price": 100,
       "status": "Active",
       "stock": 27,
       "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
@@ -366,7 +366,28 @@
       "contact": "0987654321",
       "balance": 10,
       "carts": [
-
+        {
+          "id": "2",
+          "name": "Bluetooth Speaker",
+          "category": "Audio",
+          "price": 49.99,
+          "status": "Low Stock",
+          "stock": 4,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MW443?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1716251410589",
+          "description": "Portable bluetooth speaker with 20hr battery life",
+          "quantity": 1
+        },
+        {
+          "id": "1",
+          "name": "Wireless Headphone",
+          "category": "Electronics",
+          "price": 89.99,
+          "status": "Active",
+          "stock": 27,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 1
+        }
       ]
     },
     {

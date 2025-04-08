@@ -16,8 +16,11 @@ const props = defineProps({
     type: Array,
     required: true,
   },
+  isEdit: {
+    type: Boolean,
+    required: true
+  }
 });
-
 // View type toggle
 const currentListType = ref("card");
 const toggleListType = () => {
@@ -48,11 +51,11 @@ const toggleSelectAll = () => {
     selectProductList.value = [];
   }
 };
-
-// Removed searchQuery and filteredProducts as this will be handled by ProductManager.vue
+const isEditMode = computed(() => props.isEdit)
 </script>
 
 <template>
+  <h1>{{ isEditMode }}</h1>
   <div class="bg-white rounded-lg shadow-md p-6 mb-6">
     <!-- Top Controls Section -->
     <div class="flex flex-col md:flex-row justify-end items-center mb-6">
@@ -83,7 +86,6 @@ const toggleSelectAll = () => {
       </div>
     </div>
 
-    <!-- List component with enhanced styling -->
     <ListModel
       :items="listProducts"
       :listType="currentListType"
@@ -100,7 +102,7 @@ const toggleSelectAll = () => {
           </div>
           
           <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-            <div class="flex items-center">
+            <div v-show="isEditMode" class="flex items-center">
               <input 
                 type="checkbox" 
                 id="select-all" 
@@ -113,7 +115,7 @@ const toggleSelectAll = () => {
             
             <button
               v-if="selectProductList.length > 0"
-              class="w-[40vh] h-[8vh] sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer"
+              class="w-[40vh] h-[4vh] sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer"
               @click="$emit('selectDeleteProduct', selectProductList)"
             >
               <svg
@@ -128,7 +130,7 @@ const toggleSelectAll = () => {
                   clip-rule="evenodd"
                 />
               </svg>
-              <span class="text-lg">Delete Selected ({{ selectProductList.length }})</span>
+              <span class="text-sm">Delete Selected ({{ selectProductList.length }})</span>
             </button>
           </div>
         </div>
@@ -154,6 +156,7 @@ const toggleSelectAll = () => {
               }"
             >
               <input
+                v-show="isEditMode"
                 type="checkbox"
                 :value="yourItem.id"
                 v-model="selectProductList"
@@ -270,6 +273,7 @@ const toggleSelectAll = () => {
             }"
           >
             <button
+              v-show="isEditMode"
               @click="$emit('setEditing', yourItem)"
               class="inline-flex items-center px-3 py-1.5 bg-blue-100 text-blue-700 rounded-md hover:bg-indigo-200 transition-colors cursor-pointer"
             >
@@ -286,6 +290,7 @@ const toggleSelectAll = () => {
               Edit
             </button>
             <button
+              v-show="isEditMode"
               @click="$emit('deleteProduct', yourItem.id)"
               class="inline-flex items-center px-3 py-1.5 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition-colors cursor-pointer"
             >
