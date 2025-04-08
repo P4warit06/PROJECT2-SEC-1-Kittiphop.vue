@@ -114,9 +114,6 @@ const addNewProduct = async (product) => {
   isAdding.value = false
 }
 
-const cancelAdding = () => {
-  isAdding.value = false
-}
 
 const isAdding = ref(false)
 const isEditing = ref(false)
@@ -218,17 +215,18 @@ function toggleEditMode() {
     <NavbarAdmin />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
     
-
+    
     <div class="w-full p-3 mt-5 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
       <div class="w-full max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
         <button @click="isAdding = !isAdding"
           v-show="isEditMode"
-          class="mt-2 mx-3 px-5 py-2 bg-gradient-to-r from-green-600 to-green-300 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
+          class="mt-2 mx-3 px-5 py-2 bg-green-600/80 text-white font-semibold rounded-2xl shadow-md hover:from-green-500 hover:to-green-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
           Add New Product
         </button>
       </div>
     </div>
 
+    
     <AddEditProduct v-if="isAdding || isEditing" :active-product="currentProduct" @add-new-product="addNewProduct"
       @edit-product="updateProduct" @cancel-adding="cancelAdd" />
 

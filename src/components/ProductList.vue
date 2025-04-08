@@ -82,9 +82,9 @@ const isEditMode = computed(() => props.isEdit)
         
         <button 
           @click="$emit('toggle-edit-mode')" 
-          :class="isEdit ? 'px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center transition-colors' : 'px-4 py-2 bg-blue-300 text-white rounded-lg hover:bg-blue-400 flex items-center transition-colors'"
+          :class="isEdit ? 'px-4 py-2 bg-green-500/90 text-white rounded-lg hover:bg-blue-600 flex items-center transition-colors' : 'px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 flex items-center transition-colors'"
         >
-          Edit mode
+          Edit
         </button>
       </div>
     </div>
@@ -102,6 +102,7 @@ const isEditMode = computed(() => props.isEdit)
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full gap-2">
           <div class="flex items-center">
             <h2 class="text-xl font-bold">Product Management</h2>
+            
           </div>
           
           <div class="flex flex-col sm:flex-row sm:items-center gap-2">
@@ -147,14 +148,23 @@ const isEditMode = computed(() => props.isEdit)
             'flex flex-col h-full': currentListType === 'card',
           }"
         >
-          <div
-            :class="{ 'flex items-center w-full': currentListType === 'list' }"
+          <router-link
+            :to="{
+              name: 'ProductDetail',
+              params: { productId: yourItem.id },
+            }"
+            class="flex-1 cursor-pointer"
+            :class="{
+              'flex items-center w-full': currentListType === 'list',
+              'flex flex-col': currentListType === 'card'
+            }"
           >
             <div
               :class="{
                 'mr-3': currentListType === 'list',
                 'mb-3 self-start': currentListType === 'card',
               }"
+              @click.stop
             >
               <input
                 v-show="isEditMode"
@@ -218,16 +228,10 @@ const isEditMode = computed(() => props.isEdit)
                 }"
               >
                 <div class="flex items-center">
-                  <span class="text-gray-500 text-sm mr-1">ID:</span>
-                  <router-link
-                    :to="{
-                      name: 'ProductDetail',
-                      params: { productId: yourItem.id },
-                    }"
-                    class="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                  >
+                  <span class="text-gray-500 text-sm mr-1">ID: </span>
+                  <span class="text-blue-600 text-sm font-medium">
                     {{ yourItem.id }}
-                  </router-link>
+                  </span>
                 </div>
 
                 <div class="flex items-center">
@@ -261,7 +265,7 @@ const isEditMode = computed(() => props.isEdit)
                 </div>
               </div>
             </div>
-          </div>
+          </router-link>
 
           <div
             :class="{
