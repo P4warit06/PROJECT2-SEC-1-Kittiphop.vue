@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 100,
       "status": "Active",
-      "stock": 25,
+      "stock": 22,
       "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
       "description": "High-quality wireless headphone with noise cancellation"
     },
@@ -36,7 +36,7 @@
       "category": "Electronics",
       "price": 129.99,
       "status": "Active",
-      "stock": 24,
+      "stock": 19,
       "image": "https://vader-prod.s3.amazonaws.com/1688564124-61MwcHryNYL.jpg",
       "description": "RGB mechanical gaming keyboard"
     },
@@ -387,22 +387,10 @@
       "password": "QWIxMjM0NUA=",
       "email": "bubble@hotmail.com",
       "role": "user",
-      "location": "123",
-      "contact": "0812345678",
-      "balance": 9999,
-      "carts": [
-        {
-          "id": "1",
-          "name": "Wireless Headphone",
-          "category": "Electronics",
-          "price": 100,
-          "status": "Active",
-          "stock": 26,
-          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
-          "description": "High-quality wireless headphone with noise cancellation",
-          "quantity": 1
-        }
-      ]
+      "location": "125 cosno",
+      "contact": "0909317480",
+      "balance": 33064.10000000001,
+      "carts": []
     },
     {
       "id": "3",
@@ -486,7 +474,7 @@
     {
       "id": "2",
       "userId": "2",
-      "status": "Shipped"
+      "status": "Processing"
     },
     {
       "id": "3",

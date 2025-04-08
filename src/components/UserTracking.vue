@@ -2,6 +2,8 @@
 import { useRoute } from "vue-router";
 import { ref, onMounted } from "vue";
 import { getItemById, editItem } from "@/libs/fetchUtils";
+import NavbarAdmin from "./NavbarAdmin.vue";
+import Navbar from "./Navbar.vue";
 const {
   params: { userId },
 } = useRoute();
@@ -64,6 +66,12 @@ const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
 </script>
 
 <template>
+  <div v-show="getUser.role === 'admin'">
+    <NavbarAdmin/>
+  </div>
+  <div v-show="getUser.role !== 'admin'">
+    <Navbar/>
+  </div>
   <div class="min-h-screen flex flex-col items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="w-full max-w-4xl mx-auto">
       <div class="text-center mb-10">
