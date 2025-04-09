@@ -1,4 +1,4 @@
-# PROJECT1-SEC-1-Kittiphop.vue 🇰 🇮 🇹 🇹 🇮 🇵 🇭 🇴 🇵 . <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js Logo" width="22" height="22">
+# PROJECT2-SEC-1-Kittiphop.vue 🇰 🇮 🇹 🇹 🇮 🇵 🇭 🇴 🇵 . <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js Logo" width="22" height="22">
 ## รายละเอียดโปรเจค 🔻
 **หัวข้อโปรเจค: ระบบจัดการสินค้า**  
 - เป็นเว็บไซต์จำลองระบบ ecommerce ที่จะเเบ่งออกมาเป็นทั้งสองฝ่ายทั้งฝ่าย user เเละ admin โดยที่ user นั้นสามารถสร้างบัญชี,เติมเงิน,ซื้อสินค้า,ติดตามสินค้า ฯลฯ โดยที่มี admin คอยดูแล เเละ admin สามารถจัดการกับสินค้า สามารถทำ การ CRUD ได้ทั้งหมด เเละอัปเดตสถานะ tracking สินค้า ,จัดการ Status ของสินค้าให้กับ user ได้อีกด้วย 
