@@ -7,15 +7,15 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const combindCart = ref([])
-const checkboxData = ref([])
-const getUser = ref(JSON.parse(localStorage.getItem("currentUser")))
-const myUser = ref({})
-const showProfileForm = ref(false)
-const profileFormLoading = ref(false)
-const profileFormError = ref("")
-const showConfirmForm = ref(false)
- 
+const combindCart = ref([]);
+const checkboxData = ref([]);
+const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
+const myUser = ref({});
+const showProfileForm = ref(false);
+const profileFormLoading = ref(false);
+const profileFormError = ref("");
+const showConfirmForm = ref(false);
+
 const profileForm = reactive({
   fullname: "",
   location: "",
@@ -250,11 +250,13 @@ const processPurchase = async () => {
     }
     const updateState = async (tracking) => {
       try {
-        return (editedTracking = await editItem(
+        const editedTracking = await editItem(
           `${import.meta.env.VITE_APP_URL}/tracking`,
           getUser.value.id,
           tracking
-        ));
+        );
+        myTracking.value = editedTracking;
+        return editedTracking;
       } catch (error) {
         console.log(error);
       }
@@ -608,7 +610,7 @@ const isSelectAll = computed(() => {
             <path d="M12 19l-7-7 7-7"></path>
           </svg>
         </button>
-        <p class="text-lg font-medium text-blue-800 ">
+        <p class="text-lg font-medium text-blue-800">
           Your Balance:
           <span class="font-bold">${{ currentUser.balance.toFixed(2) }}</span>
         </p>

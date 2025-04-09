@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 100,
       "status": "Active",
-      "stock": 54,
+      "stock": 52,
       "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
       "description": "High-quality wireless headphone with noise cancellation"
     },
@@ -16,7 +16,7 @@
       "category": "Audio",
       "price": 49.99,
       "status": "Low Stock",
-      "stock": 22,
+      "stock": 21,
       "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MW443?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1716251410589",
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
@@ -26,7 +26,7 @@
       "category": "Electronics",
       "price": 129.99,
       "status": "Active",
-      "stock": 19,
+      "stock": 16,
       "image": "https://vader-prod.s3.amazonaws.com/1688564124-61MwcHryNYL.jpg",
       "description": "RGB mechanical gaming keyboard"
     },
@@ -36,7 +36,7 @@
       "category": "Electronics",
       "price": 699.99,
       "status": "Active",
-      "stock": 15,
+      "stock": 14,
       "image": "https://www.smtvonline.com/wp-content/uploads/2024/09/all_colors__flhn5cmb1t26_xlarge-1-1.jpg",
       "description": "Latest model smartphone with high-resolution camera"
     },
@@ -46,7 +46,7 @@
       "category": "Accessories",
       "price": 59.99,
       "status": "Active",
-      "stock": 29,
+      "stock": 28,
       "image": "https://www.jib.co.th/img_master/product/original/2024122309544573135_1.jpg",
       "description": "High precision gaming mouse with customizable buttons"
     },
@@ -411,33 +411,21 @@
       "username": "kittiphop2548",
       "fullname": "Kittipop Siranonchai",
       "_comment": "real password = Ab12345@",
-      "password": "QWIxMjM0NUA=",
       "email": "kittiphop2548@gmail.com",
       "role": "user",
       "location": "123",
       "contact": "0999999999",
-      "balance": 57130.380000000005,
+      "balance": 51180.68000000002,
       "carts": [
         {
-          "id": "5",
-          "name": "Smartphone",
-          "category": "Electronics",
-          "price": 699.99,
-          "status": "Active",
-          "stock": 15,
-          "image": "https://www.smtvonline.com/wp-content/uploads/2024/09/all_colors__flhn5cmb1t26_xlarge-1-1.jpg",
-          "description": "Latest model smartphone with high-resolution camera",
-          "quantity": 1
-        },
-        {
-          "id": "6",
-          "name": "Gaming Mouse",
-          "category": "Accessories",
-          "price": 59.99,
-          "status": "Active",
-          "stock": 29,
-          "image": "https://www.jib.co.th/img_master/product/original/2024122309544573135_1.jpg",
-          "description": "High precision gaming mouse with customizable buttons",
+          "id": "2",
+          "name": "Bluetooth Speaker",
+          "category": "Audio",
+          "price": 49.99,
+          "status": "Low Stock",
+          "stock": 21,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MW443?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1716251410589",
+          "description": "Portable bluetooth speaker with 20hr battery life",
           "quantity": 1
         }
       ]
@@ -508,7 +496,7 @@
     {
       "id": "4",
       "userId": "4",
-      "status": "Cancelled"
+      "status": "Shipped"
     },
     {
       "id": "5",

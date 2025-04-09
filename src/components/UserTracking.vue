@@ -30,8 +30,26 @@ async function getTrackingByUserId() {
 
 onMounted(() => {
   getTrackingByUserId();
+  const intervalId = setInterval(() => {
+    pollTrackingData();
+  }, 5000); // ดึงข้อมูลทุก ๆ 5 วินาที
+  
+  // ทำความสะอาดเมื่อ component ถูกทำลาย
+  onBeforeUnmount(() => {
+    clearInterval(intervalId);
+  });
 });
-
+const pollTrackingData = async () => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_URL}/tracking/${userId}`);
+    const data = await response.json();
+    if (data && data.status !== selectUser.value.status) {
+      selectUser.value = data;
+    }
+  } catch (error) {
+    console.error(err);
+  }
+};
 const statusValue = ["Processing", "Shipping", "Shipped"];
 
 const updateState = async (tracking) => {
@@ -42,6 +60,7 @@ const updateState = async (tracking) => {
       tracking.id,
       tracking
     );
+    selectUser.value = editedTracking;
     return editedTracking;
   } catch (error) {
     console.error(error);
@@ -66,17 +85,17 @@ const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
 
 <template>
   <div v-show="getUser.role === 'admin'">
-    <NavbarAdmin/>
+    <NavbarAdmin />
   </div>
   <div v-show="getUser.role !== 'admin'">
-    <Navbar/>
+    <Navbar />
   </div>
-  <div class="min-h-screen flex flex-col items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div
+    class="min-h-screen flex flex-col items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+  >
     <div class="w-full max-w-4xl mx-auto">
       <div class="text-center mb-10">
-        <h1 class="text-3xl font-bold text-gray-800">
-          Tracking Information
-        </h1>
+        <h1 class="text-3xl font-bold text-gray-800">Tracking Information</h1>
       </div>
 
       <div v-if="loading" class="flex justify-center">
@@ -106,7 +125,8 @@ const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
                     <div class="flex items-center justify-center">
                       <div
                         :class="{
-                          'bg-blue-500 text-white': selectUser.status === status,
+                          'bg-blue-500 text-white':
+                            selectUser.status === status,
                           'bg-gray-200': selectUser.status !== status,
                         }"
                         class="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
@@ -114,7 +134,9 @@ const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
                         {{ index + 1 }}
                       </div>
                     </div>
-                    <p class="mt-2 text-sm font-medium text-gray-600 text-center ">
+                    <p
+                      class="mt-2 text-sm font-medium text-gray-600 text-center"
+                    >
                       {{ status }}
                     </p>
                   </div>
@@ -125,7 +147,9 @@ const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
         </div>
 
         <div class="bg-white shadow-lg rounded-lg p-6 w-full">
-          <h2 class="text-xl font-semibold mb-6 text-center text-blue-300">Delivery Details</h2>
+          <h2 class="text-xl font-semibold mb-6 text-center text-blue-300">
+            Delivery Details
+          </h2>
           <div class="space-y-4 max-w-md mx-auto">
             <div class="flex items-center gap-4">
               <svg
