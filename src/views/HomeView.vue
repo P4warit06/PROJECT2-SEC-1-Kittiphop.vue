@@ -27,7 +27,6 @@ onMounted(() => {
   window.addEventListener('scroll', handleScroll)
 })
 
-// Computed property for header background
 const headerClass = computed(() => {
   return scrollPosition.value > 50 
     ? 'bg-black/70 backdrop-blur-md shadow-lg' 
@@ -226,7 +225,6 @@ const scrollToSection = (ref) => {
             </div>
           </div>
 
-          <!-- Mobile Menu -->
           <div 
             v-if="isMobileMenuOpen"
             class="lg:hidden fixed inset-0 bg-gradient-to-b from-blue-600 to-sky-500 backdrop-blur-sm z-[100] flex flex-col items-center justify-center transition-all duration-300 ease-in-out animate-fadeIn"

@@ -93,7 +93,6 @@ const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
       </div>
 
       <div v-else class="space-y-8">
-        <!-- Status Progress -->
         <div class="bg-white shadow-lg rounded-lg p-6 w-full">
           <div class="flex justify-center">
             <div class="w-full max-w-2xl">
@@ -125,7 +124,6 @@ const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
           </div>
         </div>
 
-        <!-- Delivery Details -->
         <div class="bg-white shadow-lg rounded-lg p-6 w-full">
           <h2 class="text-xl font-semibold mb-6 text-center text-blue-300">Delivery Details</h2>
           <div class="space-y-4 max-w-md mx-auto">
@@ -163,7 +161,6 @@ const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
           </div>
         </div>
 
-        <!-- Update Button -->
         <div class="text-center">
           <button
             v-if="selectUser.status !== 'Shipped' && getUser.role === 'admin'"
@@ -175,7 +172,6 @@ const getUser = ref(JSON.parse(localStorage.getItem("currentUser")));
           </button>
         </div>
 
-        <!-- Success Message -->
         <div
           v-if="selectUser.status === 'Shipped'"
           class="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg text-center"
