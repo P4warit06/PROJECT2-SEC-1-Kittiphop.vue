@@ -16,7 +16,7 @@
       "category": "Audio",
       "price": 49.99,
       "status": "Low Stock",
-      "stock": 0,
+      "stock": 22,
       "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MW443?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1716251410589",
       "description": "Portable bluetooth speaker with 20hr battery life"
     },
@@ -26,7 +26,7 @@
       "category": "Accessories",
       "price": 29.99,
       "status": "Out of Stock",
-      "stock": 0,
+      "stock": 32,
       "image": "https://media.koan.co.th/media/catalog/product/cache/7f626821155ea056ed3e19ac30db92cb/m/a/majextand_the_laptop_stand_for_notebook_and_macbook_-_silver.001_1.jpeg",
       "description": "Ergonomic aluminum laptop stand"
     },
