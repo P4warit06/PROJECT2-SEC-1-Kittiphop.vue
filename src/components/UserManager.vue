@@ -12,7 +12,6 @@ onMounted( async () => {
            `${import.meta.env.VITE_APP_URL}/users`
         )
         myUsers.value = allUsers.filter(user => user.role !== 'admin')
-    console.log(myUsers.value)
     }
     catch(error){
         console.log(error)

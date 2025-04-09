@@ -49,6 +49,47 @@ const toggleSelectAll = () => {
     selectProductList.value = [];
   }
 };
+
+const showConfirmForm = ref(false);
+const itemToDelete = ref(null);
+const itemsToDelete = ref([]);
+const confirmMsg = ref('');
+
+const confirmDelete = (productId) => {
+  itemToDelete.value = productId;
+  confirmMsg.value = 'Are you sure you want to delete this product?';
+  showConfirmForm.value = true;
+};
+const confirmMultipleDelete = (productIds) => {
+  if (!productIds || productIds.length === 0) {
+    return;
+  }
+  
+  itemsToDelete.value = [...productIds];
+  confirmMsg.value = `Are you sure you want to delete ${productIds.length} products?`;
+  showConfirmForm.value = true;
+};
+
+const confirmAndDelete = () => {
+  if (itemToDelete.value) {
+    emit("deleteProduct", itemToDelete.value);
+    itemToDelete.value = null;
+  } else if (itemsToDelete.value.length > 0) {
+    emit("selectDeleteProduct", itemsToDelete.value);
+    itemsToDelete.value = [];
+    selectProductList.value = [];
+    selectAll.value = false;
+  }
+  
+  showConfirmForm.value = false;
+};
+
+const cancelDelete = () => {
+  itemToDelete.value = null;
+  itemsToDelete.value = [];
+  showConfirmForm.value = false;
+};
+
 const isEditMode = computed(() => props.isEdit)
 </script>
 
@@ -89,6 +130,21 @@ const isEditMode = computed(() => props.isEdit)
       </div>
     </div>
 
+    <div v-if="showConfirmForm" class="fixed inset-0 bg-black/80 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50">
+      <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Confirm Deletion</h3>
+        <p class="text-gray-600 mb-6">{{ confirmMsg }}</p>
+        <div class="flex justify-end space-x-3">
+          <button @click="cancelDelete" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">
+            Cancel
+          </button>
+          <button @click="confirmAndDelete" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
     <ListModel
       :items="listProducts"
       :listType="currentListType"
@@ -119,8 +175,8 @@ const isEditMode = computed(() => props.isEdit)
             
             <button
               v-if="selectProductList.length > 0"
-               class="w-10 h-10 sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer ml-8"
-              @click="$emit('selectDeleteProduct', selectProductList)"
+              class="w-10 h-10 sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center transition-colors cursor-pointer ml-8"
+              @click="confirmMultipleDelete(selectProductList)"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -293,7 +349,7 @@ const isEditMode = computed(() => props.isEdit)
             </button>
             <button
               v-show="isEditMode"
-              @click="$emit('deleteProduct', yourItem.id)"
+              @click="confirmDelete(yourItem.id)"
               class="inline-flex items-center px-3 py-1.5 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition-colors cursor-pointer"
             >
               <svg

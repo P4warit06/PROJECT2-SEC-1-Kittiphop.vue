@@ -17,6 +17,23 @@ const {initialProducts, addProduct, editProduct, deleteProduct } =
   useProducts()
 const { products } = storeToRefs(useProducts())
 
+const notiSuccess = ref({
+  show: false,
+  message: '',
+  type: 'success' 
+})
+
+const showNotification = (message, type = 'success') => {
+  notiSuccess.value = {
+    show: true,
+    message,
+    type
+  }
+  setTimeout(() => {
+    notiSuccess.value.show = false
+  }, 3000)
+}
+
 const selectedProducts = ref([])
 const productForFilter = ref([])
 const arrCat = ref([])
@@ -60,7 +77,6 @@ function filterProduct(obj) {
     )
     if (arrCat.value.length !== 0 && arrSta.value.length === 0)
       return (productForFilter.value = catArr)
-    console.log(productForFilter.value)
     if (arrCat.value.length === 0 && arrSta.value.length !== 0)
       return (productForFilter.value = staArr)
     if (arrCat.value.length !== 0 && arrSta.value.length !== 0) {
@@ -109,9 +125,11 @@ const addNewProduct = async (product) => {
     if (addedItem) {
       addProduct(addedItem)
       productForFilter.value = [...products.value]
+      showNotification(`Product "${addedItem.name}" added successfully!`)
     }
   } catch (error) {
     console.error(error)
+    showNotification("Failed to add product. Please try again.", "error")
   }
   isAdding.value = false
 }
@@ -146,8 +164,10 @@ const updateProduct = async (product) => {
     )
     editProduct(editedItem, editIndex)
     productForFilter.value = [...products.value]
+    showNotification(`Product "${editedItem.name}" updated successfully!`)
   } catch (error) {
     console.error(error)
+    showNotification("Failed to update product. Please try again.", "error")
   }
   isEditing.value = false
   currentProduct.value = {
@@ -217,6 +237,27 @@ function toggleEditMode() {
     <NavbarAdmin />
     <FilterProduct :categories="filterCategories" :status="filterStatus" @filter-product="filterProduct" />
     
+    <div v-if="notiSuccess.show"
+         :class="{
+           'fixed top-5 right-5 p-4 rounded shadow-lg z-50 max-w-md transition-opacity': true,
+           'bg-green-100 border-l-4 border-green-500 text-green-700': notiSuccess.type === 'success',
+           'bg-red-100 border-l-4 border-red-500 text-red-700': notiSuccess.type === 'error',
+           'bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700': notiSuccess.type === 'warning'
+         }">
+      <div class="flex items-center">
+        <div class="py-1">
+          <svg v-if="notiSuccess.type === 'success'" class="h-6 w-6 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <svg v-if="notiSuccess.type === 'error'" class="h-6 w-6 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-sm font-medium">{{ notiSuccess.message }}</p>
+        </div>
+      </div>
+    </div>
     
     <div class="w-full p-3 mt-5 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
       <div class="w-full max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center text-center flex justify-center">
