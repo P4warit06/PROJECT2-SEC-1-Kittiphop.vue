@@ -46,7 +46,7 @@
 
 ** User ที่พร้อมใช้งานสำหรับอาจารย์ สามารถดูได้จาก property _comment ใน db.json
 user ทั่วไป
-- username : ajarn@gmail.com , password : Ab12345@
+- username : ajarn@gmail.com , password : Ab12345@ <br>
 user admin
 - username : admin@gmail.com , password : Bb123456789@
 --- 
