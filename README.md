@@ -59,10 +59,10 @@
 --- 
 ### Component Design 
 - Admin
-<img src="1.png" alt="Alt text" width="1100" height="500"/>
+<img src="1.jpg" alt="Alt text" width="1100" height="500"/>
 
 - User
-  <img src="2.png" alt="Alt text" width="1100" height="500"/>
+  <img src="2.jpg" alt="Alt text" width="1100" height="500"/>
 --- 
  
 ### วิดิโอสาธิตการทำงานของเว็บไซต์
