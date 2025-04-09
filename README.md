@@ -43,6 +43,7 @@
 - อัปเดตข้อมูลส่วนตัว
 - ดูสถานะ tracking ได้
 
+
 ** User ที่พร้อมใช้งานสำหรับอาจารย์ สามารถดูได้จาก property _comment ใน db.json
 user ทั่วไป
 - username : ajarn@gmail.com , password : Ab12345@
@@ -59,7 +60,7 @@ user admin
 ### คู่มือการใช้งานแอปพลิเคชัน 
 --- 
 ### วิดิโอสาธิตการทำงานของเว็บไซต์
-[Watch the video](link)
+[Watch the video]([link](https://youtu.be/Zrsmz3_v6sA))
 
 --- 
 ### แหล่งข้อมูลอ้างอิงหรือเป็นแรงบันดาลใจในการพัฒนา
