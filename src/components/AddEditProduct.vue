@@ -149,7 +149,6 @@ const saveProduct = () => {
     Wearables: "/product-images/default-category-images/wearables.png",
   }
 
-  // Create the product to save
   productForSave.value = {
     ...newProduct.value,
     image: newProduct.value.image || categoryImages[newProduct.value.category],
@@ -157,7 +156,6 @@ const saveProduct = () => {
     stock: Number(newProduct.value.stock)
   }
 
-  // Show confirmation dialog for both new products and edits
   showAddOrEditConfirm.value = true
 }
 

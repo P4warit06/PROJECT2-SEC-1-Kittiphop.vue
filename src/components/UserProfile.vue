@@ -158,7 +158,6 @@ onMounted(loadUser)
             <h3 class="text-lg font-medium text-white">My Account</h3>
           </div>
           
-          <!-- Sidebar Navigation -->
           <div class="p-4 flex-grow">
             <nav class="space-y-2">
               

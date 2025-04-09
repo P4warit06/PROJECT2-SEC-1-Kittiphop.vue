@@ -367,7 +367,19 @@
       "location": "",
       "contact": "",
       "balance": 0,
-      "carts": []
+      "carts": [
+        {
+          "id": "5",
+          "name": "Smartphone",
+          "category": "Electronics",
+          "price": 699.99,
+          "status": "Active",
+          "stock": 15,
+          "image": "https://www.smtvonline.com/wp-content/uploads/2024/09/all_colors__flhn5cmb1t26_xlarge-1-1.jpg",
+          "description": "Latest model smartphone with high-resolution camera",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "2",
@@ -399,12 +411,36 @@
       "username": "kittiphop2548",
       "fullname": "Kittipop Siranonchai",
       "_comment": "real password = Ab12345@",
+      "password": "QWIxMjM0NUA=",
       "email": "kittiphop2548@gmail.com",
       "role": "user",
       "location": "123",
       "contact": "0999999999",
       "balance": 57130.380000000005,
-      "carts": []
+      "carts": [
+        {
+          "id": "5",
+          "name": "Smartphone",
+          "category": "Electronics",
+          "price": 699.99,
+          "status": "Active",
+          "stock": 15,
+          "image": "https://www.smtvonline.com/wp-content/uploads/2024/09/all_colors__flhn5cmb1t26_xlarge-1-1.jpg",
+          "description": "Latest model smartphone with high-resolution camera",
+          "quantity": 1
+        },
+        {
+          "id": "6",
+          "name": "Gaming Mouse",
+          "category": "Accessories",
+          "price": 59.99,
+          "status": "Active",
+          "stock": 29,
+          "image": "https://www.jib.co.th/img_master/product/original/2024122309544573135_1.jpg",
+          "description": "High precision gaming mouse with customizable buttons",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "5",
