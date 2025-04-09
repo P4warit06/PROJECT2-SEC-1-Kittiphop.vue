@@ -58,7 +58,6 @@ function nextProcess(status) {
     return;
   }
   let indexStatus = statusValue.findIndex((s) => s === status);
-  console.log(indexStatus);
   selectUser.value.status = statusValue[++indexStatus];
   updateState(selectUser.value);
 }

@@ -21,7 +21,6 @@ const handleLogin = async () => {
     )
 
     localStorage.setItem("currentUser", JSON.stringify(user))
-    console.log("Logged in user:", user)
     router.push("/home")
   } catch (error) {
     console.error("Login error:", error)

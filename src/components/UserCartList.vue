@@ -50,7 +50,6 @@ const addQuantity = async (item) => {
 
     if (product && item.quantity < product.stock) {
       const unitPrice = item.price / item.quantity || item.price;
-      console.log(unitPrice);
       item.quantity += 1;
       item.price = unitPrice * item.quantity;
       const productIndex = combindCart.value.findIndex(
@@ -58,7 +57,6 @@ const addQuantity = async (item) => {
       );
       combindCart.value.splice(productIndex, 1, item);
       myUser.value.carts.splice(productIndex, 1, item);
-      console.log(myUser.value.carts);
       await editItem(
         `${import.meta.env.VITE_APP_URL}/users`,
         myUser.value.id,
@@ -264,7 +262,6 @@ const processPurchase = async () => {
     myTracking.value.status = "Processing";
     updateState(myTracking.value);
     currentUser.value.balance -= totalPrice;
-    console.log(myTracking.value.status);
     for (const product of checkboxData.value) {
       const productInDB = await getItemById(
         `${import.meta.env.VITE_APP_URL}/products`,
@@ -321,7 +318,6 @@ const orderTotal = computed(() => {
 });
 
 const selectAll = (event) => {
-  console.log(event.target.checked);
   if (event.target.checked) {
     checkboxData.value = [...combindCart.value];
   } else {

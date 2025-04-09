@@ -6,11 +6,9 @@ import { getItems } from "@/libs/fetchUtils.js";
 import { ref } from 'vue';
 
 const {products} = storeToRefs(useProducts())
-console.log(products.value)
 
 onMounted(async ()=>{
     products.value=await getItems(`${import.meta.env.VITE_APP_URL}/products`)
- console.log(products.value)
 })
 
 const slider = ref(null);
