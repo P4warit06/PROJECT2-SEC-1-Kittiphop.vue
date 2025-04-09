@@ -1,7 +1,7 @@
 # PROJECT1-SEC-1-Kittiphop.vue 🇰 🇮 🇹 🇹 🇮 🇵 🇭 🇴 🇵 . <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js Logo" width="22" height="22">
 ## รายละเอียดโปรเจค 🔻
 **หัวข้อโปรเจค: ระบบจัดการสินค้า**  
-- เป็นเว็บไซต์จำลองระบบ ecommerce ที่จะเเบ่งออกมาเป็นสองฝ่ายทั้งฝ่าย user เเละ admin โดยที่ user สามารถสร้างบัญชี,เติมเงิน,ซื้อสินค้า,ติดตามสินค้า ฯลฯ โดยที่ admin เเละ admin สามารถจัดการกับสินค้า ทำ CRUD ได้ทั้งหมด เเละอัปเดตสถานะ tracking ให้กับ user ได้อีกด้วย 
+- เป็นเว็บไซต์จำลองระบบ ecommerce ที่จะเเบ่งออกมาเป็นทั้งสองฝ่ายทั้งฝ่าย user เเละ admin โดยที่ user นั้นสามารถสร้างบัญชี,เติมเงิน,ซื้อสินค้า,ติดตามสินค้า ฯลฯ โดยที่มี admin คอยดูแล เเละ admin สามารถจัดการกับสินค้า สามารถทำ การ CRUD ได้ทั้งหมด เเละอัปเดตสถานะ tracking สินค้า ,จัดการ Status ของสินค้าให้กับ user ได้อีกด้วย 
 
 ## รายชื่อสมาชิกและหน้าที่รับผิดชอบ
 
@@ -24,7 +24,7 @@
 | 66130500009   | create addProduct | create product from backend  | addToCart, readProduct in cart | addQuantity, decreaseQuantity,            | toggleEditMode, fixAddToCart, CalculateBar component |
 | 66130500046   | filter product | filter components  | search and category function              |  Userlist,UserManager and get user by id for tracking             | tracking product Admin,User FilterComponent for User               |
 | 66130500056   | delete product and design ui. |  delete product by id and ui           |  delete multiple products (admin-side)  | add top-up for user        |buy product (user-side) also check bug and fix and Add ProductList Home Page And Fix all UI, Responsive also fix/add function validate              | 
-| 66130500059   | update Product ui | update product from backend     | Improve UI page  Admin Side         | Create Product RealTime Tracker              | Fix Product Tracker & Improve UI Component             |
+| 66130500059   | update Product ui | update product from backend     | Improve productlist NavBarAdmin page  Admin Side         | Create Product RealTime Tracker              | Product Tracker Admin Start Real Time Tracking ,Status & Improve UI Component Add Responsive ProductTracker , Check fetch tracker          |
 | 66130500062   | creating ui | add retrieve product feature, add components | add get product by id , add ProductDetail component and ui | add Authentication system and ui | improve responsive ui, update fetch product using state management |
 
 
@@ -42,9 +42,15 @@
 - ฟีเจอร์เติมเงิน
 - อัปเดตข้อมูลส่วนตัว
 - ดูสถานะ tracking ได้
+  
+**ฝั่ง Admin** 
+- ฟีเจอร์ CRUD Product 
+- ฟีเจอร์ติดตามสถานะของสินค้า 
+- ติดตามข้อมูลของ User
+- จัดการสถานะของสินค้า
 
-
-** User ที่พร้อมใช้งานสำหรับอาจารย์ สามารถดูได้จาก property _comment ใน db.json <br>
+--- 
+## User ที่พร้อมใช้งานสำหรับอาจารย์ สามารถดูได้จาก property _comment ใน db.json <br>
 
 - user ทั่วไป
 - username : ajarn@gmail.com , password : Ab12345@ 
@@ -58,8 +64,7 @@
 - User
   <img src="2.png" alt="Alt text" width="1100" height="500"/>
 --- 
-### คู่มือการใช้งานแอปพลิเคชัน 
---- 
+ 
 ### วิดิโอสาธิตการทำงานของเว็บไซต์
 https://youtu.be/Zrsmz3_v6sA
 
@@ -67,7 +72,6 @@ https://youtu.be/Zrsmz3_v6sA
 ### แหล่งข้อมูลอ้างอิงหรือเป็นแรงบันดาลใจในการพัฒนา
 - https://teamseas.org/
 - https://shopee.co.th/
-- 
 ---
 
 ## วิธีการใช้งาน 💻
