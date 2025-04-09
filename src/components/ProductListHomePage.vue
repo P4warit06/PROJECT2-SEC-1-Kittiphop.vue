@@ -9,7 +9,6 @@ const slider = ref(null);
 const isLoading = ref(true);
 const visibleItems = ref(4);
 
-// Update visible items based on screen size
 const updateVisibleItems = () => {
   if (window.innerWidth < 640) {
     visibleItems.value = 1;
@@ -28,8 +27,6 @@ onMounted(async () => {
   } finally {
     isLoading.value = false;
   }
-  
-  // Initialize responsive behavior
   updateVisibleItems();
   window.addEventListener('resize', updateVisibleItems);
 });
@@ -52,7 +49,6 @@ const scrollRight = () => {
   }
 };
 
-// Touch handling for mobile swipe
 const touchStart = ref(0);
 const touchEnd = ref(0);
 
@@ -66,12 +62,10 @@ const handleTouchEnd = (e) => {
 };
 
 const handleSwipe = () => {
-  const swipeThreshold = 50;
-  if (touchStart.value - touchEnd.value > swipeThreshold) {
-    // Swipe left
+  const swipeSensitivity = 50;
+  if (touchStart.value - touchEnd.value > swipeSensitivity) {
     scrollRight();
-  } else if (touchEnd.value - touchStart.value > swipeThreshold) {
-    // Swipe right
+  } else if (touchEnd.value - touchStart.value > swipeSensitivity) {
     scrollLeft();
   }
 };

@@ -36,7 +36,6 @@ function getAvatarColor(id) {
 
 <template>
   <div class="mb-6">
-    <!-- View toggle buttons -->
     <div class="flex justify-end mb-4">
       <div class="inline-flex rounded-md shadow-sm">
         <button
@@ -75,7 +74,6 @@ function getAvatarColor(id) {
           :to="{ name: 'UserTracking', params: { userId: user.id } }"
           class="block h-full w-full"
         >
-          <!-- Card View -->
           <div v-if="listType === 'card'" class="flex flex-col h-full">
             <div class="flex items-center justify-center mb-4">
               <div
@@ -123,7 +121,6 @@ function getAvatarColor(id) {
             </div>
           </div>
 
-          <!-- List View -->
           <div v-else class="flex items-center justify-between w-full">
             <div class="flex items-center">
               <div
