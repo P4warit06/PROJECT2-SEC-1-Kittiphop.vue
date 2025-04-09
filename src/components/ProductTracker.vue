@@ -1,13 +1,16 @@
 <script setup>
 import { ref, onUnmounted } from 'vue'
 import NavbarAdmin from './NavbarAdmin.vue'
+import { getItems } from '@/libs/fetchUtils'
+
 const trackingId = ref('')
 const trackingInfo = ref(null)
 const loading = ref(false)
 const error = ref('')
 let intervalId = null
 const showImage = ref(true)
-const startTracking = () => {
+
+const startTracking = async () => {
     if (!trackingId.value) {
         error.value = 'Please enter a tracking ID.'
         return
@@ -16,33 +19,27 @@ const startTracking = () => {
     trackingInfo.value = null
     error.value = ''
     loading.value = true
-    fetch('/data/db.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok')
+    
+    try {
+        const trackingData = await getItems(`${import.meta.env.VITE_APP_URL}/tracking`)
+        const foundTracking = trackingData.find(
+            (t) => t.id === trackingId.value
+        )
+        
+        if (foundTracking) {
+            trackingInfo.value = foundTracking
+            if (foundTracking.status !== 'Cancelled') {
+                startRealTimeUpdates(foundTracking)
             }
-            return response.json()
-        })
-        .then(data => {
-            const foundTracking = data.tracking.find(
-                (t) => t.id === trackingId.value
-            )
-            if (foundTracking) {
-                trackingInfo.value = foundTracking
-                if (foundTracking.status !== 'Cancelled') {
-                    startRealTimeUpdates(foundTracking)
-                }
-            } else {
-                error.value = `Tracking ID ${trackingId.value} not found. Valid IDs are 1-8.`
-            }
-        })
-        .catch(err => {
-            error.value = 'Failed to fetch tracking information. Please try again later.'
-            console.error('Error fetching tracking info:', err)
-        })
-        .finally(() => {
-            loading.value = false
-        })
+        } else {
+            error.value = `Tracking ID ${trackingId.value} not found. Valid IDs are 1-8.`
+        }
+    } catch (err) {
+        error.value = 'Failed to fetch tracking information. Please try again later.'
+        console.error('Error fetching tracking info:', err)
+    } finally {
+        loading.value = false
+    }
 }
 
 const startRealTimeUpdates = (tracking) => {
@@ -194,4 +191,3 @@ onUnmounted(() => {
     opacity: 0;
 }
 </style>
-
