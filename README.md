@@ -24,7 +24,7 @@
 | 66130500009   | create addProduct | create product from backend  | addToCart, readProduct in cart              | addQuantity, decreaseQuantity, inputQuantity              | fix all cart feature |
 | 66130500046   | filter product | filter components  | search and category function              | list user and get user by id for tracking             | tracking              |
 | 66130500056   | delete product and design ui. |  delete product by id and ui           |  delete multiple products (admin-side)  | add top-up for user        |buy product (user-side) also check bug and fix              | 
-| 66130500059   | update Product ui | update product from backend     | Improve UI   Admin Side         | Create ProductTracker              | Fix Product Tracker & Improve UI              |
+| 66130500059   | update Product ui | update product from backend     | Improve UI page  Admin Side         | Create Product RealTime Tracker              | Fix Product Tracker & Improve UI Component             |
 | 66130500062   | creating ui | add retrieve product feature, add components | add get product by id , add ProductDetail component and ui | add Authentication system and ui | improve responsive ui, update fetch product using state management |
 
 
@@ -40,7 +40,13 @@
 - ฟีเจอร์ที่ลูกค้าสามารถซื้อของได้ - เรียกดูสินค้าทั้งหมด,เรียกดูรายละเอียดสินค้านั้น ๆ   เพิ่มสินค้า,ลบสินค้าในตะกร้า 
 - ฟีเจอร์เติมเงิน
 
+--- 
+### Component Design 
+- Admin
+<img src="1.png" alt="Alt text" width="1100" height="500"/>
 
+- User
+  <img src="2.png" alt="Alt text" width="1100" height="500"/>
 --- 
 ### คู่มือการใช้งานแอปพลิเคชัน 
 --- 
@@ -65,7 +71,6 @@
 - JavaScript <img src="https://cdn.worldvectorlogo.com/logos/logo-javascript.svg" alt="Js.js Logo" width="22" height="22">
 - HTML / Tailwind Framework &nbsp;  <img src="https://cdn.worldvectorlogo.com/logos/html-1.svg" alt="Html.js Logo" width="22" height="22"> |  <img src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" alt="Tailwind.js Logo" width="22" height="22">
 - Daisy UI for icon  <img src="https://avatars.githubusercontent.com/u/76870092?s=280&v=4" alt="daisy.Logo" width="22" height="22">
-
 ---
 
 ### หมายเหตุ:
