@@ -43,6 +43,11 @@
 - อัปเดตข้อมูลส่วนตัว
 - ดูสถานะ tracking ได้
 
+** User ที่พร้อมใช้งานสำหรับอาจารย์ สามารถดูได้จาก property _comment ใน db.json
+user ทั่วไป
+- username : ajarn@gmail.com , password : Ab12345@
+user admin
+- username : admin@gmail.com , password : Bb123456789@
 --- 
 ### Component Design 
 - Admin
