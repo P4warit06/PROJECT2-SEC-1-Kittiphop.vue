@@ -465,6 +465,28 @@
       ],
       "location": "123, Smully",
       "contact": "0918901842"
+    },
+    {
+      "id": "6",
+      "username": "smark5",
+      "fullname": "",
+      "password": "c21hcms1QHRlc3QuY29t",
+      "email": "smark5@test.com",
+      "role": "user",
+      "balance": 0,
+      "carts": [
+        {
+          "id": "1",
+          "name": "Wireless Headphone1223",
+          "category": "Electronics",
+          "price": 100,
+          "status": "Active",
+          "stock": 54,
+          "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1741643688482",
+          "description": "High-quality wireless headphone with noise cancellation",
+          "quantity": 1
+        }
+      ]
     }
   ],
   "tracking": [
