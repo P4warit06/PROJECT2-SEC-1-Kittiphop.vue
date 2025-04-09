@@ -63,7 +63,7 @@ user admin
 
 --- 
 ### แหล่งข้อมูลอ้างอิงหรือเป็นแรงบันดาลใจในการพัฒนา
-- [ref 1 ไอเดีย ](https://teamseas.org/)
+- https://teamseas.org/
 - https://shopee.co.th/
 - 
 ---
